@@ -1,3 +1,9 @@
 # SANDUBA
 
-teste2
+Cenário:
+
+SANDUBA é uma plataforma digital de venda de jogos digitais onde cada empresa e consumidor criarão um cadastro próprio tendo diferentes ações dentro do sistema. 
+As empresas terão que cadastrar razão social, email, senha, CNPJ, dados bancários e endereço. Apenas as validadas poderão cadastrar seus jogos, informando o título, data de lançamento, preço, classificação etária, categorias, descrição, as plataformas compatíveis, modelo de ativação e idiomas disponíveis, permitindo assim  sua revenda. Para acessar os ganhos sobre seus jogos, as empresas contarão com uma carteira digital empresarial, onde o faturamento com a retirada de 5% dos pedidos será acumulado e seu acesso do lucro será pelos dados bancários cadastrados. 
+Como um diferencial, jogos lançados a partir de uma determinada data contarão com descontos fixos, incentivando a compra de títulos mais antigos e tornando-os mais acessíveis aos consumidores.
+Os compradores irão ter que cadastrar um nome, email, senha, CPF e data de nascimento para usufruir do site(o cadastro apenas será concluído caso o usuário seja maior que treze anos). Eles terão acesso a um desconto de 10% na sua primeira compra, acesso a um catálogo de jogos,  histórico de compras e aos conteúdos que poderão adquiri-los a partir de um saldo depositado, previamente, à sua carteira digital da plataforma.  A carteira digital do cliente será o canal para adquirir seus jogos e ela terá acesso aos dados bancários(titular da conta, o número do cartão, CVV, tipo(crédito ou débito) , para o depósito. Após a confirmação do pagamento receberá o recibo via email e terá acesso a sua chave de ativação. 
+O catálogo de jogos será de acesso limitado com base na faixa etária do consumidor, garantindo que cada usuário visualize apenas os jogos adequados para sua idade. Durante seu “passeio” pela biblioteca, o usuário poderá adicionar o que deseja em seu carrinho e posteriormente escolher quais irá finalizar a compra. Além disso, as compras realizadas irão gerar cashbacks de 1% podendo ser acumulados ou utilizados em pedidos futuros.
