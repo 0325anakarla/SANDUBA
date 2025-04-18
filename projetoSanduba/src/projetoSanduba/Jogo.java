@@ -1,22 +1,29 @@
 package projetoSanduba;
 
+import java.text.Normalizer;
+
 public class Jogo {	
 	private String titulo;
 	private double preco;
 	private String descricao;
-	private String categorias;
+	private CategoriasJogos categoria;
 	private int classEtaria;
 	private String idiomas;
 	private String plataDisp;
 	private String modAtivacao;
 	
-	public Jogo(String titulo, double preco, String descricao, String categorias, int classEtaria, String idiomas,
+	public Jogo(String titulo, double preco, String descricao, String categoria, int classEtaria, String idiomas,
 			String plataDisp, String modAtivacao) {
 		super();
 		this.titulo = titulo;
 		this.preco = preco;
 		this.descricao = descricao;
-		this.categorias = categorias;
+		categoria = Normalizer.normalize(categoria, Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+		// Pega o string escrito e retira acentuação
+		this.categoria = CategoriasJogos.valueOf(categoria.toUpperCase()); 
+		// vai converter o String categoria em valor Enum da list e depois colocar a palavra toda em letras maiusculas
+		// (no padrão da lista do Enum), assim as empresas vão poder escrever as categórias de várias formas e mesmo assim
+		// será cadastrado igual e de forma padronizada
 		this.classEtaria = classEtaria;
 		this.idiomas = idiomas;
 		this.plataDisp = plataDisp;
@@ -47,13 +54,13 @@ public class Jogo {
 		this.descricao = descricao;
 	}
 	
-	public String getCategorias() {
+	/*public String getCategorias() { por causa do jeito que as categorias estão implementadas, a gente não vai usar get e set aqui
 		return categorias;
 	}
 	
 	public void setCategorias(String categorias) {
 		this.categorias = categorias;
-	}
+	}*/
 	
 	public int getClassEtaria() {
 		return classEtaria;
@@ -91,7 +98,7 @@ public class Jogo {
 		System.out.println("Titulo: "+titulo);
 		System.out.println("Preço: "+preco);
 		System.out.println("Descrição: "+descricao);
-		System.out.println("Categorias: "+categorias);
+		System.out.println("Categorias: "+categoria.getCategoria());
 		System.out.println("Classificação Etaria: "+classEtaria);
 		System.out.println("Idiomas Disponiveis: "+idiomas);
 		System.out.println("Plataformas: "+plataDisp);
