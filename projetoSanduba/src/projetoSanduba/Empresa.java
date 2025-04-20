@@ -4,11 +4,23 @@ public class Empresa extends Usuarios implements ControleDeJogos, ResumoDeVendas
 	private String cpnj;
 	private String  endereco;
 	private DadosBancarios bancoEmpresa;
+	private CarteiraDaEmpresa carteiraDigital;
 	
-	public Empresa(String nome, String email, String senha, String cpnj, String endereco) {
+	public Empresa(String nome, String email, String senha, String cpnj, String endereco, DadosBancarios bancoEmpresa) {
 		super(nome, email, senha);
 		this.setCpnj(cpnj);
 		this.setEndereco(endereco);
+		this.setBancoEmpresa(bancoEmpresa);
+		CarteiraDaEmpresa carteiraDigital = new CarteiraDaEmpresa(bancoEmpresa);
+		this.setCarteiraDigital(carteiraDigital);
+	}
+	
+	public CarteiraDaEmpresa getCarteiraDigital() {
+		return carteiraDigital;
+	}
+	
+	public void setCarteiraDigital(CarteiraDaEmpresa carteiraDigital) {
+		this.carteiraDigital = carteiraDigital;
 	}
 
 	public DadosBancarios getBancoEmpresa() {
