@@ -1,16 +1,16 @@
 package projetoSanduba;
 
 //eh recomendado que seja abstrata
-public class Usuarios implements Perfil {
+public abstract class Usuarios implements Perfil {
 	private String nome;
 	private String email;
 	private String senha;
 	
-	public Usuarios(String nome, String email, String senha){
+	public Usuarios(String nome, String email, String senha) {
 		this.setNome(nome);
 		this.setEmail(email);
 		this.setSenha(senha);
-}
+	}
 
 	public String getSenha() {
 		return senha;
