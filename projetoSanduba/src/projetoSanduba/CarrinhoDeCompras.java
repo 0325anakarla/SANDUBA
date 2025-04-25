@@ -1,5 +1,7 @@
 package projetoSanduba;
 
+import Pessoa.Cliente;
+
 public class CarrinhoDeCompras {
 	private double total;
 	

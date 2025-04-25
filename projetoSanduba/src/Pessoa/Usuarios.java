@@ -1,6 +1,7 @@
-package projetoSanduba;
+package Pessoa;
 
-//eh recomendado que seja abstrata
+import Interfaces.Perfil;
+
 public abstract class Usuarios implements Perfil {
 	private String nome;
 	private String email;
@@ -12,6 +13,8 @@ public abstract class Usuarios implements Perfil {
 		this.setSenha(senha);
 	}
 
+	/* ----- Gets e sets -----*/
+	
 	public String getSenha() {
 		return senha;
 	}

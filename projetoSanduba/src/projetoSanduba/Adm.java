@@ -5,6 +5,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+import Interfaces.ControleDeJogos;
+import Interfaces.ResumoDeVendas;
+import Pessoa.Cliente;
+import Pessoa.Empresa;
+import Pessoa.Usuarios;
+
 public class Adm extends Usuarios implements ControleDeJogos, ResumoDeVendas {
 	Scanner dados = new Scanner(System.in);
 
@@ -84,14 +90,16 @@ public class Adm extends Usuarios implements ControleDeJogos, ResumoDeVendas {
 		
 	}
 
-	@Override
-	public void cadastrarJogos(String titulo, double preco, String descricao, String categorias, int classEtaria,
-			String idiomas, String plataDisp, String modAtivacao) {
-		Jogo jogo= new Jogo( titulo,  preco,  descricao,  categorias,  classEtaria,  idiomas,
-				 plataDisp,  modAtivacao);
-		jogos.add( jogo);
-		
-	}
+/* -----------ARRUMAR ISSO ------------ */	
+	
+//	@Override
+//	public void cadastrarJogos(String titulo, double preco, String descricao, String categorias, int classEtaria,
+//			String idiomas, String plataDisp, String modAtivacao) {
+//		Jogo jogo= new Jogo( titulo,  preco,  descricao,  categorias,  classEtaria,  idiomas,
+//				 plataDisp,  modAtivacao);
+//		jogos.add( jogo);
+//		
+//	}
 
 	
 	@Override

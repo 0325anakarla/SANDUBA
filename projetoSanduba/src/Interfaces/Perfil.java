@@ -1,4 +1,4 @@
-package projetoSanduba;
+package Interfaces;
 
 public interface Perfil {
 	void exibirInformacaoPublica(); //nome de usuario

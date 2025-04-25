@@ -1,4 +1,6 @@
-package projetoSanduba;
+package Interfaces;
+
+import projetoSanduba.Jogo;
 
 public interface ControleDeJogos {
 	
