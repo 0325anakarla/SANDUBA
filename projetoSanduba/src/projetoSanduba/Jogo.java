@@ -1,7 +1,5 @@
 package projetoSanduba;
 
-import java.util.Arrays;
-
 public class Jogo {
 	private String titulo;
 	private double preco;
@@ -18,12 +16,11 @@ public class Jogo {
 		this.titulo = titulo;
 		this.preco = preco;
 		this.descricao = descricao;
-		String[] categoriasVal = CategoriasJogos.converteString(categoriasInv);
-		// pega o string escrito e chama o metodo do enum para converter
-		this.categoriasValidas = Arrays.stream(categoriasVal)
-				.map(CategoriasJogos::valueOf)
-				.toArray(CategoriasJogos[]::new);
-		// aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
+		String[] categoriasVal = CategoriasJogos.converteString(categoriasInv); // pega o string escrito e chama o metodo do enum para converter
+		this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
+		for(int i = 0; i < categoriasVal.length; i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
+			this.categoriasValidas[i] = CategoriasJogos.valueOf(categoriasVal[i]);
+		}
 		this.classEtaria = classEtaria;
 		this.idiomas = idiomas;
 		this.plataDisp = plataDisp;
@@ -34,9 +31,10 @@ public class Jogo {
 	public Jogo(String titulo, String[] categoriasInv){
 		this.titulo = titulo;
 		String[] categoriasVal = CategoriasJogos.converteString(categoriasInv);
-		this.categoriasValidas = Arrays.stream(categoriasVal)
-				.map(CategoriasJogos::valueOf)
-				.toArray(CategoriasJogos[]::new);
+		this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
+		for(int i = 0; i < categoriasVal.length; i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
+			this.categoriasValidas[i] = CategoriasJogos.valueOf(categoriasVal[i]);
+		}
 	}
 
 	public String getTitulo() {
@@ -109,18 +107,24 @@ public class Jogo {
 		System.out.println("Preço: "+preco);
 		System.out.println("Descrição: "+descricao);
 		System.out.println("Categorias: ");
-		System.out.println(Arrays.toString(categoriasValidas));
+		for(int i = 0; i < categoriasValidas.length; i++){
+			System.out.println(categoriasValidas[i].getCategoria());
+		}
 		System.out.println("Classificação Etaria: "+classEtaria);
 		System.out.println("Idiomas Disponiveis: "+idiomas);
 		System.out.println("Plataformas: "+plataDisp);
 		System.out.println("Modo de ativação: "+modAtivacao);
+		System.out.println("");
 	}
 
 	// criando outro mostrarDados so pra teste
 	public void mostrarDadosCat(){
 		System.out.println("Títutlo: "+titulo);
 		System.out.println("Categorias: ");
-		System.out.printf(Arrays.toString(categoriasValidas));
+		for(int i = 0; i < categoriasValidas.length; i++){
+			System.out.println(categoriasValidas[i].getCategoria());
+		}
+		System.out.println("");
 	}
 
 	public boolean aplicaDescontoDe(double desconto) {
