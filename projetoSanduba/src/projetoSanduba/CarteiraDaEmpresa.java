@@ -22,6 +22,8 @@ public class CarteiraDaEmpresa extends DadosCartao {
 	}
 	
 	//metodo para retirar um certa porcentagem da venda dos jogos e acumular a fatura
+	
+	//um duvida ele num vai so retirar nao, precisa desse porcentagem(analice)
 	private double retirar(double valor, double porcentagem) {
 		double lucro = valor * porcentagem;
 		fatura += lucro;

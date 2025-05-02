@@ -3,9 +3,8 @@ package Pessoa;
 import projetoSanduba.CarteiraDoCliente;
 import java.time.LocalDate;
 
-import Interfaces.Perfil;
 
-public class Cliente extends Usuarios implements Perfil{
+public class Cliente extends Usuarios{
 	private int cpf;
 	private LocalDate natalicio; //data de nascimento
 	private double cashback; //onde vai ser gerado a cada compra realizada com sucesso
@@ -60,31 +59,28 @@ public class Cliente extends Usuarios implements Perfil{
 	
 	// -- @Override aqui embaixo do implements perfil ------------------------------------------------------//
 	
-	@Override
 	public void exibirInformacaoPublica() {
 		System.out.println("Nome do usuario: "+getNome());
 	}
 	
-	@Override
 	public void exibirInformacaoPrivada() {
 		
 	}
-	@Override
+
 	public String alterarSenha(String senha) {
 		setSenha(senha);
 		return "| Alterar senha | Senha Atual: " +getSenha() + "Senha nova:" +senha;
 	}
-	@Override
+
 	public String alterarEmail(String email) {
 		setEmail(email);
 		return "| Alterar Email | Email Atual: " +getEmail() + "Email novo:" +email;
 	}
 	
-	@Override
 	public void seusJogos() {
 		
 	}
-	@Override
+
 	public void excluirConta() {
 		
 	}
