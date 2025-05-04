@@ -2,9 +2,18 @@ package projetoSanduba;
 
 //carteira digital do cliente
 public class CarteiraDoCliente extends DadosCartao {
+	private double cashback; //onde vai ser gerado a cada compra realizada com sucesso
 	
-	public CarteiraDoCliente(DadosBancarios dadosBancarios) {
-		super(dadosBancarios);
+	public CarteiraDoCliente() {
+		super();
+	}
+
+	public double getCashback() {
+		return cashback;
+	}
+	
+	public void gerarCashback() {
+		cashback += 0.01;
 	}
 	
 	public boolean depositar(double valor) {

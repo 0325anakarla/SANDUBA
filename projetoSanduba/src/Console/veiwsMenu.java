@@ -5,11 +5,11 @@ import projetoSanduba.CarteiraDoCliente;
 
 public class veiwsMenu {
 	
-	CarteiraDoCliente cdC = new CarteiraDoCliente(null);
+	CarteiraDoCliente cdC = new CarteiraDoCliente();
 	CarteiraDaEmpresa cdE = new CarteiraDaEmpresa(null);
 	
 	public void telaMenuMcCliente() {
-		   System.out.println("\n--- MINHA CONTA ---");
+		   System.out.println("\n--- MINHA CONTA(Cliente) ---");
 	        System.out.println("1. Ver informações pessoais");
 	        System.out.println("2. Acessar carteira digital");
 	        System.out.println("3. Ver meus jogos");
@@ -30,7 +30,7 @@ public class veiwsMenu {
 	}
 	
 	public void telaMenuMcEmpresa() {
-		 System.out.println("\n--- MINHA CONTA ---");
+		 System.out.println("\n--- MINHA CONTA(Empresa) ---");
 	        System.out.println("1. Ver informações pessoais");
 	        System.out.println("2. Acessar carteira digital");
 	        System.out.println("3. Ver meus jogos cadastrados");

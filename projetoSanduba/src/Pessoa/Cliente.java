@@ -7,29 +7,17 @@ import java.time.LocalDate;
 public class Cliente extends Usuarios{
 	private int cpf;
 	private LocalDate natalicio; //data de nascimento
-	private double cashback; //onde vai ser gerado a cada compra realizada com sucesso
-	private CarteiraDoCliente carteiraDigital; //tem acesso ao dados bancários
+	private CarteiraDoCliente carteiraDigital;
 	
 	
-	public Cliente(String nome, String email, String senha, int cpf, LocalDate natalicio, double cashback,
-			CarteiraDoCliente carteiraDigital) {
+	public Cliente(String nome, String email, String senha, int cpf, LocalDate natalicio, CarteiraDoCliente carteiraDigital) {
 		super(nome, email, senha);
 		this.cpf = cpf;
 		this.natalicio = natalicio;
-		this.cashback = cashback;
 		this.carteiraDigital = carteiraDigital;
 	}
 
 	// --- Geteres e Seteres ------------------------------------------------------------------------//
-	
-	
-	public double getCashback() {
-		return cashback;
-	}
-	
-	public void gerarCashback() {
-		cashback += 0.01;
-	}
 	
 	public CarteiraDoCliente getCarteiraDigital() {
 		return carteiraDigital;

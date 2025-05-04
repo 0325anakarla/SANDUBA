@@ -14,7 +14,7 @@ public class TelaEmpresa {
 		
 		do {
 			
-			menu.telaMenuMcCliente();
+			menu.telaMenuMcEmpresa();
 			
 			opcao = sc.nextInt();
 			
@@ -54,7 +54,7 @@ public class TelaEmpresa {
 		
 		do {
 			
-			menu.telaMenuCdCliente();
+			menu.telaMenuCdEmpresa();
 			
 			opcao = sc.nextInt();
 			
@@ -62,13 +62,14 @@ public class TelaEmpresa {
 				case 1:
 					double valor =0;
 					
-					System.out.println("Retirar");
-					System.out.println("Qual valor vai retirar: ");
+					System.out.println("Sacar");
+					System.out.println("Quanto vai sacar: ");
 					
 					valor = sc.nextDouble();
 					
 					//ta dando erro nesse aqui o saldo nao ta mostrando certo(anaalice),mas o depositar ta certo
-					if(cdE.retirar(valor, null)) {
+					//corrigido, depois testar se está funcionando corretamente(alana)
+					if(cdE.sacar(valor)) {
 						System.out.println("O valor retirado foi: "+valor+ ". Seu saldo é de:"+cdE.getSaldo());
 					}
 					
