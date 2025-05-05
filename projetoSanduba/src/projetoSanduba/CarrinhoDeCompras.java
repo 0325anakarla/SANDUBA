@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Pessoa.Cliente;
+import Pessoa.Empresa;
 
 public class CarrinhoDeCompras {
 	private double total;
@@ -13,8 +14,6 @@ public class CarrinhoDeCompras {
 		this.jogos = new HashMap<>();
 	}
 	
-	//Falta verificar se é a primeira compra do cliente para aplicar um desconto fixo de 10%
-	//ainda falta implementar o histórico de compras
 	public void adiciona(Jogo jogo) {
 		jogos.put(jogo, jogo.getPreco());
 	}
@@ -27,8 +26,7 @@ public class CarrinhoDeCompras {
 		total = 0;
 		
 		for (Map.Entry<Jogo, Double> entrada : jogos.entrySet()) {
-			Jogo jogo = entrada.getKey();
-			double preco = jogo.getPreco();
+			double preco = entrada.getValue();
 			total += preco;
 		}
 		
@@ -47,7 +45,7 @@ public class CarrinhoDeCompras {
 		System.out.println("--------------------------------------------------------");
 		for (Map.Entry<Jogo, Double> entrada : jogos.entrySet()) {
 			Jogo jogo = entrada.getKey();
-			double preco = jogo.getPreco();
+			double preco = entrada.getValue();
 			System.out.printf("%-40s R$ %-13.2f%n", jogo.getResumo(), preco);
 		}
 		System.out.println("--------------------------------------------------------");
@@ -62,14 +60,40 @@ public class CarrinhoDeCompras {
 			return false;
 		}
 	}
+
+	public double aplicaDescontoDe10Porcento(double valor) {
+		return valor -= valor * 0.1;
+	}
 	
 	public boolean finalizarCompra(Cliente cliente) {
-		if (getTotal() <= cliente.getCarteiraDigital().getSaldo()) {
-			cliente.getCarteiraDigital().descontar(getTotal());
+		CarteiraDoCliente carteiraDoCliente = cliente.getCarteiraDigital();
+		double valorDaCompra = getTotal();
+
+		if (cliente.getHistorico().isEmpty()) {
+			valorDaCompra = aplicaDescontoDe10Porcento(valorDaCompra);
+		}
+
+		if (valorDaCompra <= carteiraDoCliente.getSaldo()) {
 			
-			//construi o restante do código
+			for (Map.Entry<Jogo, Double> entrada : jogos.entrySet()) {
+				Jogo jogo = entrada.getKey();
+				double preco = jogo.getPreco();
+				Empresa empresa = jogo.getEmpresa();
+				CarteiraDaEmpresa carteiraDaEmpresa = empresa.getCarteiraDigital();
+				carteiraDaEmpresa.adicionar(preco, 0.05);
+			}
+
+			carteiraDoCliente.descontar(valorDaCompra);
+
+			for (Jogo jogo : jogos.keySet()) {
+				cliente.atualizarLista(jogo);
+			}
+
+			//passar a data do dia da compra realizada com sucesso
+			RegistroDeCompras registro = new RegistroDeCompras(valorDaCompra, null, jogos);
+			cliente.atualizarHistorico(registro);
 			
-			cliente.getCarteiraDigital().gerarCashback();
+			carteiraDoCliente.gerarCashback();
 			return true;
 		} else {
 			return false;
