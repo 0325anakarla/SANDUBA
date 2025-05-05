@@ -1,13 +1,20 @@
 package Pessoa;
 
 import projetoSanduba.CarteiraDoCliente;
+import projetoSanduba.Jogo;
+import projetoSanduba.RegistroDeCompras;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Cliente extends Usuarios{
 	private int cpf;
 	private LocalDate natalicio; //data de nascimento
 	private CarteiraDoCliente carteiraDigital;
+	private List<RegistroDeCompras> historico;
+	private List<Jogo> jogosAdquiridos;
 	
 	
 	public Cliente(String nome, String email, String senha, int cpf, LocalDate natalicio, CarteiraDoCliente carteiraDigital) {
@@ -15,6 +22,8 @@ public class Cliente extends Usuarios{
 		this.cpf = cpf;
 		this.natalicio = natalicio;
 		this.carteiraDigital = carteiraDigital;
+		this.historico = new ArrayList<>();
+		this.jogosAdquiridos = new ArrayList<>();
 	}
 
 	// --- Geteres e Seteres ------------------------------------------------------------------------//
@@ -44,7 +53,23 @@ public class Cliente extends Usuarios{
 	public void setCpf(int cpf) {
 		this.cpf = cpf;
 	}
-	
+
+	public List<RegistroDeCompras> getHistorico() {
+		return historico;
+	}
+
+	public void atualizarHistorico(RegistroDeCompras registro) {
+		historico.addLast(registro);
+	}
+
+	public List<Jogo> getJogosAdquiridos() {
+		return jogosAdquiridos;
+	}
+
+	public void atualizarLista(Jogo jogo) {
+		jogosAdquiridos.add(jogo);
+	}
+ 	
 	// -- @Override aqui embaixo do implements perfil ------------------------------------------------------//
 	
 	public void exibirInformacaoPublica() {

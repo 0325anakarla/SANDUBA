@@ -43,7 +43,7 @@ public class veiwsMenu {
 	public void telaMenuCdEmpresa() {
 		System.out.println("\n--- CARTEIRA DIGITAL ---");
         System.out.println("Saldo: "+cdE.getSaldo());//ta dando erro(irei corrigir)
-        System.out.println("1. Retirar");
+        System.out.println("1. Sacar");
         System.out.println("2. Dados Bancarios");
         System.out.println("3. Voltar para minha conta");
         System.out.print("Escolha uma opção: ");
