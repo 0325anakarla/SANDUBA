@@ -15,4 +15,8 @@ public abstract class DadosCartao {
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
+	
+	public String toString() {
+		return "\n  Saldo da conta:    "+saldo;
+	}
 }

@@ -1,6 +1,6 @@
 package projetoSanduba;
 
-import Pessoa.Adm;
+
 import Pessoa.Cliente;
 import Pessoa.Empresa;
 import Pessoa.Usuarios;
@@ -14,9 +14,6 @@ public class ArrayListPessoas extends Usuarios {
 	private Adm adm;
 	private Cliente cliente;
 	private Empresa empresa;
-
-
-
 
 
 	public ArrayListPessoas(String nome, String email, String senha) {
@@ -39,7 +36,8 @@ public class ArrayListPessoas extends Usuarios {
 	public void exibirInformacaoPublica(Usuarios usuario1) {
 		if(usuario1 instanceof Cliente){
 					cliente = (Cliente) usuario1;
-			String ultimos2DadoCpf = cliente.getCpf().substring(cliente.getCpf().length() - 2);
+					String cpf1 = String.valueOf(cliente.getCpf());
+			String ultimos2DadoCpf = cpf1.substring(cpf1.length() - 2);
 			//String primeiros2DadoEmail = cliente.getEmail().substring(0, 2);
 			//String ultimos13DadoEmail = cliente.getEmail().substring(cliente.getEmail().length() - 13);
 			System.out.println("Olá "+cliente.getNome()+" seus dados gerais:\n" +
@@ -56,12 +54,14 @@ public class ArrayListPessoas extends Usuarios {
 		else if (usuario1 instanceof Empresa){
 			Empresa empresa = (Empresa) usuario1;
 			String primeiros2DadoEmail = empresa.getEmail().substring(0, 2);
-			String ultimos13DadoEmail = empresa.getEmail().substring(email.length() - 13);
+			String ultimos13DadoEmail = empresa.getEmail().substring(empresa.getEmail().length() - 13);
 			System.out.println("OS dados  gerais da empresa "+empresa.getRazaoSocial()+" são: \n"+
-							"Email:"+primeiros2DadoEmail +"****"+ultimos13DadoEmail+
-							"Sua senha: ****"+
-
-					)
+							"Email:"+empresa.getEmail()+
+							"Senha: ****\n"+
+							"Endereço: "+empresa.getEndereco()+
+							"\nCnpj :"+empresa.getCpnj()
+							//acho que o cnpj de uma empreja é oublic 
+					);
 		}
 		
 	}
@@ -72,32 +72,21 @@ public class ArrayListPessoas extends Usuarios {
 
 	@Override
 	//add dados
-	public void exibirInformacaoPrivada() {
+	public void exibirInformacaoPrivada(Usuarios usuario1) {
 		if(usuario1 instanceof Cliente){
-			Cliente cliente = (Cliente) usuario1;
-			String ultimos2DadoCpf = cliente.getcCpf().substring(cliente.getcCpf().length() - 2);
-			String primeiros2DadoEmail = cliente.getEmail().substring(0, 2);
-			String ultimos13DadoEmail = cliente.getEmail().substring(cliente.getEmail().length() - 13);
-			System.out.println("Olá "+cliente.getNome()+" seus dados :\n" +
-					"Email:"+primeiros2DadoEmail +"****"+ultimos13DadoEmail+
-					"Sua senha: ****"+
-
-					//será que precisa ocultar n sei
-					"\nSua data de natalidade: "+cliente.getNatalicio()+
-					"\nSeu Cpf: ***.***.**-"+ ultimos2DadoCpf);
-
-			// n sei oque mais é importante
+			cliente = (Cliente) usuario1;
+			
+			System.out.println(cliente.toString());
+		
+					
+	
 
 		}
 		else if (usuario1 instanceof Empresa){
 			Empresa empresa = (Empresa) usuario1;
-			String primeiros2DadoEmail = empresa.getEmail().substring(0, 2);
-			String ultimos13DadoEmail = empresa.getEmail().substring(email.length() - 13);
-			System.out.println("OS dados da empresa "+empresa.getRazaoSocial()+" são: \n"+
-					"Email:"+primeiros2DadoEmail +"****"+ultimos13DadoEmail+
-					"Sua senha: ****"
+			System.out.println(empresa.toString());
 
-			);
+			
 		}
 		
 	}
@@ -142,7 +131,8 @@ public class ArrayListPessoas extends Usuarios {
 		System.out.println("Cpf ou Cnpj:");
 		String opcao2= dados.nextLine();
 		if(opcao2.length()==11){
-			boolean excluir= usuario.removeIf(usuario->usuario instanceof Cliente && ((Cliente) usuario ).getCpf().equalsIgnoreCase(opcao2));
+			String cpf1 = String.valueOf(cliente.getCpf());
+			boolean excluir= usuario.removeIf(usuario->usuario instanceof Cliente && (cpf1.equalsIgnoreCase(opcao2)));
 
 			if (excluir) {
 				System.out.println(" CONTA APAGADA COM SUCESSO");
@@ -150,7 +140,8 @@ public class ArrayListPessoas extends Usuarios {
 				System.out.println("CPF INVALIDO!");
 			}
 		} else if (opcao2.length()==14) {
-			boolean excluir= usuario.removeIf(usuario->usuario instanceof Empresa && ((Empresa) usuario ).getCnpj().equalsIgnoreCase(opcao2));
+			String cnpj = String.valueOf(empresa.getCpnj());
+			boolean excluir= usuario.removeIf(usuario->usuario instanceof Empresa && (cnpj.equalsIgnoreCase(opcao2)));
 
 			if (excluir) {
 				System.out.println(" CONTA APAGADA COM SUCESSO");

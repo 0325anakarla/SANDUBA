@@ -98,4 +98,20 @@ public class Cliente extends Usuarios{
 		
 	}
 	
+	
+	public String toString() {
+		return  "-------------------------------------------------------------"+
+				"\n  Nome do Usuario:   "+getNome()+
+				"\n  Email:             "+getEmail()+
+				"\n  Senha;             "+getSenha()+
+				"\n  Cpf:               "+cpf+
+				"\n  Data de nascimento:"+natalicio+
+				"\n-------------------------------------------------------------"+
+				"\n"+ carteiraDigital.toString()+
+				"\n-------------------------------------------------------------";
+				
+		
+	}
+	
+	
 }

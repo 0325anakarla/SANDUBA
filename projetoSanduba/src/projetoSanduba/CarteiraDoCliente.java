@@ -37,4 +37,10 @@ public class CarteiraDoCliente extends DadosCartao {
 			return false;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return "\n  Saldo da conta:    "+getSaldo()+
+			   "\n  Saldo no cashback: "+cashback;
+	}
 }
