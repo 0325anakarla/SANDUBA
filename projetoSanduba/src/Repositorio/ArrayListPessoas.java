@@ -1,4 +1,4 @@
-package projetoSanduba;
+package Repositorio;
 
 
 import Pessoa.Cliente;

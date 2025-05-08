@@ -5,11 +5,12 @@ import java.util.Scanner;
 
 import Interfaces.Repositorio;
 import Interfaces.RepositorioJogos;
+import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
 import projetoSanduba.Jogo;
 
 public class ControleDeJogos{
-	RepositorioJogoArrayList<Jogo> jogos = new RepositorioJogoArrayList<Jogo>();	
+	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
 	
 	//final
 	Scanner sc = new Scanner(System.in);
@@ -54,8 +55,10 @@ public class ControleDeJogos{
 				
 		switch(opcao) {
 		case 1:
-			jogos.add(jogo);
-			System.out.println("O " +jogo.getTitulo()+ " foi adicionado com sucesso");
+			if(listJogos.procurarNome(jogo.getTitulo()) != null) {
+				listJogos.add(jogo);	
+				System.out.println("O " +jogo.getTitulo()+ " foi adicionado com sucesso");
+			}
 			break;
 		case 2: 
 			System.out.println("Cadastro de jogo cancelado!");
@@ -64,9 +67,13 @@ public class ControleDeJogos{
 			System.out.println("Opção invalida!");
 		}	
 	}
+	
+	public void ListJogosEmpresa(Empresa empresa) {
+		System.out.println(listJogos.procurarEmpresa(empresa));
+	}
 
 	
-	@Override
+	//@Override
 	/*public void alterarDadosDoJogo(Jogo jogo) {
 		System.out.println(" oque você deseja alterar? ");
 		System.out.println(opcoeJogo());

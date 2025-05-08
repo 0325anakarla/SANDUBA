@@ -5,13 +5,14 @@ import java.util.List;
 
 import Interfaces.Repositorio;
 import Interfaces.RepositorioJogos;
-import Pessoa.Usuarios;
+import Pessoa.Empresa;
 import projetoSanduba.Jogo;
 
 
-public class RepositorioJogoArrayList<Jogo> implements Repositorio<Jogo>, RepositorioJogos{
+public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJogos{
 	
 	private final List<Jogo> jogos= new ArrayList<>(); 
+	
 	
 	
 	@Override
@@ -33,7 +34,7 @@ public class RepositorioJogoArrayList<Jogo> implements Repositorio<Jogo>, Reposi
 	
 
 	@Override
-	public void delete(Jogo jogo) {
+	public void deletar(Jogo jogo) {
 		jogos.remove(jogo);
 		
 	}
@@ -58,6 +59,23 @@ public class RepositorioJogoArrayList<Jogo> implements Repositorio<Jogo>, Reposi
 			}
 		}
 		return null;
+	}
+
+	@Override
+	public void alterarDados(Jogo jogo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List<Jogo> procurarEmpresa(Empresa empresa) {
+		List<Jogo> resultados = new ArrayList<Jogo>();
+	
+		for(Jogo jogo: jogos) {
+			if(jogo.getEmpresa().equals(empresa)) {
+				resultados.add(jogo);
+			}
+		}
+		return resultados;
 	}
 
 }

@@ -135,10 +135,6 @@ public class Empresa extends Usuarios{
 				"\n "+
 				"\n"+bancoEmpresa.toString()+
 				"\n\"-------------------------------------------------------------";
-				
-		
-				
-		
 	}
 	
 	

@@ -2,12 +2,17 @@ package Console;
 
 import java.util.Scanner;
 
+import Pessoa.Empresa;
+import Repositorio.RepositorioJogoArrayList;
+import funcionalidades.ControleDeJogos;
 import projetoSanduba.CarteiraDaEmpresa;
 
 public class TelaEmpresa {
 	Scanner sc = new Scanner(System.in);
 	veiwsMenu menu = new veiwsMenu();
 	CarteiraDaEmpresa cdE = new CarteiraDaEmpresa(null);
+	ControleDeJogos controlJogos = new ControleDeJogos();
+	Empresa empresa = new Empresa(null, null, null, null, null, null, null);
 	
 	public void telaMinhaContaEmpresa() {
 		int opcao = 0;
@@ -21,6 +26,7 @@ public class TelaEmpresa {
 			switch(opcao) {
 				case 1:
 					System.out.println("Mostra informaçoes pessoais");
+					empresa.toString();
 					break;
 				case 2:
 					System.out.println("Mostra carteira digital e suas opções");
@@ -28,11 +34,11 @@ public class TelaEmpresa {
 					break;
 				case 3:
 					System.out.println("Jogos cadastrados");
-					//list para jogos cadastrados
+					controlJogos.ListJogosEmpresa(empresa);
 					break;
 				case 4:
 					System.out.println("\n--- CADASTRAR JOGOS ---");
-					
+					controlJogos.CadastrarJogos();
 					break;
 				case 5:
 					System.out.println("Resumo de vendas");
@@ -44,6 +50,7 @@ public class TelaEmpresa {
 				default:
 					System.out.println("Opção invalida. digite novamente:");
 					opcao = sc.nextInt();
+					sc.nextLine();
 			}
 			
 		}while(opcao != 6);
@@ -67,8 +74,6 @@ public class TelaEmpresa {
 					
 					valor = sc.nextDouble();
 					
-					//ta dando erro nesse aqui o saldo nao ta mostrando certo(anaalice),mas o depositar ta certo
-					//corrigido, depois testar se está funcionando corretamente(alana)
 					if(cdE.sacar(valor)) {
 						System.out.println("O valor retirado foi: "+valor+ ". Seu saldo é de:"+cdE.getSaldo());
 					}

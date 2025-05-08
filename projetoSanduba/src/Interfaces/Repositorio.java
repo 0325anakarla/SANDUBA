@@ -2,6 +2,9 @@ package Interfaces;
 
 import java.util.List;
 
+import Pessoa.Empresa;
+import projetoSanduba.Jogo;
+
 
 public interface Repositorio<T> {
 	void add(T object);
@@ -10,10 +13,12 @@ public interface Repositorio<T> {
 	
 	T procurarNome(String titulo);
 	
-	void alterarDadosDoJogo(T object);
+	void alterarDados(T object);
 	
-	void delete(T object);
+	void deletar(T object);
 
-	List<T> checarTipo(Class<?> clazz);  //listar 
+	List<T> checarTipo(Class<?> clazz);  
+	//clazz permite que você passe qualquer classe sem restrições e trabalhe com ela dinamicamente.
+
 
 }
