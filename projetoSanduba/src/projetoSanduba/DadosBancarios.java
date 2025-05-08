@@ -54,5 +54,19 @@ public class DadosBancarios {
 	public void setTitularConta(String titularConta) {
 		this.titularConta = titularConta;
 	}
+	
+	/*public void mostrarDadosBancarios() {
+		System.out.println("");
+	}*/
+	
+	
+	public String toString() {
+		return "\n  DADOS BANCARIOS "+
+				"\n  Titular da Conta: "+titularConta+
+				"\n  Banco:            "+nomeBanco+
+				"\n  Conta:            "+tipoConta+
+				"\n  Agência:          "+agencia+
+				"\n  Número da conta:  "+numeroConta;
+	}
 
 }

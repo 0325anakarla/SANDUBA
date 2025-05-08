@@ -1,5 +1,7 @@
 package projetoSanduba;
 
+import Pessoa.Empresa;
+
 public class Jogo {
 	private String titulo;
 	private double preco;
@@ -9,9 +11,10 @@ public class Jogo {
 	private String idiomas;
 	private String plataDisp;
 	private String modAtivacao;
+	private Empresa empresa;
 
 	public Jogo(String titulo, double preco, String descricao, String[] categoriasInv, int classEtaria, String idiomas,
-				String plataDisp, String modAtivacao) {
+				String plataDisp, String modAtivacao, Empresa empresa) {
 		super();
 		this.titulo = titulo;
 		this.preco = preco;
@@ -25,6 +28,7 @@ public class Jogo {
 		this.idiomas = idiomas;
 		this.plataDisp = plataDisp;
 		this.modAtivacao = modAtivacao;
+		this.empresa = empresa;
 	}
 
 	//criando um construtor apenas para teste
@@ -100,6 +104,18 @@ public class Jogo {
 
 	public void setModAtivacao(String modAtivacao) {
 		this.modAtivacao = modAtivacao;
+	}
+
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+	
+	public String getResumo() {
+		return titulo+" ("+empresa.getNome()+")";
 	}
 
 	public void mostrarDados() {

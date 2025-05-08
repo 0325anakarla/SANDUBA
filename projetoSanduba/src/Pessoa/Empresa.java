@@ -6,19 +6,23 @@ import projetoSanduba.DadosBancarios;
 import projetoSanduba.Jogo;
 
 public class Empresa extends Usuarios implements ControleDeJogos, ResumoDeVendas{
+	
 	private String cpnj;
-	private String  endereco;
+	private String endereco;
 	private DadosBancarios bancoEmpresa;
 	private CarteiraDaEmpresa carteiraDigital;
+	private String razaoSocial;
 	
-	public Empresa(String nome, String email, String senha, String cpnj, String endereco, DadosBancarios bancoEmpresa) {
+	public Empresa(String nome, String email, String senha, String cpnj, String endereco, DadosBancarios bancoEmpresa, String razaoSocial) {
 		super(nome, email, senha);
 		this.setCpnj(cpnj);
 		this.setEndereco(endereco);
 		this.setBancoEmpresa(bancoEmpresa);
+		this.setRazaoSocial(razaoSocial);
 		CarteiraDaEmpresa carteiraDigital = new CarteiraDaEmpresa(bancoEmpresa);
 		this.setCarteiraDigital(carteiraDigital);
 	}
+	
 	
 	//--- Geteres e Seteres ---------------------------------------------//
 	
@@ -52,6 +56,14 @@ public class Empresa extends Usuarios implements ControleDeJogos, ResumoDeVendas
 
 	public void setCpnj(String cpnj) {
 		this.cpnj = cpnj;
+	}
+	
+	public String getRazaoSocial() {
+		return razaoSocial;
+	}
+
+	public void setRazaoSocial(String razaoSocial) {
+		this.razaoSocial = razaoSocial;
 	}
 	
 	// --- Metodos da Empresa ----------------------------------------------------------------------------------------------------//
@@ -119,6 +131,26 @@ public class Empresa extends Usuarios implements ControleDeJogos, ResumoDeVendas
 	@Override
 	public void pesquisarJogo() {
 				
+	}
+	
+	
+	
+	@Override
+	public String toString(){
+		return "-------------------------------------------------------------"+
+				"  DADOS DA EMPRESA: " +razaoSocial+
+				"\n  Email: "+getEmail()+
+				"\n  Senha: "+getSenha()+
+				"\n  Cnpj: "+cpnj+
+				"\n  Endereço: "+endereco+
+				"\n-------------------------------------------------------------"+
+				"\n "+
+				"\n"+bancoEmpresa.toString()+
+				"\n\"-------------------------------------------------------------";
+				
+		
+				
+		
 	}
 	
 	

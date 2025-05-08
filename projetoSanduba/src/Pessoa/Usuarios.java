@@ -1,8 +1,8 @@
 package Pessoa;
 
-import Interfaces.Perfil;
 
-public abstract class Usuarios implements Perfil {
+
+public abstract class Usuarios {
 	private String nome;
 	private String email;
 	private String senha;
@@ -38,5 +38,15 @@ public abstract class Usuarios implements Perfil {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
+	public abstract void exibirInformacaoPublica(); //nome de usuario
+	public abstract void exibirInformacaoPrivada(); //detalhes da conta
+	
+	public abstract String alterarSenha(String senha); //alterar dados
+	public abstract String alterarEmail(String email);
+	
+	public abstract void seusJogos(); //jogos cadastrados e jogos comprados
+	
+	public abstract void excluirConta(); //excluir conta
 	
 }
