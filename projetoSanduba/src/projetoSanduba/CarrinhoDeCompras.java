@@ -1,31 +1,99 @@
 package projetoSanduba;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import Pessoa.Cliente;
+import Pessoa.Empresa;
 
 public class CarrinhoDeCompras {
 	private double total;
+	private Map<Jogo, Double> jogos;
 	
-	public CarrinhoDeCompras() {	
+	public CarrinhoDeCompras() {
+		this.jogos = new HashMap<>();
 	}
 	
-	//Falta verificar se é a primeira compra do cliente para aplicar um desconto fixo de 10%
-	//ainda falta implementar o histórico de compras
 	public void adiciona(Jogo jogo) {
-		System.out.println("Adicionando: "+jogo);
-		total = total + jogo.getPreco();
+		jogos.put(jogo, jogo.getPreco());
+	}
+	
+	public Map<Jogo, Double> getJogos() {
+		return jogos;
 	}
 	
 	public double getTotal() {
+		total = 0;
+		
+		for (Map.Entry<Jogo, Double> entrada : jogos.entrySet()) {
+			double preco = entrada.getValue();
+			total += preco;
+		}
+		
 		return total;
+	}
+
+	public void aplicarPercentualDesconto(double desconto) {
+		for (Jogo jogo : jogos.keySet()) {
+			jogo.aplicaDescontoDe(desconto);
+			jogos.put(jogo, jogo.getPreco());
+		}
+	}
+	
+	public void imprimirCarrinho() {
+		System.out.printf("%-40s %-15s%n", "Jogo", "Valor Unitário");
+		System.out.println("--------------------------------------------------------");
+		for (Map.Entry<Jogo, Double> entrada : jogos.entrySet()) {
+			Jogo jogo = entrada.getKey();
+			double preco = entrada.getValue();
+			System.out.printf("%-40s R$ %-13.2f%n", jogo.getResumo(), preco);
+		}
+		System.out.println("--------------------------------------------------------");
+		System.out.printf("%-40s R$ %-13.2f%n", "TOTAL", getTotal());
+	}
+
+	public boolean remove(Jogo jogo) {
+		if (jogos.containsKey(jogo)) {
+			jogos.remove(jogo);
+			return true;
+		} else{
+			return false;
+		}
+	}
+
+	public double aplicaDescontoDe10Porcento(double valor) {
+		return valor -= valor * 0.1;
 	}
 	
 	public boolean finalizarCompra(Cliente cliente) {
-		if (total <= cliente.getCarteiraDigital().getSaldo()) {
-			cliente.getCarteiraDigital().descontar(total);
+		CarteiraDoCliente carteiraDoCliente = cliente.getCarteiraDigital();
+		double valorDaCompra = getTotal();
+
+		if (cliente.getHistorico().isEmpty()) {
+			valorDaCompra = aplicaDescontoDe10Porcento(valorDaCompra);
+		}
+
+		if (valorDaCompra <= carteiraDoCliente.getSaldo()) {
 			
-			//construi o restante do código
+			for (Map.Entry<Jogo, Double> entrada : jogos.entrySet()) {
+				Jogo jogo = entrada.getKey();
+				double preco = jogo.getPreco();
+				Empresa empresa = jogo.getEmpresa();
+				CarteiraDaEmpresa carteiraDaEmpresa = empresa.getCarteiraDigital();
+				carteiraDaEmpresa.adicionar(preco, 0.05);
+			}
+
+			carteiraDoCliente.descontar(valorDaCompra);
+
+			for (Jogo jogo : jogos.keySet()) {
+				cliente.atualizarLista(jogo);
+			}
+
+			//passar a data do dia da compra realizada com sucesso
+			RegistroDeCompras registro = new RegistroDeCompras(valorDaCompra, null, jogos);
+			cliente.atualizarHistorico(registro);
 			
-			cliente.gerarCashback();
+			carteiraDoCliente.gerarCashback();
 			return true;
 		} else {
 			return false;

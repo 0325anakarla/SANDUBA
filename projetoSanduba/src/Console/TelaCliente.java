@@ -8,7 +8,7 @@ public class TelaCliente {
 	
 	Scanner sc = new Scanner(System.in);
 	veiwsMenu menu = new veiwsMenu();
-	CarteiraDoCliente cdC = new CarteiraDoCliente(null);
+	CarteiraDoCliente cdC = new CarteiraDoCliente();
 	
 	public void telaMinhaContaCliente() {
 		int opcao = 0;
@@ -70,6 +70,7 @@ public class TelaCliente {
 					valor = sc.nextDouble();
 					
 					//ta dando erro nesse aqui o saldo nao ta mostrando certo(anaalice),mas o depositar ta certo
+					//agora a exibicao deste saldo esta exibindo correto(alana)
 					if(cdC.depositar(valor)) {
 						System.out.println("O valor depositado foi: "+valor+ ". Seu saldo é de:"+cdC.getSaldo());
 					}

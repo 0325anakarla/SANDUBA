@@ -10,7 +10,7 @@ import projetoSanduba.Jogo;
 public class Empresa extends Usuarios{
 	
 	private String cpnj;
-	private String  endereco;
+	private String endereco;
 	private DadosBancarios bancoEmpresa;
 	private CarteiraDaEmpresa carteiraDigital;
 	private String razaoSocial;
@@ -120,6 +120,26 @@ public class Empresa extends Usuarios{
 	}
 
 	
+	
+	
+	
+	@Override
+	public String toString(){
+		return "-------------------------------------------------------------"+
+				"  DADOS DA EMPRESA: " +razaoSocial+
+				"\n  Email: "+getEmail()+
+				"\n  Senha: "+getSenha()+
+				"\n  Cnpj: "+cpnj+
+				"\n  Endereço: "+endereco+
+				"\n-------------------------------------------------------------"+
+				"\n "+
+				"\n"+bancoEmpresa.toString()+
+				"\n\"-------------------------------------------------------------";
+				
+		
+				
+		
+	}
 	
 	
 }
