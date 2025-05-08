@@ -33,7 +33,7 @@ public class TelaCliente {
 					//list para jogos comprados
 					break;
 				case 4:
-					System.out.println("Mostra a lsita de desejos");
+					System.out.println("Mostra a lista de desejos");
 					//list para jogos desejados
 					break;
 				case 5:

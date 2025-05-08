@@ -1,10 +1,19 @@
 package Interfaces;
 
+import java.util.List;
+
+
 public interface Repositorio<T> {
 	void add(T object);
 	
+	List<T> search();
 	
-	void atualizar(T object);
-	void deletar(String cpf); 
+	T procurarNome(String titulo);
+	
+	void alterarDadosDoJogo(T object);
+	
+	void delete(T object);
+
+	List<T> checarTipo(Class<?> clazz);  //listar 
 
 }

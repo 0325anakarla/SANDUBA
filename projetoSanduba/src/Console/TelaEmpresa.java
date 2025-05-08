@@ -28,11 +28,11 @@ public class TelaEmpresa {
 					break;
 				case 3:
 					System.out.println("Jogos cadastrados");
-					//list para jogos comprados
+					//list para jogos cadastrados
 					break;
 				case 4:
-					System.out.println("Cadastrar Jogos");
-					//repositorio
+					System.out.println("\n--- CADASTRAR JOGOS ---");
+					
 					break;
 				case 5:
 					System.out.println("Resumo de vendas");

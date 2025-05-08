@@ -1,17 +1,20 @@
 package Pessoa;
-import Interfaces.ControleDeJogos;
-import Interfaces.ResumoDeVendas;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import projetoSanduba.CarteiraDaEmpresa;
 import projetoSanduba.DadosBancarios;
 import projetoSanduba.Jogo;
 
-public class Empresa extends Usuarios implements ControleDeJogos, ResumoDeVendas{
+public class Empresa extends Usuarios{
 	
 	private String cpnj;
 	private String  endereco;
 	private DadosBancarios bancoEmpresa;
 	private CarteiraDaEmpresa carteiraDigital;
 	private String razaoSocial;
+
 	
 	public Empresa(String nome, String email, String senha, String cpnj, String endereco, DadosBancarios bancoEmpresa, String razaoSocial) {
 		super(nome, email, senha);
@@ -23,6 +26,7 @@ public class Empresa extends Usuarios implements ControleDeJogos, ResumoDeVendas
 		this.setCarteiraDigital(carteiraDigital);
 	}
 	
+	//arraylist que vai estar todos os jogos da empresa
 	
 	//--- Geteres e Seteres ---------------------------------------------//
 	
@@ -66,72 +70,56 @@ public class Empresa extends Usuarios implements ControleDeJogos, ResumoDeVendas
 		this.razaoSocial = razaoSocial;
 	}
 	
+	public List<Jogo> getJogosEmpresa() {
+		return jogosEmpresa;
+	}
+	
 	// --- Metodos da Empresa ----------------------------------------------------------------------------------------------------//
 	
 
+
 	@Override
 	public void exibirInformacaoPublica() {
-		
+		// TODO Auto-generated method stub
 		
 	}
+
 
 	@Override
 	public void exibirInformacaoPrivada() {
-		
+		// TODO Auto-generated method stub
 		
 	}
+
 
 	@Override
 	public String alterarSenha(String senha) {
-		
+		// TODO Auto-generated method stub
 		return null;
 	}
 
+
 	@Override
 	public String alterarEmail(String email) {
-				return null;
+		// TODO Auto-generated method stub
+		return null;
 	}
+
 
 	@Override
 	public void seusJogos() {
-				
+		// TODO Auto-generated method stub
+		
 	}
+
 
 	@Override
 	public void excluirConta() {
-				
+		// TODO Auto-generated method stub
+		
 	}
 
-	@Override
-	public void resumoDeVendasindividual() {
-				
-	}
-
-	@Override
-	public void resumoDeVendasGeral() {
-				
-	}
-
-	@Override
-	public void cadastrarJogos(String titulo, double preco, String descricao, String categorias, int classEtaria,
-			String idiomas, String plataDisp, String modAtivacao) {
-				
-	}
-
-	@Override
-	public void alterarDadosDoJogo(Jogo jogo) {
-				
-	}
-
-	@Override
-	public void excluirJogo() {
-				
-	}
-
-	@Override
-	public void pesquisarJogo() {
-				
-	}
+	
 	
 	
 }

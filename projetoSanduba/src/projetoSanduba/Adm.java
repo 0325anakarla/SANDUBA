@@ -103,7 +103,7 @@ public class Adm extends Usuarios implements ControleDeJogos, ResumoDeVendas {
 
 	
 	@Override
-	public void alterarDadosDoJogo(Jogo jogo) {
+	/*public void alterarDadosDoJogo(Jogo jogo) {
 		System.out.println(" oque você deseja alterar? ");
 		System.out.println(opcoeJogo());
 		int opcoes =dados.nextInt();
@@ -153,7 +153,7 @@ public class Adm extends Usuarios implements ControleDeJogos, ResumoDeVendas {
 		
 		}
 		
-	}
+	}*/
 
 	@Override
 	public void excluirJogo() {
