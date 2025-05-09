@@ -18,11 +18,11 @@ public class Cliente extends Usuarios{
 	private List<Jogo> jogosAdquiridos;
 	
 	
-	public Cliente(String nome, String email, String senha, int cpf, LocalDate natalicio, CarteiraDoCliente carteiraDigital) {
+	public Cliente(String nome, String email, String senha, int cpf, LocalDate natalicio) {
 		super(nome, email, senha);
 		this.cpf = cpf;
 		this.natalicio = natalicio;
-		this.carteiraDigital = carteiraDigital;
+		//this.carteiraDigital = carteiraDigital; Nao bateu com o cadastro foi mal, tive que tirar. agora temos que arrumar isso
 		this.historico = new ArrayList<>();
 		this.jogosAdquiridos = new ArrayList<>();
 	}
