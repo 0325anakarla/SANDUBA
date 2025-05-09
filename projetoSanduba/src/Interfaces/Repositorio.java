@@ -3,7 +3,7 @@ package Interfaces;
 import java.util.List;
 
 import Pessoa.Empresa;
-import projetoSanduba.Jogo;
+import jogo.Jogo;
 
 
 public interface Repositorio<T> {

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import Pessoa.Cliente;
 import Pessoa.Empresa;
+import jogo.Jogo;
 
 public class CarrinhoDeCompras {
 	private double total;

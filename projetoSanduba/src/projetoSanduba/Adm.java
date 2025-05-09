@@ -10,6 +10,7 @@ import Interfaces.ResumoDeVendas;
 import Pessoa.Cliente;
 import Pessoa.Empresa;
 import Pessoa.Usuarios;
+import jogo.Jogo;
 
 public class Adm extends Usuarios implements ControleDeJogos, ResumoDeVendas {
 	Scanner dados = new Scanner(System.in);

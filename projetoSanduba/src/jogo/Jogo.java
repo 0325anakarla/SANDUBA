@@ -1,29 +1,30 @@
-package projetoSanduba;
+package jogo;
 
 import Pessoa.Empresa;
+import TratamentoDeErro.DadoInvalidoException;
 
 public class Jogo {
 	private String titulo;
 	private double preco;
 	private String descricao;
-	private CategoriasJogos[] categoriasValidas;
+	//private CategoriasJogos[] categoriasValidas;
 	private int classEtaria;
 	private String idiomas;
 	private String plataDisp;
 	private String modAtivacao;
 	private Empresa empresa;
 
-	public Jogo(String titulo, double preco, String descricao, String[] categoriasInv, int classEtaria, String idiomas,
+	public Jogo(String titulo, double preco, String descricao, int classEtaria, String idiomas,
 				String plataDisp, String modAtivacao, Empresa empresa) {
 		super();
 		this.titulo = titulo;
 		this.preco = preco;
 		this.descricao = descricao;
-		String[] categoriasVal = CategoriasJogos.converteString(categoriasInv); // pega o string escrito e chama o metodo do enum para converter
+		/*String[] categoriasVal = CategoriasJogos.converteString(categoriasInv); // pega o string escrito e chama o metodo do enum para converter
 		this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
 		for(int i = 0; i < categoriasVal.length; i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
 			this.categoriasValidas[i] = CategoriasJogos.valueOf(categoriasVal[i]);
-		}
+		}*/
 		this.classEtaria = classEtaria;
 		this.idiomas = idiomas;
 		this.plataDisp = plataDisp;
@@ -32,20 +33,23 @@ public class Jogo {
 	}
 
 	//criando um construtor apenas para teste
-	public Jogo(String titulo, String[] categoriasInv){
+	/*public Jogo(String titulo, String[] categoriasInv){
 		this.titulo = titulo;
 		String[] categoriasVal = CategoriasJogos.converteString(categoriasInv);
 		this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
 		for(int i = 0; i < categoriasVal.length; i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
 			this.categoriasValidas[i] = CategoriasJogos.valueOf(categoriasVal[i]);
 		}
-	}
+	}*/
 
 	public String getTitulo() {
 		return titulo;
 	}
 
-	public void setTitulo(String titulo) {
+	public void setTitulo(String titulo) throws DadoInvalidoException {
+		if(titulo == null || titulo.isEmpty()) {
+			throw new DadoInvalidoException("Título não pode ser vazio."); 
+		}	
 		this.titulo = titulo;
 	}
 
@@ -53,15 +57,27 @@ public class Jogo {
 		return preco;
 	}
 
-	public void setPreco(double preco) {
+	public void setPreco(double preco) throws DadoInvalidoException {
+		if(preco <= 0) {
+			throw new DadoInvalidoException("Preço não pode ser negativo ou zerado."); 
+		}
 		this.preco = preco;
 	}
 
-	public String getDescricao() {
+	public String getDescricao () {
 		return descricao;
 	}
 
-	public void setDescricao(String descricao) {
+	public void setDescricao(String descricao) throws DadoInvalidoException {
+		if(descricao.length() > 200) {
+			throw new DadoInvalidoException("Descrição muito longa, resuma a descrição em menos caracteres."); 
+		}
+		
+		
+		if(descricao == null || descricao.isEmpty()) {
+			throw new DadoInvalidoException("Descrição não pode ser vazia."); 
+		}
+		
 		this.descricao = descricao;
 	}
 
@@ -78,7 +94,11 @@ public class Jogo {
 		return classEtaria;
 	}
 
-	public void setClassEtaria(int classEtaria) {
+	public void setClassEtaria(int classEtaria) throws DadoInvalidoException {
+		if(classEtaria < 0) {
+			throw new DadoInvalidoException("Não existe essa Classificação Etaria."); 
+		}
+		
 		this.classEtaria = classEtaria;
 	}
 
@@ -86,7 +106,7 @@ public class Jogo {
 		return idiomas;
 	}
 
-	public void setIdiomas(String idiomas) {
+	public void setIdiomas(String idiomas) throws DadoInvalidoException {
 		this.idiomas = idiomas;
 	}
 
@@ -94,7 +114,7 @@ public class Jogo {
 		return plataDisp;
 	}
 
-	public void setPlataDisp(String plataDisp) {
+	public void setPlataDisp(String plataDisp) throws DadoInvalidoException{
 		this.plataDisp = plataDisp;
 	}
 
@@ -102,15 +122,17 @@ public class Jogo {
 		return modAtivacao;
 	}
 
-	public void setModAtivacao(String modAtivacao) {
+	public void setModAtivacao(String modAtivacao) throws DadoInvalidoException {
 		this.modAtivacao = modAtivacao;
 	}
 
 	public Empresa getEmpresa() {
+		
+		
 		return empresa;
 	}
 
-	public void setEmpresa(Empresa empresa) {
+	public void setEmpresa(Empresa empresa) throws DadoInvalidoException {
 		this.empresa = empresa;
 	}
 	

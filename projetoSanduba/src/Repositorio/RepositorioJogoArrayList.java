@@ -6,14 +6,12 @@ import java.util.List;
 import Interfaces.Repositorio;
 import Interfaces.RepositorioJogos;
 import Pessoa.Empresa;
-import projetoSanduba.Jogo;
+import jogo.Jogo;
 
 
 public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJogos{
 	
 	private final List<Jogo> jogos= new ArrayList<>(); 
-	
-	
 	
 	@Override
 	public void add(Jogo jogo) {
@@ -24,14 +22,6 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 	public List<Jogo> search() {
 		return new ArrayList<>(jogos);
 	}
-
-	//perguntar ao monitor
-	@Override
-	public void update(Jogo jogo) {
-		
-		
-	}
-	
 
 	@Override
 	public void deletar(Jogo jogo) {

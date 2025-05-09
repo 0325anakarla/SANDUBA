@@ -3,9 +3,9 @@ package Pessoa;
 import java.util.ArrayList;
 import java.util.List;
 
+import jogo.Jogo;
 import projetoSanduba.CarteiraDaEmpresa;
 import projetoSanduba.DadosBancarios;
-import projetoSanduba.Jogo;
 
 public class Empresa extends Usuarios{
 	

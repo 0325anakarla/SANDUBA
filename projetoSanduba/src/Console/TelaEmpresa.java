@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
+import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.ControleDeJogos;
 import projetoSanduba.CarteiraDaEmpresa;
 
@@ -14,7 +15,7 @@ public class TelaEmpresa {
 	ControleDeJogos controlJogos = new ControleDeJogos();
 	Empresa empresa = new Empresa(null, null, null, null, null, null, null);
 	
-	public void telaMinhaContaEmpresa() {
+	public void telaMinhaContaEmpresa() throws DadoInvalidoException {		
 		int opcao = 0;
 		
 		do {

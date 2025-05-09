@@ -1,12 +1,13 @@
 package Pessoa;
 
 import projetoSanduba.CarteiraDoCliente;
-import projetoSanduba.Jogo;
 import projetoSanduba.RegistroDeCompras;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import jogo.Jogo;
 
 
 public class Cliente extends Usuarios{

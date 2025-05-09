@@ -1,4 +1,4 @@
-package projetoSanduba;
+package jogo;
 
 import java.text.Normalizer;
 
