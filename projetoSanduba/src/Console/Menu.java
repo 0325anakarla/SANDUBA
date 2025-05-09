@@ -5,7 +5,10 @@ public class Menu {
 	Scanner sc = new Scanner(System.in);
 	CadastroUsuario novoUsu = new CadastroUsuario();
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 0b84036710f1574247f53d5835584276aafac0b4
 	// -- Funcao para o usuario ou empresa fazerem login -- //
 	public void login() {
 		System.out.println("\n------------------------");
@@ -50,7 +53,4 @@ public class Menu {
 	public void sair() {
 		System.out.println("Encerrando sessao...");
 	}
-	
-	
-
 }
