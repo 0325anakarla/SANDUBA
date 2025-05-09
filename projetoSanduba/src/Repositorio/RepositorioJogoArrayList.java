@@ -54,7 +54,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 	public Jogo procurarNome(String titulo) {
 		for(Jogo jogo: jogos) 
 		{
-			if(((projetoSanduba.Jogo) jogo).getTitulo().equalsIgnoreCase(titulo)) {
+			if(jogo.getTitulo().equalsIgnoreCase(titulo)) {
 				return jogo;
 			}
 		}
