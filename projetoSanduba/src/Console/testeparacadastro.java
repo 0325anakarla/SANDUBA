@@ -10,11 +10,11 @@ public class testeparacadastro {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		
-		CadastroUsuario novoCadastro = new CadastroUsuario();
+		//CadastroUsuario novoCadastro = new CadastroUsuario();
 		
-		novoCadastro.cadastrarUsuarios();
+		//novoCadastro.cadastrarUsuarios();
 		
-		novoCadastro.telalogin();
+		//novoCadastro.telalogin();
 		
 		
 		// teste da data----------------------------------------
