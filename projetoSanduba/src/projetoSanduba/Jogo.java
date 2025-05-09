@@ -1,6 +1,6 @@
 package projetoSanduba;
 
-import java.util.Arrays;
+import Pessoa.Empresa;
 
 public class Jogo {
 	private String titulo;
@@ -11,32 +11,34 @@ public class Jogo {
 	private String idiomas;
 	private String plataDisp;
 	private String modAtivacao;
+	private Empresa empresa;
 
 	public Jogo(String titulo, double preco, String descricao, String[] categoriasInv, int classEtaria, String idiomas,
-				String plataDisp, String modAtivacao) {
+				String plataDisp, String modAtivacao, Empresa empresa) {
 		super();
 		this.titulo = titulo;
 		this.preco = preco;
 		this.descricao = descricao;
-		String[] categoriasVal = CategoriasJogos.converteString(categoriasInv);
-		// pega o string escrito e chama o metodo do enum para converter
-		this.categoriasValidas = Arrays.stream(categoriasVal)
-				.map(CategoriasJogos::valueOf)
-				.toArray(CategoriasJogos[]::new);
-		// aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
+		String[] categoriasVal = CategoriasJogos.converteString(categoriasInv); // pega o string escrito e chama o metodo do enum para converter
+		this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
+		for(int i = 0; i < categoriasVal.length; i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
+			this.categoriasValidas[i] = CategoriasJogos.valueOf(categoriasVal[i]);
+		}
 		this.classEtaria = classEtaria;
 		this.idiomas = idiomas;
 		this.plataDisp = plataDisp;
 		this.modAtivacao = modAtivacao;
+		this.empresa = empresa;
 	}
 
 	//criando um construtor apenas para teste
 	public Jogo(String titulo, String[] categoriasInv){
 		this.titulo = titulo;
 		String[] categoriasVal = CategoriasJogos.converteString(categoriasInv);
-		this.categoriasValidas = Arrays.stream(categoriasVal)
-				.map(CategoriasJogos::valueOf)
-				.toArray(CategoriasJogos[]::new);
+		this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
+		for(int i = 0; i < categoriasVal.length; i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
+			this.categoriasValidas[i] = CategoriasJogos.valueOf(categoriasVal[i]);
+		}
 	}
 
 	public String getTitulo() {
@@ -104,23 +106,41 @@ public class Jogo {
 		this.modAtivacao = modAtivacao;
 	}
 
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+	
+	public String getResumo() {
+		return titulo+" ("+empresa.getNome()+")";
+	}
+
 	public void mostrarDados() {
 		System.out.println("Titulo: "+titulo);
 		System.out.println("Preço: "+preco);
 		System.out.println("Descrição: "+descricao);
 		System.out.println("Categorias: ");
-		System.out.println(Arrays.toString(categoriasValidas));
+		for(int i = 0; i < categoriasValidas.length; i++){
+			System.out.println(categoriasValidas[i].getCategoria());
+		}
 		System.out.println("Classificação Etaria: "+classEtaria);
 		System.out.println("Idiomas Disponiveis: "+idiomas);
 		System.out.println("Plataformas: "+plataDisp);
 		System.out.println("Modo de ativação: "+modAtivacao);
+		System.out.println("");
 	}
 
 	// criando outro mostrarDados so pra teste
 	public void mostrarDadosCat(){
 		System.out.println("Títutlo: "+titulo);
 		System.out.println("Categorias: ");
-		System.out.printf(Arrays.toString(categoriasValidas));
+		for(int i = 0; i < categoriasValidas.length; i++){
+			System.out.println(categoriasValidas[i].getCategoria());
+		}
+		System.out.println("");
 	}
 
 	public boolean aplicaDescontoDe(double desconto) {

@@ -1,7 +1,6 @@
 package projetoSanduba;
 
 import java.text.Normalizer;
-import java.util.Arrays;
 
 public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 
@@ -9,38 +8,24 @@ public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 	AVENTURA("Aventura"),
 	ACAO("Ação"),
 	PLATAFORMA("Plataforma"),
-	BEATEMUP("Beat Em' Up"),
-	SHOOTEMUP("Shoot Em' Up"),
-	METROIDVANIA("Metroidvania"),
 	CORRIDA("Corrida"),
 	HORROR("Horror"),
-	FURTIVO("Furtivo"),
 	MUNDOABERTO("Mundo Aberto"),
 	TIRO("Tiro"),
 	PRIMEIRAPESSOA("Primeira Pessoa"),
 	TERCEIRAPESSOA("Terceira Pessoa"),
-	POINTANDCLICK("Point and Click"),
-	ESCAPEROOM("Escape Room"),
 	PUZZLE("Puzzle"),
-	VISUALNOVEL("Visual Novel"),
-	ESTRATEGIA("Estrategia"),
 	TURNO("Turno"),
-	TEMPOREAL("Tempo Real"),
-	HACKANDSLASH("Hack and Slash"),
-	TATICO("Tático"),
 	ROGUELIKE("Rogue Like"),
 	ESPORTE("Esporte"),
-	ARCADE("Arcade"),
 	SIMULACAO("Simulação"),
 	LUTA("Luta"),
-	ONLINE("Online"),
 	FANTASIA("Fantasia"),
 	MMO("MMO"),
 	MOBA("MOBA"),
 	CONSTRUCAO("Construção"),
 	TABULEIRO("Tabuleiro"),
 	CASUAL("Casual"),
-	CARTAS("Cartas"),
 	RITMO("Ritmo"),
 	BATTLEROYALE("Battle Royale");
 
@@ -54,15 +39,23 @@ public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 		return this.categoria; // isso aqui é so pra imprimir a categoria bonitinho
 	}
 
-	// criei um metodo no enum para converter as entradas dos usuarios
-	// aqui eu to usando a biblioteca java.util.stream no lugar de um loop normal com for
+	public void imprimeCategorias() {
+		CategoriasJogos[] categorias  =  CategoriasJogos.values();
+		for (CategoriasJogos categoria : categorias) {
+			System.out.println(categoria.getCategoria());
+		}
+	}
+
+	//versao mais legivel do metodo para converter as strings
 	public static String[] converteString(String[] categoriasIvn){
-		return Arrays.stream(categoriasIvn)
-				.map(str -> Normalizer.normalize(str, Normalizer.Form.NFD)) // normalizer retira acentos
-				.map(str -> str.replaceAll("\\p{InCombiningDiacriticalMarks}+", "")) //limpa acentos
-				.map(str -> str.replaceAll("\\s+", "")) // retira espaço entre as palavras
-				.map(str -> str.trim().toUpperCase()) // retira espaço dos lados e deixa tudo maisculo
-				.toArray(String[]::new);
+		String[] categoriasVal = new String[categoriasIvn.length];
+
+		for(int i = 0; i < categoriasVal.length; i++){
+			categoriasVal[i] = Normalizer.normalize(categoriasIvn[i].trim().toUpperCase(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "").replaceAll("\\s+", "");
+			// Pega cada  string escrito e retira acentuação, limpa acentos, retira espaço entre palavras e dos lados e deixa tudo maisculo
+		}
+
+		return categoriasVal;
 	}
 	// no final as entradas vao ficar todas no padrao do Enum, por exemplo:
 	// entrada: "construção "; após a conversão: "CONSTRUCAO"
