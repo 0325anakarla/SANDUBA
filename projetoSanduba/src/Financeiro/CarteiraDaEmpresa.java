@@ -1,4 +1,4 @@
-package projetoSanduba;
+package Financeiro;
 
 //carteira digital da empresa
 public class CarteiraDaEmpresa extends DadosCartao {
@@ -26,22 +26,16 @@ public class CarteiraDaEmpresa extends DadosCartao {
 	
 	//metodo onde calcula o saldo das vendas dos jogos
 	//valor -> valor das vendas de jogos
-	//porcentagem -> porcentagem que vai ser retirada por cada venda de jogos
-	public void adicionar(double valor, double porcentagem) {
-		double vendas = retirar(valor, porcentagem);
+	public void adicionar(double valor) {
+		double vendas = retirar(valor);
 		
 		double saldo = super.getSaldo() + vendas;
 		
 		super.setSaldo(saldo);
 	}
 	
-	//metodo para retirar um certa porcentagem da venda dos jogos e acumular a fatura
-	
-	//um duvida ele num vai so retirar nao, precisa desse porcentagem(analice)
-	//resposta: a porcentagem está sendo acumulada na fatura(alana)
-	//mas falta relacionar a fatura com o admin, que é o responsável por gerenciar o sistema
-	private double retirar(double valor, double porcentagem) {
-		double lucro = valor * porcentagem; //lucro do sistema
+	private double retirar(double valor) {
+		double lucro = valor * 0.05; //lucro do sistema
 		fatura += lucro;
 		
 		return valor = valor - lucro;

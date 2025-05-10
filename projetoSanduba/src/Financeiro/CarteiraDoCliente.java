@@ -1,4 +1,4 @@
-package projetoSanduba;
+package Financeiro;
 
 //carteira digital do cliente
 public class CarteiraDoCliente extends DadosCartao {

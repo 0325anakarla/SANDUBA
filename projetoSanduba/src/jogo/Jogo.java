@@ -1,5 +1,9 @@
 package jogo;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
 import Pessoa.Empresa;
 import TratamentoDeErro.DadoInvalidoException;
 
@@ -8,39 +12,44 @@ public class Jogo {
 	private double preco;
 	private String descricao;
 	//private CategoriasJogos[] categoriasValidas;
+	private ArrayList<CategoriasJogos> categoriasValidas;
 	private int classEtaria;
 	private String idiomas;
 	private String plataDisp;
 	private String modAtivacao;
 	private Empresa empresa;
+	private LocalDate dataDeLancamento;
 
-	public Jogo(String titulo, double preco, String descricao, int classEtaria, String idiomas,
-				String plataDisp, String modAtivacao, Empresa empresa) {
+	public Jogo(String titulo, double preco, String descricao, ArrayList<String> categoriasInv, int classEtaria, String idiomas,
+				String plataDisp, String modAtivacao, Empresa empresa, LocalDate dataDeLancamento) {
 		super();
 		this.titulo = titulo;
 		this.preco = preco;
 		this.descricao = descricao;
-		/*String[] categoriasVal = CategoriasJogos.converteString(categoriasInv); // pega o string escrito e chama o metodo do enum para converter
-		this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
-		for(int i = 0; i < categoriasVal.length; i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
-			this.categoriasValidas[i] = CategoriasJogos.valueOf(categoriasVal[i]);
-		}*/
+		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
+		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasVal.size());
+		for(int i = 0; i < categoriasVal.size(); i++){
+			this.categoriasValidas.set(i,CategoriasJogos.valueOf(categoriasVal.get(i)));
+		}
 		this.classEtaria = classEtaria;
 		this.idiomas = idiomas;
 		this.plataDisp = plataDisp;
 		this.modAtivacao = modAtivacao;
 		this.empresa = empresa;
+		this.dataDeLancamento = dataDeLancamento;
 	}
 
 	//criando um construtor apenas para teste
-	/*public Jogo(String titulo, String[] categoriasInv){
+	public Jogo(String titulo, ArrayList<String> categoriasInv){
 		this.titulo = titulo;
-		String[] categoriasVal = CategoriasJogos.converteString(categoriasInv);
-		this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
-		for(int i = 0; i < categoriasVal.length; i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
-			this.categoriasValidas[i] = CategoriasJogos.valueOf(categoriasVal[i]);
+		//String[] categoriasVal = CategoriasJogos.converteString(categoriasInv);
+		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
+		//this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
+		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasVal.size());
+		for(int i = 0; i < categoriasVal.size(); i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
+			this.categoriasValidas.set(i, CategoriasJogos.valueOf(categoriasVal.get(i)));
 		}
-	}*/
+	}
 
 	public String getTitulo() {
 		return titulo;
@@ -48,8 +57,8 @@ public class Jogo {
 
 	public void setTitulo(String titulo) throws DadoInvalidoException {
 		if(titulo == null || titulo.isEmpty()) {
-			throw new DadoInvalidoException("Título não pode ser vazio."); 
-		}	
+			throw new DadoInvalidoException("Título não pode ser vazio.");
+		}
 		this.titulo = titulo;
 	}
 
@@ -59,7 +68,7 @@ public class Jogo {
 
 	public void setPreco(double preco) throws DadoInvalidoException {
 		if(preco <= 0) {
-			throw new DadoInvalidoException("Preço não pode ser negativo ou zerado."); 
+			throw new DadoInvalidoException("Preço não pode ser negativo ou zerado.");
 		}
 		this.preco = preco;
 	}
@@ -70,25 +79,16 @@ public class Jogo {
 
 	public void setDescricao(String descricao) throws DadoInvalidoException {
 		if(descricao.length() > 200) {
-			throw new DadoInvalidoException("Descrição muito longa, resuma a descrição em menos caracteres."); 
+			throw new DadoInvalidoException("Descrição muito longa, resuma a descrição em menos caracteres.");
 		}
-		
-		
+
+
 		if(descricao == null || descricao.isEmpty()) {
-			throw new DadoInvalidoException("Descrição não pode ser vazia."); 
+			throw new DadoInvalidoException("Descrição não pode ser vazia.");
 		}
-		
+
 		this.descricao = descricao;
 	}
-
-	/*public String getCategorias() {
-		return categorias;
-	}
-	a gente não vai usar esses get e set aqui
-	(lembrar de retirar isso depois)
-	public void setCategorias(String categorias) {
-		this.categorias = categorias;
-	}*/
 
 	public int getClassEtaria() {
 		return classEtaria;
@@ -96,9 +96,9 @@ public class Jogo {
 
 	public void setClassEtaria(int classEtaria) throws DadoInvalidoException {
 		if(classEtaria < 0) {
-			throw new DadoInvalidoException("Não existe essa Classificação Etaria."); 
+			throw new DadoInvalidoException("Não existe essa Classificação Etaria.");
 		}
-		
+
 		this.classEtaria = classEtaria;
 	}
 
@@ -127,40 +127,83 @@ public class Jogo {
 	}
 
 	public Empresa getEmpresa() {
-		
-		
+
+
 		return empresa;
 	}
 
 	public void setEmpresa(Empresa empresa) throws DadoInvalidoException {
 		this.empresa = empresa;
 	}
-	
+
+	public LocalDate getDataDeLancamento() {
+		return dataDeLancamento;
+	}
+
+	public void setDataDeLancamento(LocalDate dataDeLancamento) {
+		this.dataDeLancamento = dataDeLancamento;
+	}
+
 	public String getResumo() {
 		return titulo+" ("+empresa.getNome()+")";
 	}
 
-	public void mostrarDados() {
+	/*public void mostrarDados() {
 		System.out.println("Titulo: "+titulo);
 		System.out.println("Preço: "+preco);
 		System.out.println("Descrição: "+descricao);
 		System.out.println("Categorias: ");
-		for(int i = 0; i < categoriasValidas.length; i++){
-			System.out.println(categoriasValidas[i].getCategoria());
+		for(CategoriasJogos categorias : categoriasValidas){
+			System.out.println(categorias.getCategoria());
 		}
 		System.out.println("Classificação Etaria: "+classEtaria);
 		System.out.println("Idiomas Disponiveis: "+idiomas);
 		System.out.println("Plataformas: "+plataDisp);
 		System.out.println("Modo de ativação: "+modAtivacao);
 		System.out.println("");
+	}*/
+	
+	@Override
+	public String toString() {
+	    StringBuilder sb = new StringBuilder();
+	    sb.append("🎮 Título: ").append(titulo).append("\n");
+	    sb.append("💲 Preço: R$").append(String.format("%.2f", preco)).append("\n");
+	    sb.append("📝 Descrição: ").append(descricao).append("\n");
+
+	    sb.append("🏷 Categorias: ");
+	    if (categoriasValidas.isEmpty()) {
+	        sb.append("Nenhuma categoria cadastrada");
+	    } else {
+	        for (CategoriasJogos categoria : categoriasValidas) {
+	            sb.append(categoria.getCategoria()).append(" | ");
+	        }
+	        // tira o último " | "
+	        sb.setLength(sb.length() - 3);
+	    }
+	    sb.append("\n");
+
+	    sb.append("🔞 Classificação Etária: ").append(classEtaria).append("+\n");
+	    sb.append("🌐 Idiomas Disponíveis: ").append(idiomas).append("\n");
+	    sb.append("🖥 Plataformas: ").append(plataDisp).append("\n");
+	    sb.append("🔑 Modo de Ativação: ").append(modAtivacao).append("\n");
+
+	    // Adicionando Empresa
+	    sb.append("🏢 Empresa: ").append(empresa).append("\n");
+
+	    // Adicionando Data de Lançamento
+	    sb.append("📅 Data de Lançamento: ").append(dataDeLancamento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))).append("\n");
+
+	    return sb.toString();
 	}
+
+
 
 	// criando outro mostrarDados so pra teste
 	public void mostrarDadosCat(){
 		System.out.println("Títutlo: "+titulo);
 		System.out.println("Categorias: ");
-		for(int i = 0; i < categoriasValidas.length; i++){
-			System.out.println(categoriasValidas[i].getCategoria());
+		for(CategoriasJogos categorias : categoriasValidas){
+			System.out.println(categorias.getCategoria());
 		}
 		System.out.println("");
 	}

@@ -2,7 +2,7 @@ package Console;
 
 import java.util.Scanner;
 
-import projetoSanduba.CarteiraDoCliente;
+import Financeiro.CarteiraDoCliente;
 
 public class TelaCliente {
 	
@@ -56,7 +56,7 @@ public class TelaCliente {
 		
 		do {
 			
-			menu.telaMenuCdCliente();
+			menu.telaMenuCdCliente(cdC);
 			
 			opcao = sc.nextInt();
 			
@@ -69,8 +69,6 @@ public class TelaCliente {
 					
 					valor = sc.nextDouble();
 					
-					//ta dando erro nesse aqui o saldo nao ta mostrando certo(anaalice),mas o depositar ta certo
-					//agora a exibicao deste saldo esta exibindo correto(alana)
 					if(cdC.depositar(valor)) {
 						System.out.println("O valor depositado foi: "+valor+ ". Seu saldo é de:"+cdC.getSaldo());
 					}

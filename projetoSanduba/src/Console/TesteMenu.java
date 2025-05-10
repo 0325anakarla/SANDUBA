@@ -9,8 +9,9 @@ public class TesteMenu {
 		viewsC.telaMinhaContaCliente();
 
 		TelaEmpresa viewE = new TelaEmpresa();
-		viewE.telaMinhaContaEmpresa();
+		viewE.telaMinhaContaEmpresa(null);
 
+		viewE.telaJogosCadastrados(null);
 	}
 
 }

@@ -2,20 +2,22 @@ package Interfaces;
 
 import java.util.List;
 
+import TratamentoDeErro.DadoDuplicadoException;
+import TratamentoDeErro.DadoNaoEncontradoException;
 
 public interface Repositorio<T> {
-	void add(T object);
+
+	void add(T object) throws DadoDuplicadoException;
 	
 	List<T> varrer();
 	
-	T procurarNome(String titulo);
-	
+	List<T> getTodos();
+
+	T procurarNome(String nome) throws DadoNaoEncontradoException;
+
 	void alterarDados(T object);
-	
+
 	void deletar(T object);
 
-	List<T> checarTipo(Class<?> clazz);  
-	//clazz permite que você passe qualquer classe sem restrições e trabalhe com ela dinamicamente.
-
-
+	List<T> getTipo(Class<?> clazz);
 }
