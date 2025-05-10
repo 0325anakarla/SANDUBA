@@ -126,8 +126,6 @@ public class Jogo {
 	}
 
 	public Empresa getEmpresa() {
-
-
 		return empresa;
 	}
 

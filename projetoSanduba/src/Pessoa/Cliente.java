@@ -107,7 +107,4 @@ public class Cliente extends Usuarios {
 	         + "\n  Carteira:          " + (carteiraDigital != null ? carteiraDigital.toString() : "Sem carteira")
 	         + "\n-------------------------------------------------------------";
 	}
-
-
-
 }

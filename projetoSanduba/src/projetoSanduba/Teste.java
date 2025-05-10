@@ -22,10 +22,10 @@ public class Teste {
 		jogo.mostrarDadosCat();*/
 
 		Empresa empresa = new Empresa("miHoYo", "", "", "", "", null, "");
-		Jogo jogo1 = new Jogo("Genshin Impact", 49.90, "", 0, "", "", "", empresa, null);
+		Jogo jogo1 = new Jogo("Genshin Impact", 49.90, "", null, 0, "", "", "", empresa, null);
 
 		Empresa outraEmpresa = new Empresa("ConcernedApe", "", "", "", "", null, "");
-		Jogo jogo2 = new Jogo("Stardew Valley", 14.99, "", 0, "", "", "", outraEmpresa, null);
+		Jogo jogo2 = new Jogo("Stardew Valley", 14.99, "", null, 0, "", "", "", outraEmpresa, null);
 
 		CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
 		carrinho.adiciona(jogo1);
