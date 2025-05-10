@@ -3,7 +3,9 @@ package Console;
 import java.time.LocalDate;
 
 import Financeiro.CarteiraDoCliente;
+import Financeiro.DadosBancarios;
 import Pessoa.Cliente;
+import Pessoa.Empresa;
 import TratamentoDeErro.DadoInvalidoException;
 
 public class TesteMenu {
@@ -16,10 +18,13 @@ public class TesteMenu {
 		TelaCliente viewsC = new TelaCliente();
 		viewsC.telaMinhaContaCliente(cliente);
 
+		
+		DadosBancarios banco = new DadosBancarios("CP", "Santander", "Conta corrente", 5, 200);
+		Empresa empresa = new Empresa("ConcernedApe", "aux@gmail.com", "5678", "1234567890-12", "", banco, "");
 		TelaEmpresa viewE = new TelaEmpresa();
-		viewE.telaMinhaContaEmpresa(null);
+		viewE.telaMinhaContaEmpresa(empresa);
 
-		viewE.telaJogosCadastrados(null);
+		viewE.telaJogosCadastrados(empresa);
 	}
 
 }
