@@ -1,4 +1,4 @@
-package projetoSanduba;
+package Financeiro;
 
 public class DadosBancarios {
 	private String titularConta;

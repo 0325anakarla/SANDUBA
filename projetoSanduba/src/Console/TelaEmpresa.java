@@ -2,11 +2,11 @@ package Console;
 
 import java.util.Scanner;
 
+import Financeiro.CarteiraDaEmpresa;
 import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.ControleDeJogos;
-import projetoSanduba.CarteiraDaEmpresa;
 
 public class TelaEmpresa {
 	Scanner sc = new Scanner(System.in);

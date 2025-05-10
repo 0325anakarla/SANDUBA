@@ -1,4 +1,4 @@
-package projetoSanduba;
+package Financeiro;
 
 public class Venda {
 	private String tituloDoJogo;
