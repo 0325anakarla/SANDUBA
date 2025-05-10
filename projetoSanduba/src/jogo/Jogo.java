@@ -1,6 +1,7 @@
 package jogo;
 
 import java.time.LocalDate;
+<<<<<<< HEAD
 
 import java.time.format.DateTimeFormatter;
 
@@ -10,6 +11,12 @@ import java.time.Period;
 
 import java.util.ArrayList;
 
+=======
+import java.time.format.DateTimeFormatter;
+import java.time.Period;
+
+import java.util.ArrayList;
+>>>>>>> 7022ee92c266e42ce70cb05ca0e5502042570e5a
 
 import Pessoa.Empresa;
 import TratamentoDeErro.DadoInvalidoException;
@@ -214,14 +221,18 @@ public class Jogo {
 			System.out.println(categorias.getCategoria());
 		}
 		System.out.println("");
-<<<<<<< HEAD
-	}*/
+	}
 	
 	 public void Desconto(double desconto ) throws DadoInvalidoException {
 		 if(desconto <=0) {
 				throw new DadoInvalidoException("Desconto não pode ser negativo ou zerado");
 			}
 		 setPreco( getPrecoModificador()-(getPrecoModificador()* desconto));
+<<<<<<< HEAD
+=======
+		 
+		 
+>>>>>>> 7022ee92c266e42ce70cb05ca0e5502042570e5a
 	}
 
 	public boolean aplicaDescontoDe(double desconto) {
