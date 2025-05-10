@@ -25,7 +25,7 @@ public class ControleDeJogos{
 		while(continuarCadastro) {
 			boolean dadosValidos = false;
 			
-			Jogo jogo = new Jogo(null, 0, null, 0, null, null, null, null);
+			Jogo jogo = new Jogo(null, 0, null, 0, null, null, null, null, null);
 			
 			do {
 				try {

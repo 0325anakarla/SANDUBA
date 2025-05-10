@@ -74,9 +74,12 @@ public class Cliente extends Usuarios{
 		return jogosAdquiridos;
 	}
 	
-	//arrumar
 	public void atualizarLista(Jogo jogo) {
-		jogosAdquiridos.add(jogo);
+		for (Jogo jogo1 : jogosAdquiridos) {
+			if (!jogo1.getTitulo().equalsIgnoreCase(jogo.getTitulo())) {
+				jogosAdquiridos.add(jogo);
+			}
+		}
 	}
  	
 	// -- @Override aqui embaixo do implements perfil ------------------------------------------------------//

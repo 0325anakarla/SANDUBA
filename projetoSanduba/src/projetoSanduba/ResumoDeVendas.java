@@ -2,6 +2,8 @@ package projetoSanduba;
 
 import java.util.Map;
 
+import jogo.Jogo;
+
 public class ResumoDeVendas {
 	
 	//espera receber um mapa contendo objetos-chaves do tipo Jogo

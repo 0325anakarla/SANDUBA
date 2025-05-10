@@ -157,9 +157,9 @@ public class Jogo {
 		System.out.println("Preço: "+preco);
 		System.out.println("Descrição: "+descricao);
 		System.out.println("Categorias: ");
-		for(int i = 0; i < categoriasValidas.length; i++){
+		/*for(int i = 0; i < categoriasValidas.length; i++){
 			System.out.println(categoriasValidas[i].getCategoria());
-		}
+		}*/
 		System.out.println("Classificação Etaria: "+classEtaria);
 		System.out.println("Idiomas Disponiveis: "+idiomas);
 		System.out.println("Plataformas: "+plataDisp);
@@ -168,14 +168,14 @@ public class Jogo {
 	}
 
 	// criando outro mostrarDados so pra teste
-	public void mostrarDadosCat(){
+	/*public void mostrarDadosCat(){
 		System.out.println("Títutlo: "+titulo);
 		System.out.println("Categorias: ");
 		for(int i = 0; i < categoriasValidas.length; i++){
 			System.out.println(categoriasValidas[i].getCategoria());
 		}
 		System.out.println("");
-	}
+	}*/
 
 	public boolean aplicaDescontoDe(double desconto) {
 		if (desconto > 0) {

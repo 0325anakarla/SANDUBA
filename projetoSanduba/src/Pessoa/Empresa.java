@@ -9,7 +9,6 @@ import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 import projetoSanduba.CarteiraDaEmpresa;
 import projetoSanduba.DadosBancarios;
-import jogo.Jogo;
 import projetoSanduba.Venda;
 
 public class Empresa extends Usuarios{
@@ -19,32 +18,20 @@ public class Empresa extends Usuarios{
 	private String razaoSocial;
 	private DadosBancarios bancoEmpresa;
 	private CarteiraDaEmpresa carteiraDigital;
-<<<<<<< HEAD
-	
-
-	
-	public Empresa(String nome, String email, String senha, String razaoSocial, String cpnj, String endereco, DadosBancarios bancoEmpresa) {
-=======
-	private String razaoSocial;
 	private List<Jogo> jogosEmpresa;
 	private Map<Jogo, Venda> vendasPorJogo;
 	
 
 	public Empresa(String nome, String email, String senha, String cpnj, String endereco, DadosBancarios bancoEmpresa, String razaoSocial) {
->>>>>>> d3db02337e942c1c8a28c40848d3b79bbdd59919
 		super(nome, email, senha);
 		this.cpnj =cpnj;
 		this.endereco = endereco;
 		this.bancoEmpresa = bancoEmpresa;
 		this.razaoSocial =  razaoSocial;
 		CarteiraDaEmpresa carteiraDigital = new CarteiraDaEmpresa(bancoEmpresa);
-<<<<<<< HEAD
 		this.carteiraDigital = carteiraDigital;
-=======
-		this.setCarteiraDigital(carteiraDigital);
 		this.jogosEmpresa = new ArrayList<>();
 		this.vendasPorJogo = new HashMap<>();
->>>>>>> d3db02337e942c1c8a28c40848d3b79bbdd59919
 	}
 	
 	//arraylist que vai estar todos os jogos da empresa
@@ -101,7 +88,7 @@ public class Empresa extends Usuarios{
 	}
 	
 	public List<Jogo> getJogosEmpresa() {
-		return getJogosEmpresa();
+		return jogosEmpresa;
 	}
 	
 	public Map<Jogo, Venda> getVendas() {

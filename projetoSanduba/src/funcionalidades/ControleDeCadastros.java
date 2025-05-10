@@ -19,7 +19,7 @@ public class ControleDeCadastros {
 			
 			boolean dadosValidos = false;
 			
-			Cliente cliente = new Cliente(null, null, null, 0, null);
+			Cliente cliente = new Cliente(null, null, null, null, null);
 		
 			do {
 				try {

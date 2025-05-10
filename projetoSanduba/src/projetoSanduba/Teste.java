@@ -1,5 +1,7 @@
 package projetoSanduba;
 
+import java.time.LocalDate;
+
 import Pessoa.Empresa;
 import jogo.CategoriasJogos;
 import jogo.Jogo;
@@ -15,21 +17,18 @@ public class Teste {
 
 		System.out.println("");
 
-		Jogo jogo = new Jogo("Genshin Impact", new String[]{"rpg", "aventura", "mundo aberto"});
-		jogo.mostrarDadosCat();
+		/*Jogo jogo = new Jogo("Genshin", new String[]{"rpg", "aventura", "mundo aberto"});
+		jogo.mostrarDadosCat();*/
 
 		Empresa empresa = new Empresa("miHoYo", "", "", "", "", null, "");
-		jogo.setPreco(49.9);
-		jogo.setEmpresa(empresa);
+		Jogo jogo1 = new Jogo("Genshin Impact", 49.90, "", 0, "", "", "", empresa, null);
 
 		Empresa outraEmpresa = new Empresa("ConcernedApe", "", "", "", "", null, "");
-		Jogo outroJogo = new Jogo("Stardew Valley", new String[]{"rpg", "simulação"});
-		outroJogo.setPreco(14.99);
-		outroJogo.setEmpresa(outraEmpresa);
+		Jogo jogo2 = new Jogo("Stardew Valley", 14.99, "", 0, "", "", "", outraEmpresa, null);
 
 		CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
-		carrinho.adiciona(jogo);
-		carrinho.adiciona(outroJogo);
+		carrinho.adiciona(jogo1);
+		carrinho.adiciona(jogo2);
 		
 		System.out.println("***** Sem desconto");
 		carrinho.imprimirCarrinho();
@@ -43,7 +42,7 @@ public class Teste {
 		System.out.println();
 
 		System.out.println("***** Removendo um jogo");
-		carrinho.remove(jogo);
+		carrinho.remove(jogo1);
 		carrinho.imprimirCarrinho();
 	}
 }
