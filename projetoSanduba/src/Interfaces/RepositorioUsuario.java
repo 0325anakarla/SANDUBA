@@ -1,10 +1,15 @@
 package Interfaces;
+
 import java.util.List;
 
 import Pessoa.Usuarios;
+import TratamentoDeErro.DadoDuplicadoException;
+import TratamentoDeErro.DadoInvalidoException;
 
-public interface RepositorioUsuario {
-	Usuarios procurarNome(String  nome);
-	Usuarios procurarEmail(String email);
+public interface RepositorioUsuario extends Repositorio<Usuarios> {
+
+	Usuarios procurarEmail(String email) throws DadoDuplicadoException, DadoInvalidoException;
 	
+	List<Usuarios> getTipo(Class<?> clazz) throws DadoDuplicadoException, DadoInvalidoException;
+
 }

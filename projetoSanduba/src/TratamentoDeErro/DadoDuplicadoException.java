@@ -1,7 +1,9 @@
 package TratamentoDeErro;
 
-public class DadoDuplicadoException extends Exception{
-	public DadoDuplicadoException(String mensagem) {
-		super(mensagem);
+public class DadoDuplicadoException extends RuntimeException {
+
+	public DadoDuplicadoException(String msg) {
+		super(msg);
 	}
+
 }
