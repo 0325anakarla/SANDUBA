@@ -1,8 +1,16 @@
 package jogo;
 
 import java.time.LocalDate;
+<<<<<<< HEAD
 import java.time.format.DateTimeFormatter;
+=======
+<<<<<<< HEAD
+import java.time.Period;
+
+=======
+>>>>>>> 69adb5cbb231e7f1ae15e3e960f0aff50c870696
 import java.util.ArrayList;
+>>>>>>> 54c85373094c2242e882075eb2bbce0f581d03fa
 
 import Pessoa.Empresa;
 import TratamentoDeErro.DadoInvalidoException;
@@ -11,7 +19,6 @@ public class Jogo {
 	private String titulo;
 	private double preco;
 	private String descricao;
-	//private CategoriasJogos[] categoriasValidas;
 	private ArrayList<CategoriasJogos> categoriasValidas;
 	private int classEtaria;
 	private String idiomas;
@@ -19,6 +26,8 @@ public class Jogo {
 	private String modAtivacao;
 	private Empresa empresa;
 	private LocalDate dataDeLancamento;
+	private double precoModificador;
+	LocalDate hoje = LocalDate.now();
 
 	public Jogo(String titulo, double preco, String descricao, ArrayList<String> categoriasInv, int classEtaria, String idiomas,
 				String plataDisp, String modAtivacao, Empresa empresa, LocalDate dataDeLancamento) {
@@ -26,28 +35,30 @@ public class Jogo {
 		this.titulo = titulo;
 		this.preco = preco;
 		this.descricao = descricao;
-		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
+
+		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv); // convertendo de invalido para valido e depois armazenando
 		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasVal.size());
-		for(int i = 0; i < categoriasVal.size(); i++){
-			this.categoriasValidas.set(i,CategoriasJogos.valueOf(categoriasVal.get(i)));
+		for(int i = 0; i < categoriasVal.size(); i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
+			this.categoriasValidas.add(i, CategoriasJogos.valueOf(categoriasVal.get(i)));
 		}
+
 		this.classEtaria = classEtaria;
 		this.idiomas = idiomas;
 		this.plataDisp = plataDisp;
 		this.modAtivacao = modAtivacao;
 		this.empresa = empresa;
 		this.dataDeLancamento = dataDeLancamento;
+		this.precoModificador=preco;
 	}
 
 	//criando um construtor apenas para teste
 	public Jogo(String titulo, ArrayList<String> categoriasInv){
 		this.titulo = titulo;
-		//String[] categoriasVal = CategoriasJogos.converteString(categoriasInv);
+
 		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
-		//this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
 		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasVal.size());
 		for(int i = 0; i < categoriasVal.size(); i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
-			this.categoriasValidas.set(i, CategoriasJogos.valueOf(categoriasVal.get(i)));
+			this.categoriasValidas.add(i, CategoriasJogos.valueOf(categoriasVal.get(i)));
 		}
 	}
 
@@ -127,8 +138,6 @@ public class Jogo {
 	}
 
 	public Empresa getEmpresa() {
-
-
 		return empresa;
 	}
 
@@ -146,6 +155,10 @@ public class Jogo {
 
 	public String getResumo() {
 		return titulo+" ("+empresa.getNome()+")";
+	}
+	
+	public double getPrecoModificador() {
+		return precoModificador;
 	}
 
 	/*public void mostrarDados() {
@@ -206,6 +219,17 @@ public class Jogo {
 			System.out.println(categorias.getCategoria());
 		}
 		System.out.println("");
+<<<<<<< HEAD
+	}*/
+	
+	 public void Desconto(double desconto ) throws DadoInvalidoException {
+		 if(desconto <=0) {
+				throw new DadoInvalidoException("Desconto não pode ser negativo ou zerado");
+			}
+		 setPreco( getPrecoModificador()-(getPrecoModificador()* desconto));
+		 
+		 
+=======
 	}
 
 	public boolean aplicaDescontoDe(double desconto) {
@@ -215,5 +239,26 @@ public class Jogo {
 		} else {
 			return false;
 		}
+>>>>>>> 54c85373094c2242e882075eb2bbce0f581d03fa
 	}
+	
+	public void VoltaPreco() throws DadoInvalidoException {
+		setPreco(getPrecoModificador());
+	}
+	
+	public int verAnosPassados() {
+		
+    return  Period.between(this.dataDeLancamento, hoje).getYears();
+	
+	}
+	
+
+//	public boolean aplicaDescontoDe(double desconto) {
+//		if (desconto > 0) {
+//			preco = preco - preco * desconto;
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
 }

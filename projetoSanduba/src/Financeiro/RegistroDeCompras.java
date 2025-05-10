@@ -41,4 +41,20 @@ public class RegistroDeCompras {
     public void setJogos(Map<Jogo, Double> jogos) {
         this.jogos = jogos;
     }
+    
+    public void exibiJogos() {
+    	for (Map.Entry<Jogo, Double> entrada : jogos.entrySet()) {
+    		Jogo jogo = entrada.getKey();
+    		double preco = entrada.getValue();
+    		System.out.println(jogo.getResumo()+" R$ "+preco+"\n");
+    	}
+    }
+    
+    public String toString() {
+		return  "-------------------------------------------------------------"+
+				"\n  Gasto total: "+getGastoTotal()+
+				"\n  Data da compra: "+getData()+
+				"\n  Quantidade de jogos comprados: "+jogos.size()+
+				"\n-------------------------------------------------------------";
+	}
 }

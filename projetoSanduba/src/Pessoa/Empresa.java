@@ -5,14 +5,23 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+<<<<<<< HEAD
+import Interfaces.IUsuario;
+=======
 import Financeiro.CarteiraDaEmpresa;
 import Financeiro.DadosBancarios;
 import Financeiro.Venda;
+>>>>>>> 54c85373094c2242e882075eb2bbce0f581d03fa
 import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 
+<<<<<<< HEAD
+public class Empresa extends Usuarios implements IUsuario{
+	
+=======
 public class Empresa extends Usuarios {
 
+>>>>>>> 54c85373094c2242e882075eb2bbce0f581d03fa
 	private String cpnj;
 	private String endereco;
 	private String razaoSocial;

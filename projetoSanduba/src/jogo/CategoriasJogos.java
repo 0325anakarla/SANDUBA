@@ -52,9 +52,9 @@ public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 
 		ArrayList<String> categoriasVal =  new ArrayList<String>(categoriasIvn.size());
 
-		for(int i = 0; i < categoriasVal.size(); i++){
-			categoriasVal.get(i) = Normalizer.normalize(categoriasIvn.get(i).trim().toUpperCase(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "").replaceAll("\\s+", "");
+		for(int i = 0; i < categoriasIvn.size(); i++){
 			// Pega cada  string escrito e retira acentuação, limpa acentos, retira espaço entre palavras e dos lados e deixa tudo maisculo
+			categoriasVal.add(i, Normalizer.normalize(categoriasIvn.get(i).trim().toUpperCase(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "").replaceAll("\\s+", "") );
 		}
 
 		return categoriasVal;
