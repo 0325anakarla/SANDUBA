@@ -10,7 +10,6 @@ public class Jogo {
 	private String titulo;
 	private double preco;
 	private String descricao;
-	//private CategoriasJogos[] categoriasValidas;
 	private ArrayList<CategoriasJogos> categoriasValidas;
 	private int classEtaria;
 	private String idiomas;
@@ -25,11 +24,13 @@ public class Jogo {
 		this.titulo = titulo;
 		this.preco = preco;
 		this.descricao = descricao;
-		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
+
+		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv); // convertendo de invalido para valido e depois armazenando
 		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasVal.size());
-		for(int i = 0; i < categoriasVal.size(); i++){
-			this.categoriasValidas.set(i,CategoriasJogos.valueOf(categoriasVal.get(i)));
+		for(int i = 0; i < categoriasVal.size(); i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
+			this.categoriasValidas.add(i, CategoriasJogos.valueOf(categoriasVal.get(i)));
 		}
+
 		this.classEtaria = classEtaria;
 		this.idiomas = idiomas;
 		this.plataDisp = plataDisp;
@@ -41,12 +42,11 @@ public class Jogo {
 	//criando um construtor apenas para teste
 	public Jogo(String titulo, ArrayList<String> categoriasInv){
 		this.titulo = titulo;
-		//String[] categoriasVal = CategoriasJogos.converteString(categoriasInv);
+
 		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
-		//this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
 		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasVal.size());
 		for(int i = 0; i < categoriasVal.size(); i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
-			this.categoriasValidas.set(i, CategoriasJogos.valueOf(categoriasVal.get(i)));
+			this.categoriasValidas.add(i, CategoriasJogos.valueOf(categoriasVal.get(i)));
 		}
 	}
 
