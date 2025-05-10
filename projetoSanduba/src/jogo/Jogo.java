@@ -1,16 +1,10 @@
 package jogo;
 
 import java.time.LocalDate;
-<<<<<<< HEAD
 import java.time.format.DateTimeFormatter;
-=======
-<<<<<<< HEAD
 import java.time.Period;
 
-=======
->>>>>>> 69adb5cbb231e7f1ae15e3e960f0aff50c870696
 import java.util.ArrayList;
->>>>>>> 54c85373094c2242e882075eb2bbce0f581d03fa
 
 import Pessoa.Empresa;
 import TratamentoDeErro.DadoInvalidoException;
@@ -219,8 +213,7 @@ public class Jogo {
 			System.out.println(categorias.getCategoria());
 		}
 		System.out.println("");
-<<<<<<< HEAD
-	}*/
+	}
 	
 	 public void Desconto(double desconto ) throws DadoInvalidoException {
 		 if(desconto <=0) {
@@ -229,7 +222,6 @@ public class Jogo {
 		 setPreco( getPrecoModificador()-(getPrecoModificador()* desconto));
 		 
 		 
-=======
 	}
 
 	public boolean aplicaDescontoDe(double desconto) {
@@ -239,7 +231,6 @@ public class Jogo {
 		} else {
 			return false;
 		}
->>>>>>> 54c85373094c2242e882075eb2bbce0f581d03fa
 	}
 	
 	public void VoltaPreco() throws DadoInvalidoException {
