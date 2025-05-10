@@ -5,11 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import Financeiro.CarteiraDaEmpresa;
+import Financeiro.DadosBancarios;
+import Financeiro.Venda;
 import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
-import projetoSanduba.CarteiraDaEmpresa;
-import projetoSanduba.DadosBancarios;
-import projetoSanduba.Venda;
 
 public class Empresa extends Usuarios {
 

@@ -2,7 +2,7 @@ package Console;
 
 import java.util.Scanner;
 
-import projetoSanduba.CarteiraDoCliente;
+import Financeiro.CarteiraDoCliente;
 
 public class TelaCliente {
 	

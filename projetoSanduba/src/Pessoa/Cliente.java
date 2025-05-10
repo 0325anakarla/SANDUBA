@@ -1,13 +1,12 @@
 package Pessoa;
 
-import projetoSanduba.CarteiraDoCliente;
-import projetoSanduba.RegistroDeCompras;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import Financeiro.CarteiraDoCliente;
+import Financeiro.RegistroDeCompras;
 import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 

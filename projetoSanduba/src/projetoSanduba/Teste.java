@@ -2,6 +2,7 @@ package projetoSanduba;
 
 import java.time.LocalDate;
 
+import Financeiro.CarrinhoDeCompras;
 import Pessoa.Empresa;
 import jogo.CategoriasJogos;
 import jogo.Jogo;
