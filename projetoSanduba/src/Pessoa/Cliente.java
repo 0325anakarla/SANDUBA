@@ -5,12 +5,21 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+<<<<<<< HEAD
+import Interfaces.IUsuario;
+import TratamentoDeErro.DadoInvalidoException;
+import jogo.Jogo;
+
+
+public class Cliente extends Usuarios implements IUsuario{
+=======
 import Financeiro.CarteiraDoCliente;
 import Financeiro.RegistroDeCompras;
 import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 
 public class Cliente extends Usuarios {
+>>>>>>> 54c85373094c2242e882075eb2bbce0f581d03fa
 	private String cpf;
 	private LocalDate natalicio; // data de nascimento
 	private CarteiraDoCliente carteiraDigital;
@@ -107,4 +116,28 @@ public class Cliente extends Usuarios {
 	         + "\n  Carteira:          " + (carteiraDigital != null ? carteiraDigital.toString() : "Sem carteira")
 	         + "\n-------------------------------------------------------------";
 	}
+<<<<<<< HEAD
+	
+	
+	public String toString() {
+		String retorno =   "-------------------------------------------------------------"+
+				"\n  Nome do Usuario:   "+getNome()+
+				"\n  Email:             "+getEmail()+
+				"\n  Senha;             "+getSenha()+
+				"\n  Cpf:               "+cpf+
+				"\n  Data de nascimento:"+natalicio;
+				if(carteiraDigital!=null) {
+				retorno+= "\n-------------------------------------------------------------"+
+				"\n"+ carteiraDigital.toString()+
+				"\n-------------------------------------------------------------";
+				}
+	
+		return retorno;}
+				
+		
+	}
+	
+	
+=======
+>>>>>>> 54c85373094c2242e882075eb2bbce0f581d03fa
 }
