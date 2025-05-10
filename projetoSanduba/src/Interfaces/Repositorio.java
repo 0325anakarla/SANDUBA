@@ -3,7 +3,7 @@ package Interfaces;
 import java.util.List;
 
 import Pessoa.Empresa;
-import projetoSanduba.Jogo;
+import jogo.Jogo;
 
 
 public interface Repositorio<T> {
@@ -19,6 +19,6 @@ public interface Repositorio<T> {
 
 	List<T> checarTipo(Class<?> clazz);  
 	//clazz permite que você passe qualquer classe sem restrições e trabalhe com ela dinamicamente.
-
+	List<T> varrer();
 
 }

@@ -1,6 +1,8 @@
 package projetoSanduba;
 
 import Pessoa.Empresa;
+import jogo.CategoriasJogos;
+import jogo.Jogo;
 
 public class Teste {
 

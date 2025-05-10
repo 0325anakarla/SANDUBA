@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import jogo.Jogo;
 import projetoSanduba.CarteiraDaEmpresa;
 import projetoSanduba.DadosBancarios;
-import projetoSanduba.Jogo;
+import jogo.Jogo;
 import projetoSanduba.Venda;
 
 public class Empresa extends Usuarios{

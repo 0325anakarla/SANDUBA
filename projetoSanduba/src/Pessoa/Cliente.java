@@ -1,12 +1,13 @@
 package Pessoa;
 
 import projetoSanduba.CarteiraDoCliente;
-import projetoSanduba.Jogo;
 import projetoSanduba.RegistroDeCompras;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import jogo.Jogo;
 
 
 public class Cliente extends Usuarios{
@@ -17,11 +18,11 @@ public class Cliente extends Usuarios{
 	private List<Jogo> jogosAdquiridos;
 	
 	
-	public Cliente(String nome, String email, String senha, int cpf, LocalDate natalicio, CarteiraDoCliente carteiraDigital) {
+	public Cliente(String nome, String email, String senha, int cpf, LocalDate natalicio) {
 		super(nome, email, senha);
 		this.cpf = cpf;
 		this.natalicio = natalicio;
-		this.carteiraDigital = carteiraDigital;
+		//this.carteiraDigital = carteiraDigital; Nao bateu com o cadastro foi mal, tive que tirar. agora temos que arrumar isso
 		this.historico = new ArrayList<>();
 		this.jogosAdquiridos = new ArrayList<>();
 	}

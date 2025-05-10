@@ -9,6 +9,7 @@ import Interfaces.ControleDeJogos;
 import Pessoa.Cliente;
 import Pessoa.Empresa;
 import Pessoa.Usuarios;
+import jogo.Jogo;
 
 public class Adm extends Usuarios implements ControleDeJogos{
 	Scanner dados = new Scanner(System.in);

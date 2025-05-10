@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
+import jogo.Jogo;
+
 public class RegistroDeCompras {
     private double gastoTotal;
     private LocalDate data;
