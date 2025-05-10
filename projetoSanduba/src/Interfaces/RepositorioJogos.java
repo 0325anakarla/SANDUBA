@@ -3,13 +3,15 @@ package Interfaces;
 import java.util.List;
 
 import Pessoa.Empresa;
+import TratamentoDeErro.DadoDuplicadoException;
+import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 
-public interface RepositorioJogos {
-	
-	List<Jogo> checarTipo(Class<?>clazz);
+public interface RepositorioJogos extends Repositorio<Jogo> {
 
-	List<Jogo> procurarEmpresa(Empresa empresa);
-	
-	Jogo procurarNome(String titulo);
+	@Override
+	List<Jogo> getTipo(Class<?> clazz) throws IllegalArgumentException;
+
+	List<Jogo> procurarEmpresa(Empresa empresa) throws DadoDuplicadoException, DadoInvalidoException;
+
 }

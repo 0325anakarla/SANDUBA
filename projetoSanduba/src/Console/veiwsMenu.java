@@ -1,7 +1,7 @@
 package Console;
 
-import projetoSanduba.CarteiraDaEmpresa;
-import projetoSanduba.CarteiraDoCliente;
+import Financeiro.CarteiraDaEmpresa;
+import Financeiro.CarteiraDoCliente;
 
 public class veiwsMenu {
 	

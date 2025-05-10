@@ -6,27 +6,28 @@ import java.util.List;
 import Interfaces.Repositorio;
 import Interfaces.RepositorioJogos;
 import Pessoa.Empresa;
+import Pessoa.Usuarios;
+import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 
+public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJogos {
 
-public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJogos{
-	
-	private final List<Jogo> jogos= new ArrayList<>(); 
-	
+	private final List<Jogo> jogos = new ArrayList<>();
+
 	@Override
 	public void add(Jogo jogo) {
 		jogos.add(jogo);
 	}
 
 	@Override
-	public List<Jogo> search() {
+	public List<Jogo> getTodos() {
 		return new ArrayList<>(jogos);
 	}
 
 	@Override
 	public void deletar(Jogo jogo) {
 		jogos.remove(jogo);
-		
+
 	}
 
 	public List<Jogo> getJogo() {
@@ -36,15 +37,22 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 //perguntar para o monitor
 
 	@Override
-	public List<Jogo> checarTipo(Class<?> clazz) {
-		return null;
+	public List<Jogo> getTipo(Class<?> clazz) throws DadoInvalidoException {
+		if (clazz == null)
+			throw new DadoInvalidoException("A classe tem que existir.");
+		List<Jogo> resultadoJogo = new ArrayList<>();
+		for (Jogo jogo : jogos) {
+			if (clazz.isInstance(jogo)) {
+				resultadoJogo.add(jogo);
+			}
+		}
+		return resultadoJogo;
 	}
 
 	@Override
 	public Jogo procurarNome(String titulo) {
-		for(Jogo jogo: jogos) 
-		{
-			if(jogo.getTitulo().equalsIgnoreCase(titulo)) {
+		for (Jogo jogo : jogos) {
+			if (jogo.getTitulo().equalsIgnoreCase(titulo)) {
 				return jogo;
 			}
 		}
@@ -54,14 +62,14 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 	@Override
 	public void alterarDados(Jogo jogo) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public List<Jogo> procurarEmpresa(Empresa empresa) {
 		List<Jogo> resultados = new ArrayList<Jogo>();
-	
-		for(Jogo jogo: jogos) {
-			if(jogo.getEmpresa().equals(empresa)) {
+
+		for (Jogo jogo : jogos) {
+			if (jogo.getEmpresa().equals(empresa)) {
 				resultados.add(jogo);
 			}
 		}

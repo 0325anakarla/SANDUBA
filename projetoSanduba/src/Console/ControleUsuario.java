@@ -1,8 +1,8 @@
 package Console;
 import java.time.LocalDate;
 
-import Pessoa.UsuarioArrayList;
-import projetoSanduba.CarteiraDoCliente;
+import Financeiro.CarteiraDoCliente;
+import Repositorio.RepositorioUsuarioArrayList;
 
 public class ControleUsuario {
 	
