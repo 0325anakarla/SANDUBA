@@ -98,7 +98,58 @@ public class ControleDeJogos{
 			}	
 	
 			}
-}
+	}
+	
+	public void deletarJogo(Empresa empresa) {
+		
+		boolean continuarRemocao = true;
+
+		System.out.println("\n--- REMOVER JOGO ---");
+		
+		System.out.println(listJogos.procurarEmpresa(empresa));
+		
+		while(continuarRemocao) {
+		System.out.println("Qual desses jogos voce quer excluir./nDigite o nome do jogo:");
+		
+		String titulo = sc.nextLine();
+		Jogo resultado = listJogos.procurarNome(titulo);
+		if(resultado != null) {
+			System.out.println("O jogo que deseja excluir é "+resultado.getTitulo()+" tem certeza?");
+			System.out.println("1. Sim");
+			System.out.println("2. Não");
+			int opcao = sc.nextInt();
+			
+			switch(opcao) {
+				case 1:
+					listJogos.deletar(resultado);
+					System.out.println("O jogo "+resultado.getTitulo()+" foi deletado com sucesso.");
+					break;
+				case 2:
+					System.out.println("Remoção cancelada.");
+					break;
+				default: 
+					System.out.println("Opção invalida.\nInsira um valido:");
+					break;
+			}
+			} 
+		else {
+			System.out.println("Esse jogo não existe.");
+			System.out.println("Deseja refazer a remoção");
+			System.out.println("1. Sim");
+			System.out.println("2. Não");
+			int refazer = sc.nextInt();
+			
+			if(refazer == 2) {
+				continuarRemocao = false; 
+			}
+		}
+		
+		
+		}
+	}
+	
+	
+	
 	public void ListJogosEmpresa(Empresa empresa) {
 		System.out.println(listJogos.procurarEmpresa(empresa));
 	}

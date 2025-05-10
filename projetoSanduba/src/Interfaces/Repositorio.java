@@ -2,14 +2,11 @@ package Interfaces;
 
 import java.util.List;
 
-import Pessoa.Empresa;
-import jogo.Jogo;
-
 
 public interface Repositorio<T> {
 	void add(T object);
 	
-	List<T> search();
+	List<T> varrer();
 	
 	T procurarNome(String titulo);
 	
@@ -19,6 +16,6 @@ public interface Repositorio<T> {
 
 	List<T> checarTipo(Class<?> clazz);  
 	//clazz permite que você passe qualquer classe sem restrições e trabalhe com ela dinamicamente.
-	List<T> varrer();
+
 
 }

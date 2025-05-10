@@ -19,7 +19,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 	}
 
 	@Override
-	public List<Jogo> search() {
+	public List<Jogo> varrer() {
 		return new ArrayList<>(jogos);
 	}
 

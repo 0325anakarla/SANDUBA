@@ -21,7 +21,7 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 	}
 
 	@Override
-	public List<Usuarios> search() {
+	public List<Usuarios> varrer() {
 		return new ArrayList<>(usuarios);
 	}
 
