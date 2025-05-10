@@ -4,15 +4,18 @@ import java.util.Scanner;
 
 import Financeiro.CarteiraDaEmpresa;
 import Pessoa.Empresa;
+import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.ControleDeJogos;
+import jogo.Jogo;
 
 public class TelaEmpresa {
 	Scanner sc = new Scanner(System.in);
-	veiwsMenu menu = new veiwsMenu();
+	VisualizacaoMenu menu = new VisualizacaoMenu();
 	CarteiraDaEmpresa cdE = new CarteiraDaEmpresa(null);
 	ControleDeJogos controlJogos = new ControleDeJogos();
-	Empresa empresa = new Empresa(null, null, null, null, null, null, null);
+	Empresa empresa = new Empresa();
+	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
 	
 	public void telaMinhaContaEmpresa(Empresa empresa) throws DadoInvalidoException {		
 		int opcao = 0;
@@ -108,6 +111,10 @@ public class TelaEmpresa {
 			
 			switch(opcao){
 				case 1: 
+					System.out.print("Digite o jogo que irar alterar:");
+					String titulo = sc.nextLine();
+					Jogo jogo = listJogos.procurarNome(titulo);
+					controlJogos.alterarDadosDosJogos(jogo);
 					break;
 				case 2:
 					controlJogos.deletarJogo(empresa);
