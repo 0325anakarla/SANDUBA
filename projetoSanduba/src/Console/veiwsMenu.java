@@ -5,9 +5,6 @@ import projetoSanduba.CarteiraDoCliente;
 
 public class veiwsMenu {
 	
-	CarteiraDoCliente cdC = new CarteiraDoCliente();
-	CarteiraDaEmpresa cdE = new CarteiraDaEmpresa(null);
-	
 	public void telaMenuMcCliente() {
 		   System.out.println("\n--- MINHA CONTA(Cliente) ---");
 	        System.out.println("1. Ver informações pessoais");
@@ -19,10 +16,10 @@ public class veiwsMenu {
 	        System.out.print("Escolha uma opção: ");
 	}
 	
-	public void telaMenuCdCliente() {
+	public void telaMenuCdCliente(CarteiraDoCliente cdC) {
 		System.out.println("\n--- CARTEIRA DIGITAL ---");
-        System.out.println("Saldo: "+cdC.getSaldo());//ta dando erro(irei corrigir)
-        System.out.println("CashBack: ");
+        System.out.println("Saldo: "+cdC.getSaldo());
+        System.out.println("CashBack: "+cdC.getCashback());
         System.out.println("1. Depositar");
         System.out.println("2. Cartao cadastrados");
         System.out.println("3. Voltar para minha conta");
@@ -40,9 +37,9 @@ public class veiwsMenu {
 	        System.out.print("Escolha uma opção: ");
 	}
 	
-	public void telaMenuCdEmpresa() {
+	public void telaMenuCdEmpresa(CarteiraDaEmpresa cdE) {
 		System.out.println("\n--- CARTEIRA DIGITAL ---");
-        System.out.println("Saldo: "+cdE.getSaldo());//ta dando erro(irei corrigir)
+        System.out.println("Saldo: "+cdE.getSaldo());
         System.out.println("1. Sacar");
         System.out.println("2. Dados Bancarios");
         System.out.println("3. Voltar para minha conta");

@@ -80,20 +80,21 @@ public class CarrinhoDeCompras {
 				double preco = jogo.getPreco();
 				Empresa empresa = jogo.getEmpresa();
 				CarteiraDaEmpresa carteiraDaEmpresa = empresa.getCarteiraDigital();
-				carteiraDaEmpresa.adicionar(preco, 0.05);
+				carteiraDaEmpresa.adicionar(preco);
+				empresa.registrarVenda(jogo, 1);
+				cliente.atualizarLista(jogo);
 			}
 
 			carteiraDoCliente.descontar(valorDaCompra);
-
-			for (Jogo jogo : jogos.keySet()) {
-				cliente.atualizarLista(jogo);
-			}
 
 			//passar a data do dia da compra realizada com sucesso
 			RegistroDeCompras registro = new RegistroDeCompras(valorDaCompra, null, jogos);
 			cliente.atualizarHistorico(registro);
 			
 			carteiraDoCliente.gerarCashback();
+			
+			//limpa o carrinho de compras
+			jogos.clear();
 			return true;
 		} else {
 			return false;
