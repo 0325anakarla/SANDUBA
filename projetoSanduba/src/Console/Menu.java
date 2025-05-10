@@ -1,22 +1,21 @@
 package Console;
 import java.util.Scanner;
 
+import funcionalidades.ControleDeCadastros;
+
 public class Menu {
+	// - parte burocratica de chamar as funcoes -//
 	Scanner sc = new Scanner(System.in);
-	CadastroUsuario novoUsu = new CadastroUsuario();
+	ControleDeCadastros novoCada = new ControleDeCadastros();
 	
-	// -- Funcao para o usuario ou empresa fazerem login -- //
 	public void login() {
 		System.out.println("\n------------------------");
 		System.out.println("#-   DIGITE SEU LOGIN   -#");
 		System.out.println("------------------------");
 	}
 	
-	// -- funcao para cadastro -- //
 	public void cadastro() {
-		//Usuarios iPessoa= new Usuarios(null, null, null);
-		
-				//while :D
+				
 				System.out.println("\n------------------------");
 				System.out.println("#-   CRIE SUA CONTA   -#");
 				System.out.println("------------------------");
@@ -33,7 +32,7 @@ public class Menu {
 				switch(choice) {
 				
 				case 1:
-					System.out.println("Cadastro de usuario aqui");
+					novoCada.CadastrarClientes();
 					break;
 				
 				case 2:
@@ -44,6 +43,7 @@ public class Menu {
 				default:
 					System.out.println("Opcao invalida. Digite novamente");}
 	}
+	
 	
 	//-- funcao para sair a qualquer momento do projeto --//
 	public void sair() {

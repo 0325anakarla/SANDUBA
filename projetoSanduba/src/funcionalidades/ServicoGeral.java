@@ -19,7 +19,7 @@ public class ServicoGeral {
 		if(repositorio == null) {
 			throw new IllegalArgumentException("nao existe essa conta");
 		}
-		for(Usuarios usuario : repositorio.varrer()) {
+		for(Usuarios usuario : repositorio.getTodos()) {
 			if(usuario.getEmail() != null && usuario.getSenha() != null && repositorio != null) {
 				return usuario;
 			}

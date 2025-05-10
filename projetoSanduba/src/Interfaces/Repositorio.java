@@ -7,7 +7,7 @@ import jogo.Jogo;
 
 public interface Repositorio<T> {
 
-	void add(T object);
+	void add(T object); 
 
 	List<T> getTodos();
 
