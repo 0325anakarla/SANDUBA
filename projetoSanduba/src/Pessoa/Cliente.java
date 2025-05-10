@@ -7,11 +7,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import Interfaces.IUsuario;
 import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 
 
-public class Cliente extends Usuarios{
+public class Cliente extends Usuarios implements IUsuario{
 	private String cpf;
 	private LocalDate natalicio; //data de nascimento
 	private CarteiraDoCliente carteiraDigital;
@@ -112,15 +113,19 @@ public class Cliente extends Usuarios{
 	
 	
 	public String toString() {
-		return  "-------------------------------------------------------------"+
+		String retorno =   "-------------------------------------------------------------"+
 				"\n  Nome do Usuario:   "+getNome()+
 				"\n  Email:             "+getEmail()+
 				"\n  Senha;             "+getSenha()+
 				"\n  Cpf:               "+cpf+
-				"\n  Data de nascimento:"+natalicio+
-				"\n-------------------------------------------------------------"+
+				"\n  Data de nascimento:"+natalicio;
+				if(carteiraDigital!=null) {
+				retorno+= "\n-------------------------------------------------------------"+
 				"\n"+ carteiraDigital.toString()+
 				"\n-------------------------------------------------------------";
+				}
+	
+		return retorno;}
 				
 		
 	}

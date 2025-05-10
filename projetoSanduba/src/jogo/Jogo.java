@@ -1,6 +1,8 @@
 package jogo;
 
 import java.time.LocalDate;
+import java.time.Period;
+
 
 import Pessoa.Empresa;
 import TratamentoDeErro.DadoInvalidoException;
@@ -16,6 +18,8 @@ public class Jogo {
 	private String modAtivacao;
 	private Empresa empresa;
 	private LocalDate dataDeLancamento;
+	private double precoModificador;
+	LocalDate hoje = LocalDate.now();
 
 	public Jogo(String titulo, double preco, String descricao, int classEtaria, String idiomas,
 				String plataDisp, String modAtivacao, Empresa empresa, LocalDate dataDeLancamento) {
@@ -34,6 +38,7 @@ public class Jogo {
 		this.modAtivacao = modAtivacao;
 		this.empresa = empresa;
 		this.dataDeLancamento = dataDeLancamento;
+		this.precoModificador=preco;
 	}
 
 	//criando um construtor apenas para teste
@@ -151,6 +156,10 @@ public class Jogo {
 	public String getResumo() {
 		return titulo+" ("+empresa.getNome()+")";
 	}
+	
+	public double getPrecoModificador() {
+		return precoModificador;
+	}
 
 	public void mostrarDados() {
 		System.out.println("Titulo: "+titulo);
@@ -176,13 +185,33 @@ public class Jogo {
 		}
 		System.out.println("");
 	}*/
-
-	public boolean aplicaDescontoDe(double desconto) {
-		if (desconto > 0) {
-			preco = preco - preco * desconto;
-			return true;
-		} else {
-			return false;
-		}
+	
+	 public void Desconto(double desconto ) throws DadoInvalidoException {
+		 if(desconto <=0) {
+				throw new DadoInvalidoException("Desconto não pode ser negativo ou zerado");
+			}
+		 setPreco( getPrecoModificador()-(getPrecoModificador()* desconto));
+		 
+		 
 	}
+	
+	public void VoltaPreco() throws DadoInvalidoException {
+		setPreco(getPrecoModificador());
+	}
+	
+	public int verAnosPassados() {
+		
+    return  Period.between(this.dataDeLancamento, hoje).getYears();
+	
+	}
+	
+
+//	public boolean aplicaDescontoDe(double desconto) {
+//		if (desconto > 0) {
+//			preco = preco - preco * desconto;
+//			return true;
+//		} else {
+//			return false;
+//		}
+//	}
 }

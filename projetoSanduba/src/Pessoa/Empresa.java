@@ -5,13 +5,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import Interfaces.IUsuario;
 import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 import projetoSanduba.CarteiraDaEmpresa;
 import projetoSanduba.DadosBancarios;
 import projetoSanduba.Venda;
 
-public class Empresa extends Usuarios{
+public class Empresa extends Usuarios implements IUsuario{
 	
 	private String cpnj;
 	private String endereco;

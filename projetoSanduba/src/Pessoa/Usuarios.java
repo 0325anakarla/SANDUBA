@@ -46,14 +46,14 @@ public abstract class Usuarios {
 		this.nome = nome;
 	}
 	
-	public abstract void exibirInformacaoPublica(); //nome de usuario
-	public abstract void exibirInformacaoPrivada(); //detalhes da conta
-	
-	public abstract String alterarSenha(String senha); //alterar dados
-	public abstract String alterarEmail(String email);
-	
-	public abstract void seusJogos(); //jogos cadastrados e jogos comprados
-	
-	public abstract void excluirConta(); //excluir conta
+//	public abstract void exibirInformacaoPublica(); //nome de usuario
+//	public abstract void exibirInformacaoPrivada(); //detalhes da conta
+//	
+//	public abstract String alterarSenha(String senha); //alterar dados
+//	public abstract String alterarEmail(String email);
+//	
+//	public abstract void seusJogos(); //jogos cadastrados e jogos comprados
+//	
+//	public abstract void excluirConta(); //excluir conta
 	
 }

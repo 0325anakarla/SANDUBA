@@ -1,9 +1,9 @@
 package Repositorio;
 
+import Pessoa.Adm;
 import Pessoa.Cliente;
 import Pessoa.Empresa;
 import Pessoa.Usuarios;
-import projetoSanduba.Adm;
 
 import java.util.ArrayList;
 import java.util.List;
