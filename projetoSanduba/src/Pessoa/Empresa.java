@@ -1,12 +1,16 @@
 package Pessoa;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 import projetoSanduba.CarteiraDaEmpresa;
 import projetoSanduba.DadosBancarios;
+import jogo.Jogo;
+import projetoSanduba.Venda;
 
 public class Empresa extends Usuarios{
 	
@@ -15,17 +19,32 @@ public class Empresa extends Usuarios{
 	private String razaoSocial;
 	private DadosBancarios bancoEmpresa;
 	private CarteiraDaEmpresa carteiraDigital;
+<<<<<<< HEAD
 	
 
 	
 	public Empresa(String nome, String email, String senha, String razaoSocial, String cpnj, String endereco, DadosBancarios bancoEmpresa) {
+=======
+	private String razaoSocial;
+	private List<Jogo> jogosEmpresa;
+	private Map<Jogo, Venda> vendasPorJogo;
+	
+
+	public Empresa(String nome, String email, String senha, String cpnj, String endereco, DadosBancarios bancoEmpresa, String razaoSocial) {
+>>>>>>> d3db02337e942c1c8a28c40848d3b79bbdd59919
 		super(nome, email, senha);
 		this.cpnj =cpnj;
 		this.endereco = endereco;
 		this.bancoEmpresa = bancoEmpresa;
 		this.razaoSocial =  razaoSocial;
 		CarteiraDaEmpresa carteiraDigital = new CarteiraDaEmpresa(bancoEmpresa);
+<<<<<<< HEAD
 		this.carteiraDigital = carteiraDigital;
+=======
+		this.setCarteiraDigital(carteiraDigital);
+		this.jogosEmpresa = new ArrayList<>();
+		this.vendasPorJogo = new HashMap<>();
+>>>>>>> d3db02337e942c1c8a28c40848d3b79bbdd59919
 	}
 	
 	//arraylist que vai estar todos os jogos da empresa
@@ -83,6 +102,24 @@ public class Empresa extends Usuarios{
 	
 	public List<Jogo> getJogosEmpresa() {
 		return getJogosEmpresa();
+	}
+	
+	public Map<Jogo, Venda> getVendas() {
+		return vendasPorJogo;
+	}
+	
+	//verifica se a chave associada, que no caso é o objeto Jogo, existe no mapa vendasPorJogo
+	//se nao existir cria um novo valor associado aquela chave
+	//e adiciona a quantidade de jogos vendidos daquele jogo
+	public void registrarVenda(Jogo jogo, int quantidade) {
+		if (vendasPorJogo.containsKey(jogo)) {
+			Venda venda = vendasPorJogo.get(jogo);
+			venda.adicionaQuantidadeVendida(quantidade);
+			vendasPorJogo.put(jogo, venda);
+		} else {
+			Venda venda = new Venda(jogo.getTitulo(), jogo.getPreco(), quantidade);
+			vendasPorJogo.put(jogo, venda);
+		}
 	}
 	
 	// --- Metodos da Empresa ----------------------------------------------------------------------------------------------------//

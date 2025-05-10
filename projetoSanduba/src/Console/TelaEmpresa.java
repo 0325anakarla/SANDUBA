@@ -62,7 +62,7 @@ public class TelaEmpresa {
 		
 		do {
 			
-			menu.telaMenuCdEmpresa();
+			menu.telaMenuCdEmpresa(cdE);
 			
 			opcao = sc.nextInt();
 			

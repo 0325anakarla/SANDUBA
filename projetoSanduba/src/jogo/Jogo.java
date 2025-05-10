@@ -1,5 +1,7 @@
 package jogo;
 
+import java.time.LocalDate;
+
 import Pessoa.Empresa;
 import TratamentoDeErro.DadoInvalidoException;
 
@@ -13,9 +15,10 @@ public class Jogo {
 	private String plataDisp;
 	private String modAtivacao;
 	private Empresa empresa;
+	private LocalDate dataDeLancamento;
 
 	public Jogo(String titulo, double preco, String descricao, int classEtaria, String idiomas,
-				String plataDisp, String modAtivacao, Empresa empresa) {
+				String plataDisp, String modAtivacao, Empresa empresa, LocalDate dataDeLancamento) {
 		super();
 		this.titulo = titulo;
 		this.preco = preco;
@@ -30,6 +33,7 @@ public class Jogo {
 		this.plataDisp = plataDisp;
 		this.modAtivacao = modAtivacao;
 		this.empresa = empresa;
+		this.dataDeLancamento = dataDeLancamento;
 	}
 
 	//criando um construtor apenas para teste
@@ -134,6 +138,14 @@ public class Jogo {
 
 	public void setEmpresa(Empresa empresa) throws DadoInvalidoException {
 		this.empresa = empresa;
+	}
+
+	public LocalDate getDataDeLancamento() {
+		return dataDeLancamento;
+	}
+
+	public void setDataDeLancamento(LocalDate dataDeLancamento) {
+		this.dataDeLancamento = dataDeLancamento;
 	}
 	
 	public String getResumo() {
