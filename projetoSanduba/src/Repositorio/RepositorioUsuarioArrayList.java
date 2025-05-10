@@ -7,6 +7,7 @@ import java.util.List;
 import Interfaces.Repositorio;
 import Interfaces.RepositorioUsuario;
 import Pessoa.Usuarios;
+import TratamentoDeErro.DadoInvalidoException;
 // importar os exceptions
 
 
@@ -17,7 +18,9 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 	
 	@Override
 	public void add(Usuarios usuario) {
-		usuarios.add(usuario); // adiciona usuario em na list usuarios
+		if() {
+			
+		}
 	}
 
 	@Override
@@ -45,11 +48,27 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 	@Override
 	public Usuarios procurarNome(String nome){
 		
+		for(Usuarios usuario : usuarios) {
+			if(usuario.getNome().equalsIgnoreCase(nome)) {
+				return usuario;
+			}
+		}
 		return null;
 	}
 
 	@Override
 	public Usuarios procurarEmail(String email) {
+		for(Usuarios usuario: usuarios) {
+			if(usuario.getEmail().equalsIgnoreCase(email)) {
+				return usuario;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public List<Usuarios> varrer() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

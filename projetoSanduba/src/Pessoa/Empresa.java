@@ -3,6 +3,7 @@ package Pessoa;
 import java.util.ArrayList;
 import java.util.List;
 
+import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 import projetoSanduba.CarteiraDaEmpresa;
 import projetoSanduba.DadosBancarios;
@@ -11,19 +12,20 @@ public class Empresa extends Usuarios{
 	
 	private String cpnj;
 	private String endereco;
+	private String razaoSocial;
 	private DadosBancarios bancoEmpresa;
 	private CarteiraDaEmpresa carteiraDigital;
-	private String razaoSocial;
+	
 
 	
-	public Empresa(String nome, String email, String senha, String cpnj, String endereco, DadosBancarios bancoEmpresa, String razaoSocial) {
+	public Empresa(String nome, String email, String senha, String razaoSocial, String cpnj, String endereco, DadosBancarios bancoEmpresa) {
 		super(nome, email, senha);
-		this.setCpnj(cpnj);
-		this.setEndereco(endereco);
-		this.setBancoEmpresa(bancoEmpresa);
-		this.setRazaoSocial(razaoSocial);
+		this.cpnj =cpnj;
+		this.endereco = endereco;
+		this.bancoEmpresa = bancoEmpresa;
+		this.razaoSocial =  razaoSocial;
 		CarteiraDaEmpresa carteiraDigital = new CarteiraDaEmpresa(bancoEmpresa);
-		this.setCarteiraDigital(carteiraDigital);
+		this.carteiraDigital = carteiraDigital;
 	}
 	
 	//arraylist que vai estar todos os jogos da empresa
@@ -50,7 +52,10 @@ public class Empresa extends Usuarios{
 		return endereco;
 	}
 
-	public void setEndereco(String endereco) {
+	public void setEndereco(String endereco) throws DadoInvalidoException {
+		if(endereco ==  null || endereco.isBlank()) {
+			throw new DadoInvalidoException("Endereco invalido");
+		}
 		this.endereco = endereco;
 	}
 
@@ -58,7 +63,10 @@ public class Empresa extends Usuarios{
 		return cpnj;
 	}
 
-	public void setCpnj(String cpnj) {
+	public void setCpnj(String cpnj) throws DadoInvalidoException {
+		if(cpnj ==  null || cpnj.isBlank()) {
+			throw new DadoInvalidoException("Cnpj invalido");
+		}
 		this.cpnj = cpnj;
 	}
 	
@@ -66,12 +74,15 @@ public class Empresa extends Usuarios{
 		return razaoSocial;
 	}
 
-	public void setRazaoSocial(String razaoSocial) {
+	public void setRazaoSocial(String razaoSocial) throws DadoInvalidoException {
+		if(razaoSocial ==  null || razaoSocial.isBlank()) {
+			throw new DadoInvalidoException("Razao Social invalida");
+		}	
 		this.razaoSocial = razaoSocial;
 	}
 	
 	public List<Jogo> getJogosEmpresa() {
-		return jogosEmpresa;
+		return getJogosEmpresa();
 	}
 	
 	// --- Metodos da Empresa ----------------------------------------------------------------------------------------------------//

@@ -7,18 +7,19 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 
 
 public class Cliente extends Usuarios{
-	private int cpf;
+	private String cpf;
 	private LocalDate natalicio; //data de nascimento
 	private CarteiraDoCliente carteiraDigital;
 	private List<RegistroDeCompras> historico;
 	private List<Jogo> jogosAdquiridos;
 	
 	
-	public Cliente(String nome, String email, String senha, int cpf, LocalDate natalicio) {
+	public Cliente(String nome, String email, String senha, String cpf, LocalDate natalicio) {
 		super(nome, email, senha);
 		this.cpf = cpf;
 		this.natalicio = natalicio;
@@ -41,17 +42,23 @@ public class Cliente extends Usuarios{
 		return natalicio;
 	}
 	
-	public void setNatalicio(LocalDate natalicio) {
+	public void setNatalicio(LocalDate natalicio) throws DadoInvalidoException {
+		if(natalicio == null || natalicio.isAfter(LocalDate.now())) {
+			throw new DadoInvalidoException("Data invalida");
+		}
 		this.natalicio = natalicio;
 	}
 
 
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) throws DadoInvalidoException {
+		if(cpf == null || cpf.isBlank()) {
+			throw new DadoInvalidoException("Cpf invalido");
+		}
 		this.cpf = cpf;
 	}
 
@@ -66,7 +73,8 @@ public class Cliente extends Usuarios{
 	public List<Jogo> getJogosAdquiridos() {
 		return jogosAdquiridos;
 	}
-
+	
+	//arrumar
 	public void atualizarLista(Jogo jogo) {
 		jogosAdquiridos.add(jogo);
 	}
@@ -81,14 +89,14 @@ public class Cliente extends Usuarios{
 		
 	}
 
-	public String alterarSenha(String senha) {
+	public String alterarSenha(String senha){
 		setSenha(senha);
 		return "| Alterar senha | Senha Atual: " +getSenha() + "Senha nova:" +senha;
 	}
 
 	public String alterarEmail(String email) {
 		setEmail(email);
-		return "| Alterar Email | Email Atual: " +getEmail() + "Email novo:" +email;
+		return "| Alterar Email | Email Atual: " +getEmail() + "Email novo:" + email;
 	}
 	
 	public void seusJogos() {
