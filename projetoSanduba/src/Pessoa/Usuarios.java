@@ -46,7 +46,7 @@ public abstract class Usuarios {
 		this.nome = nome;
 	}
 	
-<<<<<<< HEAD
+
 //	public abstract void exibirInformacaoPublica(); //nome de usuario
 //	public abstract void exibirInformacaoPrivada(); //detalhes da conta
 //	
@@ -56,14 +56,10 @@ public abstract class Usuarios {
 //	public abstract void seusJogos(); //jogos cadastrados e jogos comprados
 //	
 //	public abstract void excluirConta(); //excluir conta
-=======
-	public abstract void seusJogos(); //jogos cadastrados e jogos comprados
 	
 	public abstract String mostrarDetalhesUsuario();
 
 	public String mostrarDetalhesUsuarios() {
 		return null;
 	}
->>>>>>> 54c85373094c2242e882075eb2bbce0f581d03fa
-	
 }

@@ -9,7 +9,7 @@ import TratamentoDeErro.DadoInvalidoException;
 public class TesteMenu {
 
 	public static void main(String[] args) throws DadoInvalidoException {
-		Cliente cliente = new Cliente("lana", "lana@gmail.com", "1234", "12345678-90", LocalDate.now());
+		Cliente cliente = new Cliente("lana", "lana@gmail.com", "1234", "12345678-90", LocalDate.of(2004, 9, 23));
 		CarteiraDoCliente cdC = new CarteiraDoCliente();
 		cliente.setCarteiraDigital(cdC);
 		

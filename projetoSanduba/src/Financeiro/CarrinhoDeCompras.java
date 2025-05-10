@@ -1,5 +1,6 @@
 package Financeiro;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -88,8 +89,7 @@ public class CarrinhoDeCompras {
 
 			carteiraDoCliente.descontar(valorDaCompra);
 
-			//passar a data do dia da compra realizada com sucesso
-			RegistroDeCompras registro = new RegistroDeCompras(valorDaCompra, null, jogos);
+			RegistroDeCompras registro = new RegistroDeCompras(valorDaCompra, LocalDate.now(), jogos);
 			cliente.atualizarHistorico(registro);
 			
 			carteiraDoCliente.gerarCashback();
