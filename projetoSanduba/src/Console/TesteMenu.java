@@ -6,19 +6,16 @@ import Financeiro.CarteiraDoCliente;
 import Financeiro.DadosBancarios;
 import Pessoa.Cliente;
 import Pessoa.Empresa;
+import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoInvalidoException;
+import funcionalidades.ControleDeCadastros;
 
 public class TesteMenu {
 
 	public static void main(String[] args) throws DadoInvalidoException {
-
 		
-		Menu menu = new Menu();
-		InicioSanduba inicio = new InicioSanduba();
 		
-		inicio.start();
-		menu.cadastroUsuario();
-
+		Menu.start();
 		
 		
 		Cliente cliente = new Cliente("lana", "lana@gmail.com", "1234", "12345678-90", LocalDate.of(2004, 9, 23));
@@ -30,12 +27,13 @@ public class TesteMenu {
 		viewsC.telaMinhaContaCliente(cliente);
 
 		
-		DadosBancarios banco = new DadosBancarios("CP", "Santander", "Conta corrente", 5, 200);
+		/*DadosBancarios banco = new DadosBancarios("CP", "Santander", "Conta corrente", 5, 200);
 		Empresa empresa = new Empresa("ConcernedApe", "aux@gmail.com", "5678", "1234567890-12", "", banco, "");
 		TelaEmpresa viewE = new TelaEmpresa();
 		viewE.telaMinhaContaEmpresa(empresa);
 
 		viewE.telaJogosCadastrados(empresa);
+		*/
 	}
 
 }

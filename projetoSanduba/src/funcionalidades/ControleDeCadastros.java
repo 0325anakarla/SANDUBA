@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import Console.InicioSanduba;
+import Console.Menu;
 import Pessoa.Cliente;
 import Pessoa.Empresa;
 import Repositorio.RepositorioUsuarioArrayList;
@@ -13,11 +14,12 @@ import TratamentoDeErro.DadoInvalidoException;
 public class ControleDeCadastros {
 	private final Scanner sc =new Scanner(System.in);
 	
-	final RepositorioUsuarioArrayList repositorio;
-	final InicioSanduba inicio = new InicioSanduba();
+	private RepositorioUsuarioArrayList repositorio;
+	private Menu menu;
 	
 	public ControleDeCadastros() {
 		this.repositorio = RepositorioUsuarioArrayList.getInstance();
+	
 	}
 
 	public void CadastrarClientes() {
@@ -110,7 +112,7 @@ public class ControleDeCadastros {
 			*/
 
 			System.out.println("\n🔄 Redirecionando para a tela inicial...\n");
-			InicioSanduba.start(); //statico
+			menu.start(); //statico
 
 		}
 	}
