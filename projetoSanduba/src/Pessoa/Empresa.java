@@ -15,16 +15,15 @@ import jogo.Jogo;
 
 
 public class Empresa extends Usuarios{
+	private String razaoSocial;
 	private String cpnj;
 	private String endereco;
-	private String razaoSocial;
 	private DadosBancarios bancoEmpresa;
 	private CarteiraDaEmpresa carteiraDigital;
 	private List<Jogo> jogosEmpresa;
 	private Map<Jogo, Venda> vendasPorJogo;
 
-	public Empresa(String nome, String email, String senha, String cpnj, String endereco, DadosBancarios bancoEmpresa,
-			String razaoSocial) {
+	public Empresa(String nome, String email, String senha, String razaoSocial, String cpnj, String endereco, DadosBancarios bancoEmpresa) {
 		super(nome, email, senha);
 		this.cpnj = cpnj;
 		this.endereco = endereco;

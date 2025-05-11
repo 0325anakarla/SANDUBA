@@ -14,8 +14,13 @@ public class TesteMenu {
 
 		
 		Menu menu = new Menu();
+		InicioSanduba inicio = new InicioSanduba();
+		
+		inicio.start();
 		menu.cadastroUsuario();
 
+		
+		
 		Cliente cliente = new Cliente("lana", "lana@gmail.com", "1234", "12345678-90", LocalDate.of(2004, 9, 23));
 		CarteiraDoCliente cdC = new CarteiraDoCliente();
 		cliente.setCarteiraDigital(cdC);

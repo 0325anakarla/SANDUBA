@@ -3,15 +3,24 @@ import java.util.Scanner;
 
 import Interfaces.Repositorio;
 import Pessoa.Usuarios;
+import Repositorio.RepositorioUsuarioArrayList;
 import funcionalidades.ControleDeCadastros;
 import funcionalidades.ServicoGeral;
 
 public class Menu {
 	// - parte burocratica de chamar as funcoes -//
-	Scanner sc = new Scanner(System.in);
-	ControleDeCadastros novoCada = new ControleDeCadastros();
+	private static Scanner sc = new Scanner(System.in);
 	
-	public void loginUsuario(Repositorio<Usuarios> repositorio) {
+	final RepositorioUsuarioArrayList repositorio;
+
+	final ControleDeCadastros novoCada = new ControleDeCadastros();
+	final InicioSanduba inicio = new InicioSanduba();
+	
+	public Menu() {
+		this.repositorio = RepositorioUsuarioArrayList.getInstance();
+	}
+
+	public void loginUsuario() {
 		
 		Usuarios usuarioLogin = null;
 		boolean logado = false;
@@ -34,7 +43,8 @@ public class Menu {
 			if (usuarioLogin != null) {
 				logado = true;
 			    System.out.println("Login realizado com sucesso! Bem-vindo(a), " + usuarioLogin.getNome());
-			    if() {
+			   
+			    /* if() {
 			    	// se for cliente tela do client
 			    }
 			    if else(){
@@ -43,15 +53,14 @@ public class Menu {
 			    else {
 			    	// se for adm tela do adm
 			    }
-			    
+			    */
 			    	
 			} else {
 			    System.out.println("Email ou senha incorretos.");
 			    tentativa ++;
 			    break;
 			}
-			
-			
+	
 	}
 	}
 	
@@ -81,6 +90,7 @@ public class Menu {
 					break;
 				case 0: 
 					System.out.println("Saindo...");
+					inicio.start();
 					break;
 				default:
 					System.out.println("Opcao invalida. Digite novamente");}
