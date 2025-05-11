@@ -1,7 +1,6 @@
 package Console;
 import java.util.Scanner;
 
-import Interfaces.Repositorio;
 import Pessoa.Usuarios;
 import Repositorio.RepositorioUsuarioArrayList;
 import funcionalidades.ControleDeCadastros;
@@ -11,13 +10,16 @@ public class Menu {
 	// - parte burocratica de chamar as funcoes -//
 	private static Scanner sc = new Scanner(System.in);
 	
-	final RepositorioUsuarioArrayList repositorio;
+	private RepositorioUsuarioArrayList repositorio;
+	private ControleDeCadastros controle;
+	private InicioSanduba inicio;
 
 	final ControleDeCadastros novoCada = new ControleDeCadastros();
-	final InicioSanduba inicio = new InicioSanduba();
 	
-	public Menu() {
+	public Menu(InicioSanduba inicio,ControleDeCadastros controle) {
 		this.repositorio = RepositorioUsuarioArrayList.getInstance();
+		this.inicio = inicio;
+		this.controle = controle;
 	}
 
 	public void loginUsuario() {

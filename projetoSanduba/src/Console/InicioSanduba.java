@@ -7,11 +7,12 @@ public class InicioSanduba {
 
 	private static  Scanner sc = new Scanner(System.in);
 	
-	static RepositorioUsuarioArrayList repositorio;
-	static Menu novoStart =  new Menu();
+	private Menu menu;
+	private RepositorioUsuarioArrayList repo;
 	
-	public InicioSanduba(RepositorioUsuarioArrayList repositorio) {
-		InicioSanduba.repositorio = RepositorioUsuarioArrayList.getInstance(); 
+	public InicioSanduba(Menu menu) {
+		this.repo = RepositorioUsuarioArrayList.getInstance(); 
+		this.menu = menu;
 	}
 
 	public static void start() {
@@ -33,11 +34,11 @@ public class InicioSanduba {
 		switch (num) {
 
 		case 1:
-			novoStart.cadastroUsuario();
+			menu.cadastroUsuario();
 			break;
 
 		case 2:
-			novoStart.loginUsuario();
+			menu.loginUsuario();
 			break;
 		case 3:
 			// mais informacoes: agradecer quem usou - dizer quem fez o codigo - eatereggis
