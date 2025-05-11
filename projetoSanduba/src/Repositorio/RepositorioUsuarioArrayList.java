@@ -29,7 +29,6 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 	@Override
 	public List<Usuarios> getTodos() { // vai varrer todo o arraylist [e tipo um getall
 		return new ArrayList<>(usuarios);
-		// ok
 	}
 
 	@Override
@@ -75,6 +74,12 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 				return usuario;
 			}
 		}
+		return null;
+	}
+
+	@Override
+	public List<Usuarios> varrer() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

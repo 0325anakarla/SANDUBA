@@ -3,14 +3,16 @@ package Console;
 import java.util.Scanner;
 
 import Financeiro.CarteiraDoCliente;
+import Financeiro.RegistroDeCompras;
+import Pessoa.Cliente;
+import jogo.Jogo;
 
 public class TelaCliente {
 	
 	Scanner sc = new Scanner(System.in);
 	veiwsMenu menu = new veiwsMenu();
-	CarteiraDoCliente cdC = new CarteiraDoCliente();
 	
-	public void telaMinhaContaCliente() {
+	public void telaMinhaContaCliente(Cliente cliente) {
 		int opcao = 0;
 		
 		do {
@@ -22,15 +24,25 @@ public class TelaCliente {
 			switch(opcao) {
 				case 1:
 					System.out.println("Mostra informaçoes pessoais");
-					
+					System.out.println(cliente.mostrarDetalhesUsuario());
 					break;
 				case 2:
 					System.out.println("Mostra carteira digital e suas opções");
-					telaCarteiraDigital();
+					if (cliente.getCarteiraDigital() != null) {
+						telaCarteiraDigital(cliente.getCarteiraDigital());
+					} else {
+						System.out.println("Sem carteira digital!");
+					}
 					break;
 				case 3:
 					System.out.println("Mostra seus jogos");
-					//list para jogos comprados
+					if (!cliente.getJogosAdquiridos().isEmpty()) {
+						for (Jogo jogo : cliente.getJogosAdquiridos()) {
+							System.out.println(jogo.getTitulo());
+						}
+					} else {
+						System.out.println("Você ainda não comprou jogos!");
+					}
 					break;
 				case 4:
 					System.out.println("Mostra a lista de desejos");
@@ -38,7 +50,15 @@ public class TelaCliente {
 					break;
 				case 5:
 					System.out.println("mostra historico de pedidos");
-					//list para pedidos feitos
+					if (!cliente.getHistorico().isEmpty()) {
+						for (RegistroDeCompras registro : cliente.getHistorico()) {
+							System.out.println(registro.toString()+"\n");
+							System.out.println("Lista de jogos comprados: ");
+							registro.exibiJogos();
+						}
+					} else {
+						System.out.println("Sem registro de compras!");
+					}
 					break;
 				case 6:
 					System.out.println("Volta para biblioteca de jogos");
@@ -51,7 +71,7 @@ public class TelaCliente {
 		}while(opcao != 6);
 	}
 	
-	public void telaCarteiraDigital() {
+	public void telaCarteiraDigital(CarteiraDoCliente cdC) {
 		int opcao = 0;
 		
 		do {

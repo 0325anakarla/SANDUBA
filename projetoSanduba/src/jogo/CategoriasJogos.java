@@ -1,6 +1,7 @@
 package jogo;
 
 import java.text.Normalizer;
+import java.util.ArrayList;
 
 public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 
@@ -47,12 +48,13 @@ public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 	}
 
 	//versao mais legivel do metodo para converter as strings
-	public static String[] converteString(String[] categoriasIvn){
-		String[] categoriasVal = new String[categoriasIvn.length];
+	public static ArrayList<String> converteArrayListString(ArrayList<String> categoriasIvn){
 
-		for(int i = 0; i < categoriasVal.length; i++){
-			categoriasVal[i] = Normalizer.normalize(categoriasIvn[i].trim().toUpperCase(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "").replaceAll("\\s+", "");
+		ArrayList<String> categoriasVal =  new ArrayList<String>(categoriasIvn.size());
+
+		for(int i = 0; i < categoriasIvn.size(); i++){
 			// Pega cada  string escrito e retira acentuação, limpa acentos, retira espaço entre palavras e dos lados e deixa tudo maisculo
+			categoriasVal.add(i, Normalizer.normalize(categoriasIvn.get(i).trim().toUpperCase(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "").replaceAll("\\s+", "") );
 		}
 
 		return categoriasVal;

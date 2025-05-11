@@ -1,15 +1,13 @@
 package funcionalidades;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-import Interfaces.Repositorio;
-import Interfaces.RepositorioJogos;
 import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
+import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
+import TratamentoDeErro.DadoNaoEncontradoException;
 import jogo.Jogo;
 
 public class ControleDeJogos{
@@ -18,6 +16,7 @@ public class ControleDeJogos{
 	//final
 	Scanner sc = new Scanner(System.in);
 	
+	// cadastrar Jogo
 	public void CadastrarJogos() throws DadoInvalidoException {
 		
 		boolean continuarCadastro = true;
@@ -25,12 +24,10 @@ public class ControleDeJogos{
 		while(continuarCadastro) {
 			boolean dadosValidos = false;
 			
-			Jogo jogo = new Jogo(null, 0, null, 0, null, null, null, null, null);
+			Jogo jogo = new Jogo(null, 0, null, null, 0, null, null, null, null, null);
 			
 			do {
 				try {
-					System.out.println("\n--- CADASTRAR JOGOS ---");
-					
 					System.out.println("Adicione as informações obrigatórias:");
 					
 					System.out.print("Titulo: ");
@@ -70,23 +67,23 @@ public class ControleDeJogos{
 			
 			switch(opcao) {
 			case 1:
-				if(listJogos.procurarNome(jogo.getTitulo()) == null) {
+				try{
 					listJogos.add(jogo);	
 					System.out.println("O " +jogo.getTitulo()+ " foi adicionado com sucesso");
 					continuarCadastro = false;
-				}
-				else { 
-					System.out.println("Esse jogo já existe.");
+					
+				} catch (DadoDuplicadoException e) {
+					System.out.println("Erro: " +e.getMessage());
 					System.out.println("Você refazer o cadastro de jogo?");
 					System.out.println("1. Sim");
 					System.out.println("2. Não");
 					System.out.print("Escolha a opção:");
 					int refazer = sc.nextInt();
 					sc.nextLine();
-					
+						
 					if(refazer == 2) { 
-							continuarCadastro = false;
-							System.out.println("Cadastro cancelado.");
+						continuarCadastro = false;
+						System.out.println("Cadastro cancelado.");
 					}
 				}
 				break;
@@ -98,10 +95,70 @@ public class ControleDeJogos{
 			}	
 	
 			}
-}
-	public void ListJogosEmpresa(Empresa empresa) {
-		System.out.println(listJogos.procurarEmpresa(empresa));
 	}
+	
+	//deletar jogo
+	public void deletarJogo(Empresa empresa) {
+		
+		boolean continuarRemocao = true;
+
+		System.out.println("\n--- REMOVER JOGO ---");
+		
+		while(continuarRemocao) {
+			System.out.println("Qual desses jogos voce quer excluir.");
+			System.out.print("Digite o nome do jogo:");
+			String titulo = sc.nextLine();
+			try {
+				Jogo resultado = listJogos.procurarNome(titulo);
+				System.out.println("O jogo que deseja excluir é "+resultado.getTitulo()+" tem certeza?");
+				System.out.println("1. Sim");
+				System.out.println("2. Não");
+				int opcao = Integer.parseInt(sc.nextLine());
+				sc.nextLine();
+				
+				switch(opcao) {
+					case 1:
+						listJogos.deletar(resultado);
+						System.out.println("O jogo "+resultado.getTitulo()+" foi deletado com sucesso.");
+						continuarRemocao = false;
+						break;
+					case 2:
+						System.out.println("Remoção cancelada.");
+						break;
+					default: 
+						System.out.println("Opção invalida.\nInsira um valido:");
+						break;
+				}
+			}catch(DadoNaoEncontradoException e){
+				System.out.println("Erro:" +e.getMessage());
+				System.out.println("Deseja refazer a remoção");
+				System.out.println("1. Sim");
+				System.out.println("2. Não");
+				int refazer = Integer.parseInt(sc.nextLine());
+				sc.nextLine();
+				
+				if(refazer == 2) {
+					continuarRemocao = false; 
+				}
+			}
+		}
+	}
+	
+	//Listar todos os jogos da empresa por titulo
+	public void ListJogosEmpresa(Empresa empresa) {
+		try{
+			List<Jogo> jogos = listJogos.procurarEmpresa(empresa);
+			System.out.println("Jogos da empresa:");
+			for (int i = 0; i < jogos.size(); i++) {
+			    System.out.println((i+1) + ". " + jogos.get(i).getTitulo());
+			}
+
+		}catch(DadoNaoEncontradoException e) {
+			System.out.println("Erro:"+e.getMessage());
+			System.out.println("Nenhum jogo cadastrado pra essa empresa. Adicione um antes de tentar remover.");
+		}
+	}
+
 }
 	
 	//@Override

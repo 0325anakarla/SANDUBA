@@ -5,12 +5,16 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+
+
+import TratamentoDeErro.DadoInvalidoException;
+import jogo.Jogo;
 import Financeiro.CarteiraDoCliente;
 import Financeiro.RegistroDeCompras;
 import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 
-public class Cliente extends Usuarios {
+public class Cliente extends Usuarios{
 	private String cpf;
 	private LocalDate natalicio; // data de nascimento
 	private CarteiraDoCliente carteiraDigital;
@@ -50,8 +54,16 @@ public class Cliente extends Usuarios {
 	}
 
 	public String getCpf() {
-		return cpf;
+	    if (cpf == null || !cpf.matches("\\d{11}")) {
+	        return "Digite um cpf valido.";
+	    }
+	    return cpf.substring(0, 3) + "." +
+	           cpf.substring(3, 6) + "." +
+	           cpf.substring(6, 9) + "-" +
+	           cpf.substring(9, 11);
+	    //subtring eh tipo um slicing(do python) ele vai separar a string em intervalos 
 	}
+	
 
 	public void setCpf(String cpf) throws DadoInvalidoException {
 		if (cpf == null || cpf.isBlank()) {
@@ -82,15 +94,15 @@ public class Cliente extends Usuarios {
 
 	// -- @Override aqui embaixo do implements perfil
 	// ------------------------------------------------------//
-
+	 
 	public void exibirInformacaoPublica() {
 		System.out.println("Nome do usuario: " + getNome());
 	}
-
+	
 	public void exibirInformacaoPrivada() {
 
 	}
-
+	@Override
 	public void seusJogos() {
 
 	}
@@ -107,7 +119,4 @@ public class Cliente extends Usuarios {
 	         + "\n  Carteira:          " + (carteiraDigital != null ? carteiraDigital.toString() : "Sem carteira")
 	         + "\n-------------------------------------------------------------";
 	}
-
-
-
 }

@@ -5,14 +5,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+
 import Financeiro.CarteiraDaEmpresa;
 import Financeiro.DadosBancarios;
 import Financeiro.Venda;
 import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 
-public class Empresa extends Usuarios {
 
+public class Empresa extends Usuarios{
 	private String cpnj;
 	private String endereco;
 	private String razaoSocial;
@@ -113,11 +115,9 @@ public class Empresa extends Usuarios {
 	// --- Metodos da Empresa
 	// ----------------------------------------------------------------------------------------------------//
 
-	@Override
-	public void seusJogos() {
-		// TODO Auto-generated method stub
-
-	}
+	
+	//public void seusJogos() 
+	
 	
 	@Override
 	public String mostrarDetalhesUsuario() {

@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import Financeiro.CarteiraDaEmpresa;
 import Pessoa.Empresa;
-import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.ControleDeJogos;
 
@@ -15,14 +14,14 @@ public class TelaEmpresa {
 	ControleDeJogos controlJogos = new ControleDeJogos();
 	Empresa empresa = new Empresa(null, null, null, null, null, null, null);
 	
-	public void telaMinhaContaEmpresa() throws DadoInvalidoException {		
+	public void telaMinhaContaEmpresa(Empresa empresa) throws DadoInvalidoException {		
 		int opcao = 0;
 		
 		do {
 			
 			menu.telaMenuMcEmpresa();
 			
-			opcao = sc.nextInt();
+			opcao = Integer.parseInt(sc.nextLine());
 			
 			switch(opcao) {
 				case 1:
@@ -38,7 +37,10 @@ public class TelaEmpresa {
 					controlJogos.ListJogosEmpresa(empresa);
 					break;
 				case 4:
-					System.out.println("\n--- CADASTRAR JOGOS ---");
+					System.out.println("\n╔═══════════════════════════════╗");
+					System.out.println("║       ➕ CADASTRAR JOGOS        ║");
+					System.out.println("╚═══════════════════════════════╝");
+
 					controlJogos.CadastrarJogos();
 					break;
 				case 5:
@@ -49,9 +51,7 @@ public class TelaEmpresa {
 					System.out.println("sair");
 					break;
 				default:
-					System.out.println("Opção invalida. digite novamente:");
-					opcao = sc.nextInt();
-					sc.nextLine();
+					System.out.println("Opção invalida. Digite novamente.");
 			}
 			
 		}while(opcao != 6);
@@ -64,7 +64,7 @@ public class TelaEmpresa {
 			
 			menu.telaMenuCdEmpresa(cdE);
 			
-			opcao = sc.nextInt();
+			opcao = Integer.parseInt(sc.nextLine());
 			
 			switch(opcao) {
 				case 1:
@@ -91,11 +91,34 @@ public class TelaEmpresa {
 					System.out.println("Voltar para minha conta");
 					break;
 				default:
-					System.out.println("Opção invalida. digite novamente:");
-					opcao = sc.nextInt();
+					System.out.println("Opção invalida. Digite novamente.");
 					
 			}
 			
 		}while(opcao != 3);
 	}
+	
+	public void telaJogosCadastrados(Empresa empresa) {
+		int opcao = 0;
+		
+		menu.telaJogosCadastrados();
+		
+		do {
+			opcao = Integer.parseInt(sc.nextLine());
+			
+			switch(opcao){
+				case 1: 
+					break;
+				case 2:
+					controlJogos.deletarJogo(empresa);
+					break;
+				case 3:
+					System.out.println("Voltar para minha conta");
+					break;
+				default:
+					System.out.println("Opção invalida. Digite novamente.");
+					
+			}
+	}while(opcao != 3);
+}
 }
