@@ -1,17 +1,23 @@
 package funcionalidades;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import Console.VisualizacaoMenu;
 import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
+import jogo.CategoriasJogos;
 import jogo.Jogo;
 
 public class ControleDeJogos{
 	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
+	
+	VisualizacaoMenu menu = new VisualizacaoMenu();
 	
 	//final
 	Scanner sc = new Scanner(System.in);
@@ -135,7 +141,6 @@ public class ControleDeJogos{
 				System.out.println("1. Sim");
 				System.out.println("2. Não");
 				int refazer = Integer.parseInt(sc.nextLine());
-				sc.nextLine();
 				
 				if(refazer == 2) {
 					continuarRemocao = false; 
@@ -143,6 +148,61 @@ public class ControleDeJogos{
 			}
 		}
 	}
+	
+	//estrutura falta apenas colocar pra receber os dados
+	public void alterarDadosDosJogos(Jogo jogo) {
+		int opcao =0;
+		
+		boolean continuarAlterar = true;
+		
+		while(continuarAlterar) {
+			
+			menu.telaAlterarJogos(jogo);
+			
+			opcao = Integer.parseInt(sc.nextLine());
+			
+			try {
+				switch(opcao) {
+					case 1:
+						System.out.println("Digite o novo titulo do jogo que escolheu:");
+						jogo.setTitulo(sc.nextLine());
+					case 2:
+						System.out.println("Digite o novo preço do jogo que escolheu:");
+						jogo.setPreco(sc.nextDouble());
+					case 3:
+						System.out.println("Digite a nova descrição do jogo que escolheu:");
+						jogo.setDescricao(sc.nextLine());
+					case 4:
+						System.out.println("Digite as novas categorias do jogo que escolheu:");
+					case 5:
+						System.out.println("Digite a nova classificação etária do jogo que escolheu:");
+					case 6:
+						System.out.println("Digite os novos idiomas do jogo que escolheu:");
+					case 7:
+						System.out.println("Digite as novas plataformas disponíveis do jogo que escolheu:");
+					case 8:
+						System.out.println("Digite a nova data de lançamento do jogo que escolheu:");
+					case 9: 
+						System.out.println("Voltar para minha conta.");
+						continuarAlterar = false;
+					default:
+						System.out.println("Opção inválida. Digite novamente.");
+				}
+			}catch(DadoInvalidoException e) {
+				System.out.println("Erro: "+ e.getMessage());
+			}
+			
+			System.out.println("Deseja alterar outro dado:");
+			System.out.println("1. Sim");
+			System.out.println("2. Não");
+			System.out.print("Escolha a opção:");
+			int refazer = Integer.parseInt(sc.nextLine());
+			
+			if(refazer == 2) {
+				continuarAlterar = false;
+			}
+		}
+		}
 	
 	//Listar todos os jogos da empresa por titulo
 	public void ListJogosEmpresa(Empresa empresa) {
@@ -159,7 +219,11 @@ public class ControleDeJogos{
 		}
 	}
 
+<<<<<<< HEAD
+	}
+=======
 }
+>>>>>>> 7022ee92c266e42ce70cb05ca0e5502042570e5a
 	
 	//@Override
 	/*public void alterarDadosDoJogo(Jogo jogo) {

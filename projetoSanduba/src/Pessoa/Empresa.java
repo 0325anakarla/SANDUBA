@@ -93,7 +93,7 @@ public class Empresa extends Usuarios{
 		return jogosEmpresa;
 	}
 
-	public Map<Jogo, Venda> getVendas() {
+	public Map<Jogo, Venda> getVendasPorJogo() {
 		return vendasPorJogo;
 	}
 

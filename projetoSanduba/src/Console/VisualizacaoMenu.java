@@ -2,8 +2,9 @@ package Console;
 
 import Financeiro.CarteiraDaEmpresa;
 import Financeiro.CarteiraDoCliente;
+import jogo.Jogo;
 
-public class veiwsMenu {
+public class VisualizacaoMenu {
 	
 	/*public void telaMenuMcCliente() {
 		   System.out.println("\n--- MINHA CONTA(Cliente) ---");
@@ -128,5 +129,23 @@ public class veiwsMenu {
 		System.out.println("7. Sair");
 		System.out.print("Escolha uma opção: ");
 	}
+	
+	public void telaAlterarJogos(Jogo jogo) {
+		System.out.println("\n╔════════════════════════════════════════╗");
+		System.out.printf ("║  ✏️  ALTERAR DADOS DO JOGO: %-15s ║\n", jogo.getTitulo());
+		System.out.println("╚════════════════════════════════════════╝");
+		System.out.println();
+		System.out.println("Qual das opções deseja alterar?");
+		System.out.println("  [1] 📝 Título");
+		System.out.println("  [2] 💰 Preço");
+		System.out.println("  [3] 🧾 Descrição");
+		System.out.println("  [4] 🗂️ Categorias");
+		System.out.println("  [5] 🚸 Classificação Etária");
+		System.out.println("  [6] 🗣️ Idiomas");
+		System.out.println("  [7] 🕹️ Plataformas Disponíveis");
+		System.out.println("  [8] 📅 Data de Lançamento");
+		System.out.print("\nDigite a opção desejada: ");
+	}
+
 	
 }

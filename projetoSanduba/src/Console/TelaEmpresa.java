@@ -3,16 +3,25 @@ package Console;
 import java.util.Scanner;
 
 import Financeiro.CarteiraDaEmpresa;
+import Financeiro.ResumoDeVendas;
 import Pessoa.Empresa;
+import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.ControleDeJogos;
+import jogo.Jogo;
 
 public class TelaEmpresa {
 	Scanner sc = new Scanner(System.in);
-	veiwsMenu menu = new veiwsMenu();
+<<<<<<< HEAD
+	VisualizacaoMenu menu = new VisualizacaoMenu();
 	CarteiraDaEmpresa cdE = new CarteiraDaEmpresa(null);
 	ControleDeJogos controlJogos = new ControleDeJogos();
-	Empresa empresa = new Empresa(null, null, null, null, null, null, null);
+	Empresa empresa = new Empresa();
+	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
+=======
+	veiwsMenu menu = new veiwsMenu();
+	ControleDeJogos controlJogos = new ControleDeJogos();
+>>>>>>> 7022ee92c266e42ce70cb05ca0e5502042570e5a
 	
 	public void telaMinhaContaEmpresa(Empresa empresa) throws DadoInvalidoException {		
 		int opcao = 0;
@@ -26,11 +35,11 @@ public class TelaEmpresa {
 			switch(opcao) {
 				case 1:
 					System.out.println("Mostra informaçoes pessoais");
-					empresa.toString();
+					System.out.println(empresa.mostrarDetalhesUsuario());
 					break;
 				case 2:
 					System.out.println("Mostra carteira digital e suas opções");
-					telaCarteiraDigital();
+					telaCarteiraDigital(empresa.getCarteiraDigital());
 					break;
 				case 3:
 					System.out.println("Jogos cadastrados");
@@ -45,7 +54,11 @@ public class TelaEmpresa {
 					break;
 				case 5:
 					System.out.println("Resumo de vendas");
-					//list para resumo de vendas
+					if (!empresa.getVendasPorJogo().isEmpty()) {
+						ResumoDeVendas.gerarResumoTotal(empresa.getVendasPorJogo());
+					} else {
+						System.out.println("Sem registro de vendas de jogos!");
+					}
 					break;
 				case 6:
 					System.out.println("sair");
@@ -57,7 +70,7 @@ public class TelaEmpresa {
 		}while(opcao != 6);
 	}
 	
-	public void telaCarteiraDigital() {
+	public void telaCarteiraDigital(CarteiraDaEmpresa cdE) {
 		int opcao = 0;
 		
 		do {
@@ -68,7 +81,7 @@ public class TelaEmpresa {
 			
 			switch(opcao) {
 				case 1:
-					double valor =0;
+					double valor = 0;
 					
 					System.out.println("Sacar");
 					System.out.println("Quanto vai sacar: ");
@@ -85,7 +98,7 @@ public class TelaEmpresa {
 					break;
 				case 2:
 					System.out.println("Mostrar dados bancarios");
-					
+					System.out.println(cdE.getDadosBancarios().toString());
 					break;
 				case 3:
 					System.out.println("Voltar para minha conta");
@@ -108,6 +121,10 @@ public class TelaEmpresa {
 			
 			switch(opcao){
 				case 1: 
+					System.out.print("Digite o jogo que irar alterar:");
+					String titulo = sc.nextLine();
+					Jogo jogo = listJogos.procurarNome(titulo);
+					controlJogos.alterarDadosDosJogos(jogo);
 					break;
 				case 2:
 					controlJogos.deletarJogo(empresa);
@@ -119,6 +136,6 @@ public class TelaEmpresa {
 					System.out.println("Opção invalida. Digite novamente.");
 					
 			}
-	}while(opcao != 3);
-}
+		}while(opcao != 3);
+	}
 }
