@@ -1,6 +1,5 @@
 package projetoSanduba;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 import Financeiro.CarrinhoDeCompras;
@@ -27,10 +26,10 @@ public class Teste {
 		Jogo jogo = new Jogo("Genshin", categoriasIvn);
 		jogo.mostrarDadosCat();
 
-		Empresa empresa = new Empresa("miHoYo", "", "", "", "", null, "");
+		Empresa empresa = new Empresa("miHoYo", "", "", "", "", "", null);
 		Jogo jogo1 = new Jogo("Genshin Impact", 49.90, "", null, 0, "", "", "", empresa, null);
 
-		Empresa outraEmpresa = new Empresa("ConcernedApe", "", "", "", "", null, "");
+		Empresa outraEmpresa = new Empresa("ConcernedApe", "", "", "", "", "", null);
 		Jogo jogo2 = new Jogo("Stardew Valley", 14.99, "", null, 0, "", "", "", outraEmpresa, null);
 
 		CarrinhoDeCompras carrinho = new CarrinhoDeCompras();

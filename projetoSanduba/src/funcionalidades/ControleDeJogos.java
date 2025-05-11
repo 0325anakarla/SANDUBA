@@ -218,12 +218,7 @@ public class ControleDeJogos{
 			System.out.println("Nenhum jogo cadastrado pra essa empresa. Adicione um antes de tentar remover.");
 		}
 	}
-
-<<<<<<< HEAD
-	}
-=======
 }
->>>>>>> 7022ee92c266e42ce70cb05ca0e5502042570e5a
 	
 	//@Override
 	/*public void alterarDadosDoJogo(Jogo jogo) {

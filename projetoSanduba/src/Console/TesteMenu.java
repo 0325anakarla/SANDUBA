@@ -27,13 +27,12 @@ public class TesteMenu {
 		viewsC.telaMinhaContaCliente(cliente);
 
 		
-		/*DadosBancarios banco = new DadosBancarios("CP", "Santander", "Conta corrente", 5, 200);
-		Empresa empresa = new Empresa("ConcernedApe", "aux@gmail.com", "5678", "1234567890-12", "", banco, "");
+		DadosBancarios banco = new DadosBancarios("CP", "Santander", "Conta corrente", 5, 200);
+		Empresa empresa = new Empresa("ConcernedApe", "aux@gmail.com", "5678", "", "1234567890-12", "", banco);
 		TelaEmpresa viewE = new TelaEmpresa();
 		viewE.telaMinhaContaEmpresa(empresa);
 
 		viewE.telaJogosCadastrados(empresa);
-		*/
 	}
 
 }

@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-import Console.InicioSanduba;
 import Console.Menu;
 import Pessoa.Cliente;
 import Pessoa.Empresa;
