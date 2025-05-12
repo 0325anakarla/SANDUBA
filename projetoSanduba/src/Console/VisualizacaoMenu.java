@@ -118,16 +118,21 @@ public class VisualizacaoMenu {
 }
 	
 	public void telaMenuMcAdm() {
-		 System.out.println("\n--- CONTA ADM ---");
-		
-		System.out.println("1. Ver Lista de Clientes cadastradas.");
-		System.out.println("2. Ver Lista de Empresas cadastradas.");
-		System.out.println("3. Cadastrar Cliente.");
-		System.out.println("4. Cadastrar Empresa");
-		System.out.println("5. Ver todos os Jogos castrados");
-		System.out.println("6. Cadastrar desconto anual");
-		System.out.println("7. Sair");
-		System.out.print("Escolha uma opção: ");
+		System.out.println("\n╔════════════════════════════════════════╗");
+	    System.out.println("║          🛠️ MENU ADMINISTRATIVO          ║");
+	    System.out.println("╚════════════════════════════════════════╝");
+	    System.out.println();
+	    System.out.println("Selecione uma opção:");
+	    System.out.println("  [1] 🏷️ Ver Lista de Clientes cadastrados");
+	    System.out.println("  [2] 🏢 Ver Lista de Empresas cadastradas");
+	    System.out.println("  [3] 🧑‍💼 Cadastrar Cliente");
+	    System.out.println("  [4] 🏦 Cadastrar Empresa");
+	    System.out.println("  [5] 🎮 Ver todos os Jogos cadastrados");
+	    System.out.println("  [6] 💵 Cadastrar desconto anual");
+	    System.out.println("  [7] 📊 Resumo de vendas");
+	    System.out.println("  [8] ❌ Sair");
+	    System.out.print("\nDigite a opção desejada: ");
+
 	}
 	
 	public void telaAlterarJogos(Jogo jogo) {

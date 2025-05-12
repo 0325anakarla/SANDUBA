@@ -1,30 +1,21 @@
 package jogo;
 
 import java.time.LocalDate;
-<<<<<<< HEAD
-
-import java.time.format.DateTimeFormatter;
 
 import java.time.Period;
 
-
-
 import java.util.ArrayList;
 
-=======
-import java.time.format.DateTimeFormatter;
-import java.time.Period;
-
-import java.util.ArrayList;
->>>>>>> 7022ee92c266e42ce70cb05ca0e5502042570e5a
 
 import Pessoa.Empresa;
+import Pessoa.Adm;
 import TratamentoDeErro.DadoInvalidoException;
 
 public class Jogo {
 	private String titulo;
 	private double preco;
 	private String descricao;
+	//private CategoriasJogos[] categoriasValidas;
 	private ArrayList<CategoriasJogos> categoriasValidas;
 	private int classEtaria;
 	private String idiomas;
@@ -34,6 +25,10 @@ public class Jogo {
 	private LocalDate dataDeLancamento;
 	private double precoModificador;
 	LocalDate hoje = LocalDate.now();
+	private Adm adm;
+	private  boolean descontoApli = false;
+	
+	
 
 	public Jogo(String titulo, double preco, String descricao, ArrayList<String> categoriasInv, int classEtaria, String idiomas,
 				String plataDisp, String modAtivacao, Empresa empresa, LocalDate dataDeLancamento) {
@@ -41,13 +36,11 @@ public class Jogo {
 		this.titulo = titulo;
 		this.preco = preco;
 		this.descricao = descricao;
-
-		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv); // convertendo de invalido para valido e depois armazenando
+		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
 		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasVal.size());
-		for(int i = 0; i < categoriasVal.size(); i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
-			this.categoriasValidas.add(i, CategoriasJogos.valueOf(categoriasVal.get(i)));
+		for(int i = 0; i < categoriasVal.size(); i++){
+			this.categoriasValidas.set(i,CategoriasJogos.valueOf(categoriasVal.get(i)));
 		}
-
 		this.classEtaria = classEtaria;
 		this.idiomas = idiomas;
 		this.plataDisp = plataDisp;
@@ -60,11 +53,12 @@ public class Jogo {
 	//criando um construtor apenas para teste
 	public Jogo(String titulo, ArrayList<String> categoriasInv){
 		this.titulo = titulo;
-
+		//String[] categoriasVal = CategoriasJogos.converteString(categoriasInv);
 		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
+		//this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
 		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasVal.size());
 		for(int i = 0; i < categoriasVal.size(); i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
-			this.categoriasValidas.add(i, CategoriasJogos.valueOf(categoriasVal.get(i)));
+			this.categoriasValidas.set(i, CategoriasJogos.valueOf(categoriasVal.get(i)));
 		}
 	}
 
@@ -81,6 +75,12 @@ public class Jogo {
 
 	public double getPreco() {
 		return preco;
+	}
+	
+	public void precoDesconto() {
+		
+		
+		
 	}
 
 	public void setPreco(double preco) throws DadoInvalidoException {
@@ -155,6 +155,10 @@ public class Jogo {
 		return dataDeLancamento;
 	}
 
+	public void setDataDeLancamento(LocalDate dataDeLancamento) {
+		this.dataDeLancamento = dataDeLancamento;
+	}
+
 	public String getResumo() {
 		return titulo+" ("+empresa.getNome()+")";
 	}
@@ -162,8 +166,12 @@ public class Jogo {
 	public double getPrecoModificador() {
 		return precoModificador;
 	}
+	
+	public void setDescontoApli(boolean escolha) {
+		this.descontoApli=escolha;
+	}
 
-	/*public void mostrarDados() {
+	public void mostrarDados() {
 		System.out.println("Titulo: "+titulo);
 		System.out.println("Preço: "+preco);
 		System.out.println("Descrição: "+descricao);
@@ -176,76 +184,32 @@ public class Jogo {
 		System.out.println("Plataformas: "+plataDisp);
 		System.out.println("Modo de ativação: "+modAtivacao);
 		System.out.println("");
-	}*/
-	
-	@Override
-	public String toString() {
-	    StringBuilder sb = new StringBuilder();
-	    sb.append("🎮 Título: ").append(titulo).append("\n");
-	    sb.append("💲 Preço: R$").append(String.format("%.2f", preco)).append("\n");
-	    sb.append("📝 Descrição: ").append(descricao).append("\n");
-
-	    sb.append("🏷 Categorias: ");
-	    if (categoriasValidas.isEmpty()) {
-	        sb.append("Nenhuma categoria cadastrada");
-	    } else {
-	        for (CategoriasJogos categoria : categoriasValidas) {
-	            sb.append(categoria.getCategoria()).append(" | ");
-	        }
-	        // tira o último " | "
-	        sb.setLength(sb.length() - 3);
-	    }
-	    sb.append("\n");
-
-	    sb.append("🔞 Classificação Etária: ").append(classEtaria).append("+\n");
-	    sb.append("🌐 Idiomas Disponíveis: ").append(idiomas).append("\n");
-	    sb.append("🖥 Plataformas: ").append(plataDisp).append("\n");
-	    sb.append("🔑 Modo de Ativação: ").append(modAtivacao).append("\n");
-
-	    // Adicionando Empresa
-	    sb.append("🏢 Empresa: ").append(empresa).append("\n");
-
-	    // Adicionando Data de Lançamento
-	    sb.append("📅 Data de Lançamento: ").append(dataDeLancamento.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))).append("\n");
-
-	    return sb.toString();
 	}
 
-
-
 	// criando outro mostrarDados so pra teste
-	/*public void mostrarDadosCat(){
+	public void mostrarDadosCat(){
 		System.out.println("Títutlo: "+titulo);
 		System.out.println("Categorias: ");
 		for(CategoriasJogos categorias : categoriasValidas){
 			System.out.println(categorias.getCategoria());
 		}
 		System.out.println("");
+
 	}
 	
 	 public void Desconto(double desconto ) throws DadoInvalidoException {
-		 if(desconto <=0) {
+		 if(desconto <=0 || desconto >= 100) {
 				throw new DadoInvalidoException("Desconto não pode ser negativo ou zerado");
 			}
-		 setPreco( getPrecoModificador()-(getPrecoModificador()* desconto));
-<<<<<<< HEAD
-=======
+		 setPreco( getPrecoModificador()-(getPrecoModificador()* desconto/100));
+		 descontoApli = true;
 		 
-		 
->>>>>>> 7022ee92c266e42ce70cb05ca0e5502042570e5a
 	}
 
-	public boolean aplicaDescontoDe(double desconto) {
-		if (desconto > 0) {
-			preco = preco - preco * desconto;
-			return true;
-		} else {
-			return false;
-		}
-	}
 	
 	public void VoltaPreco() throws DadoInvalidoException {
 		setPreco(getPrecoModificador());
+		
 	}
 	
 	public int verAnosPassados() {
@@ -255,12 +219,12 @@ public class Jogo {
 	}
 	
 
-//	public boolean aplicaDescontoDe(double desconto) {
-//		if (desconto > 0) {
-//			preco = preco - preco * desconto;
-//			return true;
-//		} else {
-//			return false;
-//		}
-//	}
+	public boolean aplicaDescontoDe(double desconto) {
+		if (desconto > 0) {
+			preco = preco - preco * desconto;
+			return true;
+		} else {
+			return false;
+		}
+	}
 }

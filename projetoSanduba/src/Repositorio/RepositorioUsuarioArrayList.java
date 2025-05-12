@@ -77,6 +77,8 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 		return null;
 	}
 
+	
+	
 	@Override
 	public List<Usuarios> varrer() {
 		// TODO Auto-generated method stub

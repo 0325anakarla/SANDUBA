@@ -32,8 +32,12 @@ public class ControleDeCadastros {
 
 			do {
 				try {
-					
-					System.out.println("||-> CADASTRO DE CLIENTES ||\n->Preencha todos os campos\n");
+					System.out.println("\n╔══════════════════════════════════════╗");
+					System.out.println("║         👤 CADASTRO DE CLIENTE         ║");
+					System.out.println("╚══════════════════════════════════════╝");
+					System.out.println();
+
+					System.out.println("\n->Preencha todos os campos\n");
 
 					System.out.print("Nome: ");
 					cliente.setNome(sc.nextLine());

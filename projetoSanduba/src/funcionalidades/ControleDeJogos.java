@@ -219,11 +219,10 @@ public class ControleDeJogos{
 		}
 	}
 
-<<<<<<< HEAD
+
 	}
-=======
-}
->>>>>>> 7022ee92c266e42ce70cb05ca0e5502042570e5a
+
+
 	
 	//@Override
 	/*public void alterarDadosDoJogo(Jogo jogo) {
