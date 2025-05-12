@@ -5,7 +5,6 @@ public class CarteiraDaEmpresa extends DadosCartao {
 	private DadosBancarios dadosBancarios;
 	private double fatura; 
 	//acumulo de lucro, que corresponde a retirada de 5% das vendas, para cada venda realizada
-	//depois relacionar, com o admin, o atributo fatura
 	
 	public CarteiraDaEmpresa(DadosBancarios dadosBancarios) {
 		super();
@@ -37,6 +36,11 @@ public class CarteiraDaEmpresa extends DadosCartao {
 	private double retirar(double valor) {
 		double lucro = valor * 0.05; //lucro do sistema
 		fatura += lucro;
+		
+		if (CarteiraDoAdm.adidionar(fatura)) {
+			fatura = 0;
+		}
+		
 		
 		return valor = valor - lucro;
 	}

@@ -10,15 +10,18 @@ import funcionalidades.ControleDeCadastros;
 
 public class Menu {
 	// - parte burocratica de chamar as funcoes -//
-	Scanner sc = new Scanner(System.in);
+	private Scanner sc;
 	private final RepositorioUsuarioArrayList repositorio;
-	ControleDeCadastros controleCadastros = new ControleDeCadastros();
-	TelaCliente telaCliente = new TelaCliente();
-	TelaEmpresa telaEmpresa = new TelaEmpresa();
+	private ControleDeCadastros controleCadastros;
+	private TelaCliente telaCliente;
+	private TelaEmpresa telaEmpresa;
 	
-	public Menu() {
-		this.repositorio = new RepositorioUsuarioArrayList();
-
+	public Menu(Scanner sc, RepositorioUsuarioArrayList repositorio, ControleDeCadastros controleCadastros, TelaCliente telaCliente, TelaEmpresa telaEmpresa) {
+		this.sc = sc;
+		this.repositorio = repositorio;
+		this.controleCadastros = controleCadastros;
+		this.telaCliente = telaCliente;
+		this.telaEmpresa = telaEmpresa;
 	}
 	
 	

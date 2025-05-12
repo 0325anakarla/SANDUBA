@@ -99,6 +99,10 @@ public class Empresa extends Usuarios{
 			}
 		}
 	}
+	
+	public void deletarJogo(Jogo jogo) {
+		jogosEmpresa.remove(jogo);
+	}
 
 	public Map<Jogo, Venda> getVendasPorJogo() {
 		return vendasPorJogo;

@@ -4,19 +4,21 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-import Console.Menu;
+//import Console.Menu;
 import Pessoa.Cliente;
 import Pessoa.Empresa;
 import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 
 public class ControleDeCadastros {
-	Scanner sc =new Scanner(System.in);
+	private Scanner sc;
 	private final RepositorioUsuarioArrayList repositorio;
-	Menu menu = new Menu();
+	//private Menu menu;
 
-	public ControleDeCadastros() {
+	public ControleDeCadastros(Scanner sc, RepositorioUsuarioArrayList repositorio/*, Menu menu*/) {
+		this.sc = sc;
 		this.repositorio = new RepositorioUsuarioArrayList();
+		//this.menu = menu;
 	}
 	
 	public void CadastrarClientes() {
@@ -100,8 +102,10 @@ public class ControleDeCadastros {
 			
 			repositorio.add(cliente);
 			System.out.println("\n🔄 Redirecionando para a tela inicial...\n");
-			menu.start();
-
+			//pensar em uma forma de voltar para a tela inicial
+			//sem criar um objeto do tipo menu
+			//menu.start();
+			break;
 		}
 	}
 

@@ -122,6 +122,7 @@ public class ControleDeJogos{
 			System.out.print("Digite o nome do jogo:");
 			String titulo = sc.nextLine();
 			
+			//CORRIGIR ISSO
 			//para não permitir que uma empresa delete um jogo que não foi cadastrada por ela
 			for (Jogo jogo : empresa.getJogosEmpresa()) {
 				if (!jogo.getTitulo().equalsIgnoreCase(titulo)) {
@@ -147,6 +148,7 @@ public class ControleDeJogos{
 				switch(opcao) {
 					case 1:
 						listJogos.deletar(resultado);
+						empresa.deletarJogo(resultado);
 						System.out.println("O jogo "+resultado.getTitulo()+" foi deletado com sucesso.");
 						continuarRemocao = false;
 						break;

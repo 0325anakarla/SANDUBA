@@ -15,8 +15,7 @@ public class TelaEmpresa {
 
 	VisualizacaoMenu menu = new VisualizacaoMenu();
 	ControleDeJogos controlJogos = new ControleDeJogos();
-	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
-	Menu menuOrigin = new Menu();
+	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();
 
 	
 	public void telaMinhaContaEmpresa(Empresa empresa){		
