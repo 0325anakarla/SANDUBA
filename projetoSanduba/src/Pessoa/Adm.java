@@ -67,6 +67,12 @@ public class Adm extends Usuarios{
         }
 
 	}
+
+	@Override
+	public String mostrarDetalhesUsuario() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	
 	

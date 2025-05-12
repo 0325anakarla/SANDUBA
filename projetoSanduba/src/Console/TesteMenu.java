@@ -14,7 +14,7 @@ public class TesteMenu {
 
 		
 		Menu menu = new Menu();
-		InicioSanduba inicio = new InicioSanduba();
+		InicioSanduba inicio = new InicioSanduba(null);
 		
 		inicio.start();
 		menu.cadastroUsuario();

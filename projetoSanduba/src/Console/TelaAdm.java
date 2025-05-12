@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class TelaAdm {
 	Scanner sc = new Scanner(System.in);
-	veiwsMenu menu = new veiwsMenu();
+	VisualizacaoMenu menu = new VisualizacaoMenu();
 	
 	
 	public void exibirMenuAdm() {

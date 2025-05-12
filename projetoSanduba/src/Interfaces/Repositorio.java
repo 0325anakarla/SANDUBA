@@ -2,10 +2,12 @@ package Interfaces;
 
 import java.util.List;
 
+import TratamentoDeErro.DadoDuplicadoException;
+
 public interface Repositorio<T> {
 
 
-	void add(T object);
+	void add(T object) throws DadoDuplicadoException;
 
 	List<T> getTodos();
 

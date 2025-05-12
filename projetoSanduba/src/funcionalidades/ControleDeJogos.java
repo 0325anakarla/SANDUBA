@@ -108,7 +108,10 @@ public class ControleDeJogos{
 		
 		boolean continuarRemocao = true;
 
-		System.out.println("\n--- REMOVER JOGO ---");
+		System.out.println("\n╔══════════════════════════════╗");
+		System.out.println("║       🗑️ REMOVER JOGO          ║");
+		System.out.println("╚══════════════════════════════╝");
+
 		
 		while(continuarRemocao) {
 			System.out.println("Qual desses jogos voce quer excluir.");
@@ -217,14 +220,8 @@ public class ControleDeJogos{
 			System.out.println("Erro:"+e.getMessage());
 			System.out.println("Nenhum jogo cadastrado pra essa empresa. Adicione um antes de tentar remover.");
 		}
+	} 
 	}
-
-<<<<<<< HEAD
-	}
-=======
-}
->>>>>>> 7022ee92c266e42ce70cb05ca0e5502042570e5a
-	
 	//@Override
 	/*public void alterarDadosDoJogo(Jogo jogo) {
 		System.out.println(" oque você deseja alterar? ");

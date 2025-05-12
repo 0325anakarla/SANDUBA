@@ -12,16 +12,13 @@ import jogo.Jogo;
 
 public class TelaEmpresa {
 	Scanner sc = new Scanner(System.in);
-<<<<<<< HEAD
+
 	VisualizacaoMenu menu = new VisualizacaoMenu();
 	CarteiraDaEmpresa cdE = new CarteiraDaEmpresa(null);
 	ControleDeJogos controlJogos = new ControleDeJogos();
-	Empresa empresa = new Empresa();
+	Empresa empresa = new Empresa(null, null, null, null, null, null, null);
 	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
-=======
-	veiwsMenu menu = new veiwsMenu();
-	ControleDeJogos controlJogos = new ControleDeJogos();
->>>>>>> 7022ee92c266e42ce70cb05ca0e5502042570e5a
+
 	
 	public void telaMinhaContaEmpresa(Empresa empresa) throws DadoInvalidoException {		
 		int opcao = 0;
@@ -38,11 +35,12 @@ public class TelaEmpresa {
 					System.out.println(empresa.mostrarDetalhesUsuario());
 					break;
 				case 2:
-					System.out.println("Mostra carteira digital e suas opções");
 					telaCarteiraDigital(empresa.getCarteiraDigital());
 					break;
 				case 3:
-					System.out.println("Jogos cadastrados");
+					System.out.println("\n╔══════════════════════════════╗");
+					System.out.println("║   🎮 JOGOS CADASTRADOS         ║");
+					System.out.println("╚══════════════════════════════╝");
 					controlJogos.ListJogosEmpresa(empresa);
 					break;
 				case 4:
@@ -53,7 +51,9 @@ public class TelaEmpresa {
 					controlJogos.CadastrarJogos();
 					break;
 				case 5:
-					System.out.println("Resumo de vendas");
+					System.out.println("\n╔══════════════════════════════╗");
+					System.out.println("║     📊 RESUMO DE VENDAS        ║");
+					System.out.println("╚══════════════════════════════╝");
 					if (!empresa.getVendasPorJogo().isEmpty()) {
 						ResumoDeVendas.gerarResumoTotal(empresa.getVendasPorJogo());
 					} else {

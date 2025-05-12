@@ -11,10 +11,10 @@ public class Menu {
 	// - parte burocratica de chamar as funcoes -//
 	private static Scanner sc = new Scanner(System.in);
 	
-	final RepositorioUsuarioArrayList repositorio;
+	final RepositorioUsuarioArrayList repositorio = new RepositorioUsuarioArrayList();
 
 	final ControleDeCadastros novoCada = new ControleDeCadastros();
-	final InicioSanduba inicio = new InicioSanduba();
+	final InicioSanduba inicio = new InicioSanduba(repositorio);
 	
 	public Menu() {
 		this.repositorio = RepositorioUsuarioArrayList.getInstance();

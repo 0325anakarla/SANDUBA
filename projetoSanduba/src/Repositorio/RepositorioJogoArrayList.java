@@ -86,11 +86,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 		else return resultados;
 	}
 
-	@Override
-	public List<Jogo> varrer() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	
 
