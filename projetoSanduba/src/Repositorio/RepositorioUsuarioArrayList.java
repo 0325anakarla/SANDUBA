@@ -11,22 +11,8 @@ import TratamentoDeErro.DadoInvalidoException;
 
 public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, RepositorioUsuario {
 
-    private static RepositorioUsuarioArrayList instance;
-    private final List<Usuarios> usuarios;
+    private final List<Usuarios> usuarios = new ArrayList<>(); //Vai armazenar os Usuarios na list
     
-    //Contrutor
-    private RepositorioUsuarioArrayList() {
-        usuarios = new ArrayList<>();
-    }
-
-    //get para fazer o singleton
-    public static RepositorioUsuarioArrayList getInstance() {
-        if (instance == null) {
-            instance = new RepositorioUsuarioArrayList();
-        }
-        return instance;
-    }
-
 	@Override
 	public void add(Usuarios addUsuario) {
 		usuarios.add(addUsuario);
@@ -82,6 +68,12 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 				return usuario;
 			}
 		}
+		return null;
+	}
+
+	@Override
+	public List<Usuarios> varrer() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

@@ -14,13 +14,14 @@ public class TelaEmpresa {
 	Scanner sc = new Scanner(System.in);
 
 	VisualizacaoMenu menu = new VisualizacaoMenu();
-	CarteiraDaEmpresa cdE = new CarteiraDaEmpresa(null);
 	ControleDeJogos controlJogos = new ControleDeJogos();
 	Empresa empresa = new Empresa(null, null, null, null, null, null, null);
-	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
+	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();		
+	Menu menuOrigin = new Menu();
+
 
 	
-	public void telaMinhaContaEmpresa(Empresa empresa) throws DadoInvalidoException {		
+	public void telaMinhaContaEmpresa(Empresa empresa){		
 		int opcao = 0;
 		
 		do {
@@ -44,11 +45,7 @@ public class TelaEmpresa {
 					controlJogos.ListJogosEmpresa(empresa);
 					break;
 				case 4:
-					System.out.println("\n╔═══════════════════════════════╗");
-					System.out.println("║       ➕ CADASTRAR JOGOS        ║");
-					System.out.println("╚═══════════════════════════════╝");
-
-					controlJogos.CadastrarJogos();
+					controlJogos.CadastrarJogos(empresa);
 					break;
 				case 5:
 					System.out.println("\n╔══════════════════════════════╗");
@@ -90,11 +87,10 @@ public class TelaEmpresa {
 					
 					if(cdE.sacar(valor)) {
 						System.out.println("O valor retirado foi: "+valor+ ". Seu saldo é de:"+cdE.getSaldo());
-					}
-					
-					else {
+					} else {
 						System.out.println("Transação invalida.");
 					}
+					sc.nextLine();
 					break;
 				case 2:
 					System.out.println("Mostrar dados bancarios");

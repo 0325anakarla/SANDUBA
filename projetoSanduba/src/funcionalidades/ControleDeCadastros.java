@@ -4,22 +4,21 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-import Console.InicioSanduba;
+import Console.Menu;
 import Pessoa.Cliente;
 import Pessoa.Empresa;
 import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 
 public class ControleDeCadastros {
-	private final Scanner sc =new Scanner(System.in);
-	
-	final RepositorioUsuarioArrayList repositorio;
-	final InicioSanduba inicio = new InicioSanduba();
-	
-	public ControleDeCadastros() {
-		this.repositorio = RepositorioUsuarioArrayList.getInstance();
-	}
+	Scanner sc =new Scanner(System.in);
+	private final RepositorioUsuarioArrayList repositorio;
+	Menu menu = new Menu();
 
+	public ControleDeCadastros() {
+		this.repositorio = new RepositorioUsuarioArrayList();
+	}
+	
 	public void CadastrarClientes() {
 
 		boolean continuarCadastro = true;
@@ -34,7 +33,6 @@ public class ControleDeCadastros {
 
 			do {
 				try {
-
 					System.out.println("\n╔════════════════════════════════════════════════════╗");
 					System.out.println("║        🧾 CADASTRO DE CLIENTE - PREENCHA OS DADOS   ║");
 					System.out.println("╚════════════════════════════════════════════════════╝");
@@ -100,17 +98,9 @@ public class ControleDeCadastros {
 			System.out.println("╚══════════════════════════════════════╝");
 			System.out.println("😄 Seja bem-vindo(a), " + cliente.getNome() + "!");
 			
-			/*
-			try {
-			    listUsuarios.add(cliente);
-			} catch (DadoInvalidoException || DadoDuplicadoException e) {
-			    System.out.println("Erro ao cadastrar usuário: ");
-			    return;
-			}
-			*/
-
+			repositorio.add(cliente);
 			System.out.println("\n🔄 Redirecionando para a tela inicial...\n");
-			InicioSanduba.start(); //statico
+			menu.start();
 
 		}
 	}

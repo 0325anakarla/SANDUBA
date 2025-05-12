@@ -1,17 +1,14 @@
 package funcionalidades;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import Console.VisualizacaoMenu;
 import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
-import jogo.CategoriasJogos;
 import jogo.Jogo;
 
 public class ControleDeJogos{
@@ -23,84 +20,91 @@ public class ControleDeJogos{
 	Scanner sc = new Scanner(System.in);
 	
 	// cadastrar Jogo
-	public void CadastrarJogos() throws DadoInvalidoException {
+	public void CadastrarJogos(Empresa empresa) throws DadoInvalidoException {
 		
 		boolean continuarCadastro = true;
 		
 		while(continuarCadastro) {
 			boolean dadosValidos = false;
 			
-			Jogo jogo = new Jogo(null, 0, null, null, 0, null, null, null, null, null);
+			Jogo jogo = new Jogo(null, 0, null, new ArrayList<String>(), 0, null, null, null, null, null);
 			
 			do {
 				try {
-					System.out.println("Adicione as informações obrigatórias:");
+					System.out.println("\n╔════════════════════════════════════════════════════════════════╗");
+					System.out.println("║     🎮 CADASTRO DE JOGO - PREENCHA TODAS AS INFORMAÇÕES       ║");
+					System.out.println("╚════════════════════════════════════════════════════════════════╝");
+
+					System.out.println("📌 Adicione as informações obrigatórias:");
 					
-					System.out.print("Titulo: ");
+					System.out.print("📝 Título: ");
 					jogo.setTitulo(sc.nextLine());
-					
-					System.out.print("Preço: ");
+
+					System.out.print("💲 Preço: ");
 					jogo.setPreco(sc.nextDouble());
 					sc.nextLine();
-					System.out.print("Descrição: ");
+
+					System.out.print("🗒️ Descrição: ");
 					jogo.setDescricao(sc.nextLine());
 					
 					//a parte de categoria eu nao entendi como funciona vai ficar sem por enquanto
 					
-					System.out.print("Classificação etária: ");
+					System.out.print("🔞 Classificação etária: ");
 					jogo.setClassEtaria(sc.nextInt());
 					sc.nextLine();
-					
-					System.out.print("Idiomas Disponiveis: ");
+
+					System.out.print("🗣️ Idiomas disponíveis: ");
 					jogo.setIdiomas(sc.nextLine());
-					
-					System.out.print("Plataformas disponíveis: ");
+
+					System.out.print("🕹️ Plataformas disponíveis: ");
 					jogo.setPlataDisp(sc.nextLine());
-					
+
 					dadosValidos = true;
 					
 				} catch(DadoInvalidoException e) {
-					System.out.println("Erro: "+ e.getMessage());
+					System.out.println("⚠️ Erro: " + e.getMessage());
 				}
 			}while(!dadosValidos);
 			
-			System.out.println("Realmente deseja adicionar esse jogo?");
-			System.out.println("1. Sim");
-			System.out.println("2. Não");
-			System.out.print("Escolha a opção:");
+			System.out.println("\n📥 Realmente deseja adicionar esse jogo?");
+			System.out.println("1️⃣  Sim");
+			System.out.println("2️⃣  Não");
+			System.out.print("👉 Escolha a opção: ");
 			int opcao = sc.nextInt();
 			sc.nextLine();
 			
 			switch(opcao) {
-			case 1:
-				try{
-					listJogos.add(jogo);	
-					System.out.println("O " +jogo.getTitulo()+ " foi adicionado com sucesso");
-					continuarCadastro = false;
+				case 1:
+					try{
+						listJogos.add(jogo);
+						jogo.setEmpresa(empresa);
+						empresa.atualizarJogos(jogo);
+						System.out.println("✅ O jogo \"" + jogo.getTitulo() + "\" foi adicionado com sucesso!");
 					
-				} catch (DadoDuplicadoException e) {
-					System.out.println("Erro: " +e.getMessage());
-					System.out.println("Você refazer o cadastro de jogo?");
-					System.out.println("1. Sim");
-					System.out.println("2. Não");
-					System.out.print("Escolha a opção:");
-					int refazer = sc.nextInt();
-					sc.nextLine();
+					} catch (DadoDuplicadoException e) {
+						System.out.println("❌ Erro: " + e.getMessage());
+			            System.out.println("🔁 Você deseja refazer o cadastro de jogo?");
+			            System.out.println("1️⃣  Sim");
+			            System.out.println("2️⃣  Não");
+			            System.out.print("👉 Escolha a opção: ");
+						int refazer = sc.nextInt();
+						sc.nextLine();
 						
-					if(refazer == 2) { 
-						continuarCadastro = false;
-						System.out.println("Cadastro cancelado.");
+						if(refazer == 2) { 
+							continuarCadastro = false;
+							System.out.println("🚫 Cadastro cancelado.");
+						}
 					}
-				}
 				break;
-			case 2: 
-				System.out.println("Cadastro de jogo cancelado!");
-				break;
-			default: 
-				System.out.println("Opção invalida!");
+				case 2: 
+					System.out.println("🚫 Cadastro de jogo cancelado!");
+					continuarCadastro = false;
+					break;
+				default: 
+					   System.out.println("⚠️ Opção inválida!");
 			}	
 	
-			}
+		}
 	}
 	
 	//deletar jogo
@@ -117,11 +121,27 @@ public class ControleDeJogos{
 			System.out.println("Qual desses jogos voce quer excluir.");
 			System.out.print("Digite o nome do jogo:");
 			String titulo = sc.nextLine();
+			
+			//para não permitir que uma empresa delete um jogo que não foi cadastrada por ela
+			for (Jogo jogo : empresa.getJogosEmpresa()) {
+				if (!jogo.getTitulo().equalsIgnoreCase(titulo)) {
+					System.out.println("Este jogo não foi cadastrado por essa empresa!");
+					continuarRemocao = false;
+					break;
+				}
+			}
+			
+			//apenas temporário(alana)
+			if (continuarRemocao == false) {
+				break;
+			}
+			
 			try {
 				Jogo resultado = listJogos.procurarNome(titulo);
 				System.out.println("O jogo que deseja excluir é "+resultado.getTitulo()+" tem certeza?");
-				System.out.println("1. Sim");
-				System.out.println("2. Não");
+				System.out.println("1️⃣  Sim");
+		        System.out.println("2️⃣  Não");
+		        System.out.print("👉 Escolha a opção: ");
 				int opcao = Integer.parseInt(sc.nextLine());
 				sc.nextLine();
 				
@@ -141,8 +161,9 @@ public class ControleDeJogos{
 			}catch(DadoNaoEncontradoException e){
 				System.out.println("Erro:" +e.getMessage());
 				System.out.println("Deseja refazer a remoção");
-				System.out.println("1. Sim");
-				System.out.println("2. Não");
+				System.out.println("1️⃣  Sim");
+		        System.out.println("2️⃣  Não");
+		        System.out.print("👉 Escolha a opção: ");
 				int refazer = Integer.parseInt(sc.nextLine());
 				
 				if(refazer == 2) {
@@ -196,9 +217,9 @@ public class ControleDeJogos{
 			}
 			
 			System.out.println("Deseja alterar outro dado:");
-			System.out.println("1. Sim");
-			System.out.println("2. Não");
-			System.out.print("Escolha a opção:");
+			System.out.println("1️⃣  Sim");
+	        System.out.println("2️⃣  Não");
+	        System.out.print("👉 Escolha a opção: ");
 			int refazer = Integer.parseInt(sc.nextLine());
 			
 			if(refazer == 2) {
@@ -218,171 +239,13 @@ public class ControleDeJogos{
 
 		}catch(DadoNaoEncontradoException e) {
 			System.out.println("Erro:"+e.getMessage());
-			System.out.println("Nenhum jogo cadastrado pra essa empresa. Adicione um antes de tentar remover.");
+			System.out.println("Nenhum jogo cadastrado pra essa empresa.");
 		}
 	} 
-	}
-	//@Override
-	/*public void alterarDadosDoJogo(Jogo jogo) {
-		System.out.println(" oque você deseja alterar? ");
-		System.out.println(opcoeJogo());
-		int opcoes =dados.nextInt();
-		switch (opcoes) {
-			case 1:
-				System.out.println("Insira o tituto que você deseja colocar no lugar de "+jogo.getTitulo());
-				String titu =dados.nextLine();
-				jogo.setTitulo(titu);
-				break;
-			case 2:
-				System.out.println("Insira o novo preço do jogo "+jogo.getTitulo()+" para alterar");
-				double pre =dados.nextDouble();
-				jogo.setPreco(pre);
-				break;
-			case 3:
-				System.out.println("Insira a nova descriçao do jogo "+jogo.getTitulo()+" para alterar");
-				String descri =dados.nextLine();
-				jogo.setTitulo(descri);
-				break;
-			case 4:
-				System.out.println("CATEGORIA!!");
-				String descriçao =dados.nextLine();
-				jogo.setTitulo(descriçao);
-				break;
-			case 5:
-				System.out.println("Insira a nova classificçao etaria do jogo "+jogo.getTitulo()+" que você deseja alterar");
-				int classi =dados.nextInt();
-				jogo.setClassEtaria(classi);
-				break;
-			case 6:
-				System.out.println("idiomas");
-				String descriç =dados.nextLine();
-				jogo.setTitulo(descriç);
-				break;
-			case 7:
-				System.out.println("plataDisp");
-				String desci =dados.nextLine();
-				jogo.setTitulo(desci);
-				break;
-			case 8:
-				System.out.println("Modo de Ativacao");
-				String dscriç =dados.nextLine();
-				jogo.setTitulo(dscriç);
-				break;
+}
 
-				
-		
-		}
-		
-	}
-		public void alterarDadosDoJogo(Jogo jogo) {
-		System.out.println(" oque você deseja alterar? ");
-		System.out.println(opcoeJogo());
-		int opcoes =dados.nextInt();
-		switch (opcoes) {
-			case 1:
-				System.out.println("Insira o tituto que você deseja colocar no lugar de "+jogo.getTitulo());
-				String titu =dados.nextLine();
-				jogo.setTitulo(titu);
-				break;
-			case 2:
-				System.out.println("Insira o novo preço do jogo "+jogo.getTitulo()+" para alterar");
-				double pre =dados.nextDouble();
-				jogo.setPreco(pre);
-				break;
-			case 3:
-				System.out.println("Insira a nova descriçao do jogo "+jogo.getTitulo()+" para alterar");
-				String descri =dados.nextLine();
-				jogo.setTitulo(descri);
-				break;
-			case 4:
-				System.out.println("CATEGORIA!!");
-				//ALTERAR
-				String descriçao =dados.nextLine();
-				jogo.setTitulo(descriçao);
-				break;
-			case 5:
-				System.out.println("Insira a nova classificçao etaria do jogo "+jogo.getTitulo()+" que você deseja alterar");
-				int classi =dados.nextInt();
-				jogo.setClassEtaria(classi);
-				break;
-			case 6:
-				System.out.println("idiomas");
-				//ALTERAR
-				String descriç =dados.nextLine();
-				jogo.setTitulo(descriç);
-				break;
-			case 7:
-				System.out.println("plataDisp");
-				//ALTERAR
-				String desci =dados.nextLine();
-				jogo.setTitulo(desci);
-				break;
-			case 8:
-				System.out.println("Modo de Ativacao");
-				//ALTERAR
-				String dscriç =dados.nextLine();
-				jogo.setTitulo(dscriç);
-				break;
-			default:
-				System.out.println("Opção invalida!");
-	}
-	}
 
-	@Override
-	public void excluirJogo() {
-		System.out.println("Insira o jogo que deseja excluir:");
-		String opcao= dados.nextLine();
-		boolean excluir= jogos.removeIf(jogo->jogo.getTitulo().equalsIgnoreCase(opcao));
-		
-		 if (excluir) {
-		        System.out.println("Jogo excluido com sucesso!");
-		    } else {
-		        System.out.println("Titulo invalido!");
-		    }
-		
-	}
-
-	@Override
-	public void pesquisarJogo() {
-		System.out.println("Deseja pesquisar o jogo pelo seu titulo ou pelo nome da empresa?");
-		System.out.println("1- Titulo\n2-Empresa");
-		int opcoes =dados.nextInt();
-		switch (opcoes) {
-		//FALTA EMPRESA
-			case 1:
-				System.out.println("Insira o titulo para pesquisa:");
-				String pesquisa = dados.nextLine().toLowerCase();
-				
-				ArrayList<String> resultado = new ArrayList<>();
-
-		        for (Jogo busca : jogos) {
-		            if (busca.getTitulo().toLowerCase().contains(pesquisa)) {
-		                resultado.add(busca);
-		            }
-		        }
-
-		        // Exibe o resultado
-		        //VER DIREITONHO 
-		        if (resultado.isEmpty()) {
-		            System.out.println("Nada encontrado sobre '" + pesquisa + "'.");
-		        } else {
-		            System.out.println("Jogos com o titulo " + pesquisa + ": " );
-		            
-		            resultado.sort(Comparator.comparing(jogo -> ((Jogo) jogo).getTitulo().toUpperCase()));
-;
-		            
-		            for(String j : resultado) {
-		    			System.out.println(j);
-		    		}
-
-		        }
-
-		}
-				
-				
-		
-		
-	}*/
+	
 
 
 

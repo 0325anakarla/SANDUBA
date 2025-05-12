@@ -8,7 +8,7 @@ import Pessoa.Usuarios;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+/*
 public class ArrayListPessoas extends Usuarios {
 	Scanner dados = new Scanner(System.in);
 	private Adm adm;
@@ -156,3 +156,4 @@ public class ArrayListPessoas extends Usuarios {
 	}
 
 }
+*/
