@@ -13,9 +13,8 @@ import funcionalidades.ControleDeJogos;
 
 public class TelaAdm {
 	Scanner sc = new Scanner(System.in);
-	
+
 	VisualizacaoMenu menu = new VisualizacaoMenu();
-	
 	Adm adm = Adm.getInstancia(null, null, null);
 	
 	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();

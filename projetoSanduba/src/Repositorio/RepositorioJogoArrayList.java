@@ -91,6 +91,18 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	public String resumoJogos() {
+		StringBuilder resumo = new StringBuilder();
+		
+		for(Jogo j: jogos) {
+			resumo.append(String.format("- %s [%s] | R$ %.2f\n", j.getTitulo(),j.getCategoriasValidas(), j.getPreco()));
+		}
+		
+		return resumo.toString();
+	}
+
+
 
 	
 

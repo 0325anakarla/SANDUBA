@@ -10,8 +10,6 @@ import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
 import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoInvalidoException;
-import funcionalidades.ControleDeCadastros;
-
 public class TesteMenu {
 
 	public static void main(String[] args) throws DadoInvalidoException {
@@ -22,6 +20,8 @@ public class TesteMenu {
 		TelaEmpresa telaEmpresa = new TelaEmpresa();
 		
 		Menu menu = new Menu(sc, repositorio, controleCadastros, telaCliente, telaEmpresa);
+
+		menu.cadastroUsuario();
 		
 		menu.start();
 		

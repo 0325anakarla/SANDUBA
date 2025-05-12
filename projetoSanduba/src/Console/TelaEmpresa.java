@@ -33,22 +33,21 @@ public class TelaEmpresa {
 					System.out.println(empresa.mostrarDetalhesUsuario());
 					break;
 				case 2:
-					System.out.println("Mostra carteira digital e suas opções");
 					telaCarteiraDigital(empresa.getCarteiraDigital());
 					break;
 				case 3:
-					System.out.println("Jogos cadastrados");
+					System.out.println("\n╔══════════════════════════════╗");
+					System.out.println("║   🎮 JOGOS CADASTRADOS         ║");
+					System.out.println("╚══════════════════════════════╝");
 					controlJogos.ListJogosEmpresa(empresa);
 					break;
 				case 4:
-					System.out.println("\n╔═══════════════════════════════╗");
-					System.out.println("║       ➕ CADASTRAR JOGOS        ║");
-					System.out.println("╚═══════════════════════════════╝");
-
 					controlJogos.CadastrarJogos(empresa);
 					break;
 				case 5:
-					System.out.println("Resumo de vendas");
+					System.out.println("\n╔══════════════════════════════╗");
+					System.out.println("║     📊 RESUMO DE VENDAS        ║");
+					System.out.println("╚══════════════════════════════╝");
 					if (!empresa.getVendasPorJogo().isEmpty()) {
 						ResumoDeVendas.gerarResumoTotal(empresa.getVendasPorJogo());
 					} else {
