@@ -35,16 +35,6 @@ public class ControleDeCadastros {
 
 			do {
 				try {
-<<<<<<< HEAD
-					System.out.println("\n╔══════════════════════════════════════╗");
-					System.out.println("║         👤 CADASTRO DE CLIENTE         ║");
-					System.out.println("╚══════════════════════════════════════╝");
-					System.out.println();
-
-					System.out.println("\n->Preencha todos os campos\n");
-=======
->>>>>>> 5a4a0397feb0d9d462b6cbd13c360de12bbbb7e9
-
 					System.out.println("\n╔════════════════════════════════════════════════════╗");
 					System.out.println("║        🧾 CADASTRO DE CLIENTE - PREENCHA OS DADOS   ║");
 					System.out.println("╚════════════════════════════════════════════════════╝");

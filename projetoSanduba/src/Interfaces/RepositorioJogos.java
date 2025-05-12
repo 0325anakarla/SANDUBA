@@ -14,4 +14,6 @@ public interface RepositorioJogos extends Repositorio<Jogo> {
 
 	List<Jogo> procurarEmpresa(Empresa empresa) throws DadoDuplicadoException, DadoInvalidoException;
 
+	List<Jogo> varrer();
+
 }

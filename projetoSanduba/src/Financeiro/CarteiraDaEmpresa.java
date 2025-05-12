@@ -43,7 +43,7 @@ public class CarteiraDaEmpresa extends DadosCartao {
 	
 	//metodo para a empresa sacar o dinheiro das vendas dos jogos
 	public boolean sacar(double valor) {
-		if (valor <= super.getSaldo() && valor != 0) {
+		if (valor > 0 && valor <= super.getSaldo()) {
 			double saldo = super.getSaldo() - valor;
 			
 			super.setSaldo(saldo);

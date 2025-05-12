@@ -91,6 +91,14 @@ public class Empresa extends Usuarios{
 	public List<Jogo> getJogosEmpresa() {
 		return jogosEmpresa;
 	}
+	
+	public void atualizarJogos(Jogo jogo) {
+		for (Jogo jogo1 : jogosEmpresa) {
+			if (!jogo1.getTitulo().equalsIgnoreCase(jogo.getTitulo())) {
+				jogosEmpresa.add(jogo);
+			}
+		}
+	}
 
 	public Map<Jogo, Venda> getVendasPorJogo() {
 		return vendasPorJogo;

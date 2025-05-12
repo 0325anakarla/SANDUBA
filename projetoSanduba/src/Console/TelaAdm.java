@@ -13,7 +13,6 @@ import funcionalidades.ControleDeJogos;
 
 public class TelaAdm {
 	Scanner sc = new Scanner(System.in);
-<<<<<<< HEAD
 	
 	VisualizacaoMenu menu = new VisualizacaoMenu();
 	
@@ -23,9 +22,6 @@ public class TelaAdm {
 	RepositorioUsuarioArrayList listUsuario = new RepositorioUsuarioArrayList();
 	private ControleDeCadastros cC;
 	private ControleDeJogos cJ;
-=======
-	VisualizacaoMenu menu = new VisualizacaoMenu();
->>>>>>> 5a4a0397feb0d9d462b6cbd13c360de12bbbb7e9
 	
 	
 	public void exibirMenuAdm() throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {

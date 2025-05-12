@@ -15,7 +15,7 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
     private static RepositorioUsuarioArrayList instance; // eh o singleton
     
     //Contrutor privado para ngm conseguir criar outras listas de usuarios
-    private RepositorioUsuarioArrayList() {
+    public RepositorioUsuarioArrayList() {
         usuarios = new ArrayList<>();
     }
 
@@ -84,16 +84,10 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 		}
 		return null;
 	}
-<<<<<<< HEAD
 
-	
-	
 	@Override
 	public List<Usuarios> varrer() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-=======
->>>>>>> 5a4a0397feb0d9d462b6cbd13c360de12bbbb7e9
 }

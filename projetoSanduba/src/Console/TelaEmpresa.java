@@ -45,7 +45,7 @@ public class TelaEmpresa {
 					System.out.println("║       ➕ CADASTRAR JOGOS        ║");
 					System.out.println("╚═══════════════════════════════╝");
 
-					controlJogos.CadastrarJogos();
+					controlJogos.CadastrarJogos(empresa);
 					break;
 				case 5:
 					System.out.println("Resumo de vendas");

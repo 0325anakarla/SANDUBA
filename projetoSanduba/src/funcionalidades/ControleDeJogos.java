@@ -23,14 +23,14 @@ public class ControleDeJogos{
 	Scanner sc = new Scanner(System.in);
 	
 	// cadastrar Jogo
-	public void CadastrarJogos() throws DadoInvalidoException {
+	public void CadastrarJogos(Empresa empresa) throws DadoInvalidoException {
 		
 		boolean continuarCadastro = true;
 		
 		while(continuarCadastro) {
 			boolean dadosValidos = false;
 			
-			Jogo jogo = new Jogo(null, 0, null, null, 0, null, null, null, null, null);
+			Jogo jogo = new Jogo(null, 0, null, new ArrayList<String>(), 0, null, null, null, null, null);
 			
 			do {
 				try {
@@ -72,35 +72,38 @@ public class ControleDeJogos{
 			sc.nextLine();
 			
 			switch(opcao) {
-			case 1:
-				try{
-					listJogos.add(jogo);	
-					System.out.println("O " +jogo.getTitulo()+ " foi adicionado com sucesso");
-					continuarCadastro = false;
-					
-				} catch (DadoDuplicadoException e) {
-					System.out.println("Erro: " +e.getMessage());
-					System.out.println("Você refazer o cadastro de jogo?");
-					System.out.println("1. Sim");
-					System.out.println("2. Não");
-					System.out.print("Escolha a opção:");
-					int refazer = sc.nextInt();
-					sc.nextLine();
-						
-					if(refazer == 2) { 
+				case 1:
+					try{
+						listJogos.add(jogo);
+						jogo.setEmpresa(empresa);
+						empresa.atualizarJogos(jogo);
+						System.out.println("O " +jogo.getTitulo()+ " foi adicionado com sucesso");
 						continuarCadastro = false;
-						System.out.println("Cadastro cancelado.");
+					
+					} catch (DadoDuplicadoException e) {
+						System.out.println("Erro: " +e.getMessage());
+						System.out.println("Você deseja refazer o cadastro de jogo?");
+						System.out.println("1. Sim");
+						System.out.println("2. Não");
+						System.out.print("Escolha a opção:");
+						int refazer = sc.nextInt();
+						sc.nextLine();
+						
+						if(refazer == 2) { 
+							continuarCadastro = false;
+							System.out.println("Cadastro cancelado.");
+						}
 					}
-				}
 				break;
-			case 2: 
-				System.out.println("Cadastro de jogo cancelado!");
-				break;
-			default: 
-				System.out.println("Opção invalida!");
+				case 2: 
+					System.out.println("Cadastro de jogo cancelado!");
+					continuarCadastro = false;
+					break;
+				default: 
+					System.out.println("Opção invalida!");
 			}	
 	
-			}
+		}
 	}
 	
 	//deletar jogo
@@ -114,6 +117,21 @@ public class ControleDeJogos{
 			System.out.println("Qual desses jogos voce quer excluir.");
 			System.out.print("Digite o nome do jogo:");
 			String titulo = sc.nextLine();
+			
+			//para não permitir que uma empresa delete um jogo que não foi cadastrada por ela
+			for (Jogo jogo : empresa.getJogosEmpresa()) {
+				if (!jogo.getTitulo().equalsIgnoreCase(titulo)) {
+					System.out.println("Este jogo não foi cadastrado por essa empresa!");
+					continuarRemocao = false;
+					break;
+				}
+			}
+			
+			//apenas temporário(alana)
+			if (continuarRemocao == false) {
+				break;
+			}
+			
 			try {
 				Jogo resultado = listJogos.procurarNome(titulo);
 				System.out.println("O jogo que deseja excluir é "+resultado.getTitulo()+" tem certeza?");
@@ -218,15 +236,7 @@ public class ControleDeJogos{
 			System.out.println("Nenhum jogo cadastrado pra essa empresa. Adicione um antes de tentar remover.");
 		}
 	}
-<<<<<<< HEAD
-
-
-	}
-
-
-=======
 }
->>>>>>> 5a4a0397feb0d9d462b6cbd13c360de12bbbb7e9
 	
 	//@Override
 	/*public void alterarDadosDoJogo(Jogo jogo) {
