@@ -58,17 +58,6 @@ public class Jogo {
 		this.precoModificador=preco;
 	}
 
-	//criando um construtor apenas para teste
-	public Jogo(String titulo, ArrayList<String> categoriasInv){
-		this.titulo = titulo;
-		//ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
-
-		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasInv.size());
-		for(int i = 0; i < categoriasInv.size(); i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
-			this.categoriasValidas.set(i, CategoriasJogos.valueOf(categoriasInv.get(i)));
-		}
-	}
-
 	public String getTitulo() {
 		return titulo;
 	}
@@ -170,9 +159,11 @@ public class Jogo {
 		for(CategoriasJogos categorias : categoriasValidas){
 			System.out.println(categorias.getCategoria());
 		}
+		System.out.println("Idiomas Disponíveis: ");
 		for(Idiomas idiomas : idiomasValidos){
 			System.out.println(idiomas.getIdioma());
 		}
+		System.out.println("Plataformas disponíveis: ");
 		for(PlataformasDisponiveis plataformas : platValidas){
 			System.out.println(plataformas.getPlataforma());
 		}
