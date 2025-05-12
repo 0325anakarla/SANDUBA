@@ -10,14 +10,15 @@ import jogo.Jogo;
 public class TelaCliente {
 	
 	Scanner sc = new Scanner(System.in);
-	VisualizacaoMenu menu = new VisualizacaoMenu();
+	VisualizacaoMenu menu1 = new VisualizacaoMenu();
+	Menu menu = new Menu();
 	
 	public void telaMinhaContaCliente(Cliente cliente) {
 		int opcao = 0;
 		
 		do {
 			
-			menu.telaMenuMcCliente();
+			menu1.telaMenuMcCliente();
 			
 			opcao = sc.nextInt();
 			
@@ -76,7 +77,7 @@ public class TelaCliente {
 		
 		do {
 			
-			menu.telaMenuCdCliente(cdC);
+			menu1.telaMenuCdCliente(cdC);
 			
 			opcao = sc.nextInt();
 			

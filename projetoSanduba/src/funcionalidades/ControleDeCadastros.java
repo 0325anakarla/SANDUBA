@@ -11,16 +11,14 @@ import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 
 public class ControleDeCadastros {
-	private final Scanner sc =new Scanner(System.in);
-	
-	private RepositorioUsuarioArrayList repositorio;
-	private Menu menu;
-	
-	public ControleDeCadastros() {
-		this.repositorio = RepositorioUsuarioArrayList.getInstance();
-	
-	}
+	Scanner sc =new Scanner(System.in);
+	private final RepositorioUsuarioArrayList repositorio;
+	Menu menu = new Menu();
 
+	public ControleDeCadastros() {
+		this.repositorio = new RepositorioUsuarioArrayList();
+	}
+	
 	public void CadastrarClientes() {
 
 		boolean continuarCadastro = true;
@@ -100,17 +98,9 @@ public class ControleDeCadastros {
 			System.out.println("╚══════════════════════════════════════╝");
 			System.out.println("😄 Seja bem-vindo(a), " + cliente.getNome() + "!");
 			
-			/*
-			try {
-			    listUsuarios.add(cliente);
-			} catch (DadoInvalidoException || DadoDuplicadoException e) {
-			    System.out.println("Erro ao cadastrar usuário: ");
-			    return;
-			}
-			*/
-
+			repositorio.add(cliente);
 			System.out.println("\n🔄 Redirecionando para a tela inicial...\n");
-			menu.start(); //statico
+			menu.start();
 
 		}
 	}

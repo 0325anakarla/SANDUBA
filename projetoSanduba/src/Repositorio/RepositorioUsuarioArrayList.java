@@ -11,21 +11,7 @@ import TratamentoDeErro.DadoInvalidoException;
 
 public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, RepositorioUsuario {
 
-    private static List<Usuarios> usuarios = new ArrayList<>(); //Vai armazenar os Usuarios na list
-    private static RepositorioUsuarioArrayList instance; // eh o singleton
-    
-    //Contrutor privado para ngm conseguir criar outras listas de usuarios
-    public RepositorioUsuarioArrayList() {
-        usuarios = new ArrayList<>();
-    }
-
-    //get para fazer o singleton
-    public static RepositorioUsuarioArrayList getInstance() {
-    	if(instance == null) {
-    		instance = new RepositorioUsuarioArrayList();
-    	}
-        return instance;
-    }
+    private final List<Usuarios> usuarios = new ArrayList<>(); //Vai armazenar os Usuarios na list
     
 	@Override
 	public void add(Usuarios addUsuario) {

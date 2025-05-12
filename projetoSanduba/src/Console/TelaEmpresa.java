@@ -16,9 +16,10 @@ public class TelaEmpresa {
 	VisualizacaoMenu menu = new VisualizacaoMenu();
 	ControleDeJogos controlJogos = new ControleDeJogos();
 	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
+	Menu menuOrigin = new Menu();
 
 	
-	public void telaMinhaContaEmpresa(Empresa empresa) throws DadoInvalidoException {		
+	public void telaMinhaContaEmpresa(Empresa empresa){		
 		int opcao = 0;
 		
 		do {

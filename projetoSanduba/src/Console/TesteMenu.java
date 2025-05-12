@@ -14,9 +14,9 @@ public class TesteMenu {
 
 	public static void main(String[] args) throws DadoInvalidoException {
 		
+		Menu menu = new Menu();
 		
-		Menu.start();
-		
+		menu.start();
 		
 		Cliente cliente = new Cliente("lana", "lana@gmail.com", "1234", "12345678-90", LocalDate.of(2004, 9, 23));
 		CarteiraDoCliente cdC = new CarteiraDoCliente();
