@@ -6,22 +6,29 @@ import java.util.List;
 import Interfaces.Repositorio;
 import Interfaces.RepositorioUsuario;
 import Pessoa.Usuarios;
-import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 // importar os exceptions
 
 public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, RepositorioUsuario {
 
-	private final List<Usuarios> usuarios = new ArrayList<>();
+    private static List<Usuarios> usuarios = new ArrayList<>(); //Vai armazenar os Usuarios na list
+    private static RepositorioUsuarioArrayList instance; // eh o singleton
+    
+    //Contrutor privado para ngm conseguir criar outras listas de usuarios
+    private RepositorioUsuarioArrayList() {
+        usuarios = new ArrayList<>();
+    }
 
+    //get para fazer o singleton
+    public static RepositorioUsuarioArrayList getInstance() {
+    	if(instance == null) {
+    		instance = new RepositorioUsuarioArrayList();
+    	}
+        return instance;
+    }
+    
 	@Override
-	public void add(Usuarios addUsuario) throws DadoInvalidoException, DadoDuplicadoException {
-		if (addUsuario == null) {
-			throw new DadoInvalidoException("Proibido campos vazios!");
-		}
-		if (procurarEmail(addUsuario.getEmail()) != null) {
-			throw new DadoDuplicadoException("Ja existe no sistema.");
-		}
+	public void add(Usuarios addUsuario) {
 		usuarios.add(addUsuario);
 		// ok
 	}
@@ -42,16 +49,17 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 	}
 
 	@Override
-	public List<Usuarios> getTipo(Class<?> clazz) throws DadoDuplicadoException, DadoInvalidoException {
+	public List<Usuarios> getTipo(Class<?> clazz) /*throws DadoDuplicadoException, DadoInvalidoException*/ {
 		if (clazz == null)
 			throw new DadoInvalidoException("A classe tem que existir.");
+		
 		List<Usuarios> resultadoUsuario = new ArrayList<>();
 		for (Usuarios usuario : usuarios) {
 			if (clazz.isInstance(usuario)) {
 				resultadoUsuario.add(usuario);
 			}
 		}
-		return resultadoUsuario;
+		return null;
 	}
 
 	// -------------- metodos para procurar coisas especificas.
@@ -76,6 +84,7 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 		}
 		return null;
 	}
+<<<<<<< HEAD
 
 	
 	
@@ -85,4 +94,6 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 		return null;
 	}
 
+=======
+>>>>>>> 5a4a0397feb0d9d462b6cbd13c360de12bbbb7e9
 }

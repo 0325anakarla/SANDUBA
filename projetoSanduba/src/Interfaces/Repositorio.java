@@ -7,7 +7,6 @@ public interface Repositorio<T> {
 
 	void add(T object);
 
-	
 	List<T> getTodos();
 
 	T procurarNome(String nome);

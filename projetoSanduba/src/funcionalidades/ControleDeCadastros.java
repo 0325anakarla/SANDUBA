@@ -11,12 +11,15 @@ import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 
 public class ControleDeCadastros {
-	RepositorioUsuarioArrayList listUsuarios = new RepositorioUsuarioArrayList();
+	private final Scanner sc =new Scanner(System.in);
 	
-
-	// Scanner
-	Scanner sc = new Scanner(System.in);
+	private RepositorioUsuarioArrayList repositorio;
+	private Menu menu;
 	
+	public ControleDeCadastros() {
+		this.repositorio = RepositorioUsuarioArrayList.getInstance();
+	
+	}
 
 	public void CadastrarClientes() {
 
@@ -24,7 +27,7 @@ public class ControleDeCadastros {
 
 		while (continuarCadastro) {
 			boolean dadosValidos = false;
-			                              // nome email senha cpf data//
+			// nome email senha cpf data//
 			Cliente cliente = new Cliente(null, null, null, null, null);
 			LocalDate natalicio = null;
 			int tentativas = 0;
@@ -32,47 +35,68 @@ public class ControleDeCadastros {
 
 			do {
 				try {
+<<<<<<< HEAD
 					System.out.println("\n╔══════════════════════════════════════╗");
 					System.out.println("║         👤 CADASTRO DE CLIENTE         ║");
 					System.out.println("╚══════════════════════════════════════╝");
 					System.out.println();
 
 					System.out.println("\n->Preencha todos os campos\n");
+=======
+>>>>>>> 5a4a0397feb0d9d462b6cbd13c360de12bbbb7e9
 
-					System.out.print("Nome: ");
+					System.out.println("\n╔════════════════════════════════════════════════════╗");
+					System.out.println("║        🧾 CADASTRO DE CLIENTE - PREENCHA OS DADOS   ║");
+					System.out.println("╚════════════════════════════════════════════════════╝");
+
+					System.out.print("🧍 Nome completo: ");
 					cliente.setNome(sc.nextLine());
 
-					System.out.print("Email: ");
+					System.out.print("📧 Email: ");
 					cliente.setEmail(sc.nextLine());
 
-					System.out.print("Senha:");
+					System.out.print("🔒 Senha: ");
 					cliente.setSenha(sc.nextLine());
 
 					while (tentativas < 3) {
-						System.out.print("Cpf: ");
+						System.out.print("🪪 CPF - (11 dígitos): ");
 						String Icpf = sc.nextLine();
 
 						if (Icpf.matches("\\d{11}")) {
 							cliente.setCpf(Icpf);
 							break;
 						} else {
-
-							System.out.println("Cpf invalido");
 							tentativas++;
+							System.out.println("⚠️  CPF inválido. Tente novamente. (" + tentativas + "/3)");
 
+							if (tentativas == 3) {
+
+								System.out.println("\n╔════════════════════════════════════════════════╗");
+								System.out.println("║ ❌ Cadastro cancelado: número de tentativas excedido ║");
+								System.out.println("╚════════════════════════════════════════════════╝");
+								return;
+
+							}
 						}
 					}
 
 					while (natalicio == null && tentativas < 3) {
 						try {
-							System.out.println("Data de Nascimento(dd/MM/yyyy):");
+							System.out.print("📅 Data de Nascimento - (dd/MM/yyyy): ");
 							String Idata = sc.nextLine();
 							natalicio = LocalDate.parse(Idata, formato);
 							cliente.setNatalicio(natalicio);
 						} catch (Exception e) {
-							System.out.println("Formato de data Invalido");
+							tentativas++;
+							System.out.println("⚠️  Formato de data inválido. Tente novamente. (" + tentativas + "/3)");
+
+							if (tentativas == 3){
+								System.out.println("\n╔════════════════════════════════════════════════╗");
+								System.out.println("║ ❌ Cadastro cancelado: número de tentativas excedido ║");
+								System.out.println("╚════════════════════════════════════════════════╝");
+								return; 
+							}
 						}
-						tentativas++;
 					}
 
 					dadosValidos = true;
@@ -80,14 +104,93 @@ public class ControleDeCadastros {
 					System.out.println("Erro: " + e.getMessage());
 				}
 			} while (!dadosValidos);
-		}
+			
+			System.out.println("\n╔══════════════════════════════════════╗");
+			System.out.println("║ ✅ Cadastro realizado com sucesso!  ║");
+			System.out.println("╚══════════════════════════════════════╝");
+			System.out.println("😄 Seja bem-vindo(a), " + cliente.getNome() + "!");
+			
+			/*
+			try {
+			    listUsuarios.add(cliente);
+			} catch (DadoInvalidoException || DadoDuplicadoException e) {
+			    System.out.println("Erro ao cadastrar usuário: ");
+			    return;
+			}
+			*/
 
+			System.out.println("\n🔄 Redirecionando para a tela inicial...\n");
+			menu.start(); //statico
+
+		}
 	}
 
 	public void CadastrarEmpresa() {
+		boolean continuarCadastro = true;
+		
+		while(continuarCadastro){
 		boolean dadosValidos = false;
-     
+		
+		//nome  email  senha RazaoS cpnj endereco  dados bancarios (para n esquecer nada)
 		Empresa empresa = new Empresa(null, null, null, null, null, null, null);
-	}
+		int tentativas = 0;
+		
+		do {
+			try {
+				//dados normais
+				System.out.println("\n╔════════════════════════════════════════════════════╗");
+				System.out.println("║   🧾 CADASTRO DE EMPRESA - PREENCHA OS DADOS   ║");
+				System.out.println("╚════════════════════════════════════════════════════╝");
 
+				System.out.print("🧍 Nome: ");
+				empresa.setNome(sc.nextLine());
+
+				System.out.print("📧 Email: ");
+				empresa.setEmail(sc.nextLine());
+
+				System.out.print("🔒 Senha: ");
+				empresa.setSenha(sc.nextLine());
+				
+				System.out.print("🧍 Razão Social: ");
+				empresa.setNome(sc.nextLine());
+				
+				while (tentativas < 3) {
+					System.out.print("🪪 CNPJ - (14 dígitos): ");
+					String Icpnj = sc.nextLine();
+
+					if (Icpnj.matches("\\d{14}")) {
+						empresa.setCpnj(Icpnj);
+						break;
+					} else {
+						tentativas++;
+						System.out.println("⚠️  CNPJ inválido. Tente novamente. (" + tentativas + "/3)");
+
+						if (tentativas == 3) {
+
+							System.out.println("\n╔════════════════════════════════════════════════╗");
+							System.out.println("║ ❌ Cadastro cancelado: número de tentativas excedido ║");
+							System.out.println("╚════════════════════════════════════════════════╝");
+							return;
+
+						}
+					}
+				}
+				
+				System.out.print("📍 Endereco: ");
+				empresa.setNome(sc.nextLine());
+				
+			//DADOS BANCARIOS -
+				
+				System.out.println("\n╔════════════════════╗");
+				System.out.println("║   🏦 DADOS BANCARIOS   ║");
+				System.out.println("╚══════════════════════╝");	
+				
+
+			} catch(DadoInvalidoException e) {
+				System.out.println("Erro: " + e.getMessage());
+			}
+		} while(!dadosValidos);
+		
+		}
+	}
 }

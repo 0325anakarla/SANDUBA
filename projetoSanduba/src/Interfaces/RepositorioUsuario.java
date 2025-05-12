@@ -10,6 +10,5 @@ public interface RepositorioUsuario extends Repositorio<Usuarios> {
 
 	Usuarios procurarEmail(String email) throws DadoDuplicadoException, DadoInvalidoException;
 	
-	List<Usuarios> getTipo(Class<?> clazz) throws DadoDuplicadoException, DadoInvalidoException;
 
 }

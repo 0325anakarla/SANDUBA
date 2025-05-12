@@ -23,7 +23,6 @@ public class ServicoGeral {
 			if(usuario.getEmail() != null && usuario.getSenha() != null && repositorio != null) {
 				return usuario;
 			}
-			
 		}
 		return null;
 	}

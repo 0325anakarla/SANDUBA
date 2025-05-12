@@ -10,7 +10,7 @@ import jogo.Jogo;
 public class TelaCliente {
 	
 	Scanner sc = new Scanner(System.in);
-	veiwsMenu menu = new veiwsMenu();
+	VisualizacaoMenu menu = new VisualizacaoMenu();
 	
 	public void telaMinhaContaCliente(Cliente cliente) {
 		int opcao = 0;
