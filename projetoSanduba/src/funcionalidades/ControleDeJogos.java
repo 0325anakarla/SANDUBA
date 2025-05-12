@@ -27,7 +27,7 @@ public class ControleDeJogos{
 		while(continuarCadastro) {
 			boolean dadosValidos = false;
 			
-			Jogo jogo = new Jogo(null, 0, null, new ArrayList<String>(), 0, null, null, null, null, null);
+			Jogo jogo = new Jogo(null, 0, null, new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), 0, null, null, null);
 			
 			do {
 				try {
@@ -54,10 +54,10 @@ public class ControleDeJogos{
 					sc.nextLine();
 
 					System.out.print("🗣️ Idiomas disponíveis: ");
-					jogo.setIdiomas(sc.nextLine());
+					//jogo.setIdiomas(sc.nextLine());
 
 					System.out.print("🕹️ Plataformas disponíveis: ");
-					jogo.setPlataDisp(sc.nextLine());
+					//jogo.setPlataDisp(sc.nextLine());
 
 					dadosValidos = true;
 					

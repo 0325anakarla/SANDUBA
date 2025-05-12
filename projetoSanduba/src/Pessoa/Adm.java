@@ -119,20 +119,5 @@ public class Adm extends Usuarios{
 			Empresa empresa = (Empresa) empresas;
 			System.out.println(empresa.mostrarDetalhesUsuario());
 		}
-	}
-	
-	
-	
-
-
-	@Override
-	public String mostrarDetalhesUsuario() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
-	
-	
-	
+	}	
 }

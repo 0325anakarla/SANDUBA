@@ -10,14 +10,9 @@ import funcionalidades.ControleDeCadastros;
 
 public class Menu {
 	// - parte burocratica de chamar as funcoes -//
-	private private static Scanner sc;
-	
-	final RepositorioUsuarioArrayList repositorio = new RepositorioUsuarioArrayList();
-
-	final ControleDeCadastros novoCada = new ControleDeCadastros();
-	final InicioSanduba inicio = new InicioSanduba(repositorio);
+	private static Scanner sc;
 	private final RepositorioUsuarioArrayList repositorio;
-	private ControleDeCadastros controleCadastros;
+	private final ControleDeCadastros controleCadastros;
 	private TelaCliente telaCliente;
 	private TelaEmpresa telaEmpresa;
 	

@@ -10,7 +10,7 @@ import jogo.Jogo;
 public class Teste {
 
 	public static void main(String[] args) {
-		CategoriasJogos[] categorias  =  CategoriasJogos.values();
+		/*CategoriasJogos[] categorias  =  CategoriasJogos.values();
 		System.out.println("As categorias são as seguintes:");
 		for (CategoriasJogos categoria : categorias) {
 			System.out.println(categoria.getCategoria());
@@ -24,13 +24,13 @@ public class Teste {
 		categoriasIvn.add("mundo aberto");
 
 		Jogo jogo = new Jogo("Genshin", categoriasIvn);
-		jogo.mostrarDadosCat();
+		jogo.mostrarDadosCat();*/
 
 		Empresa empresa = new Empresa("miHoYo", "", "", "", "", "", null);
-		Jogo jogo1 = new Jogo("Genshin Impact", 49.90, "", null, 0, "", "", "", empresa, null);
+		Jogo jogo1 = new Jogo("Genshin Impact", 49.90, "", new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), 0, "", empresa, null);
 
 		Empresa outraEmpresa = new Empresa("ConcernedApe", "", "", "", "", "", null);
-		Jogo jogo2 = new Jogo("Stardew Valley", 14.99, "", null, 0, "", "", "", outraEmpresa, null);
+		Jogo jogo2 = new Jogo("Stardew Valley", 14.99, "", new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), 0, "", outraEmpresa, null);
 
 		CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
 		carrinho.adiciona(jogo1);
