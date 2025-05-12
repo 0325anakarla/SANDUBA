@@ -25,51 +25,46 @@ public class Jogo {
 	private String titulo;
 	private double preco;
 	private String descricao;
-	//private CategoriasJogos[] categoriasValidas;
 	private ArrayList<CategoriasJogos> categoriasValidas;
+	private ArrayList<Idiomas> idiomasValidos;
+	private ArrayList<PlataformasDisponiveis> platValidas;
 	private int classEtaria;
-	private String idiomas;
-	private String plataDisp;
 	private String modAtivacao;
 	private Empresa empresa;
 	private LocalDate dataDeLancamento;
 	private double precoModificador;
 	LocalDate hoje = LocalDate.now();
 	private Adm adm;
-	private  boolean descontoApli = false;
-	
-	
+	private boolean descontoApli = false;
 
-	public Jogo(String titulo, double preco, String descricao, ArrayList<String> categoriasInv, int classEtaria, String idiomas,
-				String plataDisp, String modAtivacao, Empresa empresa, LocalDate dataDeLancamento) {
+	public Jogo(String titulo, double preco, String descricao, ArrayList<String> categoriasInv, ArrayList<String> idiomasInv, ArrayList<String> platInv, int classEtaria
+			, String modAtivacao, Empresa empresa, LocalDate dataDeLancamento) {
 		super();
 		this.titulo = titulo;
 		this.preco = preco;
 		this.descricao = descricao;
-		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
-		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasVal.size());
-		for(int i = 0; i < categoriasVal.size(); i++){
-			this.categoriasValidas.set(i,CategoriasJogos.valueOf(categoriasVal.get(i)));
+
+		//ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
+		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasInv.size());
+		for(int i = 0; i < categoriasInv.size(); i++){
+			this.categoriasValidas.set(i,CategoriasJogos.valueOf(categoriasInv.get(i)));
 		}
+
+		this.idiomasValidos = new ArrayList<Idiomas>(idiomasInv.size());
+		for(int i = 0; i < idiomasInv.size(); i++){
+			this.idiomasValidos.set(i, Idiomas.valueOf(idiomasInv.get(i)));
+		}
+
+		this.platValidas = new ArrayList<PlataformasDisponiveis>(platInv.size());
+		for(int i = 0; i < platInv.size(); i++){
+			this.platValidas.set(i, PlataformasDisponiveis.valueOf(platInv.get(i)));
+		}
+
 		this.classEtaria = classEtaria;
-		this.idiomas = idiomas;
-		this.plataDisp = plataDisp;
 		this.modAtivacao = modAtivacao;
 		this.empresa = empresa;
 		this.dataDeLancamento = dataDeLancamento;
 		this.precoModificador=preco;
-	}
-
-	//criando um construtor apenas para teste
-	public Jogo(String titulo, ArrayList<String> categoriasInv){
-		this.titulo = titulo;
-		//String[] categoriasVal = CategoriasJogos.converteString(categoriasInv);
-		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
-		//this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
-		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasVal.size());
-		for(int i = 0; i < categoriasVal.size(); i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
-			this.categoriasValidas.set(i, CategoriasJogos.valueOf(categoriasVal.get(i)));
-		}
 	}
 
 	public String getTitulo() {
@@ -129,22 +124,6 @@ public class Jogo {
 		this.classEtaria = classEtaria;
 	}
 
-	public String getIdiomas() {
-		return idiomas;
-	}
-
-	public void setIdiomas(String idiomas) throws DadoInvalidoException {
-		this.idiomas = idiomas;
-	}
-
-	public String getPlataDisp() {
-		return plataDisp;
-	}
-
-	public void setPlataDisp(String plataDisp) throws DadoInvalidoException{
-		this.plataDisp = plataDisp;
-	}
-
 	public String getModAtivacao() {
 		return modAtivacao;
 	}
@@ -197,9 +176,15 @@ public class Jogo {
 		for(CategoriasJogos categorias : categoriasValidas){
 			System.out.println(categorias.getCategoria());
 		}
+		System.out.println("Idiomas Disponíveis: ");
+		for(Idiomas idiomas : idiomasValidos){
+			System.out.println(idiomas.getIdioma());
+		}
+		System.out.println("Plataformas disponíveis: ");
+		for(PlataformasDisponiveis plataformas : platValidas){
+			System.out.println(plataformas.getPlataforma());
+		}
 		System.out.println("Classificação Etaria: "+classEtaria);
-		System.out.println("Idiomas Disponiveis: "+idiomas);
-		System.out.println("Plataformas: "+plataDisp);
 		System.out.println("Modo de ativação: "+modAtivacao);
 		System.out.println("");
 	}
