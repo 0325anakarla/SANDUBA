@@ -34,40 +34,45 @@ public class ControleDeJogos{
 			
 			do {
 				try {
-					System.out.println("Adicione as informações obrigatórias:");
+					System.out.println("\n╔════════════════════════════════════════════════════════════════╗");
+					System.out.println("║     🎮 CADASTRO DE JOGO - PREENCHA TODAS AS INFORMAÇÕES       ║");
+					System.out.println("╚════════════════════════════════════════════════════════════════╝");
+
+					System.out.println("📌 Adicione as informações obrigatórias:");
 					
-					System.out.print("Titulo: ");
+					System.out.print("📝 Título: ");
 					jogo.setTitulo(sc.nextLine());
-					
-					System.out.print("Preço: ");
+
+					System.out.print("💲 Preço: ");
 					jogo.setPreco(sc.nextDouble());
 					sc.nextLine();
-					System.out.print("Descrição: ");
+
+					System.out.print("🗒️ Descrição: ");
 					jogo.setDescricao(sc.nextLine());
 					
 					//a parte de categoria eu nao entendi como funciona vai ficar sem por enquanto
 					
-					System.out.print("Classificação etária: ");
+					System.out.print("🔞 Classificação etária: ");
 					jogo.setClassEtaria(sc.nextInt());
 					sc.nextLine();
-					
-					System.out.print("Idiomas Disponiveis: ");
+
+					System.out.print("🗣️ Idiomas disponíveis: ");
 					jogo.setIdiomas(sc.nextLine());
-					
-					System.out.print("Plataformas disponíveis: ");
+
+					System.out.print("🕹️ Plataformas disponíveis: ");
 					jogo.setPlataDisp(sc.nextLine());
-					
+
 					dadosValidos = true;
 					
 				} catch(DadoInvalidoException e) {
-					System.out.println("Erro: "+ e.getMessage());
+					System.out.println("⚠️ Erro: " + e.getMessage());
 				}
 			}while(!dadosValidos);
 			
-			System.out.println("Realmente deseja adicionar esse jogo?");
-			System.out.println("1. Sim");
-			System.out.println("2. Não");
-			System.out.print("Escolha a opção:");
+			System.out.println("\n📥 Realmente deseja adicionar esse jogo?");
+			System.out.println("1️⃣  Sim");
+			System.out.println("2️⃣  Não");
+			System.out.print("👉 Escolha a opção: ");
 			int opcao = sc.nextInt();
 			sc.nextLine();
 			
@@ -77,30 +82,29 @@ public class ControleDeJogos{
 						listJogos.add(jogo);
 						jogo.setEmpresa(empresa);
 						empresa.atualizarJogos(jogo);
-						System.out.println("O " +jogo.getTitulo()+ " foi adicionado com sucesso");
-						continuarCadastro = false;
+						System.out.println("✅ O jogo \"" + jogo.getTitulo() + "\" foi adicionado com sucesso!");
 					
 					} catch (DadoDuplicadoException e) {
-						System.out.println("Erro: " +e.getMessage());
-						System.out.println("Você deseja refazer o cadastro de jogo?");
-						System.out.println("1. Sim");
-						System.out.println("2. Não");
-						System.out.print("Escolha a opção:");
+						System.out.println("❌ Erro: " + e.getMessage());
+			            System.out.println("🔁 Você deseja refazer o cadastro de jogo?");
+			            System.out.println("1️⃣  Sim");
+			            System.out.println("2️⃣  Não");
+			            System.out.print("👉 Escolha a opção: ");
 						int refazer = sc.nextInt();
 						sc.nextLine();
 						
 						if(refazer == 2) { 
 							continuarCadastro = false;
-							System.out.println("Cadastro cancelado.");
+							System.out.println("🚫 Cadastro cancelado.");
 						}
 					}
 				break;
 				case 2: 
-					System.out.println("Cadastro de jogo cancelado!");
+					System.out.println("🚫 Cadastro de jogo cancelado!");
 					continuarCadastro = false;
 					break;
 				default: 
-					System.out.println("Opção invalida!");
+					   System.out.println("⚠️ Opção inválida!");
 			}	
 	
 		}
