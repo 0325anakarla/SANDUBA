@@ -13,6 +13,7 @@ import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
 
 import funcionalidades.ControleDeJogos;
+import jogo.Jogo;
 
 public class TelaAdm {
 	private Scanner sc;
@@ -21,6 +22,7 @@ public class TelaAdm {
 	private RepositorioUsuarioArrayList listUsuarios;
 	private RepositorioJogoArrayList listJogos;
 	private ControleDeJogos controleJogos;
+	private boolean deucerto = true;
 	
 	
 	public TelaAdm(Scanner sc, VisualizacaoMenu visualizacaoMenu, Adm adm, RepositorioUsuarioArrayList listUsuarios, RepositorioJogoArrayList listJogos,  ControleDeJogos controleJogos) {
@@ -36,6 +38,7 @@ public class TelaAdm {
 		
 		visualizacaoMenu.telaMenuMcAdm();
 		int opcao = sc.nextInt();
+		sc.nextLine();
 		
 ////		[1] 🧑‍ Gerenciar Cliente");
 //	    System.out.println("  [2] 🏦 Gerenciar Empresas");
@@ -60,7 +63,7 @@ public class TelaAdm {
 				opcoesCase3();
 				break;
 			case 4:
-				
+				//menu.statrt
 				break;
 			default:
 				System.out.println("Opção invalida");
@@ -85,10 +88,12 @@ public class TelaAdm {
 //	System.out.println("  [6] 🔙 Voltar para o menu. ");
 	
 	public void opcoesCase1() throws DadoInvalidoException, DadoDuplicadoException {
-		int opcao = sc.nextInt();
+		int case1 = sc.nextInt();
+		sc.nextLine();
+		 deucerto = true;
 		do {
 			
-			switch(opcao) {
+			switch(case1) {
 				case 1:
 					adm.clientesCadastrados();
 					break;
@@ -125,6 +130,7 @@ public class TelaAdm {
 					    
 					    do {
 					    	opcao2 = sc.nextInt();
+					    	sc.nextLine();
 					    	switch(opcao2) {
 							case 1:
 								listUsuarios.alterarDados(cliente2);
@@ -156,9 +162,10 @@ public class TelaAdm {
 					exibirMenuAdm(); //tipo assim
 				default:
 					System.out.println("Opção invalida./nInsira um opção válida:");
-					opcao= sc.nextInt();
+					case1= sc.nextInt();
+					deucerto = false;
 			}
-		}while(opcao != 5);
+		}while(!deucerto );
 					
 	}
 	
@@ -169,10 +176,12 @@ public class TelaAdm {
 //	System.out.println("  [5] 🏦 Buscar uma Empresa.");
 //	System.out.println("  [6] 🔙 Voltar para o menu. ");
 	public void opcoesCase2() throws DadoInvalidoException, DadoDuplicadoException {
-		int opcao = sc.nextInt();
+		 deucerto = true;
+		int case2 = sc.nextInt();
+		sc.nextLine();
 		do {
 			
-			switch(opcao) {
+			switch(case2) {
 				case 1:
 					adm.empresasCadastradas();
 					break;
@@ -235,9 +244,10 @@ public class TelaAdm {
 					exibirMenuAdm(); //tipo assim
 				default:
 					System.out.println("Opção invalida./nInsira um opção válida:");
-					opcao= sc.nextInt();
+					case2= sc.nextInt();
+					 deucerto = false;
 			}
-			}while(opcao != 6);
+			}while(! deucerto);
 					
 	}
 ////	System.out.println("  [1] 🎮 Lista de Jogos Cadatrados.");
@@ -251,11 +261,14 @@ public class TelaAdm {
 //	System.out.println("  [7 ] 🔙 Voltar para o menu. ");
 
 	public void opcoesCase3() throws DadoInvalidoException, DadoDuplicadoException {
-		int opcao = sc.nextInt();
+		 deucerto = true;
+		int case3 = sc.nextInt();
+		sc.nextLine();
 		do {
 			
-			switch(opcao) {
+			switch(case3) {
 			case 1:
+				
 				adm.jogoPorEmpresa();
 				break;
 			case 2: 
@@ -268,6 +281,7 @@ public class TelaAdm {
 				} else {
 				    System.out.println("Usuário encontrado não é uma Empresa.");
 				}
+				
 					
 				break;
 			case 3:
@@ -287,20 +301,43 @@ public class TelaAdm {
 				}
 				break;
 			case 5:
-//				ver diretinho
+				System.out.println("Deseja obter informaões de um Jogo em especifio ou de todos?");
+				System.out.println("[1] Um em especifico.");
+				System.out.println("[2] Todos");
+				int opcao2 =sc.nextInt();
+				if(opcao2 ==1) {
+					System.out.println("Insira o título do jogo que deseja obter informações detalhadas");
+					Jogo jogo1 = listJogos.procurarNome(sc.nextLine());
+					jogo1.mostrarDados();
+				}else if(opcao2 ==2) {
+					adm.infoTodosJogos();
+				}
 				break;
 			case 6:
 				//ver como funciona o resumo de vendas
 				break;
-			case 7:
+			case 7: 
+				System.out.println(adm.getNome()+" você quer aplicar desconto por:");
+				System.out.println("[1] ano de lancamneto");
+				System.out.println("Insira o ano de referência: todos os jogos lançados até esse ano sofrerão desconto. (ex:2010) ");
+				int ano =sc.nextInt();
+				System.out.println("Insira o desconto que será aplicado: (ex:20)");
+				double desconto = sc.nextDouble();
+				adm.descontoPorAno(ano, desconto);
+				
+				break;
+			case 8:
 				System.out.println("Voltando ao munu...");
 				//um pouco perdida se tem outra forma ou so volto pro menu mesmo
 				exibirMenuAdm(); //tipo assim
 			default:
 				System.out.println("Opção invalida./nInsira um opção válida:");
-				opcao= sc.nextInt();
+				case3= sc.nextInt();
+				 deucerto = false;
 	}
-		}while(opcao != 7);
+		}while(! deucerto);
 	}
+	
+	
 	
 }

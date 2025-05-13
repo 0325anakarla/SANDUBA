@@ -1,17 +1,8 @@
 package jogo;
 
 import java.time.LocalDate;
-
-
-
 import java.time.Period;
-
 import java.util.ArrayList;
-
-
-
-
-
 
 import Pessoa.Empresa;
 import TratamentoDeErro.DadoInvalidoException;
@@ -60,18 +51,22 @@ public class Jogo {
 	}
 
 	public double getPreco() {
-		if(descontoApli) {
-			precoDesconto();
-			
-		}
+//		if(descontoApli) {
+//			precoDesconto();
+//			
+//		}
 		return preco;
 	}
 	
+	public void setDescontoApli(boolean descontoApli) {
+		this.descontoApli = descontoApli;
+	}
 	
 	public void precoDesconto() {
         String precoCinza = "\033[37;2m" + precoModificador + "\033[0m";
+        String precoVermelho = "\u001B[31m"+getPreco()+"\u001B[0m";
 
-		System.out.println("/n!Jogo com desconto! de ~~"+precoCinza+"~~ para :");
+		System.out.println("/n!Jogo com desconto! de ~~"+precoCinza+"~~ para :" +precoVermelho);
 		
 	}
 	
@@ -82,6 +77,8 @@ public class Jogo {
 		}
 		this.preco = preco;
 	}
+	
+	
 
 	public String getDescricao () {
 		return descricao;

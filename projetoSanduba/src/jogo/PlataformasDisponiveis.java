@@ -23,11 +23,17 @@ public enum PlataformasDisponiveis {
         return this.plataforma;
     }
 
-    public static void imprimePlataformas(){
-        int i = 0;
-        for (PlataformasDisponiveis plataforma : PlataformasDisponiveis.values()) {
-            System.out.println(i + ": " + plataforma.getPlataforma());
-            i++;
+    public static void imprimePlataformas() {
+        PlataformasDisponiveis[] plataformas = PlataformasDisponiveis.values();
+        for (int i = 0; i < plataformas.length; i += 2) {
+
+            System.out.print(i + ": " + plataformas[i].getPlataforma());
+
+            if (i + 1 < plataformas.length) {
+                System.out.print(" | " + (i + 1) + ": " + plataformas[i + 1].getPlataforma());
+            }
+
+            System.out.println();
         }
     }
 

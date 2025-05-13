@@ -2,6 +2,7 @@ package Pessoa;
 
 import java.time.LocalDate;
 
+import Console.VisualizacaoMenu;
 import Repositorio.RepositorioJogoArrayList;
 import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
@@ -36,7 +37,7 @@ public class Adm extends Usuarios{
 	
     
     private Adm(String nome, String email, String senha) {
-        super(nome, email, senha); 
+        super(nome, email, senha);
     }
 
    
@@ -56,7 +57,6 @@ public class Adm extends Usuarios{
 				
 	}catch(DadoInvalidoException e) {
 		System.out.println("Erro: "+ e.getMessage());
-		jogo.setDescontoApli(false);
 		
 	}
 }
@@ -124,4 +124,18 @@ public class Adm extends Usuarios{
 			System.out.println(empresa.mostrarDetalhesUsuario());
 		}
 	}	
+	
+	public void infoTodosJogos() {
+		menu.telaInfJogos();
+		for(Usuarios empresas: listUsuario.getTipo(Empresa.class)) {
+//			tranformar o empresa do tipo usario em do tipo Empresa
+			Empresa empresa = (Empresa) empresas;
+			for(Jogo jogo : listJogos.procurarEmpresa( empresa)) {
+				jogo.mostrarDados();
+				System.out.println();
+			}
+		}
+	}
+	
+//	public void 
 }
