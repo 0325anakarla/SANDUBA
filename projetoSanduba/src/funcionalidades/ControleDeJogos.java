@@ -31,6 +31,7 @@ public class ControleDeJogos{
 		boolean continuarCadastro = true;
 		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String dataCadastro = LocalDate.now().format(formato);
+        
 
 		
 		while(continuarCadastro) {
@@ -281,7 +282,7 @@ public class ControleDeJogos{
 		
 		for(Jogo jogo : jogos) {
 			//chmar o mostrar dados basico do jogo
-			System.out.println(jogo.getTitulo());
+			System.out.println(jogo.getResumoJogos());
 		}
 		
 	}

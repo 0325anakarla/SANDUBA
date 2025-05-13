@@ -57,7 +57,7 @@ public class TelaAdm {
 				opcoesCase3();
 				break;
 			case 4:
-				
+				//menu.statrt
 				break;
 			default:
 				System.out.println("Opção invalida");
@@ -262,6 +262,7 @@ public class TelaAdm {
 			
 			switch(case3) {
 			case 1:
+				
 				adm.jogoPorEmpresa();
 				break;
 			case 2: 
@@ -309,7 +310,17 @@ public class TelaAdm {
 			case 6:
 				//ver como funciona o resumo de vendas
 				break;
-			case 7:
+			case 7: 
+				System.out.println(adm.getNome()+" você quer aplicar desconto por:");
+				System.out.println("[1] ano de lancamneto");
+				System.out.println("Insira o ano de referência: todos os jogos lançados até esse ano sofrerão desconto. (ex:2010) ");
+				int ano =sc.nextInt();
+				System.out.println("Insira o desconto que será aplicado: (ex:20)");
+				double desconto = sc.nextDouble();
+				adm.descontoPorAno(ano, desconto);
+				
+				break;
+			case 8:
 				System.out.println("Voltando ao munu...");
 				//um pouco perdida se tem outra forma ou so volto pro menu mesmo
 				exibirMenuAdm(); //tipo assim

@@ -51,10 +51,10 @@ public class Jogo {
 	}
 
 	public double getPreco() {
-		if(descontoApli) {
-			precoDesconto();
-			
-		}
+//		if(descontoApli) {
+//			precoDesconto();
+//			
+//		}
 		return preco;
 	}
 	
@@ -64,8 +64,9 @@ public class Jogo {
 	
 	public void precoDesconto() {
         String precoCinza = "\033[37;2m" + precoModificador + "\033[0m";
+        String precoVermelho = "\u001B[31m"+getPreco()+"\u001B[0m";
 
-		System.out.println("/n!Jogo com desconto! de ~~"+precoCinza+"~~ para :");
+		System.out.println("/n!Jogo com desconto! de ~~"+precoCinza+"~~ para :" +precoVermelho);
 		
 	}
 	

@@ -126,7 +126,7 @@ public class VisualizacaoMenu {
 	    System.out.println("Selecione uma opção:");
 	    System.out.println("  [1] 🧑‍ Gerenciar Cliente");
 	    System.out.println("  [2] 🏦 Gerenciar Empresas");
-	    System.out.println("  [3] 🎮 Gerenciar Jogos");;
+	    System.out.println("  [3] 🎮 Gerenciar Jogos");
 	    System.out.println("  [4] ❌ Sair");
 	    System.out.print("\nDigite a opção desejada: ");
 
@@ -193,10 +193,11 @@ public class VisualizacaoMenu {
 		System.out.println("  [3] 🎮 Alterar dados de um jogo.");
 		System.out.println("  [4] 🎮 Deletar jogo.");
 		System.out.println("  [5] 🎮 Informações detalhada.");
+		System.out.println("  [6] 🎮 Aplicar desconto.");
 		
-		System.out.println("  [6] 📊 Resumo de vendas");
+		System.out.println("  [7] 📊 Resumo de vendas");
 		
-		System.out.println("  [7 ] 🔙 Voltar para o menu. ");
+		System.out.println("  [8] 🔙 Voltar para o menu. ");
 		
 		System.out.println("Escolha uma opção:");
 	}
