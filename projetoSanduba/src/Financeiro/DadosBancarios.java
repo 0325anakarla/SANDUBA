@@ -1,5 +1,7 @@
 package Financeiro;
 
+import TratamentoDeErro.DadoInvalidoException;
+
 public class DadosBancarios {
 	private String titularConta;
 	private String nomeBanco;
@@ -19,7 +21,11 @@ public class DadosBancarios {
 		return numeroConta;
 	}
 
-	public void setNumeroConta(int numeroConta) {
+	public void setNumeroConta(int numeroConta)  {
+		if (numeroConta <= 0) {
+	        throw new DadoInvalidoException("Número da conta deve ser maior que zero.");
+	    }
+
 		this.numeroConta = numeroConta;
 	}
 
@@ -28,6 +34,10 @@ public class DadosBancarios {
 	}
 
 	public void setAgencia(int agencia) {
+		if (agencia <= 0) {
+	        throw new DadoInvalidoException("Número da agência deve ser maior que zero.");
+	    }
+
 		this.agencia = agencia;
 	}
 

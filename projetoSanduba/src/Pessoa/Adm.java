@@ -2,6 +2,7 @@ package Pessoa;
 
 import java.time.LocalDate;
 
+import Console.VisualizacaoMenu;
 import Repositorio.RepositorioJogoArrayList;
 import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
@@ -14,14 +15,18 @@ import jogo.Jogo;
 //
 //import java.util.Comparator;
 //import java.util.List;
-//import java.util.Scanner;
+import java.util.Scanner;
+
+import Console.VisualizacaoMenu;
 
 
 
 public class Adm extends Usuarios{
+	Scanner sc = new Scanner(System.in);
 	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();
-	RepositorioUsuarioArrayList listUsuario = new RepositorioUsuarioArrayList();
-	ControleDeJogos cj;
+	RepositorioUsuarioArrayList listUsuarios = new RepositorioUsuarioArrayList(sc);
+	VisualizacaoMenu visualizacaoMenu;
+	ControleDeJogos controleJogos = new ControleDeJogos(sc, visualizacaoMenu, listJogos);
 	
 	LocalDate hoje = LocalDate.now();
 	int anoHoje = LocalDate.now().getYear();
@@ -32,7 +37,7 @@ public class Adm extends Usuarios{
 	
     
     private Adm(String nome, String email, String senha) {
-        super(nome, email, senha); 
+        super(nome, email, senha);
     }
 
    
@@ -52,7 +57,6 @@ public class Adm extends Usuarios{
 				
 	}catch(DadoInvalidoException e) {
 		System.out.println("Erro: "+ e.getMessage());
-		jogo.setDescontoApli(false);
 		
 	}
 }
@@ -76,48 +80,6 @@ public class Adm extends Usuarios{
         }
 
 	}
-	
-	public void empresasCadastradas() throws DadoInvalidoException, DadoDuplicadoException {
-		for(Usuarios empresas: listUsuario.getTipo(Empresa.class)) {
-			Empresa empresa = (Empresa) empresas;
-			System.out.println("🏢 "+empresa.getRazaoSocial()+" /n");
-		}
-	}
-	
-	public void clientesCadastrados() throws DadoInvalidoException, DadoDuplicadoException {
-		for(Usuarios cliente: listUsuario.getTipo(Cliente.class)) {
-			System.out.println("👤 "+cliente.getNome()+" /n");
-		}
-	}
-	
-	public void jogoPorEmpresa() throws DadoInvalidoException, DadoDuplicadoException {
-		for(Usuarios empresas: listUsuario.getTipo(Empresa.class)) {
-			System.out.println("🏢 Empresa "+empresas.getNome()+". /n");
-			cj.ListJogosEmpresa((Empresa)empresas);
-			System.out.println();
-			
-		}
-	}
-	
-	public void informacoesTodosClientes() throws DadoInvalidoException, DadoDuplicadoException {
-		for(Usuarios clientes: listUsuario.getTipo(Cliente.class)) {
-//			tranformar o ciente do tipo usario em do tipo cliente
-			Cliente cliente = (Cliente) clientes; 
-			System.out.println(cliente.mostrarDetalhesUsuario());
-		}
-	}
-	
-	public void informacoesTodasEmpresas() throws DadoInvalidoException, DadoDuplicadoException {
-		for(Usuarios empresas: listUsuario.getTipo(Empresa.class)) {
-//			tranformar o empresa do tipo usario em do tipo Empresa
-			Empresa empresa = (Empresa) empresas;
-			System.out.println(empresa.mostrarDetalhesUsuario());
-		}
-	}
-	
-	
-	
-
 
 	@Override
 	public String mostrarDetalhesUsuario() {
@@ -125,8 +87,55 @@ public class Adm extends Usuarios{
 		return null;
 	}
 	
+	public void empresasCadastradas() throws DadoInvalidoException, DadoDuplicadoException {
+		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
+			Empresa empresa = (Empresa) empresas;
+			System.out.println("🏢 "+empresa.getRazaoSocial()+" /n");
+		}
+	}
 	
+	public void clientesCadastrados() throws DadoInvalidoException, DadoDuplicadoException {
+		for(Usuarios cliente: listUsuarios.getTipo(Cliente.class)) {
+			System.out.println("👤 "+cliente.getNome()+" /n");
+		}
+	}
 	
+	public void jogoPorEmpresa() throws DadoInvalidoException, DadoDuplicadoException {
+		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
+			System.out.println("🏢 Empresa "+empresas.getNome()+". /n");
+			controleJogos.ListJogosEmpresa((Empresa)empresas);
+			System.out.println();
+			
+		}
+	}
 	
+	public void informacoesTodosClientes() throws DadoInvalidoException, DadoDuplicadoException {
+		for(Usuarios clientes: listUsuarios.getTipo(Cliente.class)) {
+//			tranformar o ciente do tipo usario em do tipo cliente
+			Cliente cliente = (Cliente) clientes; 
+			System.out.println(cliente.mostrarDetalhesUsuario());
+		}
+	}
 	
+	public void informacoesTodasEmpresas() throws DadoInvalidoException, DadoDuplicadoException {
+		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
+//			tranformar o empresa do tipo usario em do tipo Empresa
+			Empresa empresa = (Empresa) empresas;
+			System.out.println(empresa.mostrarDetalhesUsuario());
+		}
+	}	
+	
+	public void infoTodosJogos() {
+		menu.telaInfJogos();
+		for(Usuarios empresas: listUsuario.getTipo(Empresa.class)) {
+//			tranformar o empresa do tipo usario em do tipo Empresa
+			Empresa empresa = (Empresa) empresas;
+			for(Jogo jogo : listJogos.procurarEmpresa( empresa)) {
+				jogo.mostrarDados();
+				System.out.println();
+			}
+		}
+	}
+	
+//	public void 
 }

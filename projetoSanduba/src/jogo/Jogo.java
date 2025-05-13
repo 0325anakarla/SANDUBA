@@ -1,66 +1,42 @@
 package jogo;
 
 import java.time.LocalDate;
-
 import java.time.Period;
-
 import java.util.ArrayList;
 
-import java.time.format.DateTimeFormatter;
-
 import Pessoa.Empresa;
-import Pessoa.Adm;
 import TratamentoDeErro.DadoInvalidoException;
 
 public class Jogo {
 	private String titulo;
 	private double preco;
 	private String descricao;
-	//private CategoriasJogos[] categoriasValidas;
 	private ArrayList<CategoriasJogos> categoriasValidas;
-	private int classEtaria;
-	private String idiomas;
-	private String plataDisp;
+	private ArrayList<Idiomas> idiomasValidos;
+	private ArrayList<PlataformasDisponiveis> platValidas;
+	private ClassificacaoIndicativa classIndicativa;
 	private String modAtivacao;
 	private Empresa empresa;
 	private LocalDate dataDeLancamento;
 	private double precoModificador;
 	LocalDate hoje = LocalDate.now();
-	private Adm adm;
-	private  boolean descontoApli = false;
-	
-	
 
-	public Jogo(String titulo, double preco, String descricao, ArrayList<String> categoriasInv, int classEtaria, String idiomas,
-				String plataDisp, String modAtivacao, Empresa empresa, LocalDate dataDeLancamento) {
+	private boolean descontoApli = false;
+
+	public Jogo(String titulo, double preco, String descricao, ArrayList<CategoriasJogos> categoriasValidas, ArrayList<Idiomas> idiomasValidos, ArrayList<PlataformasDisponiveis> platValidas, ClassificacaoIndicativa classIndicativa
+			, String modAtivacao, Empresa empresa, LocalDate dataDeLancamento) {
 		super();
 		this.titulo = titulo;
 		this.preco = preco;
 		this.descricao = descricao;
-		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
-		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasVal.size());
-		for(int i = 0; i < categoriasVal.size(); i++){
-			this.categoriasValidas.set(i,CategoriasJogos.valueOf(categoriasVal.get(i)));
-		}
-		this.classEtaria = classEtaria;
-		this.idiomas = idiomas;
-		this.plataDisp = plataDisp;
+		this.categoriasValidas = categoriasValidas;
+		this.idiomasValidos = idiomasValidos;
+		this.platValidas = platValidas;
+		this.classIndicativa = classIndicativa;
 		this.modAtivacao = modAtivacao;
 		this.empresa = empresa;
 		this.dataDeLancamento = dataDeLancamento;
 		this.precoModificador=preco;
-	}
-
-	//criando um construtor apenas para teste
-	public Jogo(String titulo, ArrayList<String> categoriasInv){
-		this.titulo = titulo;
-		//String[] categoriasVal = CategoriasJogos.converteString(categoriasInv);
-		ArrayList<String> categoriasVal = CategoriasJogos.converteArrayListString(categoriasInv);
-		//this.categoriasValidas = new CategoriasJogos[categoriasVal.length]; // inicializando
-		this.categoriasValidas = new ArrayList<CategoriasJogos>(categoriasVal.size());
-		for(int i = 0; i < categoriasVal.size(); i++){ // aqui ele esta armazenando cada String do categoriasVal dentro do categoriasValidas
-			this.categoriasValidas.set(i, CategoriasJogos.valueOf(categoriasVal.get(i)));
-		}
 	}
 
 	public String getTitulo() {
@@ -75,14 +51,25 @@ public class Jogo {
 	}
 
 	public double getPreco() {
+//		if(descontoApli) {
+//			precoDesconto();
+//			
+//		}
 		return preco;
 	}
 	
+	public void setDescontoApli(boolean descontoApli) {
+		this.descontoApli = descontoApli;
+	}
+	
 	public void precoDesconto() {
-		
-		
+        String precoCinza = "\033[37;2m" + precoModificador + "\033[0m";
+        String precoVermelho = "\u001B[31m"+getPreco()+"\u001B[0m";
+
+		System.out.println("/n!Jogo com desconto! de ~~"+precoCinza+"~~ para :" +precoVermelho);
 		
 	}
+	
 
 	public void setPreco(double preco) throws DadoInvalidoException {
 		if(preco <= 0) {
@@ -90,6 +77,8 @@ public class Jogo {
 		}
 		this.preco = preco;
 	}
+	
+	
 
 	public String getDescricao () {
 		return descricao;
@@ -108,40 +97,56 @@ public class Jogo {
 		this.descricao = descricao;
 	}
 
-	public int getClassEtaria() {
-		return classEtaria;
-	}
-
-	public void setClassEtaria(int classEtaria) throws DadoInvalidoException {
-		if(classEtaria < 0) {
-			throw new DadoInvalidoException("Não existe essa Classificação Etaria.");
-		}
-
-		this.classEtaria = classEtaria;
-	}
-
-	public String getIdiomas() {
-		return idiomas;
-	}
-
-	public void setIdiomas(String idiomas) throws DadoInvalidoException {
-		this.idiomas = idiomas;
-	}
-
-	public String getPlataDisp() {
-		return plataDisp;
-	}
-
-	public void setPlataDisp(String plataDisp) throws DadoInvalidoException{
-		this.plataDisp = plataDisp;
-	}
-
 	public String getModAtivacao() {
 		return modAtivacao;
 	}
 
 	public void setModAtivacao(String modAtivacao) throws DadoInvalidoException {
 		this.modAtivacao = modAtivacao;
+	}
+
+	public ArrayList<String> getCategoriasValidas() {
+		ArrayList<String> nomesCategorias = new ArrayList<>();
+		for (CategoriasJogos cat : categoriasValidas) {
+			nomesCategorias.add(cat.getCategoria()); // pega a String do enum
+		}
+		return nomesCategorias;
+	}
+
+	public void setCategoriasValidas(ArrayList<CategoriasJogos> categoriasValidas) {
+		this.categoriasValidas = categoriasValidas;
+	}
+
+	public ArrayList<String> getIdiomasValidos() {
+		ArrayList<String> nomesIdiomas = new ArrayList<>();
+		for (Idiomas idiomas : idiomasValidos) {
+			nomesIdiomas.add(idiomas.getIdioma()); // pega a String do enum
+		}
+		return nomesIdiomas;
+	}
+
+	public void setIdiomas(ArrayList<Idiomas> idiomasValidos) {
+		this.idiomasValidos = idiomasValidos;
+	}
+
+	public ArrayList<String> getPlaformasValidas() {
+		ArrayList<String> nomesPlataformas = new ArrayList<>();
+		for (PlataformasDisponiveis plat : platValidas) {
+			nomesPlataformas.add(plat.getPlataforma()); // pega a String do enum
+		}
+		return nomesPlataformas;
+	}
+
+	public void setPlataformasValidas(ArrayList<PlataformasDisponiveis> platValidas) {
+		this.platValidas = platValidas;
+	}
+
+	public String  getClassIndicativa() {
+		return classIndicativa.getClassificacao();
+	}
+
+	public void setClassIndicativa(ClassificacaoIndicativa classIndicativa) {
+		this.classIndicativa = classIndicativa;
 	}
 
 	public Empresa getEmpresa() {
@@ -168,8 +173,9 @@ public class Jogo {
 		return precoModificador;
 	}
 	
-	public void setDescontoApli(boolean escolha) {
-		this.descontoApli=escolha;
+
+	public boolean isDescontoApli() {
+		return descontoApli;
 	}
 
 	public void mostrarDados() {
@@ -180,28 +186,27 @@ public class Jogo {
 		for(CategoriasJogos categorias : categoriasValidas){
 			System.out.println(categorias.getCategoria());
 		}
-		System.out.println("Classificação Etaria: "+classEtaria);
-		System.out.println("Idiomas Disponiveis: "+idiomas);
-		System.out.println("Plataformas: "+plataDisp);
-		System.out.println("Modo de ativação: "+modAtivacao);
 		System.out.println("");
-	}
-
-	// criando outro mostrarDados so pra teste
-	public void mostrarDadosCat(){
-		System.out.println("Títutlo: "+titulo);
-		System.out.println("Categorias: ");
-		for(CategoriasJogos categorias : categoriasValidas){
-			System.out.println(categorias.getCategoria());
+		System.out.println("Idiomas Disponíveis: ");
+		for(Idiomas idiomas : idiomasValidos){
+			System.out.println(idiomas.getIdioma());
 		}
 		System.out.println("");
-
+		System.out.println("Plataformas disponíveis: ");
+		for(PlataformasDisponiveis plataformas : platValidas){
+			System.out.println(plataformas.getPlataforma());
+		}
+		System.out.println("");
+		System.out.println("Classificação Etaria: "+classIndicativa.getClassificacao());
+		System.out.println("Modo de ativação: "+modAtivacao);
+		System.out.println("");
 	}
 	
 	 public void Desconto(double desconto ) throws DadoInvalidoException {
 		 if(desconto <=0 || desconto >= 100) {
 				throw new DadoInvalidoException("Desconto não pode ser negativo ou zerado");
 			}
+
 
 		 setPreco( getPrecoModificador()-(getPrecoModificador()* desconto/100));
 		 descontoApli = true;
@@ -225,4 +230,5 @@ public class Jogo {
 			return false;
 		}
 	}
+
 }

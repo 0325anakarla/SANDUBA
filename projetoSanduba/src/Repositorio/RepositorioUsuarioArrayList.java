@@ -5,14 +5,25 @@ import java.util.List;
 
 import Interfaces.Repositorio;
 import Interfaces.RepositorioUsuario;
+import Pessoa.Cliente;
+import Pessoa.Empresa;
 import Pessoa.Usuarios;
 import TratamentoDeErro.DadoInvalidoException;
 // importar os exceptions
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, RepositorioUsuario {
 
-    private final List<Usuarios> usuarios = new ArrayList<>(); //Vai armazenar os Usuarios na list
+    private final List<Usuarios> usuarios; //Vai armazenar os Usuarios na list
+    private Scanner sc;
     
+    public RepositorioUsuarioArrayList(Scanner sc) {
+        this.usuarios = new ArrayList<>();
+        this.sc = sc;
+    }
+
 	@Override
 	public void add(Usuarios addUsuario) {
 		usuarios.add(addUsuario);
@@ -26,8 +37,145 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 
 	@Override
 	public void alterarDados(Usuarios upUsuario) {
+		if(upUsuario instanceof Cliente) {
+			Cliente cliente = (Cliente) upUsuario;
+			boolean continuarAlterar = true;
 
+            while (continuarAlterar) {
+                System.out.println("\n==== ALTERAR DADOS DO CLIENTE ====");
+                System.out.println("[1] Alterar Nome");
+                System.out.println("[2] Alterar Email");
+                System.out.println("[3] Alterar Senha");
+                System.out.println("[4] Alterar CPF");
+                System.out.println("[5] Alterar Data de Nascimento");
+                System.out.println("[6] Voltar ao Menu");
+
+                System.out.print("Escolha uma opção: ");
+                int opcao = Integer.parseInt(sc.nextLine());
+
+                try {
+                    switch (opcao) {
+                        case 1:
+                            System.out.println("Digite o novo nome:");
+                            cliente.setNome(sc.nextLine());
+                            break;
+                        case 2:
+                            System.out.println("Digite o novo email:");
+                            String novoEmail = sc.nextLine();
+                            cliente.setEmail(sc.nextLine());
+                            break;
+                        case 3:
+                            System.out.println("Digite a nova senha (mínimo 6 caracteres):");
+                            cliente.setSenha(sc.nextLine());
+                            break;
+                        case 4:
+                            System.out.println("Digite o novo CPF (apenas números):");
+                            cliente.setCpf(sc.nextLine());
+                            break;
+                        case 5:
+                            System.out.println("Digite a nova data de nascimento (dd/MM/yyyy):");
+                            cliente.setNatalicio(sc.nextLine());
+                            break;
+                        case 6:
+                            System.out.println("Voltando ao menu...");
+                            continuarAlterar = false;
+                            break;
+                        default:
+                            System.out.println("Opção inválida. Digite novamente.");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Erro ao atualizar dados: " + e.getMessage());
+                }
+
+                if (continuarAlterar) {
+                    System.out.println("\nDeseja alterar outro dado?");
+                    System.out.println("1. Sim");
+                    System.out.println("2. Não");
+                    System.out.print("Escolha a opção: ");
+                    int refazer = Integer.parseInt(sc.nextLine());
+
+                    if (refazer == 2) {
+                        continuarAlterar = false;
+                    }
+                }
+            }
+        }else if(upUsuario instanceof Empresa) {
+			Empresa empresa = (Empresa) upUsuario;
+			boolean continuarAlterar = true;
+
+			while (continuarAlterar) {
+			    System.out.println("\n==== ALTERAR DADOS DA EMPRESA ====");
+			    System.out.println("[1] Alterar Nome");
+			    System.out.println("[2] Alterar Email");
+			    System.out.println("[3] Alterar Senha");
+			    System.out.println("[4] Alterar CNPJ");
+			    System.out.println("[5] Alterar Endereço");
+			    System.out.println("[6] Alterar Banco da Empresa");
+			    System.out.println("[7] Alterar Razão Social");
+			    System.out.println("[8] Voltar ao Menu");
+
+			    System.out.print("Escolha uma opção: ");
+			    int opcao = Integer.parseInt(sc.nextLine());
+
+			    try {
+			        switch (opcao) {
+			            case 1:
+			                System.out.print("Digite o novo nome: ");
+			                empresa.setNome(sc.nextLine());
+			                break;
+			            case 2:
+			                System.out.print("Digite o novo email: ");
+			                empresa.setEmail(sc.nextLine());
+			                break;
+			            case 3:
+			                System.out.print("Digite a nova senha (mínimo 6 caracteres): ");
+			                empresa.setSenha(sc.nextLine());
+			                break;
+			            case 4:
+			                System.out.print("Digite o novo CNPJ (somente números): ");
+			                empresa.setCpnj(sc.nextLine());
+			                break;
+			            case 5:
+			                System.out.print("Digite o novo endereço: ");
+			                empresa.setEndereco(sc.nextLine());
+			                break;
+			            case 6:
+			                System.out.print("Digite o novo banco da empresa: ");
+			                empresa.setBancoEmpresa(sc.nextLine());
+			                break;
+			            case 7:
+			                System.out.print("Digite a nova razão social: ");
+			                empresa.setRazaoSocial(sc.nextLine());
+			                break;
+			            case 8:
+			                System.out.println("Voltando ao menu...");
+			                continuarAlterar = false;
+			                break;
+			            default:
+			                System.out.println("Opção inválida. Digite novamente.");
+			        }
+			    } catch (Exception e) {
+			        System.out.println("Erro ao atualizar dados: " + e.getMessage());
+			    }
+
+			    if (continuarAlterar) {
+			        System.out.println("\nDeseja alterar outro dado?");
+			        System.out.println("1. Sim");
+			        System.out.println("2. Não");
+			        System.out.print("Escolha a opção: ");
+			        int refazer = Integer.parseInt(sc.nextLine());
+
+			        if (refazer == 2) {
+			            continuarAlterar = false;
+			        }
+			    }
+			}
+
+    
 	}
+	}
+			
+		
 
 	@Override
 	public void deletar(Usuarios byeUsuario) {
@@ -76,4 +224,5 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 		// TODO Auto-generated method stub
 		return null;
 	}
+
 }

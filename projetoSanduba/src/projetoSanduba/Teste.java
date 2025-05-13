@@ -10,27 +10,22 @@ import jogo.Jogo;
 public class Teste {
 
 	public static void main(String[] args) {
-		CategoriasJogos[] categorias  =  CategoriasJogos.values();
-		System.out.println("As categorias são as seguintes:");
-		for (CategoriasJogos categoria : categorias) {
-			System.out.println(categoria.getCategoria());
-		}
-
-		System.out.println("");
-
-		ArrayList<String> categoriasIvn = new ArrayList<String>();
-		categoriasIvn.add("rpg");
-		categoriasIvn.add("aventura");
-		categoriasIvn.add("mundo aberto");
-
-		Jogo jogo = new Jogo("Genshin", categoriasIvn);
-		jogo.mostrarDadosCat();
+		// O forma para imrpimir as categorias, idiomas, plataformas e classificações é a seguinte:
+		// System.out.println("As classificações indicativas são as seguintes:");
+		// ClassificacaoIndicativa.imprimeClassificacoes();
+		// cada Enum já tem seu proprio metodo imprimir então é só chamar a classe
+		// será impresso no formato de lista:
+		/*  1: Inglês
+			2: Espanhol
+			3: Alemão
+			etc...
+		 */
 
 		Empresa empresa = new Empresa("miHoYo", "", "", "", "", "", null);
-		Jogo jogo1 = new Jogo("Genshin Impact", 49.90, "", null, 0, "", "", "", empresa, null);
+		Jogo jogo1 = new Jogo("Genshin Impact", 49.90, "", new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), 0, "", empresa, null);
 
 		Empresa outraEmpresa = new Empresa("ConcernedApe", "", "", "", "", "", null);
-		Jogo jogo2 = new Jogo("Stardew Valley", 14.99, "", null, 0, "", "", "", outraEmpresa, null);
+		Jogo jogo2 = new Jogo("Stardew Valley", 14.99, "", new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), 0, "", outraEmpresa, null);
 
 		CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
 		carrinho.adiciona(jogo1);

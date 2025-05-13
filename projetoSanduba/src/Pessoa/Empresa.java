@@ -71,7 +71,7 @@ public class Empresa extends Usuarios{
 	}
 
 	public void setCpnj(String cpnj) throws DadoInvalidoException {
-		if (cpnj == null || cpnj.isBlank()) {
+		if (cpnj == null || cpnj.isBlank() || cpnj.length() !=14) {
 			throw new DadoInvalidoException("Cnpj invalido");
 		}
 		this.cpnj = cpnj;
@@ -92,12 +92,18 @@ public class Empresa extends Usuarios{
 		return jogosEmpresa;
 	}
 	
+	
+	//esse daqui ja existe ne nao é o listar jogos por empresa
 	public void atualizarJogos(Jogo jogo) {
 		for (Jogo jogo1 : jogosEmpresa) {
 			if (!jogo1.getTitulo().equalsIgnoreCase(jogo.getTitulo())) {
 				jogosEmpresa.add(jogo);
 			}
 		}
+	}
+	
+	public void deletarJogo(Jogo jogo) {
+		jogosEmpresa.remove(jogo);
 	}
 
 	public Map<Jogo, Venda> getVendasPorJogo() {

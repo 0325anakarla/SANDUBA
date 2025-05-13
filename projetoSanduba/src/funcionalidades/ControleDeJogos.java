@@ -1,35 +1,51 @@
 package funcionalidades;
 
+
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import Console.VisualizacaoMenu;
 import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
+import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
+
 import jogo.Jogo;
 
+import jogo.*;
+
+
 public class ControleDeJogos{
-	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
+	private Scanner sc;
+	private VisualizacaoMenu visualizacaoMenu;
+	private RepositorioJogoArrayList listJogos;
 	
-	VisualizacaoMenu menu = new VisualizacaoMenu();
-	
-	//final
-	Scanner sc = new Scanner(System.in);
+	public ControleDeJogos(Scanner sc, VisualizacaoMenu visualizacaoMenu, RepositorioJogoArrayList listJogos) {
+		this.sc = sc;
+		this.visualizacaoMenu = visualizacaoMenu;
+		this.listJogos = listJogos;
+	}
 	
 	// cadastrar Jogo
 	public void CadastrarJogos(Empresa empresa) throws DadoInvalidoException {
 		
 		boolean continuarCadastro = true;
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataCadastro = LocalDate.now().format(formato);
+        
+
 		
 		while(continuarCadastro) {
 			boolean dadosValidos = false;
 			
-			Jogo jogo = new Jogo(null, 0, null, new ArrayList<String>(), 0, null, null, null, null, null);
+
+			Jogo jogo = new Jogo(null, 0, null, new ArrayList<CategoriasJogos>(), new ArrayList<Idiomas>(), new ArrayList<PlataformasDisponiveis>(), null, null, null, null);
+
 			
 			do {
 				try {
@@ -48,18 +64,355 @@ public class ControleDeJogos{
 
 					System.out.print("🗒️ Descrição: ");
 					jogo.setDescricao(sc.nextLine());
-					
-					//a parte de categoria eu nao entendi como funciona vai ficar sem por enquanto
-					
-					System.out.print("🔞 Classificação etária: ");
-					jogo.setClassEtaria(sc.nextInt());
-					sc.nextLine();
 
-					System.out.print("🗣️ Idiomas disponíveis: ");
-					jogo.setIdiomas(sc.nextLine());
+					System.out.println("🏷️ Escolha as Categorias:");
+					CategoriasJogos.imprimeCategorias();
+					ArrayList<CategoriasJogos> categoriasEscolhidas = new ArrayList<>();
+					while (true){
+						Integer categoriaEscolhida = sc.nextInt();
+						switch (categoriaEscolhida){
+							case 1 :
+								if  (!categoriasEscolhidas.contains(CategoriasJogos.RPG)){
+									categoriasEscolhidas.add(CategoriasJogos.RPG);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
 
-					System.out.print("🕹️ Plataformas disponíveis: ");
-					jogo.setPlataDisp(sc.nextLine());
+							case 2 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.AVENTURA)){
+									categoriasEscolhidas.add(CategoriasJogos.AVENTURA);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 3 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.ACAO)){
+									categoriasEscolhidas.add(CategoriasJogos.ACAO);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 4 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.HORROR)){
+									categoriasEscolhidas.add(CategoriasJogos.HORROR);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 5 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.MUNDOABERTO)){
+									categoriasEscolhidas.add(CategoriasJogos.MUNDOABERTO);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 6 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.TIRO)){
+									categoriasEscolhidas.add(CategoriasJogos.TIRO);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 7 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.PRIMEIRAPESSOA)){
+									categoriasEscolhidas.add(CategoriasJogos.PRIMEIRAPESSOA);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 8 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.TERCEIRAPESSOA)){
+									categoriasEscolhidas.add(CategoriasJogos.TERCEIRAPESSOA);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 9 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.PUZZLE)){
+									categoriasEscolhidas.add(CategoriasJogos.PUZZLE);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 10 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.TURNO)){
+									categoriasEscolhidas.add(CategoriasJogos.TURNO);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 11 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.ESPORTE)){
+									categoriasEscolhidas.add(CategoriasJogos.ESPORTE);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 12 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.LUTA)){
+									categoriasEscolhidas.add(CategoriasJogos.LUTA);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 13 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.FANTASIA)){
+									categoriasEscolhidas.add(CategoriasJogos.FANTASIA);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 14 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.CONSTRUCAO)){
+									categoriasEscolhidas.add(CategoriasJogos.CONSTRUCAO);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 15 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.RITMO)){
+									categoriasEscolhidas.add(CategoriasJogos.RITMO);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 16 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.BATTLEROYALE)){
+									categoriasEscolhidas.add(CategoriasJogos.BATTLEROYALE);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							default : System.out.println("Opção Inválida.");
+						}
+						System.out.println("");
+						System.out.println("Deseja adicionar mais categorias?");
+						System.out.println("1: SIM" + "-" + "2: NÃO");
+						int add1 = sc.nextInt();
+						if(add1 == 2){
+							break;
+						}
+					}
+					jogo.setCategoriasValidas(categoriasEscolhidas);
+
+					System.out.print("🗣️ Escolha os Idiomas Disponíveis: ");
+					Idiomas.imprimeIdiomas();
+					ArrayList<Idiomas> idiomasEscolhidos = new ArrayList<>();
+					while (true){
+						Integer idiomaEscolhido = sc.nextInt();
+						switch (idiomaEscolhido){
+							case 1 :
+								if  (!idiomasEscolhidos.contains(Idiomas.INGLES)){
+									idiomasEscolhidos.add(Idiomas.INGLES);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							case 2 :
+								if (!idiomasEscolhidos.contains(Idiomas.ESPANHOL)){
+									idiomasEscolhidos.add(Idiomas.ESPANHOL);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							case 3 :
+								if (!idiomasEscolhidos.contains(Idiomas.ALEMAO)){
+									idiomasEscolhidos.add(Idiomas.ALEMAO);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							case 4 :
+								if (!idiomasEscolhidos.contains(Idiomas.FRANCES)){
+									idiomasEscolhidos.add(Idiomas.FRANCES);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							case 5 :
+								if (!idiomasEscolhidos.contains(Idiomas.RUSSO)){
+									idiomasEscolhidos.add(Idiomas.RUSSO);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							case 6 :
+								if (!idiomasEscolhidos.contains(Idiomas.CHINES)){
+									idiomasEscolhidos.add(Idiomas.CHINES);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							case 7 :
+								if (!idiomasEscolhidos.contains(Idiomas.PORTUGUES)){
+									idiomasEscolhidos.add(Idiomas.PORTUGUES);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							default : System.out.println("Opção Inválida.");
+						}
+						System.out.println("");
+						System.out.println("Deseja adicionar mais idiomas?");
+						System.out.println("1: SIM" + "-" + "2: NÃO");
+						int add2 = sc.nextInt();
+						if(add2 == 2){
+							break;
+						}
+					}
+					jogo.setIdiomas(idiomasEscolhidos);
+
+					System.out.print("🎮 Escolha as Plataformas Disponíveis: ");
+					PlataformasDisponiveis.imprimePlataformas();
+					ArrayList<PlataformasDisponiveis> plataformasEscolhidas = new ArrayList<>();
+					while (true){
+						Integer plataformaEscolhida = sc.nextInt();
+						switch (plataformaEscolhida){
+							case 1 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.XBOX)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.XBOX);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 2 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.XBOX1)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.XBOX1);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 3 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.PS4)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.PS4);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 4 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.PS5)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.PS5);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 5 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.NINTENDO)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.NINTENDO);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 6 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.WINDOWS)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.WINDOWS);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 7 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.MACOS)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.MACOS);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 8 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.IOS)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.IOS);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 9 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.LINUX)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.LINUX);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 10 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.ANDROID)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.ANDROID);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							default : System.out.println("Opção Inválida.");
+						}
+						System.out.println("");
+						System.out.println("Deseja adicionar mais plaformas?");
+						System.out.println("1: SIM" + "-" + "2: NÃO");
+						int add2 = sc.nextInt();
+						if(add2 == 2){
+							break;
+						}
+					}
+					jogo.setPlataformasValidas(plataformasEscolhidas);
+					
+					System.out.print("🔞 Escolha a Classificação Indicativa: ");
+					ClassificacaoIndicativa.imprimeClassificacoes();
+					while(true){
+						Integer classIndEscolhida = sc.nextInt();
+						switch (classIndEscolhida) {
+						case 1:
+							jogo.setClassIndicativa(ClassificacaoIndicativa.LIVRE);
+							break;
+						case 2:
+							jogo.setClassIndicativa(ClassificacaoIndicativa.ANOS10);
+							break;
+						case 3:
+							jogo.setClassIndicativa(ClassificacaoIndicativa.ANOS12);
+							break;
+						case 4:
+							jogo.setClassIndicativa(ClassificacaoIndicativa.ANOS14);
+							break;
+						case 5:
+							jogo.setClassIndicativa(ClassificacaoIndicativa.ANOS16);
+							break;
+						case 6:
+							jogo.setClassIndicativa(ClassificacaoIndicativa.ANOS18);
+							break;
+						default:
+							System.out.println("Opção inválida, escolha novamente:");
+						}
+						if(classIndEscolhida >= 1 && classIndEscolhida <= 6){
+							break;
+						}
+					}
 
 					dadosValidos = true;
 					
@@ -67,11 +420,27 @@ public class ControleDeJogos{
 					System.out.println("⚠️ Erro: " + e.getMessage());
 				}
 			}while(!dadosValidos);
+
+			System.out.println("\n╔═══════════════════════════════════════════╗");
+			System.out.println("║     📄 DOCUMENTAÇÃO DE CADASTRO DE JOGO     ║");
+			System.out.println("╚════════════════════════════════════════════╝");
+
+	        //queria colocar o nome da empresa aqui so pra ter um termo bunitinho na hora de concuir o jogo.
+	        System.out.println("Empresa: " + empresa.getRazaoSocial());
+	        System.out.println("Jogo: " + jogo.getTitulo());
+	        System.out.println("Data do Cadastro: " + dataCadastro);
+	        System.out.println(" Repasse de Percentual – 5% da parte das vendas será destinada ao Sanduba.");
+	        System.out.println(" Exibição na Plataforma – O jogo seguirá padrões de qualidade.");
+	        System.out.println(" Condições de Remoção – A empresa deve comunicar previamente.");
+	        System.out.println(" Aceite e Validade – O cadastro só será confirmado com aceite.");
+			System.out.println();
+
 			
 			System.out.println("\n📥 Realmente deseja adicionar esse jogo?");
 			System.out.println("1️⃣  Sim");
 			System.out.println("2️⃣  Não");
 			System.out.print("👉 Escolha a opção: ");
+
 			int opcao = sc.nextInt();
 			sc.nextLine();
 			
@@ -109,18 +478,25 @@ public class ControleDeJogos{
 		}
 	}
 	
+    
+
+	
 	//deletar jogo
 	public void deletarJogo(Empresa empresa) {
 		
 		boolean continuarRemocao = true;
 
-		System.out.println("\n--- REMOVER JOGO ---");
+		System.out.println("\n╔══════════════════════════════╗");
+		System.out.println("║       🗑️ REMOVER JOGO          ║");
+		System.out.println("╚══════════════════════════════╝");
+
 		
 		while(continuarRemocao) {
 			System.out.println("Qual desses jogos voce quer excluir.");
 			System.out.print("Digite o nome do jogo:");
 			String titulo = sc.nextLine();
 			
+			//CORRIGIR ISSO
 			//para não permitir que uma empresa delete um jogo que não foi cadastrada por ela
 			for (Jogo jogo : empresa.getJogosEmpresa()) {
 				if (!jogo.getTitulo().equalsIgnoreCase(titulo)) {
@@ -138,14 +514,16 @@ public class ControleDeJogos{
 			try {
 				Jogo resultado = listJogos.procurarNome(titulo);
 				System.out.println("O jogo que deseja excluir é "+resultado.getTitulo()+" tem certeza?");
-				System.out.println("1. Sim");
-				System.out.println("2. Não");
+				System.out.println("1️⃣  Sim");
+		        System.out.println("2️⃣  Não");
+		        System.out.print("👉 Escolha a opção: ");
 				int opcao = Integer.parseInt(sc.nextLine());
 				sc.nextLine();
 				
 				switch(opcao) {
 					case 1:
 						listJogos.deletar(resultado);
+						empresa.deletarJogo(resultado);
 						System.out.println("O jogo "+resultado.getTitulo()+" foi deletado com sucesso.");
 						continuarRemocao = false;
 						break;
@@ -159,8 +537,9 @@ public class ControleDeJogos{
 			}catch(DadoNaoEncontradoException e){
 				System.out.println("Erro:" +e.getMessage());
 				System.out.println("Deseja refazer a remoção");
-				System.out.println("1. Sim");
-				System.out.println("2. Não");
+				System.out.println("1️⃣  Sim");
+		        System.out.println("2️⃣  Não");
+		        System.out.print("👉 Escolha a opção: ");
 				int refazer = Integer.parseInt(sc.nextLine());
 				
 				if(refazer == 2) {
@@ -178,7 +557,7 @@ public class ControleDeJogos{
 		
 		while(continuarAlterar) {
 			
-			menu.telaAlterarJogos(jogo);
+			visualizacaoMenu.telaAlterarJogos(jogo);
 			
 			opcao = Integer.parseInt(sc.nextLine());
 			
@@ -214,9 +593,9 @@ public class ControleDeJogos{
 			}
 			
 			System.out.println("Deseja alterar outro dado:");
-			System.out.println("1. Sim");
-			System.out.println("2. Não");
-			System.out.print("Escolha a opção:");
+			System.out.println("1️⃣  Sim");
+	        System.out.println("2️⃣  Não");
+	        System.out.print("👉 Escolha a opção: ");
 			int refazer = Integer.parseInt(sc.nextLine());
 			
 			if(refazer == 2) {
@@ -236,172 +615,23 @@ public class ControleDeJogos{
 
 		}catch(DadoNaoEncontradoException e) {
 			System.out.println("Erro:"+e.getMessage());
-			System.out.println("Nenhum jogo cadastrado pra essa empresa. Adicione um antes de tentar remover.");
+			System.out.println("Nenhum jogo cadastrado pra essa empresa.");
+		}
+	}
+	
+	public void ListJogosComDesconto() {
+		List<Jogo> jogos = listJogos.jogosComDesconto();
+		
+		for(Jogo jogo : jogos) {
+			//chmar o mostrar dados basico do jogo
+			System.out.println(jogo.getResumoJogos());
 		}
 	}
 }
+
+
+
 	
-	//@Override
-	/*public void alterarDadosDoJogo(Jogo jogo) {
-		System.out.println(" oque você deseja alterar? ");
-		System.out.println(opcoeJogo());
-		int opcoes =dados.nextInt();
-		switch (opcoes) {
-			case 1:
-				System.out.println("Insira o tituto que você deseja colocar no lugar de "+jogo.getTitulo());
-				String titu =dados.nextLine();
-				jogo.setTitulo(titu);
-				break;
-			case 2:
-				System.out.println("Insira o novo preço do jogo "+jogo.getTitulo()+" para alterar");
-				double pre =dados.nextDouble();
-				jogo.setPreco(pre);
-				break;
-			case 3:
-				System.out.println("Insira a nova descriçao do jogo "+jogo.getTitulo()+" para alterar");
-				String descri =dados.nextLine();
-				jogo.setTitulo(descri);
-				break;
-			case 4:
-				System.out.println("CATEGORIA!!");
-				String descriçao =dados.nextLine();
-				jogo.setTitulo(descriçao);
-				break;
-			case 5:
-				System.out.println("Insira a nova classificçao etaria do jogo "+jogo.getTitulo()+" que você deseja alterar");
-				int classi =dados.nextInt();
-				jogo.setClassEtaria(classi);
-				break;
-			case 6:
-				System.out.println("idiomas");
-				String descriç =dados.nextLine();
-				jogo.setTitulo(descriç);
-				break;
-			case 7:
-				System.out.println("plataDisp");
-				String desci =dados.nextLine();
-				jogo.setTitulo(desci);
-				break;
-			case 8:
-				System.out.println("Modo de Ativacao");
-				String dscriç =dados.nextLine();
-				jogo.setTitulo(dscriç);
-				break;
-
-				
-		
-		}
-		
-	}
-		public void alterarDadosDoJogo(Jogo jogo) {
-		System.out.println(" oque você deseja alterar? ");
-		System.out.println(opcoeJogo());
-		int opcoes =dados.nextInt();
-		switch (opcoes) {
-			case 1:
-				System.out.println("Insira o tituto que você deseja colocar no lugar de "+jogo.getTitulo());
-				String titu =dados.nextLine();
-				jogo.setTitulo(titu);
-				break;
-			case 2:
-				System.out.println("Insira o novo preço do jogo "+jogo.getTitulo()+" para alterar");
-				double pre =dados.nextDouble();
-				jogo.setPreco(pre);
-				break;
-			case 3:
-				System.out.println("Insira a nova descriçao do jogo "+jogo.getTitulo()+" para alterar");
-				String descri =dados.nextLine();
-				jogo.setTitulo(descri);
-				break;
-			case 4:
-				System.out.println("CATEGORIA!!");
-				//ALTERAR
-				String descriçao =dados.nextLine();
-				jogo.setTitulo(descriçao);
-				break;
-			case 5:
-				System.out.println("Insira a nova classificçao etaria do jogo "+jogo.getTitulo()+" que você deseja alterar");
-				int classi =dados.nextInt();
-				jogo.setClassEtaria(classi);
-				break;
-			case 6:
-				System.out.println("idiomas");
-				//ALTERAR
-				String descriç =dados.nextLine();
-				jogo.setTitulo(descriç);
-				break;
-			case 7:
-				System.out.println("plataDisp");
-				//ALTERAR
-				String desci =dados.nextLine();
-				jogo.setTitulo(desci);
-				break;
-			case 8:
-				System.out.println("Modo de Ativacao");
-				//ALTERAR
-				String dscriç =dados.nextLine();
-				jogo.setTitulo(dscriç);
-				break;
-			default:
-				System.out.println("Opção invalida!");
-	}
-	}
-
-	@Override
-	public void excluirJogo() {
-		System.out.println("Insira o jogo que deseja excluir:");
-		String opcao= dados.nextLine();
-		boolean excluir= jogos.removeIf(jogo->jogo.getTitulo().equalsIgnoreCase(opcao));
-		
-		 if (excluir) {
-		        System.out.println("Jogo excluido com sucesso!");
-		    } else {
-		        System.out.println("Titulo invalido!");
-		    }
-		
-	}
-
-	@Override
-	public void pesquisarJogo() {
-		System.out.println("Deseja pesquisar o jogo pelo seu titulo ou pelo nome da empresa?");
-		System.out.println("1- Titulo\n2-Empresa");
-		int opcoes =dados.nextInt();
-		switch (opcoes) {
-		//FALTA EMPRESA
-			case 1:
-				System.out.println("Insira o titulo para pesquisa:");
-				String pesquisa = dados.nextLine().toLowerCase();
-				
-				ArrayList<String> resultado = new ArrayList<>();
-
-		        for (Jogo busca : jogos) {
-		            if (busca.getTitulo().toLowerCase().contains(pesquisa)) {
-		                resultado.add(busca);
-		            }
-		        }
-
-		        // Exibe o resultado
-		        //VER DIREITONHO 
-		        if (resultado.isEmpty()) {
-		            System.out.println("Nada encontrado sobre '" + pesquisa + "'.");
-		        } else {
-		            System.out.println("Jogos com o titulo " + pesquisa + ": " );
-		            
-		            resultado.sort(Comparator.comparing(jogo -> ((Jogo) jogo).getTitulo().toUpperCase()));
-;
-		            
-		            for(String j : resultado) {
-		    			System.out.println(j);
-		    		}
-
-		        }
-
-		}
-				
-				
-		
-		
-	}*/
 
 
 

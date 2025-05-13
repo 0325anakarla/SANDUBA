@@ -10,20 +10,24 @@ import funcionalidades.ControleDeJogos;
 import jogo.Jogo;
 
 public class TelaEmpresa {
-	Scanner sc = new Scanner(System.in);
-
-	VisualizacaoMenu menu = new VisualizacaoMenu();
-	ControleDeJogos controlJogos = new ControleDeJogos();
-	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
-	Menu menuOrigin = new Menu();
-
+	private Scanner sc;
+	private VisualizacaoMenu visualizacaoMenu;
+	private RepositorioJogoArrayList listJogos;
+	private ControleDeJogos controleJogos;
+	
+	public TelaEmpresa(Scanner sc, VisualizacaoMenu visualizacaoMenu, RepositorioJogoArrayList listJogos, ControleDeJogos controleJogos) {
+		this.sc = sc;
+		this.visualizacaoMenu = visualizacaoMenu;
+		this.listJogos = listJogos;
+		this.controleJogos = controleJogos;
+	}
 	
 	public void telaMinhaContaEmpresa(Empresa empresa){		
 		int opcao = 0;
 		
 		do {
 			
-			menu.telaMenuMcEmpresa();
+			visualizacaoMenu.telaMenuMcEmpresa();
 			
 			opcao = Integer.parseInt(sc.nextLine());
 			
@@ -33,22 +37,21 @@ public class TelaEmpresa {
 					System.out.println(empresa.mostrarDetalhesUsuario());
 					break;
 				case 2:
-					System.out.println("Mostra carteira digital e suas opções");
 					telaCarteiraDigital(empresa.getCarteiraDigital());
 					break;
 				case 3:
-					System.out.println("Jogos cadastrados");
-					controlJogos.ListJogosEmpresa(empresa);
+					System.out.println("\n╔══════════════════════════════╗");
+					System.out.println("║   🎮 JOGOS CADASTRADOS         ║");
+					System.out.println("╚══════════════════════════════╝");
+					controleJogos.ListJogosEmpresa(empresa);
 					break;
 				case 4:
-					System.out.println("\n╔═══════════════════════════════╗");
-					System.out.println("║       ➕ CADASTRAR JOGOS        ║");
-					System.out.println("╚═══════════════════════════════╝");
-
-					controlJogos.CadastrarJogos(empresa);
+					controleJogos.CadastrarJogos(empresa);
 					break;
 				case 5:
-					System.out.println("Resumo de vendas");
+					System.out.println("\n╔══════════════════════════════╗");
+					System.out.println("║     📊 RESUMO DE VENDAS        ║");
+					System.out.println("╚══════════════════════════════╝");
 					if (!empresa.getVendasPorJogo().isEmpty()) {
 						ResumoDeVendas.gerarResumoTotal(empresa.getVendasPorJogo());
 					} else {
@@ -70,7 +73,7 @@ public class TelaEmpresa {
 		
 		do {
 			
-			menu.telaMenuCdEmpresa(cdE);
+			visualizacaoMenu.telaMenuCdEmpresa(cdE);
 			
 			opcao = Integer.parseInt(sc.nextLine());
 			
@@ -85,10 +88,11 @@ public class TelaEmpresa {
 					
 					if(cdE.sacar(valor)) {
 						System.out.println("O valor retirado foi: "+valor+ ". Seu saldo é de:"+cdE.getSaldo());
-					} else {
+					}
+					
+					else {
 						System.out.println("Transação invalida.");
 					}
-					sc.nextLine();
 					break;
 				case 2:
 					System.out.println("Mostrar dados bancarios");
@@ -108,7 +112,7 @@ public class TelaEmpresa {
 	public void telaJogosCadastrados(Empresa empresa) {
 		int opcao = 0;
 		
-		menu.telaJogosCadastrados();
+		visualizacaoMenu.telaJogosCadastrados();
 		
 		do {
 			opcao = Integer.parseInt(sc.nextLine());
@@ -118,10 +122,10 @@ public class TelaEmpresa {
 					System.out.print("Digite o jogo que irar alterar:");
 					String titulo = sc.nextLine();
 					Jogo jogo = listJogos.procurarNome(titulo);
-					controlJogos.alterarDadosDosJogos(jogo);
+					controleJogos.alterarDadosDosJogos(jogo);
 					break;
 				case 2:
-					controlJogos.deletarJogo(empresa);
+					controleJogos.deletarJogo(empresa);
 					break;
 				case 3:
 					System.out.println("Voltar para minha conta");
