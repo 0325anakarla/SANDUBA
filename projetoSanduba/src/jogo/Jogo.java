@@ -1,19 +1,14 @@
 package jogo;
 
 import java.time.LocalDate;
-<<<<<<< HEAD
+
 
 import java.time.Period;
 
 import java.util.ArrayList;
 
 
-=======
-import java.time.format.DateTimeFormatter;
-import java.time.Period;
 
-import java.util.ArrayList;
->>>>>>> 5a4a0397feb0d9d462b6cbd13c360de12bbbb7e9
 import Pessoa.Empresa;
 import Pessoa.Adm;
 import TratamentoDeErro.DadoInvalidoException;
@@ -81,14 +76,21 @@ public class Jogo {
 	}
 
 	public double getPreco() {
+		if(descontoApli) {
+			precoDesconto();
+			
+		}
 		return preco;
 	}
 	
+	
 	public void precoDesconto() {
-		
-		
+        String precoCinza = "\033[37;2m" + precoModificador + "\033[0m";
+
+		System.out.println("/n!Jogo com desconto! de ~~"+precoCinza+"~~ para :");
 		
 	}
+	
 
 	public void setPreco(double preco) throws DadoInvalidoException {
 		if(preco <= 0) {
@@ -174,8 +176,9 @@ public class Jogo {
 		return precoModificador;
 	}
 	
-	public void setDescontoApli(boolean escolha) {
-		this.descontoApli=escolha;
+
+	public boolean isDescontoApli() {
+		return descontoApli;
 	}
 
 	public void mostrarDados() {
@@ -208,13 +211,9 @@ public class Jogo {
 		 if(desconto <=0 || desconto >= 100) {
 				throw new DadoInvalidoException("Desconto não pode ser negativo ou zerado");
 			}
-<<<<<<< HEAD
 		 setPreco( getPrecoModificador()-(getPrecoModificador()* desconto/100));
 		 descontoApli = true;
 		 
-=======
-		 setPreco( getPrecoModificador()-(getPrecoModificador()* desconto));
->>>>>>> 5a4a0397feb0d9d462b6cbd13c360de12bbbb7e9
 	}
 
 	
@@ -226,8 +225,6 @@ public class Jogo {
 	public int verAnosPassados() {
 		return  Period.between(this.dataDeLancamento, hoje).getYears();
 	}
-<<<<<<< HEAD
-	
 
 	public boolean aplicaDescontoDe(double desconto) {
 		if (desconto > 0) {
@@ -237,6 +234,5 @@ public class Jogo {
 			return false;
 		}
 	}
-=======
->>>>>>> 5a4a0397feb0d9d462b6cbd13c360de12bbbb7e9
+
 }

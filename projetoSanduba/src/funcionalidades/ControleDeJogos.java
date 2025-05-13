@@ -1,6 +1,7 @@
 package funcionalidades;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,6 +9,7 @@ import java.util.Scanner;
 import Console.VisualizacaoMenu;
 import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
+import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
@@ -15,7 +17,8 @@ import jogo.CategoriasJogos;
 import jogo.Jogo;
 
 public class ControleDeJogos{
-	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
+	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();
+	RepositorioUsuarioArrayList listEmpresa = new RepositorioUsuarioArrayList();
 	
 	VisualizacaoMenu menu = new VisualizacaoMenu();
 	
@@ -23,14 +26,17 @@ public class ControleDeJogos{
 	Scanner sc = new Scanner(System.in);
 	
 	// cadastrar Jogo
-	public void CadastrarJogos() throws DadoInvalidoException {
+	public void CadastrarJogos(Empresa empresa) throws DadoInvalidoException {
 		
 		boolean continuarCadastro = true;
+		DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String dataCadastro = LocalDate.now().format(formato);
+
 		
 		while(continuarCadastro) {
 			boolean dadosValidos = false;
 			
-			Jogo jogo = new Jogo(null, 0, null, null, 0, null, null, null, null, null);
+			Jogo jogo = new Jogo(null, 0, null, null, 0, null, null, null, empresa, null);
 			
 			do {
 				try {
@@ -63,7 +69,16 @@ public class ControleDeJogos{
 					System.out.println("Erro: "+ e.getMessage());
 				}
 			}while(!dadosValidos);
-			
+			System.out.println("==== TERMO DE ACEITE – CADASTRO DE JOGO ====");
+	        //queria colocar o nome da empresa aqui so pra ter um termo bunitinho na hora de concuir o jogo.
+	        System.out.println("Empresa: " + empresa.getRazaoSocial());
+	        System.out.println("Jogo: " + jogo.getTitulo());
+	        System.out.println("Data do Cadastro: " + dataCadastro);
+	        System.out.println(" Repasse de Percentual – Parte das vendas será destinada ao Sanduba.");
+	        System.out.println(" Exibição na Plataforma – O jogo seguirá padrões de qualidade.");
+	        System.out.println(" Condições de Remoção – A empresa deve comunicar previamente.");
+	        System.out.println(" Aceite e Validade – O cadastro só será confirmado com aceite.");
+			System.out.println();
 			System.out.println("Realmente deseja adicionar esse jogo?");
 			System.out.println("1. Sim");
 			System.out.println("2. Não");
@@ -102,6 +117,9 @@ public class ControleDeJogos{
 	
 			}
 	}
+	
+    
+
 	
 	//deletar jogo
 	public void deletarJogo(Empresa empresa) {
@@ -215,18 +233,27 @@ public class ControleDeJogos{
 
 		}catch(DadoNaoEncontradoException e) {
 			System.out.println("Erro:"+e.getMessage());
-			System.out.println("Nenhum jogo cadastrado pra essa empresa. Adicione um antes de tentar remover.");
+			System.out.println("Nenhum jogo cadastrado pra essa empresa.");
 		}
 	}
-<<<<<<< HEAD
+	
+	public void ListJogosComDesconto() {
+		List<Jogo> jogos = listJogos.jogosComDesconto();
+		
+		for(Jogo jogo : jogos) {
+			//chmar o mostrar dados basico do jogo
+			System.out.println(jogo.getTitulo());
+		}
+		
+	}
 
 
 	}
 
 
-=======
-}
->>>>>>> 5a4a0397feb0d9d462b6cbd13c360de12bbbb7e9
+
+
+
 	
 	//@Override
 	/*public void alterarDadosDoJogo(Jogo jogo) {

@@ -85,6 +85,17 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 		
 		else return resultados;
 	}
+	
+	public List<Jogo> jogosComDesconto(){
+		List<Jogo> resultados = new ArrayList<Jogo>();
+		
+		for(Jogo jogo : jogos) {
+			if(jogo.isDescontoApli()) {
+				resultados.add(jogo);
+			}
+		}
+		return resultados;
+	}
 
 	@Override
 	public List<Jogo> varrer() {

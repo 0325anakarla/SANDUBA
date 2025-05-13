@@ -2,6 +2,7 @@ package Console;
 
 import Financeiro.CarteiraDaEmpresa;
 import Financeiro.CarteiraDoCliente;
+import Pessoa.Adm;
 import jogo.Jogo;
 
 public class VisualizacaoMenu {
@@ -123,14 +124,10 @@ public class VisualizacaoMenu {
 	    System.out.println("╚════════════════════════════════════════╝");
 	    System.out.println();
 	    System.out.println("Selecione uma opção:");
-	    System.out.println("  [1] 🏷️ Ver Lista de Clientes cadastrados");
-	    System.out.println("  [2] 🏢 Ver Lista de Empresas cadastradas");
-	    System.out.println("  [3] 🧑‍💼 Cadastrar Cliente");
-	    System.out.println("  [4] 🏦 Cadastrar Empresa");
-	    System.out.println("  [5] 🎮 Ver todos os Jogos cadastrados");
-	    System.out.println("  [6] 💵 Cadastrar desconto anual");
-	    System.out.println("  [7] 📊 Resumo de vendas");
-	    System.out.println("  [8] ❌ Sair");
+	    System.out.println("  [1] 🧑‍ Gerenciar Cliente");
+	    System.out.println("  [2] 🏦 Gerenciar Empresas");
+	    System.out.println("  [3] 🎮 Gerenciar Jogos");;
+	    System.out.println("  [4] ❌ Sair");
 	    System.out.print("\nDigite a opção desejada: ");
 
 	}
@@ -150,6 +147,58 @@ public class VisualizacaoMenu {
 		System.out.println("  [7] 🕹️ Plataformas Disponíveis");
 		System.out.println("  [8] 📅 Data de Lançamento");
 		System.out.print("\nDigite a opção desejada: ");
+	}
+	
+	public void telaAdmGerenciarCliente(Adm adm) {
+		System.out.println("\n╔═══════════════════════════════════════╗");
+		System.out.println("║         👤 GERÊNCIA DE CLIENTES         ║");
+		System.out.println("╚══════════════════════════════════════╝");
+		System.out.println();
+		System.out.println(adm.getNome()+" você deseja:");
+		System.out.println("  [1] 👤 Ver lista de Clientes cadatrados.");
+		System.out.println("  [2] 👤 Informações detalhadas. ");
+		System.out.println("  [3] 👤 Aterar dados de um Clientes");
+		System.out.println("  [4] 👤 Remover uma conta.");
+		System.out.println("  [5] 👤 Buscar um Cliente.");
+		System.out.println("  [6] 🔙 Voltar para o menu. ");
+		
+		System.out.println("Escolha uma opção:");
+		
+	}
+	
+	public void telaAdmGerenciarEmpresa(Adm adm) {
+		System.out.println("\n╔══════════════════════════════════════╗");
+		System.out.println("║         🏦 GERÊNCIA DE EMPRESAS        ║");
+		System.out.println("╚══════════════════════════════════════╝");
+		System.out.println();
+		System.out.println(adm.getNome()+" oque você deseja:");
+		System.out.println("  [1] 🏦 Ver lista de Empresa cadatrados.");
+		System.out.println("  [2] 🏦 Informações detalhadas. ");
+		System.out.println("  [3] 🏦 Aterar dados de uma Empresa");
+		System.out.println("  [4] 🏦 Remover uma conta.");
+		System.out.println("  [5] 🏦 Buscar uma Empresa.");
+		System.out.println("  [6] 🔙 Voltar para o menu. ");
+		
+		System.out.println("Escolha uma opção:");
+	}
+	
+	public void telaAdmGerenciarJogo(Adm adm) {
+		System.out.println("\n╔════════════════════════════════════╗");
+		System.out.println("║         🎮 GERÊNCIA DE JOGOS         ║");
+		System.out.println("╚═════════════════════════════════════╝");
+		System.out.println();
+		System.out.println(adm.getNome()+" você deseja:");
+		System.out.println("  [1] 🎮 Lista de Jogos Cadatrados.");
+		System.out.println("  [2] 🎮 Cadastrar novo Jogo.");
+		System.out.println("  [3] 🎮 Alterar dados de um jogo.");
+		System.out.println("  [4] 🎮 Deletar jogo.");
+		System.out.println("  [5] 🎮 Informações detalhada de um jogos.");
+		
+		System.out.println("  [6] 📊 Resumo de vendas");
+		
+		System.out.println("  [7 ] 🔙 Voltar para o menu. ");
+		
+		System.out.println("Escolha uma opção:");
 	}
 
 	

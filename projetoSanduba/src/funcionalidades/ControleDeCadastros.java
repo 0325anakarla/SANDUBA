@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import Console.Menu;
+import Financeiro.DadosBancarios;
 import Pessoa.Cliente;
 import Pessoa.Empresa;
 import Repositorio.RepositorioUsuarioArrayList;
@@ -35,15 +36,7 @@ public class ControleDeCadastros {
 
 			do {
 				try {
-<<<<<<< HEAD
-					System.out.println("\n╔══════════════════════════════════════╗");
-					System.out.println("║         👤 CADASTRO DE CLIENTE         ║");
-					System.out.println("╚══════════════════════════════════════╝");
-					System.out.println();
 
-					System.out.println("\n->Preencha todos os campos\n");
-=======
->>>>>>> 5a4a0397feb0d9d462b6cbd13c360de12bbbb7e9
 
 					System.out.println("\n╔════════════════════════════════════════════════════╗");
 					System.out.println("║        🧾 CADASTRO DE CLIENTE - PREENCHA OS DADOS   ║");
@@ -133,6 +126,7 @@ public class ControleDeCadastros {
 		
 		//nome  email  senha RazaoS cpnj endereco  dados bancarios (para n esquecer nada)
 		Empresa empresa = new Empresa(null, null, null, null, null, null, null);
+		DadosBancarios dadosEmpresa = new DadosBancarios(null, null, null, 0, 0);
 		int tentativas = 0;
 		
 		do {
@@ -152,7 +146,7 @@ public class ControleDeCadastros {
 				empresa.setSenha(sc.nextLine());
 				
 				System.out.print("🧍 Razão Social: ");
-				empresa.setNome(sc.nextLine());
+				empresa.setRazaoSocial(sc.nextLine());
 				
 				while (tentativas < 3) {
 					System.out.print("🪪 CNPJ - (14 dígitos): ");
@@ -177,13 +171,36 @@ public class ControleDeCadastros {
 				}
 				
 				System.out.print("📍 Endereco: ");
-				empresa.setNome(sc.nextLine());
+				empresa.setEndereco(sc.nextLine());
+				System.out.println();
 				
 			//DADOS BANCARIOS -
+//				private String titularConta;
+//				private String nomeBanco;
+//				private String tipoConta; // conta correntem, poupanca , pj...etc
+//				private int agencia;
+//				private int numeroConta;
 				
-				System.out.println("\n╔════════════════════╗");
-				System.out.println("║   🏦 DADOS BANCARIOS   ║");
-				System.out.println("╚══════════════════════╝");	
+				System.out.println("\n╔═══════════════════════════════════════════╗");
+				System.out.println("║   🏦 DADOS BANCARIOS - PREENCHA OS DADOS   ║");
+				System.out.println("╚═══════════════════════════════════════════╝");	
+				
+				System.out.println();
+				System.out.print(" Titular da conta: ");
+				dadosEmpresa.setTitularConta(sc.nextLine());
+				System.out.print("Nome do banco: ");
+				dadosEmpresa.setNomeBanco(sc.nextLine());
+				
+				System.out.println("Tipo de Conta. (ex: Conta Corrente, poupança, pj....):");
+				dadosEmpresa.setTipoConta(sc.nextLine());
+				System.out.print("Número da agência: ");
+				dadosEmpresa.setAgencia(sc.nextInt());
+				
+				System.out.println("Nùmero da Conta: ");
+				dadosEmpresa.setNumeroConta(sc.nextInt());
+				
+				empresa.setBancoEmpresa(dadosEmpresa);
+				
 				
 
 			} catch(DadoInvalidoException e) {
