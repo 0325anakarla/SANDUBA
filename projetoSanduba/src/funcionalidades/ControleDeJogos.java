@@ -14,7 +14,7 @@ import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
-import jogo.Jogo;
+import jogo.*;
 
 public class ControleDeJogos{
 	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();
@@ -37,7 +37,7 @@ public class ControleDeJogos{
 			boolean dadosValidos = false;
 			
 
-			Jogo jogo = new Jogo(null, 0, null, new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), 0, null, null, null);
+			Jogo jogo = new Jogo(null, 0, null, new ArrayList<CategoriasJogos>(), new ArrayList<Idiomas>(), new ArrayList<PlataformasDisponiveis>(), null, null, null, null);
 
 			
 			do {
@@ -57,18 +57,357 @@ public class ControleDeJogos{
 
 					System.out.print("🗒️ Descrição: ");
 					jogo.setDescricao(sc.nextLine());
-					
-					//a parte de categoria eu nao entendi como funciona vai ficar sem por enquanto
-					
-					System.out.print("🔞 Classificação etária: ");
-					jogo.setClassEtaria(sc.nextInt());
-					sc.nextLine();
 
-					System.out.print("🗣️ Idiomas disponíveis: ");
-					//jogo.setIdiomas(sc.nextLine());
+					System.out.println("🏷️ Escolha as Categorias:");
+					CategoriasJogos.imprimeCategorias();
+					ArrayList<CategoriasJogos> categoriasEscolhidas = new ArrayList<>();
+					while (true){
+						Integer categoriaEscolhida = sc.nextInt();
+						switch (categoriaEscolhida){
+							case 1 :
+								if  (!categoriasEscolhidas.contains(CategoriasJogos.RPG)){
+									categoriasEscolhidas.add(CategoriasJogos.RPG);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 2 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.AVENTURA)){
+									categoriasEscolhidas.add(CategoriasJogos.AVENTURA);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 3 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.ACAO)){
+									categoriasEscolhidas.add(CategoriasJogos.ACAO);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 4 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.HORROR)){
+									categoriasEscolhidas.add(CategoriasJogos.HORROR);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 5 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.MUNDOABERTO)){
+									categoriasEscolhidas.add(CategoriasJogos.MUNDOABERTO);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 6 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.TIRO)){
+									categoriasEscolhidas.add(CategoriasJogos.TIRO);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 7 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.PRIMEIRAPESSOA)){
+									categoriasEscolhidas.add(CategoriasJogos.PRIMEIRAPESSOA);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 8 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.TERCEIRAPESSOA)){
+									categoriasEscolhidas.add(CategoriasJogos.TERCEIRAPESSOA);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 9 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.PUZZLE)){
+									categoriasEscolhidas.add(CategoriasJogos.PUZZLE);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 10 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.TURNO)){
+									categoriasEscolhidas.add(CategoriasJogos.TURNO);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 11 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.ESPORTE)){
+									categoriasEscolhidas.add(CategoriasJogos.ESPORTE);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 12 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.LUTA)){
+									categoriasEscolhidas.add(CategoriasJogos.LUTA);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 13 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.FANTASIA)){
+									categoriasEscolhidas.add(CategoriasJogos.FANTASIA);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 14 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.CONSTRUCAO)){
+									categoriasEscolhidas.add(CategoriasJogos.CONSTRUCAO);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 15 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.RITMO)){
+									categoriasEscolhidas.add(CategoriasJogos.RITMO);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							case 16 :
+								if (!categoriasEscolhidas.contains(CategoriasJogos.BATTLEROYALE)){
+									categoriasEscolhidas.add(CategoriasJogos.BATTLEROYALE);
+								} else {
+									System.out.println("Categoria já escolhida.");
+								}
+								break;
+
+							default : System.out.println("Opção Inválida.");
+						}
+						System.out.println("");
+						System.out.println("Deseja adicionar mais categorias?");
+						System.out.println("1: SIM" + "-" + "2: NÃO");
+						int add1 = sc.nextInt();
+						if(add1 == 2){
+							break;
+						}
+					}
+					jogo.setCategoriasValidas(categoriasEscolhidas);
+
+					System.out.print("🗣️ Escolha os Idiomas Disponíveis: ");
+					Idiomas.imprimeIdiomas();
+					ArrayList<Idiomas> idiomasEscolhidos = new ArrayList<>();
+					while (true){
+						Integer idiomaEscolhido = sc.nextInt();
+						switch (idiomaEscolhido){
+							case 1 :
+								if  (!idiomasEscolhidos.contains(Idiomas.INGLES)){
+									idiomasEscolhidos.add(Idiomas.INGLES);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							case 2 :
+								if (!idiomasEscolhidos.contains(Idiomas.ESPANHOL)){
+									idiomasEscolhidos.add(Idiomas.ESPANHOL);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							case 3 :
+								if (!idiomasEscolhidos.contains(Idiomas.ALEMAO)){
+									idiomasEscolhidos.add(Idiomas.ALEMAO);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							case 4 :
+								if (!idiomasEscolhidos.contains(Idiomas.FRANCES)){
+									idiomasEscolhidos.add(Idiomas.FRANCES);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							case 5 :
+								if (!idiomasEscolhidos.contains(Idiomas.RUSSO)){
+									idiomasEscolhidos.add(Idiomas.RUSSO);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							case 6 :
+								if (!idiomasEscolhidos.contains(Idiomas.CHINES)){
+									idiomasEscolhidos.add(Idiomas.CHINES);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							case 7 :
+								if (!idiomasEscolhidos.contains(Idiomas.PORTUGUES)){
+									idiomasEscolhidos.add(Idiomas.PORTUGUES);
+								} else {
+									System.out.println("Idioma já escolhido.");
+								}
+								break;
+
+							default : System.out.println("Opção Inválida.");
+						}
+						System.out.println("");
+						System.out.println("Deseja adicionar mais idiomas?");
+						System.out.println("1: SIM" + "-" + "2: NÃO");
+						int add2 = sc.nextInt();
+						if(add2 == 2){
+							break;
+						}
+					}
+					jogo.setIdiomas(idiomasEscolhidos);
+
+					System.out.print("🎮 Escolha as Plataformas Disponíveis: ");
+					PlataformasDisponiveis.imprimePlataformas();
+					ArrayList<PlataformasDisponiveis> plataformasEscolhidas = new ArrayList<>();
+					while (true){
+						Integer plataformaEscolhida = sc.nextInt();
+						switch (plataformaEscolhida){
+							case 1 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.XBOX)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.XBOX);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 2 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.XBOX1)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.XBOX1);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 3 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.PS4)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.PS4);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 4 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.PS5)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.PS5);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 5 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.NINTENDO)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.NINTENDO);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 6 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.WINDOWS)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.WINDOWS);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 7 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.MACOS)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.MACOS);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 8 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.IOS)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.IOS);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 9 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.LINUX)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.LINUX);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							case 10 :
+								if  (!plataformasEscolhidas.contains(PlataformasDisponiveis.ANDROID)){
+									plataformasEscolhidas.add(PlataformasDisponiveis.ANDROID);
+								} else {
+									System.out.println("Plataforma já escolhida.");
+								}
+								break;
+
+							default : System.out.println("Opção Inválida.");
+						}
+						System.out.println("");
+						System.out.println("Deseja adicionar mais plaformas?");
+						System.out.println("1: SIM" + "-" + "2: NÃO");
+						int add2 = sc.nextInt();
+						if(add2 == 2){
+							break;
+						}
+					}
+					jogo.setPlataformasValidas(plataformasEscolhidas);
+					
+					System.out.print("🔞 Escolha a Classificação Indicativa: ");
+					ClassificacaoIndicativa.imprimeClassificacoes();
+					while(true){
+						Integer classIndEscolhida = sc.nextInt();
+						switch (classIndEscolhida) {
+						case 1:
+							jogo.setClassIndicativa(ClassificacaoIndicativa.LIVRE);
+							break;
+						case 2:
+							jogo.setClassIndicativa(ClassificacaoIndicativa.ANOS10);
+							break;
+						case 3:
+							jogo.setClassIndicativa(ClassificacaoIndicativa.ANOS12);
+							break;
+						case 4:
+							jogo.setClassIndicativa(ClassificacaoIndicativa.ANOS14);
+							break;
+						case 5:
+							jogo.setClassIndicativa(ClassificacaoIndicativa.ANOS16);
+							break;
+						case 6:
+							jogo.setClassIndicativa(ClassificacaoIndicativa.ANOS18);
+							break;
+						default:
+							System.out.println("Opção inválida, escolha novamente:");
+						}
+						if(classIndEscolhida >= 1 && classIndEscolhida <= 6){
+							break;
+						}
+					}
 
 					System.out.print("🕹️ Plataformas disponíveis: ");
-					//jogo.setPlataDisp(sc.nextLine());
 
 					dadosValidos = true;
 					

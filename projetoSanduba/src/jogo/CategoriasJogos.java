@@ -5,8 +5,6 @@ public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 	RPG("Role Playing Game"),
 	AVENTURA("Aventura"),
 	ACAO("Ação"),
-	PLATAFORMA("Plataforma"),
-	CORRIDA("Corrida"),
 	HORROR("Horror"),
 	MUNDOABERTO("Mundo Aberto"),
 	TIRO("Tiro"),
@@ -14,16 +12,10 @@ public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 	TERCEIRAPESSOA("Terceira Pessoa"),
 	PUZZLE("Puzzle"),
 	TURNO("Turno"),
-	ROGUELIKE("Rogue Like"),
 	ESPORTE("Esporte"),
-	SIMULACAO("Simulação"),
 	LUTA("Luta"),
 	FANTASIA("Fantasia"),
-	MMO("MMO"),
-	MOBA("MOBA"),
 	CONSTRUCAO("Construção"),
-	TABULEIRO("Tabuleiro"),
-	CASUAL("Casual"),
 	RITMO("Ritmo"),
 	BATTLEROYALE("Battle Royale");
 
@@ -38,10 +30,16 @@ public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 	}
 
 	public static void imprimeCategorias() {
-		int i = 1;
-		for (CategoriasJogos categoria : CategoriasJogos.values()) {
-			System.out.println(i + ": " + categoria.getCategoria());
-			i++;
+		CategoriasJogos[] cateogorias = CategoriasJogos.values();
+		for (int i = 0; i < cateogorias.length; i += 2) {
+
+			System.out.print(i + ": " + cateogorias[i].getCategoria());
+
+			if (i + 1 < cateogorias.length) {
+				System.out.print(" | " + (i + 1) + ": " + cateogorias[i + 1].getCategoria());
+			}
+
+			System.out.println();
 		}
 	}
 }
