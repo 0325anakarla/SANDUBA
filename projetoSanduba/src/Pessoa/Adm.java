@@ -76,6 +76,12 @@ public class Adm extends Usuarios{
         }
 
 	}
+
+	@Override
+	public String mostrarDetalhesUsuario() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 	public void empresasCadastradas() throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuario.getTipo(Empresa.class)) {
@@ -113,20 +119,5 @@ public class Adm extends Usuarios{
 			Empresa empresa = (Empresa) empresas;
 			System.out.println(empresa.mostrarDetalhesUsuario());
 		}
-	}
-	
-	
-	
-
-
-	@Override
-	public String mostrarDetalhesUsuario() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	
-	
-	
-	
+	}	
 }

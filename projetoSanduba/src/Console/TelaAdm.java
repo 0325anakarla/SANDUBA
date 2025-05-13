@@ -11,20 +11,20 @@ import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
-import funcionalidades.ControleDeCadastros;
+
 import funcionalidades.ControleDeJogos;
 
 public class TelaAdm {
 	Scanner sc = new Scanner(System.in);
 
-	
+
 	VisualizacaoMenu menu = new VisualizacaoMenu();
-	
 	Adm adm = Adm.getInstancia(null, null, null);
 	
 	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();
 	public RepositorioUsuarioArrayList listUsuario = new RepositorioUsuarioArrayList();
 	private ControleDeJogos cJ;
+
 	
 	public void exibirMenuAdm() throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {
 		

@@ -16,7 +16,7 @@ import verAdm.Scanner;
 
 public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, RepositorioUsuario {
 
-    private static List<Usuarios> usuarios = new ArrayList<>(); //Vai armazenar os Usuarios na list
+
     private static RepositorioUsuarioArrayList instance; // eh o singleton
     Scanner sc = new Scanner(System.in);
     
@@ -32,6 +32,9 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
     	}
         return instance;
     }
+
+    private final List<Usuarios> usuarios = new ArrayList<>(); //Vai armazenar os Usuarios na list
+
     
 	@Override
 	public void add(Usuarios addUsuario) {
@@ -228,13 +231,10 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 		return null;
 	}
 
-	
-	
 	@Override
 	public List<Usuarios> varrer() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 
 }

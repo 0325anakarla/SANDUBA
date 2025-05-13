@@ -1,25 +1,31 @@
 package Console;
 import java.util.Scanner;
 
+import Pessoa.Cliente;
+import Pessoa.Empresa;
 import Pessoa.Usuarios;
 import Repositorio.RepositorioUsuarioArrayList;
+import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.ControleDeCadastros;
 
 public class Menu {
 	// - parte burocratica de chamar as funcoes -//
-	private static Scanner sc = new Scanner(System.in);
+	private static Scanner sc;
+	private final RepositorioUsuarioArrayList repositorio;
+	private final ControleDeCadastros controleCadastros;
+	private TelaCliente telaCliente;
+	private TelaEmpresa telaEmpresa;
 	
-	private RepositorioUsuarioArrayList repositorio;
-	private static ControleDeCadastros controle;
-
-	final ControleDeCadastros novoCada = new ControleDeCadastros();
-	
-	public Menu() {
-		this.repositorio = RepositorioUsuarioArrayList.getInstance();
-
+	public Menu(Scanner sc, RepositorioUsuarioArrayList repositorio, ControleDeCadastros controleCadastros, TelaCliente telaCliente, TelaEmpresa telaEmpresa) {
+		this.sc = sc;
+		this.repositorio = repositorio;
+		this.controleCadastros = controleCadastros;
+		this.telaCliente = telaCliente;
+		this.telaEmpresa = telaEmpresa;
 	}
 	
-	public static void start() {
+	
+	public void start(){
 		
 	    System.out.println("\n╔══════════════════════════════════════╗");
 	    System.out.println("║       🥪 BEM-VINDO AO SANDUBA!       ║");
@@ -33,9 +39,9 @@ public class Menu {
 	    System.out.print("\nDigite a opção desejada: ");
 
 
-	int num = sc.nextInt();
+	int choice = sc.nextInt();
 
-	switch (num) {
+	switch (choice) {
 
 	case 1:
 		cadastroUsuario();
@@ -45,20 +51,19 @@ public class Menu {
 		loginUsuario();
 		break;
 	case 3:
-		
+
 		System.out.println("Obrigado por utilizar o Sanduba Deus te abencoe");
 		
 		System.out.print("\n[1]-  Voltar.. \nResposta:");
-		int num1 = sc.nextInt();
-		switch(num1) {
+		int choice2 = sc.nextInt();
 		
-			case 1: 
-				start();
-				break;
-			default:
-				System.out.println("Opcao invalida. Digite novamente");
-		}
-
+			switch(choice2) {
+				case 1: 
+					start();
+					break;
+				default:
+					System.out.println("Opcao invalida. Digite novamente");
+			}
 		break;
 	case 0:
 		System.out.println("Saindo...");
@@ -68,50 +73,66 @@ public class Menu {
 	}
 }
 
-	public static void loginUsuario() throws IllegalArgumentException {
-		
-		Usuarios usuarioLogin = null;
-		boolean logado = false;
-		int tentativa =0;
-		
-		while(!logado && tentativa < 3) {
-			
-			System.out.println("\n╔══════════════════════════════════════╗");
-			System.out.println("║          🔐 DIGITE SEU LOGIN         ║");
-			System.out.println("╚══════════════════════════════════════╝");
-			System.out.println("");
-			System.out.print("  📧 Email: ");
-			String email = sc.nextLine();
-			System.out.println("");
-			System.out.print("  🔒 Senha: ");
-			String senha = sc.nextLine();
-			//usuarioLogin = ServicoGeral.login(email, senha, repositorio);
+	public void loginUsuario() {
 
-			if (usuarioLogin != null) {
-				logado = true;
-			    System.out.println("Login realizado com sucesso! Bem-vindo(a), " + usuarioLogin.getNome());
-			   
-			    /* if() {
-			    	// se for cliente tela do client
-			    }
-			    if else(){
-			    	// se for empresa tela da empresa
-			    }
-			    else {
-			    	// se for adm tela do adm
-			    }
-			    */
-			    	
-			} else {
-			    System.out.println("Email ou senha incorretos.");
-			    tentativa ++;
-			    break;
-			}
+		    Usuarios usuarioLogin = null;
+		    boolean logado = false;
+		    int tentativas = 0;
+		 
+		    while (!logado && tentativas < 3) {
+		        try {
+		            System.out.println("\n╔══════════════════════════════════════╗");
+		            System.out.println("║          🔐 DIGITE SEU LOGIN         ║");
+		            System.out.println("╚══════════════════════════════════════╝");
+
+		            if (tentativas == 0) {
+		                sc.nextLine();
+		            }
+		            
+		            System.out.print("\n📧 Email: ");
+		            String email = sc.nextLine().trim();
+		            
+		            System.out.print("\n🔒 Senha: ");
+		            String senha = sc.nextLine().trim();
+
+		            usuarioLogin = repositorio.procurarEmail(email);
+		            
+		            if (usuarioLogin != null) {
+		                if (usuarioLogin.getSenha().equals(senha)) {
+		                    logado = true;
+		                    System.out.println("\n╔══════════════════════════════════════╗");
+		                    System.out.println("║      ✅ LOGIN REALIZADO COM SUCESSO  ║");
+		                    System.out.println("╚══════════════════════════════════════╝");
+		                    System.out.println("\nBem-vindo(a), " + usuarioLogin.getNome() + "!");
+		                    
+		                    if (usuarioLogin instanceof Cliente) {
+		                        telaCliente.telaMinhaContaCliente((Cliente)usuarioLogin);
+		                    } 
+		                    else if (usuarioLogin instanceof Empresa) {
+		                        telaEmpresa.telaMinhaContaEmpresa((Empresa) usuarioLogin);
+		                    }
+		                    
+		                   else {
+		                        System.out.println("PARTE DO ADMMM");
+		                    }
+		                }   
+		            }
+		        } catch (DadoInvalidoException e) {
+		            System.out.println("\n⚠️ Erro: " + e.getMessage());
+		        } catch (Exception e) {
+		            System.out.println("\n⚠️ Ocorreu um erro inesperado: " + e.getMessage());
+		            tentativas++;
+		        }
+		    }
+		    
+		    // Caso exceda as tentativas
+		    if (!logado) {
+		        System.out.println("\n⚠️ Número máximo de tentativas atingido. Voltando ao menu principal...");
+		        start();
+		    }
+		}
 	
-	}
-	}
-	
-	public static void cadastroUsuario() {
+	public void cadastroUsuario() {
 		System.out.println("\n╔══════════════════════════════════════╗");
 		System.out.println("║          🆕 CRIE SUA CONTA          ║");
 		System.out.println("╚══════════════════════════════════════╝");
@@ -122,14 +143,14 @@ public class Menu {
 		System.out.println("  [0] ❌ Voltar");
 		System.out.print("\nDigite a opção desejada: ");
 
-		int choice = sc.nextInt();
+		int choice3 = sc.nextInt();
 
-		switch(choice) {
+		switch(choice3) {
 		    case 1:
-		        controle.CadastrarClientes();
+		    	controleCadastros.CadastrarClientes();
 		        break;
 		    case 2:
-		        controle.CadastrarEmpresa();
+		    	controleCadastros.CadastrarEmpresa();
 		        break;
 		    case 0: 
 		        System.out.println("Voltando...");

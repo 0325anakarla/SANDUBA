@@ -1,7 +1,7 @@
 package jogo;
 
 import java.text.Normalizer;
-import java.util.ArrayList;
+import java.util.*;
 
 public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 
@@ -40,25 +40,11 @@ public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 		return this.categoria; // isso aqui é so pra imprimir a categoria bonitinho
 	}
 
+	ArrayList<CategoriasJogos> categoriasJogos = new ArrayList<CategoriasJogos>(List.of(CategoriasJogos.values()));
+
 	public void imprimeCategorias() {
-		CategoriasJogos[] categorias  =  CategoriasJogos.values();
-		for (CategoriasJogos categoria : categorias) {
+		for (CategoriasJogos categoria : categoriasJogos) {
 			System.out.println(categoria.getCategoria());
 		}
 	}
-
-	//versao mais legivel do metodo para converter as strings
-	public static ArrayList<String> converteArrayListString(ArrayList<String> categoriasIvn){
-
-		ArrayList<String> categoriasVal =  new ArrayList<String>(categoriasIvn.size());
-
-		for(int i = 0; i < categoriasIvn.size(); i++){
-			// Pega cada  string escrito e retira acentuação, limpa acentos, retira espaço entre palavras e dos lados e deixa tudo maisculo
-			categoriasVal.add(i, Normalizer.normalize(categoriasIvn.get(i).trim().toUpperCase(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "").replaceAll("\\s+", "") );
-		}
-
-		return categoriasVal;
-	}
-	// no final as entradas vao ficar todas no padrao do Enum, por exemplo:
-	// entrada: "construção "; após a conversão: "CONSTRUCAO"
 }

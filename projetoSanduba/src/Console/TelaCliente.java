@@ -8,9 +8,9 @@ import Pessoa.Cliente;
 import jogo.Jogo;
 
 public class TelaCliente {
-	
-	Scanner sc = new Scanner(System.in);
+
 	VisualizacaoMenu menu = new VisualizacaoMenu();
+	Scanner sc = new Scanner(System.in);
 	
 	public void telaMinhaContaCliente(Cliente cliente) {
 		int opcao = 0;
@@ -23,11 +23,12 @@ public class TelaCliente {
 			
 			switch(opcao) {
 				case 1:
-					System.out.println("Mostra informaçoes pessoais");
+					System.out.println("\n╔═══════════════════════════╗");
+					System.out.println("║    🧑‍💻 INFORMAÇÕES PESSOAIS ║");
+					System.out.println("╚══════════════════════════════╝");
 					System.out.println(cliente.mostrarDetalhesUsuario());
 					break;
 				case 2:
-					System.out.println("Mostra carteira digital e suas opções");
 					if (cliente.getCarteiraDigital() != null) {
 						telaCarteiraDigital(cliente.getCarteiraDigital());
 					} else {
@@ -35,7 +36,9 @@ public class TelaCliente {
 					}
 					break;
 				case 3:
-					System.out.println("Mostra seus jogos");
+					System.out.println("\n╔══════════════════════════════╗");
+					System.out.println("║          🎮 MEUS JOGOS         ║");
+					System.out.println("╚══════════════════════════════╝");
 					if (!cliente.getJogosAdquiridos().isEmpty()) {
 						for (Jogo jogo : cliente.getJogosAdquiridos()) {
 							System.out.println(jogo.getTitulo());
@@ -45,11 +48,14 @@ public class TelaCliente {
 					}
 					break;
 				case 4:
-					System.out.println("Mostra a lista de desejos");
-					//list para jogos desejados
+					System.out.println("\n╔══════════════════════════════╗");
+					System.out.println("║       💖 LISTA DE DESEJOS      ║");
+					System.out.println("╚══════════════════════════════╝");
 					break;
 				case 5:
-					System.out.println("mostra historico de pedidos");
+					System.out.println("\n╔══════════════════════════════╗");
+					System.out.println("║   📜 HISTÓRICO DE PEDIDOS      ║");
+					System.out.println("╚══════════════════════════════╝");
 					if (!cliente.getHistorico().isEmpty()) {
 						for (RegistroDeCompras registro : cliente.getHistorico()) {
 							System.out.println(registro.toString()+"\n");
@@ -84,8 +90,11 @@ public class TelaCliente {
 				case 1:
 					double valor =0;
 					
-					System.out.println("Depositar");
-					System.out.println("Qual valor vai depositar: ");
+					System.out.println("\n╔══════════════════════════════╗");
+					System.out.println("║         ➕ DEPÓSITO           ║");
+					System.out.println("╚══════════════════════════════╝");
+
+					System.out.print("Qual valor vai depositar:");
 					
 					valor = sc.nextDouble();
 					
@@ -98,8 +107,9 @@ public class TelaCliente {
 					}
 					break;
 				case 2:
-					System.out.println("Cartoes cadastrados");
-					//criar list para todos os cartoes cadastrados
+					System.out.println("\n╔══════════════════════════════╗");
+					System.out.println("║     💳 CARTÕES CADASTRADOS     ║");
+					System.out.println("╚══════════════════════════════╝");
 					break;
 				case 3:
 					System.out.println("Voltar para minha conta");
