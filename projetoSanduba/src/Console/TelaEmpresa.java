@@ -11,6 +11,7 @@ import funcionalidades.ControleDeJogos;
 import jogo.Jogo;
 
 public class TelaEmpresa {
+<<<<<<< HEAD
 	Scanner sc = new Scanner(System.in);
 
 	VisualizacaoMenu menu = new VisualizacaoMenu();
@@ -20,15 +21,26 @@ public class TelaEmpresa {
 	Empresa empresa = new Empresa(null, null, null, null, null, null, null);
 	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
 
+=======
+	private Scanner sc;
+	private VisualizacaoMenu visualizacaoMenu;
+	private RepositorioJogoArrayList listJogos;
+	private ControleDeJogos controleJogos;
+>>>>>>> 7752f138a2c7ce56fe2a872959b1bd0bc394abc1
 	
-
+	public TelaEmpresa(Scanner sc, VisualizacaoMenu visualizacaoMenu, RepositorioJogoArrayList listJogos, ControleDeJogos controleJogos) {
+		this.sc = sc;
+		this.visualizacaoMenu = visualizacaoMenu;
+		this.listJogos = listJogos;
+		this.controleJogos = controleJogos;
+	}
 	
 	public void telaMinhaContaEmpresa(Empresa empresa){		
 		int opcao = 0;
 		
 		do {
 			
-			menu.telaMenuMcEmpresa();
+			visualizacaoMenu.telaMenuMcEmpresa();
 			
 			opcao = Integer.parseInt(sc.nextLine());
 			
@@ -44,10 +56,10 @@ public class TelaEmpresa {
 					System.out.println("\n╔══════════════════════════════╗");
 					System.out.println("║   🎮 JOGOS CADASTRADOS         ║");
 					System.out.println("╚══════════════════════════════╝");
-					controlJogos.ListJogosEmpresa(empresa);
+					controleJogos.ListJogosEmpresa(empresa);
 					break;
 				case 4:
-					controlJogos.CadastrarJogos(empresa);
+					controleJogos.CadastrarJogos(empresa);
 					break;
 				case 5:
 					System.out.println("\n╔══════════════════════════════╗");
@@ -74,7 +86,7 @@ public class TelaEmpresa {
 		
 		do {
 			
-			menu.telaMenuCdEmpresa(cdE);
+			visualizacaoMenu.telaMenuCdEmpresa(cdE);
 			
 			opcao = Integer.parseInt(sc.nextLine());
 			
@@ -113,7 +125,7 @@ public class TelaEmpresa {
 	public void telaJogosCadastrados(Empresa empresa) {
 		int opcao = 0;
 		
-		menu.telaJogosCadastrados();
+		visualizacaoMenu.telaJogosCadastrados();
 		
 		do {
 			opcao = Integer.parseInt(sc.nextLine());
@@ -123,10 +135,10 @@ public class TelaEmpresa {
 					System.out.print("Digite o jogo que irar alterar:");
 					String titulo = sc.nextLine();
 					Jogo jogo = listJogos.procurarNome(titulo);
-					controlJogos.alterarDadosDosJogos(jogo);
+					controleJogos.alterarDadosDosJogos(jogo);
 					break;
 				case 2:
-					controlJogos.deletarJogo(empresa);
+					controleJogos.deletarJogo(empresa);
 					break;
 				case 3:
 					System.out.println("Voltar para minha conta");

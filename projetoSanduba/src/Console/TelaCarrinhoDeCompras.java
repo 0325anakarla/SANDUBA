@@ -8,13 +8,28 @@ import Repositorio.RepositorioJogoArrayList;
 import jogo.Jogo;
 
 public class TelaCarrinhoDeCompras {
+	private Scanner sc;
+	private CarrinhoDeCompras carrinho;
+	private RepositorioJogoArrayList listJogos;
+	private BibliotecaJogos bibJogos;
+	private TelaCliente telaCliente;
 	
+<<<<<<< HEAD
 	CarrinhoDeCompras carCompras = new CarrinhoDeCompras();
 	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
 	Scanner sc = new Scanner(System.in);
 	BibliotecaJogos bibJogos = new BibliotecaJogos();
 	TelaCliente minhaConta = new TelaCliente();
 
+=======
+	public TelaCarrinhoDeCompras(Scanner sc, CarrinhoDeCompras carrinho, RepositorioJogoArrayList listJogos, BibliotecaJogos bibJogos, TelaCliente telaCliente) {
+		this.sc = sc;
+		this.carrinho = carrinho;
+		this.listJogos = listJogos;
+		this.bibJogos = bibJogos;
+		this.telaCliente = telaCliente;
+	}
+>>>>>>> 7752f138a2c7ce56fe2a872959b1bd0bc394abc1
 	
 	public void CarrinhoDeCompras() {
 		
@@ -22,7 +37,7 @@ public class TelaCarrinhoDeCompras {
 		System.out.println("║          🛒 CARRINHO DE COMPRAS          ║");
 		System.out.println("╚════════════════════════════════════════╝");
 		
-		carCompras.imprimirCarrinho();
+		carrinho.imprimirCarrinho();
 		
 		System.out.println("Escolha uma opção:");
 		System.out.println("  [1] ❌ Remover item do carrinho");
@@ -38,7 +53,7 @@ public class TelaCarrinhoDeCompras {
 					System.out.println("Qual jogo deseja remover.");
 					//duvida sobre isso (Ana alice)
 					Jogo resultado = listJogos.procurarNome(sc.nextLine());
-					carCompras.remove(resultado);
+					carrinho.remove(resultado);
 					System.out.println("O jogo "+ resultado.getTitulo()+" foi removido.");
 					System.out.println("Deseja remover mais algum jogo?");
 					System.out.println("1️⃣  Sim");
@@ -48,7 +63,7 @@ public class TelaCarrinhoDeCompras {
 				} while(subOpcao != 2); 
 				break;
 			case 2:
-				carCompras.finalizarCompra(null);
+				carrinho.finalizarCompra(null);
 				System.out.println("Compra finalizada com sucesso.");
 				break;
 			case 3:
@@ -70,7 +85,7 @@ public class TelaCarrinhoDeCompras {
 				bibJogos.Biblioteca();
 				break;
 			case 2:
-				minhaConta.telaMinhaContaCliente(null);
+				telaCliente.telaMinhaContaCliente(null);
 				break;
 			default:
 				System.out.println("⚠️ Opção inválida.");

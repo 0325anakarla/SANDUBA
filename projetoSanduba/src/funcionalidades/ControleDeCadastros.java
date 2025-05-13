@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import Console.Menu;
 import Financeiro.DadosBancarios;
 
 import Pessoa.Cliente;
@@ -13,13 +14,16 @@ import TratamentoDeErro.DadoInvalidoException;
 
 public class ControleDeCadastros {
 	private Scanner sc;
-	private final RepositorioUsuarioArrayList repositorio;
-	//private Menu menu;
+	private final RepositorioUsuarioArrayList listUsuarios;
+	private Menu menu;
 
-	public ControleDeCadastros(Scanner sc, RepositorioUsuarioArrayList repositorio/*, Menu menu*/) {
+	public ControleDeCadastros(Scanner sc, RepositorioUsuarioArrayList listUsuarios) {
 		this.sc = sc;
-		this.repositorio = new RepositorioUsuarioArrayList();
-		//this.menu = menu;
+		this.listUsuarios = listUsuarios;
+	}
+	
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 	
 	public void CadastrarClientes() {
@@ -36,9 +40,6 @@ public class ControleDeCadastros {
 
 			do {
 				try {
-
-
-
 
 					System.out.println("\n╔════════════════════════════════════════════════════╗");
 					System.out.println("║        🧾 CADASTRO DE CLIENTE - PREENCHA OS DADOS   ║");
@@ -105,11 +106,9 @@ public class ControleDeCadastros {
 			System.out.println("╚══════════════════════════════════════╝");
 			System.out.println("😄 Seja bem-vindo(a), " + cliente.getNome() + "!");
 			
-			repositorio.add(cliente);
+			listUsuarios.add(cliente);
 			System.out.println("\n🔄 Redirecionando para a tela inicial...\n");
-			//pensar em uma forma de voltar para a tela inicial
-			//sem criar um objeto do tipo menu
-			//menu.start();
+			menu.start();
 			break;
 		}
 	}
