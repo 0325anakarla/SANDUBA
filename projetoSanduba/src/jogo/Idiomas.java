@@ -1,8 +1,5 @@
 package jogo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public enum Idiomas {
 
     INGLES("Ingles"),
@@ -23,11 +20,11 @@ public enum Idiomas {
         return this.idioma;
     }
 
-    ArrayList<Idiomas> idiomasDispo = new ArrayList<Idiomas>(List.of(Idiomas.values()));
-
-    public void imprimeIdiomas(){
-        for (Idiomas idioma : idiomasDispo) {
-            System.out.println(idioma.getIdioma());
+    public static void imprimeIdiomas(){
+        int i = 0;
+        for (Idiomas idioma : Idiomas.values()) {
+            System.out.println(i + ": " + idioma.getIdioma());
+            i++;
         }
     }
 }

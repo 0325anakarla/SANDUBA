@@ -1,8 +1,5 @@
 package jogo;
 
-import java.text.Normalizer;
-import java.util.*;
-
 public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 
 	RPG("Role Playing Game"),
@@ -40,11 +37,11 @@ public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 		return this.categoria; // isso aqui é so pra imprimir a categoria bonitinho
 	}
 
-	ArrayList<CategoriasJogos> categoriasJogos = new ArrayList<CategoriasJogos>(List.of(CategoriasJogos.values()));
-
-	public void imprimeCategorias() {
-		for (CategoriasJogos categoria : categoriasJogos) {
-			System.out.println(categoria.getCategoria());
+	public static void imprimeCategorias() {
+		int i = 1;
+		for (CategoriasJogos categoria : CategoriasJogos.values()) {
+			System.out.println(i + ": " + categoria.getCategoria());
+			i++;
 		}
 	}
 }

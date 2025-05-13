@@ -1,8 +1,5 @@
 package jogo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public enum PlataformasDisponiveis {
 
     XBOX("Xbox Series"),
@@ -26,11 +23,11 @@ public enum PlataformasDisponiveis {
         return this.plataforma;
     }
 
-    ArrayList<PlataformasDisponiveis> platDispo = new ArrayList<PlataformasDisponiveis>(List.of(PlataformasDisponiveis.values()));
-
-    public void imprimePlataformas(){
-        for (PlataformasDisponiveis plataforma : platDispo) {
-            System.out.println(plataforma.getPlataforma());
+    public static void imprimePlataformas(){
+        int i = 0;
+        for (PlataformasDisponiveis plataforma : PlataformasDisponiveis.values()) {
+            System.out.println(i + ": " + plataforma.getPlataforma());
+            i++;
         }
     }
 
