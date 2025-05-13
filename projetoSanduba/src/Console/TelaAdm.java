@@ -15,20 +15,26 @@ import TratamentoDeErro.DadoNaoEncontradoException;
 import funcionalidades.ControleDeJogos;
 
 public class TelaAdm {
-	Scanner sc = new Scanner(System.in);
-
-
-	VisualizacaoMenu menu = new VisualizacaoMenu();
-	Adm adm = Adm.getInstancia(null, null, null);
+	private Scanner sc;
+	private VisualizacaoMenu visualizacaoMenu;
+	private Adm adm;
+	private RepositorioUsuarioArrayList listUsuarios;
+	private RepositorioJogoArrayList listJogos;
+	private ControleDeJogos controleJogos;
 	
-	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();
-	public RepositorioUsuarioArrayList listUsuario = new RepositorioUsuarioArrayList();
-	private ControleDeJogos cJ;
-
+	
+	public TelaAdm(Scanner sc, VisualizacaoMenu visualizacaoMenu, Adm adm, RepositorioUsuarioArrayList listUsuarios, RepositorioJogoArrayList listJogos,  ControleDeJogos controleJogos) {
+		this.sc = sc;
+		this.visualizacaoMenu = visualizacaoMenu;
+		this.adm = adm;
+		this.listUsuarios = listUsuarios;
+		this.listJogos = listJogos;
+		this.controleJogos = controleJogos;
+	}
 	
 	public void exibirMenuAdm() throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {
 		
-		menu.telaMenuMcAdm();
+		visualizacaoMenu.telaMenuMcAdm();
 		int opcao = sc.nextInt();
 		
 ////		[1] 🧑‍ Gerenciar Cliente");
@@ -40,17 +46,17 @@ public class TelaAdm {
 		
 		switch(opcao) {
 			case 1:
-				menu.telaAdmGerenciarCliente(adm);
+				visualizacaoMenu.telaAdmGerenciarCliente(adm);
 				opcoesCase1();
 				
 				break;
 			case 2:
-				menu.telaAdmGerenciarEmpresa(adm);
+				visualizacaoMenu.telaAdmGerenciarEmpresa(adm);
 				opcoesCase2();
 				
 				break;
 			case 3:
-				menu.telaAdmGerenciarJogo(adm);
+				visualizacaoMenu.telaAdmGerenciarJogo(adm);
 				opcoesCase3();
 				break;
 			case 4:
@@ -94,7 +100,7 @@ public class TelaAdm {
 					if(opcao2 ==1) {
 						System.out.println("Insira o nome do Cliente que deseja obter informações detalhadas");
 						String nome = sc.nextLine();
-						Usuarios cliente =  listUsuario.procurarNome(nome);
+						Usuarios cliente =  listUsuarios.procurarNome(nome);
 						if (cliente instanceof Cliente) { // Verifica se é um Cliente
 						    Cliente cliente2 = (Cliente) cliente;
 						    cliente2.mostrarDetalhesUsuario();
@@ -110,7 +116,7 @@ public class TelaAdm {
 				case 3:
 					System.out.println("Insira o nome do Cliente que deseja alterar dados:");
 					String nome = sc.nextLine();
-					Usuarios cliente =  listUsuario.procurarNome(nome);
+					Usuarios cliente =  listUsuarios.procurarNome(nome);
 					if (cliente instanceof Cliente) { // Verifica se é um Cliente 
 					    Cliente cliente2 = (Cliente) cliente;
 					    System.out.println("Quer alterar que tipo de dado:");
@@ -121,7 +127,7 @@ public class TelaAdm {
 					    	opcao2 = sc.nextInt();
 					    	switch(opcao2) {
 							case 1:
-								listUsuario.alterarDados(cliente2);
+								listUsuarios.alterarDados(cliente2);
 								break;
 							case 2: 
 								//chmar alterar dados financeiros
@@ -140,7 +146,7 @@ public class TelaAdm {
 				case 4:
 					System.out.println("Insira o nome do Cliente que deseja remover");
 					String nome1 = sc.nextLine();
-					listUsuario.deletar(listUsuario.procurarNome(nome1));
+					listUsuarios.deletar(listUsuarios.procurarNome(nome1));
 					break;
 				case 5:
 					
@@ -187,7 +193,7 @@ public class TelaAdm {
 				case 3:
 					System.out.println("Insira o nome da Empresa que deseja alterar dados:");
 					String nome = sc.nextLine();
-					Usuarios empresa =  listUsuario.procurarNome(nome);
+					Usuarios empresa =  listUsuarios.procurarNome(nome);
 					if (empresa instanceof Empresa) { // Verifica se é um empresa 
 						Empresa empresa2 = (Empresa) empresa;
 					    System.out.println("Quer alterar que tipo de dado:");
@@ -198,7 +204,7 @@ public class TelaAdm {
 					    	
 					    	switch(opcao3) {
 							case 1:
-								listUsuario.alterarDados(empresa2);
+								listUsuarios.alterarDados(empresa2);
 								break;
 							case 2: 
 								//chmar alterar dados financeiros
@@ -217,7 +223,7 @@ public class TelaAdm {
 				case 4:
 					System.out.println("Insira o nome da Empresa que deseja remover");
 					String nome1 = sc.nextLine();
-					listUsuario.deletar(listUsuario.procurarNome(nome1));
+					listUsuarios.deletar(listUsuarios.procurarNome(nome1));
 					break;
 				case 5:
 					//ver se nescessario
@@ -255,10 +261,10 @@ public class TelaAdm {
 			case 2: 
 				System.out.println("Insira o nome  da Empresa que deseja cadastrar seu jogo:");
 				String nome = sc.nextLine();
-				Usuarios empresa =  listUsuario.procurarNome(nome);
+				Usuarios empresa =  listUsuarios.procurarNome(nome);
 				if (empresa instanceof Empresa) { // Verifica se é um empresa 
 					Empresa empresa2 = (Empresa) empresa;
-					cJ.CadastrarJogos(empresa2);
+					controleJogos.CadastrarJogos(empresa2);
 				} else {
 				    System.out.println("Usuário encontrado não é uma Empresa.");
 				}
@@ -267,15 +273,15 @@ public class TelaAdm {
 			case 3:
 				System.out.println("Insira o título Jogo que deseja alterar dados:");
 				String titulo = sc.nextLine();
-				cJ.alterarDadosDosJogos(listJogos.procurarNome(titulo));
+				controleJogos.alterarDadosDosJogos(listJogos.procurarNome(titulo));
 				break;
 			case 4:
 				System.out.println("Insira o nome  da Empresa que deseja cadastrar seu jogo:");
 				String nome1 = sc.nextLine();
-				Usuarios empresa1 =  listUsuario.procurarNome(nome1);
+				Usuarios empresa1 =  listUsuarios.procurarNome(nome1);
 				if (empresa1 instanceof Empresa) { // Verifica se é um empresa 
 					Empresa empresa2 = (Empresa) empresa1;
-					cJ.deletarJogo(empresa2);
+					controleJogos.deletarJogo(empresa2);
 				} else {
 				    System.out.println("Usuário encontrado não é uma Empresa.");
 				}

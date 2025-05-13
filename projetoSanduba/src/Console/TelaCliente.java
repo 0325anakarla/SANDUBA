@@ -8,16 +8,21 @@ import Pessoa.Cliente;
 import jogo.Jogo;
 
 public class TelaCliente {
+	private Scanner sc;
+	private VisualizacaoMenu visualizacaoMenu;
+	
 
-	VisualizacaoMenu menu = new VisualizacaoMenu();
-	Scanner sc = new Scanner(System.in);
+	public TelaCliente(Scanner sc, VisualizacaoMenu visualizacaoMenu) {
+		this.sc = sc;
+		this.visualizacaoMenu = visualizacaoMenu;
+	}
 	
 	public void telaMinhaContaCliente(Cliente cliente) {
 		int opcao = 0;
 		
 		do {
 			
-			menu.telaMenuMcCliente();
+			visualizacaoMenu.telaMenuMcCliente();
 			
 			opcao = sc.nextInt();
 			
@@ -82,7 +87,7 @@ public class TelaCliente {
 		
 		do {
 			
-			menu.telaMenuCdCliente(cdC);
+			visualizacaoMenu.telaMenuCdCliente(cdC);
 			
 			opcao = sc.nextInt();
 			

@@ -8,12 +8,22 @@ import TratamentoDeErro.DadoNaoEncontradoException;
 import jogo.Jogo;
 
 public class BibliotecaJogos {
+	private Scanner sc;
+	private CarrinhoDeCompras carrinho;
+	private RepositorioJogoArrayList listJogos;
+	private TelaCliente telaCliente;
+	private TelaCarrinhoDeCompras mostrarCarrinho;
 	
-	RepositorioJogoArrayList jogosCadastrados = new RepositorioJogoArrayList();
-	Scanner sc = new Scanner(System.in);
-	TelaCliente minhaConta = new TelaCliente();
-	CarrinhoDeCompras carCompras = new CarrinhoDeCompras();
-	TelaCarrinhoDeCompras mostrarCarCompras = new TelaCarrinhoDeCompras();
+	public BibliotecaJogos(Scanner sc,  CarrinhoDeCompras carrinho, RepositorioJogoArrayList listJogos, TelaCliente telaCliente) {
+		this.sc = sc;
+		this.listJogos = listJogos;
+		this.telaCliente = telaCliente;
+		this.carrinho = carrinho;
+	}
+	
+	public void setMostrarCarrinho(TelaCarrinhoDeCompras mostrarCarrinho) {
+		this.mostrarCarrinho = mostrarCarrinho;
+	}
 	
 	public void Biblioteca() {
 		
@@ -21,7 +31,7 @@ public class BibliotecaJogos {
 	    System.out.println("║          🎮 JOGOS DISPONÍVEIS NA LOJA       ║\n");
 	    System.out.println("╚════════════════════════════════════════════╝\n");
 	    
-	    jogosCadastrados.resumoJogos();
+	    listJogos.resumoJogos();
 	    
 	    System.out.println("\n════════════════════════════════════════════");
 	    
@@ -42,7 +52,7 @@ public class BibliotecaJogos {
 		    	case 1: 
 		    		System.out.print("\n📝 Digite o nome do jogo: ");
 		    		try{
-		    			Jogo resultado = jogosCadastrados.procurarNome(sc.nextLine());
+		    			Jogo resultado = listJogos.procurarNome(sc.nextLine());
 		    			resultado.mostrarDados();
 		    		}catch(DadoNaoEncontradoException e) {
 		    			System.out.println("❌ Erro: " + e.getMessage());
@@ -50,7 +60,7 @@ public class BibliotecaJogos {
 		    		}
 		    		break;
 		    	case 2:
-		    		minhaConta.telaMinhaContaCliente(null);
+		    		telaCliente.telaMinhaContaCliente(null);
 		    }
 	    }while(opcao != 4);
 	}
@@ -71,7 +81,7 @@ public class BibliotecaJogos {
 			case 1:
 				break;
 			case 2:
-				carCompras.adiciona(jogo);
+				carrinho.adiciona(jogo);
 				System.out.println("O jogo "+jogo.getTitulo()+"  foi adicionado com sucesso ao carinho.");
 				System.out.println("Escolha uma opção:");
 				System.out.println("  [1] 🔙 Voltar para a biblioteca");
@@ -84,7 +94,7 @@ public class BibliotecaJogos {
 						Biblioteca();
 						break;
 					case 2:
-						mostrarCarCompras.CarrinhoDeCompras(jogo);
+						mostrarCarrinho.CarrinhoDeCompras(jogo);
 						break;
 					default:
 						 System.out.println("⚠️ Opção inválida.");

@@ -10,32 +10,20 @@ import Pessoa.Empresa;
 import Pessoa.Usuarios;
 import TratamentoDeErro.DadoInvalidoException;
 // importar os exceptions
-import verAdm.DateTimeFormatter;
-import verAdm.LocalDate;
-import verAdm.Scanner;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Scanner;
 
 public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, RepositorioUsuario {
 
-
-    private static RepositorioUsuarioArrayList instance; // eh o singleton
-    Scanner sc = new Scanner(System.in);
+    private final List<Usuarios> usuarios; //Vai armazenar os Usuarios na list
+    private Scanner sc;
     
-    //Contrutor privado para ngm conseguir criar outras listas de usuarios
-    public RepositorioUsuarioArrayList() {
-        usuarios = new ArrayList<>();
+    public RepositorioUsuarioArrayList(Scanner sc) {
+        this.usuarios = new ArrayList<>();
+        this.sc = sc;
     }
 
-    //get para fazer o singleton
-    public static RepositorioUsuarioArrayList getInstance() {
-    	if(instance == null) {
-    		instance = new RepositorioUsuarioArrayList();
-    	}
-        return instance;
-    }
-
-    private final List<Usuarios> usuarios = new ArrayList<>(); //Vai armazenar os Usuarios na list
-
-    
 	@Override
 	public void add(Usuarios addUsuario) {
 		usuarios.add(addUsuario);

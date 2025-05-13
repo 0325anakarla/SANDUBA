@@ -1,6 +1,7 @@
 package Console;
 import java.util.Scanner;
 
+import Pessoa.Adm;
 import Pessoa.Cliente;
 import Pessoa.Empresa;
 import Pessoa.Usuarios;
@@ -10,18 +11,20 @@ import funcionalidades.ControleDeCadastros;
 
 public class Menu {
 	// - parte burocratica de chamar as funcoes -//
-	private static Scanner sc;
-	private final RepositorioUsuarioArrayList repositorio;
+	private Scanner sc;
+	private final RepositorioUsuarioArrayList listUsuarios;
 	private final ControleDeCadastros controleCadastros;
-	private TelaCliente telaCliente;
+	private BibliotecaJogos bibJogos;
 	private TelaEmpresa telaEmpresa;
+	private TelaAdm telaAdm;
 	
-	public Menu(Scanner sc, RepositorioUsuarioArrayList repositorio, ControleDeCadastros controleCadastros, TelaCliente telaCliente, TelaEmpresa telaEmpresa) {
+	public Menu(Scanner sc, RepositorioUsuarioArrayList listUsuarios, ControleDeCadastros controleCadastros, BibliotecaJogos bibJogos, TelaEmpresa telaEmpresa, TelaAdm telaAdm) {
 		this.sc = sc;
-		this.repositorio = repositorio;
+		this.listUsuarios = listUsuarios;
 		this.controleCadastros = controleCadastros;
-		this.telaCliente = telaCliente;
+		this.bibJogos = bibJogos;
 		this.telaEmpresa = telaEmpresa;
+		this.telaAdm = telaAdm;
 	}
 	
 	
@@ -39,37 +42,38 @@ public class Menu {
 	    System.out.print("\nDigite a opção desejada: ");
 
 
-	int choice = sc.nextInt();
+	    int choice = sc.nextInt();
+	    sc.nextLine();
 
-	switch (choice) {
+	    switch (choice) {
 
-	case 1:
-		cadastroUsuario();
-		break;
+	    	case 1:
+	    		cadastroUsuario();
+	    		break;
+	    	case 2:
+	    		loginUsuario();
+	    		break;
+	    	case 3:
 
-	case 2:
-		loginUsuario();
-		break;
-	case 3:
-
-		System.out.println("Obrigado por utilizar o Sanduba Deus te abencoe");
+	    		System.out.println("Obrigado por utilizar o Sanduba Deus te abencoe");
 		
-		System.out.print("\n[1]-  Voltar.. \nResposta:");
-		int choice2 = sc.nextInt();
+	    		System.out.print("\n[1]-  Voltar.. \nResposta:");
+	    		int choice2 = sc.nextInt();
+	    		sc.nextLine();
 		
-			switch(choice2) {
-				case 1: 
-					start();
-					break;
-				default:
-					System.out.println("Opcao invalida. Digite novamente");
-			}
-		break;
-	case 0:
-		System.out.println("Saindo...");
-		break;
-	default:
-		System.out.println("Opcao invalida. Digite novamente");
+	    		switch(choice2) {
+					case 1: 
+						start();
+						break;
+					default:
+						System.out.println("Opcao invalida. Digite novamente");
+	    		}
+	    		break;
+	    	case 0:
+	    		System.out.println("Saindo...");
+	    		break;
+	    	default:
+	    		System.out.println("Opcao invalida. Digite novamente");
 	}
 }
 
@@ -95,7 +99,7 @@ public class Menu {
 		            System.out.print("\n🔒 Senha: ");
 		            String senha = sc.nextLine().trim();
 
-		            usuarioLogin = repositorio.procurarEmail(email);
+		            usuarioLogin = listUsuarios.procurarEmail(email);
 		            
 		            if (usuarioLogin != null) {
 		                if (usuarioLogin.getSenha().equals(senha)) {
@@ -106,14 +110,13 @@ public class Menu {
 		                    System.out.println("\nBem-vindo(a), " + usuarioLogin.getNome() + "!");
 		                    
 		                    if (usuarioLogin instanceof Cliente) {
-		                        telaCliente.telaMinhaContaCliente((Cliente)usuarioLogin);
+		                    	bibJogos.Biblioteca();
 		                    } 
 		                    else if (usuarioLogin instanceof Empresa) {
 		                        telaEmpresa.telaMinhaContaEmpresa((Empresa) usuarioLogin);
 		                    }
-		                    
-		                   else {
-		                        System.out.println("PARTE DO ADMMM");
+		                    else if (usuarioLogin instanceof Adm) {
+		                    	telaAdm.exibirMenuAdm();
 		                    }
 		                }   
 		            }
@@ -144,6 +147,7 @@ public class Menu {
 		System.out.print("\nDigite a opção desejada: ");
 
 		int choice3 = sc.nextInt();
+		sc.nextLine();
 
 		switch(choice3) {
 		    case 1:

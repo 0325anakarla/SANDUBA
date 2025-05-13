@@ -17,13 +17,15 @@ import TratamentoDeErro.DadoNaoEncontradoException;
 import jogo.Jogo;
 
 public class ControleDeJogos{
-	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();
-	RepositorioUsuarioArrayList listEmpresa = new RepositorioUsuarioArrayList();
+	private Scanner sc;
+	private VisualizacaoMenu visualizacaoMenu;
+	private RepositorioJogoArrayList listJogos;
 	
-	VisualizacaoMenu menu = new VisualizacaoMenu();
-	
-	//final
-	Scanner sc = new Scanner(System.in);
+	public ControleDeJogos(Scanner sc, VisualizacaoMenu visualizacaoMenu, RepositorioJogoArrayList listJogos) {
+		this.sc = sc;
+		this.visualizacaoMenu = visualizacaoMenu;
+		this.listJogos = listJogos;
+	}
 	
 	// cadastrar Jogo
 	public void CadastrarJogos(Empresa empresa) throws DadoInvalidoException {
@@ -61,7 +63,7 @@ public class ControleDeJogos{
 					//a parte de categoria eu nao entendi como funciona vai ficar sem por enquanto
 					
 					System.out.print("🔞 Classificação etária: ");
-					jogo.setClassEtaria(sc.nextInt());
+					//jogo.setClassEtaria(sc.nextInt());
 					sc.nextLine();
 
 					System.out.print("🗣️ Idiomas disponíveis: ");
@@ -210,7 +212,7 @@ public class ControleDeJogos{
 		
 		while(continuarAlterar) {
 			
-			menu.telaAlterarJogos(jogo);
+			visualizacaoMenu.telaAlterarJogos(jogo);
 			
 			opcao = Integer.parseInt(sc.nextLine());
 			
@@ -270,7 +272,6 @@ public class ControleDeJogos{
 			System.out.println("Erro:"+e.getMessage());
 			System.out.println("Nenhum jogo cadastrado pra essa empresa.");
 		}
-<<<<<<< HEAD
 	}
 	
 	public void ListJogosComDesconto() {
@@ -280,18 +281,9 @@ public class ControleDeJogos{
 			//chmar o mostrar dados basico do jogo
 			System.out.println(jogo.getTitulo());
 		}
-		
 	}
-
-
-	}
-
-
-
-=======
-	} 
 }
->>>>>>> b58ea63026296895b42dfcdb0af672819013a8ea
+
 
 
 	
