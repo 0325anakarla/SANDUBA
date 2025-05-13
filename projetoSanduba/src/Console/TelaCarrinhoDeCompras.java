@@ -14,8 +14,9 @@ public class TelaCarrinhoDeCompras {
 	Scanner sc = new Scanner(System.in);
 	BibliotecaJogos bibJogos = new BibliotecaJogos();
 	TelaCliente minhaConta = new TelaCliente();
+
 	
-	public void CarrinhoDeCompras(Jogo jogo) {
+	public void CarrinhoDeCompras() {
 		
 		System.out.println("\n╔════════════════════════════════════════╗");
 		System.out.println("║          🛒 CARRINHO DE COMPRAS          ║");

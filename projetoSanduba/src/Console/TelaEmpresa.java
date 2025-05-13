@@ -17,7 +17,7 @@ public class TelaEmpresa {
 	CarteiraDaEmpresa cdE = new CarteiraDaEmpresa(null);
 	ControleDeJogos controlJogos = new ControleDeJogos();
 
-	Empresa empresa = new Empresa();
+	Empresa empresa = new Empresa(null, null, null, null, null, null, null);
 	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
 
 	

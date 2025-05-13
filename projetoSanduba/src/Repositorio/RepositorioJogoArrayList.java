@@ -17,10 +17,8 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 
 	@Override
 	public void add(Jogo jogo) throws DadoDuplicadoException  {
-		for(Jogo j: jogos) {
-			if(j.getTitulo().equalsIgnoreCase(jogo.getTitulo())) {
-				throw new DadoDuplicadoException("O jogo " +jogo.getTitulo()+ " ja existe.");
-			}
+		if(jogos.contains(jogo)) {
+			throw new DadoDuplicadoException("O jogo " +jogo.getTitulo()+ " ja existe.");
 		}
 		jogos.add(jogo);
 	}
@@ -31,6 +29,10 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 
 	@Override
 	public void deletar(Jogo jogo) {
+		if(jogos.contains(jogo)) {
+			throw new DadoNaoEncontradoException("O jogo " +jogo.getTitulo()+ " não foi encontrado.");
+		}
+		
 		jogos.remove(jogo);
 
 	}
@@ -56,8 +58,12 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 
 	@Override
 	public Jogo procurarNome(String titulo) throws DadoNaoEncontradoException {
+		if(titulo == null) {
+			throw new DadoInvalidoException("O título não pode ser vazio.");
+		}
+		
 		for (Jogo jogo : jogos) {
-			if (jogo.getTitulo().equalsIgnoreCase(titulo)) {
+			if (!jogo.getTitulo().equalsIgnoreCase(titulo)) {
 				return jogo;
 			}
 		}

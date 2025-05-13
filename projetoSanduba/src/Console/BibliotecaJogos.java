@@ -84,7 +84,7 @@ public class BibliotecaJogos {
 						Biblioteca();
 						break;
 					case 2:
-						mostrarCarCompras.CarrinhoDeCompras(jogo);
+						mostrarCarCompras.CarrinhoDeCompras();
 						break;
 					default:
 						 System.out.println("⚠️ Opção inválida.");
