@@ -94,6 +94,8 @@ public class Menu {
 
 		            usuarioLogin = repositorio.procurarEmail(email);
 		            
+		            // SE A PESSOA ERRAR A SENHA 3 VEZES ELA PODE SOLICITAR UM ALTERAR SENHA...
+		            
 		            if (usuarioLogin != null) {
 		                if (usuarioLogin.getSenha().equals(senha)) {
 		                    logado = true;

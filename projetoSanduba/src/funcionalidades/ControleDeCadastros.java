@@ -13,7 +13,7 @@ import TratamentoDeErro.DadoInvalidoException;
 public class ControleDeCadastros {
 	Scanner sc =new Scanner(System.in);
 	private final RepositorioUsuarioArrayList repositorio;
-	Menu menu = new Menu();
+	
 
 	public ControleDeCadastros() {
 		this.repositorio = new RepositorioUsuarioArrayList();
@@ -100,7 +100,7 @@ public class ControleDeCadastros {
 			
 			repositorio.add(cliente);
 			System.out.println("\n🔄 Redirecionando para a tela inicial...\n");
-			menu.start();
+			
 
 		}
 	}

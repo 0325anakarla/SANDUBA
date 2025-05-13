@@ -6,7 +6,6 @@ import Financeiro.CarteiraDaEmpresa;
 import Financeiro.ResumoDeVendas;
 import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
-import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.ControleDeJogos;
 import jogo.Jogo;
 

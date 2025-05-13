@@ -6,17 +6,13 @@ import Financeiro.CarteiraDoCliente;
 import Financeiro.DadosBancarios;
 import Pessoa.Cliente;
 import Pessoa.Empresa;
-import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoInvalidoException;
-import funcionalidades.ControleDeCadastros;
 
 public class TesteMenu {
 
 	public static void main(String[] args) throws DadoInvalidoException {
 		
-		Menu menu = new Menu();
-		
-		menu.start();
+	
 		
 		Cliente cliente = new Cliente("lana", "lana@gmail.com", "1234", "12345678-90", LocalDate.of(2004, 9, 23));
 		CarteiraDoCliente cdC = new CarteiraDoCliente();

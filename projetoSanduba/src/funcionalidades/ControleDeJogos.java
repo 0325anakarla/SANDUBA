@@ -11,7 +11,6 @@ import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
-import jogo.CategoriasJogos;
 import jogo.Jogo;
 
 public class ControleDeJogos{
