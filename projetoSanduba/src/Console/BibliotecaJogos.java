@@ -94,7 +94,11 @@ public class BibliotecaJogos {
 						Biblioteca();
 						break;
 					case 2:
+<<<<<<< HEAD
+						mostrarCarCompras.CarrinhoDeCompras();
+=======
 						mostrarCarrinho.CarrinhoDeCompras(jogo);
+>>>>>>> 7752f138a2c7ce56fe2a872959b1bd0bc394abc1
 						break;
 					default:
 						 System.out.println("⚠️ Opção inválida.");

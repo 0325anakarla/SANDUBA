@@ -5,9 +5,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
+import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
+import TratamentoDeErro.DadoNaoEncontradoException;
 import jogo.Jogo;
 import Financeiro.CarteiraDoCliente;
 import Financeiro.RegistroDeCompras;
@@ -20,6 +20,7 @@ public class Cliente extends Usuarios{
 	private CarteiraDoCliente carteiraDigital;
 	private List<RegistroDeCompras> historico;
 	private List<Jogo> jogosAdquiridos;
+	private final List<Jogo> listaDeDesejos = new ArrayList<>();
 
 	public Cliente(String nome, String email, String senha, String cpf, LocalDate natalicio) {
 		super(nome, email, senha);
@@ -119,4 +120,50 @@ public class Cliente extends Usuarios{
 	         + "\n  Carteira:          " + (carteiraDigital != null ? carteiraDigital.toString() : "Sem carteira")
 	         + "\n-------------------------------------------------------------";
 	}
+	
+	//Lista de desejos
+	public List<Jogo> getJogos(Cliente cliente) {
+		return listaDeDesejos;
+	}
+	
+	public void addListaDeDesejo(Jogo jogo) {
+		if(listaDeDesejos.contains(jogo)) {
+			throw new DadoDuplicadoException("O jogo " +jogo.getTitulo()+ " ja foi adicionado.");
+		}
+		listaDeDesejos.add(jogo);
+	}
+	
+	public void removeListaDeDesejo(Jogo jogo) {
+		if(!listaDeDesejos.contains(jogo)) {
+			throw new DadoNaoEncontradoException("O jogo " +jogo.getTitulo()+ " não está em sua Lista de desejos.");
+		}
+		listaDeDesejos.remove(jogo);
+	}
+	
+	public Jogo procurarNomeLD(String titulo) throws DadoNaoEncontradoException {
+		if(titulo == null) {
+			throw new DadoInvalidoException("O título não pode ser vazio.");
+		}
+		
+		for (Jogo jogo : listaDeDesejos) {
+			if (!jogo.getTitulo().equalsIgnoreCase(titulo)) {
+				return jogo;
+			}
+		}
+	 throw new DadoNaoEncontradoException("Jogo com o título '" + titulo + "' não foi encontrado.");
+	}
+	
+	
+	public String resumoListaDeDesejos() {
+		StringBuilder resumo = new StringBuilder();
+		
+		for(Jogo j: listaDeDesejos) {
+			resumo.append(String.format("- %s [%s] | R$ %.2f\n", j.getTitulo(),j.getCategoriasValidas(), j.getPreco()));
+		}
+		
+		return resumo.toString();
+	}
+
+
+
 }
