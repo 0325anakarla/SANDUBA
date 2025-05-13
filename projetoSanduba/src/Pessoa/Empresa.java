@@ -71,7 +71,7 @@ public class Empresa extends Usuarios{
 	}
 
 	public void setCpnj(String cpnj) throws DadoInvalidoException {
-		if (cpnj == null || cpnj.isBlank()) {
+		if (cpnj == null || cpnj.isBlank() || cpnj.length() !=14) {
 			throw new DadoInvalidoException("Cnpj invalido");
 		}
 		this.cpnj = cpnj;

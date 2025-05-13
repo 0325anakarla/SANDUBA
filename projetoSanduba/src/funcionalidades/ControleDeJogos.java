@@ -77,12 +77,15 @@ public class ControleDeJogos{
 				}
 			}while(!dadosValidos);
 
-			System.out.println("==== TERMO DE ACEITE – CADASTRO DE JOGO ====");
+			System.out.println("\n╔═══════════════════════════════════════════╗");
+			System.out.println("║     📄 DOCUMENTAÇÃO DE CADASTRO DE JOGO     ║");
+			System.out.println("╚════════════════════════════════════════════╝");
+
 	        //queria colocar o nome da empresa aqui so pra ter um termo bunitinho na hora de concuir o jogo.
 	        System.out.println("Empresa: " + empresa.getRazaoSocial());
 	        System.out.println("Jogo: " + jogo.getTitulo());
 	        System.out.println("Data do Cadastro: " + dataCadastro);
-	        System.out.println(" Repasse de Percentual – Parte das vendas será destinada ao Sanduba.");
+	        System.out.println(" Repasse de Percentual – 5% da parte das vendas será destinada ao Sanduba.");
 	        System.out.println(" Exibição na Plataforma – O jogo seguirá padrões de qualidade.");
 	        System.out.println(" Condições de Remoção – A empresa deve comunicar previamente.");
 	        System.out.println(" Aceite e Validade – O cadastro só será confirmado com aceite.");
@@ -270,7 +273,7 @@ public class ControleDeJogos{
 			System.out.println("Erro:"+e.getMessage());
 			System.out.println("Nenhum jogo cadastrado pra essa empresa.");
 		}
-<<<<<<< HEAD
+
 	}
 	
 	public void ListJogosComDesconto() {
@@ -282,16 +285,16 @@ public class ControleDeJogos{
 		}
 		
 	}
+	
+	
 
 
-	}
-
-
-
-=======
-	} 
 }
->>>>>>> b58ea63026296895b42dfcdb0af672819013a8ea
+
+
+
+	
+
 
 
 	

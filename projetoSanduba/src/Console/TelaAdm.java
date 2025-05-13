@@ -13,6 +13,7 @@ import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
 
 import funcionalidades.ControleDeJogos;
+import jogo.Jogo;
 
 public class TelaAdm {
 	Scanner sc = new Scanner(System.in);
@@ -22,14 +23,16 @@ public class TelaAdm {
 	Adm adm = Adm.getInstancia(null, null, null);
 	
 	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();
-	public RepositorioUsuarioArrayList listUsuario = new RepositorioUsuarioArrayList();
+	RepositorioUsuarioArrayList listUsuario = new RepositorioUsuarioArrayList();
 	private ControleDeJogos cJ;
+	private boolean deucerto = true;
 
 	
 	public void exibirMenuAdm() throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {
 		
 		menu.telaMenuMcAdm();
 		int opcao = sc.nextInt();
+		sc.nextLine();
 		
 ////		[1] 🧑‍ Gerenciar Cliente");
 //	    System.out.println("  [2] 🏦 Gerenciar Empresas");
@@ -79,10 +82,12 @@ public class TelaAdm {
 //	System.out.println("  [6] 🔙 Voltar para o menu. ");
 	
 	public void opcoesCase1() throws DadoInvalidoException, DadoDuplicadoException {
-		int opcao = sc.nextInt();
+		int case1 = sc.nextInt();
+		sc.nextLine();
+		 deucerto = true;
 		do {
 			
-			switch(opcao) {
+			switch(case1) {
 				case 1:
 					adm.clientesCadastrados();
 					break;
@@ -95,6 +100,7 @@ public class TelaAdm {
 						System.out.println("Insira o nome do Cliente que deseja obter informações detalhadas");
 						String nome = sc.nextLine();
 						Usuarios cliente =  listUsuario.procurarNome(nome);
+						// deseja
 						if (cliente instanceof Cliente) { // Verifica se é um Cliente
 						    Cliente cliente2 = (Cliente) cliente;
 						    cliente2.mostrarDetalhesUsuario();
@@ -119,6 +125,7 @@ public class TelaAdm {
 					    
 					    do {
 					    	opcao2 = sc.nextInt();
+					    	sc.nextLine();
 					    	switch(opcao2) {
 							case 1:
 								listUsuario.alterarDados(cliente2);
@@ -150,9 +157,10 @@ public class TelaAdm {
 					exibirMenuAdm(); //tipo assim
 				default:
 					System.out.println("Opção invalida./nInsira um opção válida:");
-					opcao= sc.nextInt();
+					case1= sc.nextInt();
+					deucerto = false;
 			}
-		}while(opcao != 5);
+		}while(!deucerto );
 					
 	}
 	
@@ -163,10 +171,12 @@ public class TelaAdm {
 //	System.out.println("  [5] 🏦 Buscar uma Empresa.");
 //	System.out.println("  [6] 🔙 Voltar para o menu. ");
 	public void opcoesCase2() throws DadoInvalidoException, DadoDuplicadoException {
-		int opcao = sc.nextInt();
+		 deucerto = true;
+		int case2 = sc.nextInt();
+		sc.nextLine();
 		do {
 			
-			switch(opcao) {
+			switch(case2) {
 				case 1:
 					adm.empresasCadastradas();
 					break;
@@ -186,8 +196,7 @@ public class TelaAdm {
 					break;
 				case 3:
 					System.out.println("Insira o nome da Empresa que deseja alterar dados:");
-					String nome = sc.nextLine();
-					Usuarios empresa =  listUsuario.procurarNome(nome);
+					Usuarios empresa =  listUsuario.procurarNome(sc.nextLine());
 					if (empresa instanceof Empresa) { // Verifica se é um empresa 
 						Empresa empresa2 = (Empresa) empresa;
 					    System.out.println("Quer alterar que tipo de dado:");
@@ -229,9 +238,10 @@ public class TelaAdm {
 					exibirMenuAdm(); //tipo assim
 				default:
 					System.out.println("Opção invalida./nInsira um opção válida:");
-					opcao= sc.nextInt();
+					case2= sc.nextInt();
+					 deucerto = false;
 			}
-			}while(opcao != 6);
+			}while(! deucerto);
 					
 	}
 ////	System.out.println("  [1] 🎮 Lista de Jogos Cadatrados.");
@@ -245,10 +255,12 @@ public class TelaAdm {
 //	System.out.println("  [7 ] 🔙 Voltar para o menu. ");
 
 	public void opcoesCase3() throws DadoInvalidoException, DadoDuplicadoException {
-		int opcao = sc.nextInt();
+		 deucerto = true;
+		int case3 = sc.nextInt();
+		sc.nextLine();
 		do {
 			
-			switch(opcao) {
+			switch(case3) {
 			case 1:
 				adm.jogoPorEmpresa();
 				break;
@@ -262,6 +274,7 @@ public class TelaAdm {
 				} else {
 				    System.out.println("Usuário encontrado não é uma Empresa.");
 				}
+				
 					
 				break;
 			case 3:
@@ -281,7 +294,17 @@ public class TelaAdm {
 				}
 				break;
 			case 5:
-//				ver diretinho
+				System.out.println("Deseja obter informaões de um Jogo em especifio ou de todos?");
+				System.out.println("[1] Um em especifico.");
+				System.out.println("[2] Todos");
+				int opcao2 =sc.nextInt();
+				if(opcao2 ==1) {
+					System.out.println("Insira o título do jogo que deseja obter informações detalhadas");
+					Jogo jogo1 = listJogos.procurarNome(sc.nextLine());
+					jogo1.mostrarDados();
+				}else if(opcao2 ==2) {
+					adm.infoTodosJogos();
+				}
 				break;
 			case 6:
 				//ver como funciona o resumo de vendas
@@ -292,9 +315,12 @@ public class TelaAdm {
 				exibirMenuAdm(); //tipo assim
 			default:
 				System.out.println("Opção invalida./nInsira um opção válida:");
-				opcao= sc.nextInt();
+				case3= sc.nextInt();
+				 deucerto = false;
 	}
-		}while(opcao != 7);
+		}while(! deucerto);
 	}
+	
+	
 	
 }

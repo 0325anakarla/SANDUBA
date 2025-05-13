@@ -10,7 +10,7 @@ public class ServicoGeral {
 	Scanner sc = new Scanner(System.in);
 
 	public static Usuarios login(String email,String senha,Repositorio<Usuarios> repositorio ) throws IllegalArgumentException{
-		if(email == null || email.isBlank()) {
+		if(email == null || email.isBlank()  ) {
 			throw new IllegalArgumentException("Email invalido");
 		}
 		if(senha ==null || senha.isBlank()) {

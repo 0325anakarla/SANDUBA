@@ -1,17 +1,8 @@
 package jogo;
 
 import java.time.LocalDate;
-
-
-
 import java.time.Period;
-
 import java.util.ArrayList;
-
-
-
-
-
 
 import Pessoa.Empresa;
 import TratamentoDeErro.DadoInvalidoException;
@@ -67,6 +58,9 @@ public class Jogo {
 		return preco;
 	}
 	
+	public void setDescontoApli(boolean descontoApli) {
+		this.descontoApli = descontoApli;
+	}
 	
 	public void precoDesconto() {
         String precoCinza = "\033[37;2m" + precoModificador + "\033[0m";
@@ -82,6 +76,8 @@ public class Jogo {
 		}
 		this.preco = preco;
 	}
+	
+	
 
 	public String getDescricao () {
 		return descricao;
