@@ -630,6 +630,157 @@ public class ControleDeJogos{
 		
 	}
 	}
+	
+	public void buscarJogoCtg(Scanner sc, RepositorioJogoArrayList listJogos) {
+		System.out.println("🏷️ Escolha as Categorias para o :");
+		CategoriasJogos.imprimeCategorias();
+		ArrayList<CategoriasJogos> categoriasEscolhidas = new ArrayList<>();
+		while (true){
+			Integer categoriaEscolhida = sc.nextInt();
+			switch (categoriaEscolhida){
+				case 1 :
+					if  (!categoriasEscolhidas.contains(CategoriasJogos.RPG)){
+						categoriasEscolhidas.add(CategoriasJogos.RPG);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 2 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.AVENTURA)){
+						categoriasEscolhidas.add(CategoriasJogos.AVENTURA);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 3 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.ACAO)){
+						categoriasEscolhidas.add(CategoriasJogos.ACAO);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 4 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.HORROR)){
+						categoriasEscolhidas.add(CategoriasJogos.HORROR);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 5 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.MUNDOABERTO)){
+						categoriasEscolhidas.add(CategoriasJogos.MUNDOABERTO);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 6 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.TIRO)){
+						categoriasEscolhidas.add(CategoriasJogos.TIRO);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 7 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.PRIMEIRAPESSOA)){
+						categoriasEscolhidas.add(CategoriasJogos.PRIMEIRAPESSOA);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 8 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.TERCEIRAPESSOA)){
+						categoriasEscolhidas.add(CategoriasJogos.TERCEIRAPESSOA);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 9 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.PUZZLE)){
+						categoriasEscolhidas.add(CategoriasJogos.PUZZLE);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 10 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.TURNO)){
+						categoriasEscolhidas.add(CategoriasJogos.TURNO);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 11 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.ESPORTE)){
+						categoriasEscolhidas.add(CategoriasJogos.ESPORTE);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 12 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.LUTA)){
+						categoriasEscolhidas.add(CategoriasJogos.LUTA);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 13 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.FANTASIA)){
+						categoriasEscolhidas.add(CategoriasJogos.FANTASIA);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 14 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.CONSTRUCAO)){
+						categoriasEscolhidas.add(CategoriasJogos.CONSTRUCAO);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 15 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.RITMO)){
+						categoriasEscolhidas.add(CategoriasJogos.RITMO);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				case 16 :
+					if (!categoriasEscolhidas.contains(CategoriasJogos.BATTLEROYALE)){
+						categoriasEscolhidas.add(CategoriasJogos.BATTLEROYALE);
+					} else {
+						System.out.println("Categoria já escolhida.");
+					}
+					break;
+
+				default : System.out.println("Opção Inválida.");
+			}
+			System.out.println("");
+			System.out.println("Deseja adicionar mais categorias?");
+			System.out.println("1: SIM" + "-" + "2: NÃO");
+			int add1 = sc.nextInt();
+			if(add1 == 2){
+				break;
+			}
+		}
+		for(Jogo jogo : listJogos.procurarPorCategorias(categoriasEscolhidas)){
+			System.out.println(jogo.getResumo());
+		}
+		
+	}
 }
 
 

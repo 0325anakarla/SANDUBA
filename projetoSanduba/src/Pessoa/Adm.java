@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 import Console.VisualizacaoMenu;
 import Financeiro.RegistroDeCompras;
+import Financeiro.ResumoDeVendas;
 import Repositorio.RepositorioJogoArrayList;
 import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
@@ -21,9 +22,6 @@ import java.util.Map;
 //import java.util.List;
 import java.util.Scanner;
 
-import Console.VisualizacaoMenu;
-
-
 
 public class Adm extends Usuarios{
 	Scanner sc = new Scanner(System.in);
@@ -34,7 +32,7 @@ public class Adm extends Usuarios{
 	
 	LocalDate hoje = LocalDate.now();
 	int anoHoje = LocalDate.now().getYear();
-	
+	ResumoDeVendas resumo;
 	
 	//para ter certeza que so existe um adm
 	private static Adm instanciaUnica;
@@ -47,7 +45,6 @@ public class Adm extends Usuarios{
        
     }
 
-   
     public static Adm getInstancia(String nome, String email, String senha, RepositorioUsuarioArrayList listUsuarios1 ) {
         if (instanciaUnica == null) {
             instanciaUnica = new Adm(nome, email, senha);
@@ -102,20 +99,20 @@ public class Adm extends Usuarios{
 		return null;
 	}
 	
-	public void empresasCadastradas() throws DadoInvalidoException, DadoDuplicadoException {
+	public void empresasCadastradas(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 			Empresa empresa = (Empresa) empresas;
 			System.out.println("🏢 "+empresa.getRazaoSocial()+" /n");
 		}
 	}
 	
-	public void clientesCadastrados() throws DadoInvalidoException, DadoDuplicadoException {
+	public void clientesCadastrados(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios cliente: listUsuarios.getTipo(Cliente.class)) {
-			System.out.println("👤 "+cliente.getNome()+" /n");
+			System.out.println("/n👤 "+cliente.getNome()+" /n");
 		}
 	}
 	
-	public void jogoPorEmpresa() throws DadoInvalidoException, DadoDuplicadoException {
+	public void jogoPorEmpresa(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 			System.out.println("🏢 Empresa "+empresas.getNome()+". /n");
 			controleJogos.ListJogosEmpresa((Empresa)empresas);
@@ -124,7 +121,7 @@ public class Adm extends Usuarios{
 		}
 	}
 	
-	public void informacoesTodosClientes() throws DadoInvalidoException, DadoDuplicadoException {
+	public void informacoesTodosClientes(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios clientes: listUsuarios.getTipo(Cliente.class)) {
 //			tranformar o ciente do tipo usario em do tipo cliente
 			Cliente cliente = (Cliente) clientes; 
@@ -132,7 +129,7 @@ public class Adm extends Usuarios{
 		}
 	}
 	
-	public void informacoesTodasEmpresas() throws DadoInvalidoException, DadoDuplicadoException {
+	public void informacoesTodasEmpresas(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 //			tranformar o empresa do tipo usario em do tipo Empresa
 			Empresa empresa = (Empresa) empresas;
@@ -140,7 +137,7 @@ public class Adm extends Usuarios{
 		}
 	}	
 	
-	public void infoTodosJogos() {
+	public void infoTodosJogos() throws DadoNaoEncontradoException, DadoInvalidoException {
 		visualizacaoMenu.telaInfJogos();
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 //			tranformar o empresa do tipo usario em do tipo Empresa
@@ -152,42 +149,14 @@ public class Adm extends Usuarios{
 		}
 	}
 	
-	//chat mandou fazer um coisinha
-	public String resumoVendasPorEmpresa(List<RegistroDeCompras> registros) {
-		
-	    Map<Empresa, Double> faturamentoEmpresa = new HashMap<>();
-	    Map<Empresa, Integer> quantidadeVendidaPorEmpresa = new HashMap<>();
+//	
 
-	    for (RegistroDeCompras registro : registros) {
-	        for (Map.Entry<Jogo, Double> entrada : registro.getJogos().entrySet()) {
-	            Jogo jogo = entrada.getKey();
-	            Double preco = entrada.getValue();
-	            Empresa empresa = jogo.getEmpresa(); 
-
-	            faturamentoEmpresa.put(
-	                empresa,
-	                faturamentoEmpresa.getOrDefault(empresa, 0.0) + preco
-	            );
-
-	            // Soma quantidade
-	            quantidadeVendidaPorEmpresa.put(
-	                empresa,
-	                quantidadeVendidaPorEmpresa.getOrDefault(empresa, 0) + 1
-	            );
-	        }
-	    }
-
-	    StringBuilder resumo = new StringBuilder();
-	    for (Empresa empresa : faturamentoEmpresa.keySet()) {
-	        double total = faturamentoEmpresa.get(empresa);
-	        int quantidade = quantidadeVendidaPorEmpresa.get(empresa);
-
-	        resumo.append("Empresa: ").append(empresa.getRazaoSocial()).append("\n");
-	        resumo.append("Jogos vendidos: ").append(quantidade).append("\n");
-	        resumo.append(String.format("Faturamento: R$ %.2f\n", total));
-	        resumo.append("------------------------------\n");
-	    }
-
-	    return resumo.toString();
-	} 
+	public void resumoVendaJogos(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException {
+		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
+//			tranformar o empresa do tipo usario em do tipo Empresa
+			Empresa empresa = (Empresa) empresas;
+			ResumoDeVendas.gerarResumoTotal(empresa.getVendasPorJogo());
+		}
+	}
+	
 }

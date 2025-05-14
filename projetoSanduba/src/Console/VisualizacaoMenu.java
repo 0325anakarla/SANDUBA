@@ -196,10 +196,11 @@ public class VisualizacaoMenu {
 		System.out.println("  [4] 🎮 Deletar jogo.");
 		System.out.println("  [5] 🎮 Informações detalhada.");
 		System.out.println("  [6] 🎮 Aplicar desconto.");
+		System.out.println("  [7] 🎮 Buscar Jogos por categoria.");
 		
-		System.out.println("  [7] 📊 Resumo de vendas");
+		System.out.println("  [8] 📊 Resumo de vendas");
 		
-		System.out.println("  [8] 🔙 Voltar para o menu. ");
+		System.out.println("  [9] 🔙 Voltar para o menu. ");
 		
 		System.out.println("Escolha uma opção:");
 	}

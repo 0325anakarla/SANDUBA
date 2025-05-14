@@ -1,13 +1,10 @@
 package Console;
 
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 import Financeiro.CarteiraDoAdm;
 import Pessoa.Adm;
-import Pessoa.Cliente;
-import Pessoa.Empresa;
-import Pessoa.Usuarios;
 import Repositorio.RepositorioJogoArrayList;
 import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
@@ -15,8 +12,6 @@ import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
 
 import funcionalidades.ControleDeJogos;
-import jogo.CategoriasJogos;
-import jogo.Jogo;
 
 public class TelaAdm {
 	private Scanner sc;

@@ -1,6 +1,6 @@
 package Console;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 import java.util.Scanner;
 
 import Pessoa.Adm;
@@ -12,7 +12,7 @@ import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.ControleDeJogos;
-import jogo.CategoriasJogos;
+//import jogo.CategoriasJogos;
 import jogo.Jogo;
 
 public class OrganicaoTelaAdm {
@@ -203,15 +203,17 @@ public class OrganicaoTelaAdm {
 			}while(case2!=6);
 					
 	}
-////	System.out.println("  [1] 🎮 Lista de Jogos Cadatrados.");
+//	System.out.println("  [1] 🎮 Lista de Jogos Cadatrados.");
 //	System.out.println("  [2] 🎮 Cadastrar novo Jogo.");
 //	System.out.println("  [3] 🎮 Alterar dados de um jogo.");
 //	System.out.println("  [4] 🎮 Deletar jogo.");
-//	System.out.println("  [5] 🎮 Informações detalhada de um jogos.");
-//	
-//	System.out.println("  [6] 📊 Resumo de vendas");
-//	
-//	System.out.println("  [7 ] 🔙 Voltar para o menu. ");
+//	System.out.println("  [5] 🎮 Informações detalhada.");
+//	System.out.println("  [6] 🎮 Aplicar desconto.");
+//	System.out.println("  [7] 🎮 Buscar Jogos por categoria.");
+//	System.out.println("  [8] 📊 Resumo de vendas");
+//	System.out.println("  [9] 🔙 Voltar para o menu. ");
+//	System.out.println("Escolha uma opção:");
+	
 
 	public void opcoesCase3(Scanner sc, Adm adm,RepositorioUsuarioArrayList listUsuarios, VisualizacaoMenu visualizacaoMenu, RepositorioJogoArrayList listJogos,ControleDeJogos controleJogos ) throws DadoInvalidoException, DadoDuplicadoException {
 		
@@ -267,10 +269,6 @@ public class OrganicaoTelaAdm {
 				}
 				break;
 			case 6:
-				visualizacaoMenu.telaResumoVendEmpresa();
-//				adm.resumoVendasPorEmpresa(null);.
-				break;
-			case 7: 
 				System.out.println(adm.getNome()+" você quer aplicar desconto por:");
 				System.out.println("[1] ano de lançamento");
 				System.out.println("[2] tempo limitado(dias ou mes)");
@@ -296,168 +294,26 @@ public class OrganicaoTelaAdm {
 				}
 				
 				break;
+			case 7: 
+				controleJogos.buscarJogoCtg(sc, listJogos);
 			case 8:
+				visualizacaoMenu.telaResumoVendEmpresa();
+				adm.resumoVendaJogos();
+				break;
+			case 9:
 				System.out.println("Voltando ao munu...");
 				//um pouco perdida se tem outra forma ou so volto pro menu mesmo
 //				exibirMenuAdm(); //tipo assim
+				break;
 			default:
 				System.out.println("Opção invalida./nInsira um opção válida:");
 				case3= sc.nextInt();
 				 
 	}
-		}while(case3 != 8);
+		}while(case3 != 9);
 	}
+
 	
-	public void buscarJogoCtg(Scanner sc, RepositorioJogoArrayList listJogos) {
-		System.out.println("🏷️ Escolha as Categorias:");
-		CategoriasJogos.imprimeCategorias();
-		ArrayList<CategoriasJogos> categoriasEscolhidas = new ArrayList<>();
-		while (true){
-			Integer categoriaEscolhida = sc.nextInt();
-			switch (categoriaEscolhida){
-				case 1 :
-					if  (!categoriasEscolhidas.contains(CategoriasJogos.RPG)){
-						categoriasEscolhidas.add(CategoriasJogos.RPG);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 2 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.AVENTURA)){
-						categoriasEscolhidas.add(CategoriasJogos.AVENTURA);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 3 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.ACAO)){
-						categoriasEscolhidas.add(CategoriasJogos.ACAO);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 4 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.HORROR)){
-						categoriasEscolhidas.add(CategoriasJogos.HORROR);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 5 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.MUNDOABERTO)){
-						categoriasEscolhidas.add(CategoriasJogos.MUNDOABERTO);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 6 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.TIRO)){
-						categoriasEscolhidas.add(CategoriasJogos.TIRO);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 7 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.PRIMEIRAPESSOA)){
-						categoriasEscolhidas.add(CategoriasJogos.PRIMEIRAPESSOA);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 8 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.TERCEIRAPESSOA)){
-						categoriasEscolhidas.add(CategoriasJogos.TERCEIRAPESSOA);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 9 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.PUZZLE)){
-						categoriasEscolhidas.add(CategoriasJogos.PUZZLE);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 10 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.TURNO)){
-						categoriasEscolhidas.add(CategoriasJogos.TURNO);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 11 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.ESPORTE)){
-						categoriasEscolhidas.add(CategoriasJogos.ESPORTE);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 12 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.LUTA)){
-						categoriasEscolhidas.add(CategoriasJogos.LUTA);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 13 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.FANTASIA)){
-						categoriasEscolhidas.add(CategoriasJogos.FANTASIA);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 14 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.CONSTRUCAO)){
-						categoriasEscolhidas.add(CategoriasJogos.CONSTRUCAO);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 15 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.RITMO)){
-						categoriasEscolhidas.add(CategoriasJogos.RITMO);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				case 16 :
-					if (!categoriasEscolhidas.contains(CategoriasJogos.BATTLEROYALE)){
-						categoriasEscolhidas.add(CategoriasJogos.BATTLEROYALE);
-					} else {
-						System.out.println("Categoria já escolhida.");
-					}
-					break;
-
-				default : System.out.println("Opção Inválida.");
-			}
-			System.out.println("");
-			System.out.println("Deseja adicionar mais categorias?");
-			System.out.println("1: SIM" + "-" + "2: NÃO");
-			int add1 = sc.nextInt();
-			if(add1 == 2){
-				break;
-			}
-		}
-		for(Jogo jogo : listJogos.procurarPorCategorias(categoriasEscolhidas)){
-			System.out.println(jogo.getResumo());
-		}
-		
-	}
 	
 	
 	
