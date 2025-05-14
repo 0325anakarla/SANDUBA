@@ -72,8 +72,36 @@ public class TelaListaDeDesejos {
 								if(subOpcao2 == 1) {
 									opcaoValida2 = true;
 									continuarAcao = false;
+<<<<<<< HEAD
 									continuarNaTela = false;
 									mostrarCarrinho.CarrinhoDeCompras(cliente);
+=======
+									
+									boolean opcaoValida2 = false;
+									while(opcaoValida2) {
+										System.out.println("\nO que deseja fazer agora?");
+										System.out.println("  [1] 🛒 Ir para o carrinho");
+										System.out.println("  [2] 💖 Continuar na lista de desejos");
+										System.out.println("  [3] 👤 Voltar à Minha Conta");
+										System.out.print("\nDigite a opção desejada: ");
+										int subOpcao2 = Integer.parseInt(sc.nextLine());
+										if(subOpcao2 == 1) {
+											opcaoValida2 = true;
+											continuarNaTela = false;
+											mostrarCarrinho.CarrinhoDeCompras(cliente, carrinho);
+										}
+										else if(subOpcao2 == 2) {
+											opcaoValida2 = true;
+											continuarNaTela = true;
+										}
+										else if(subOpcao2 == 3) {
+											opcaoValida2 = true;
+											continuarNaTela = false;
+											telaCliente.telaMinhaContaCliente(cliente);
+										}
+										else System.out.println("⚠️ Opção inválida. Digite 1, 2 ou 3.");
+										}
+>>>>>>> 03f6dc0270611ea126aa2f2294fde2c02dd99687
 								}
 								else if(subOpcao2 == 2) {
 									opcaoValida2 = true;
@@ -103,8 +131,57 @@ public class TelaListaDeDesejos {
 							Jogo resultado = cliente.procurarNomeLD(sc.nextLine());
 							cliente.removeListaDeDesejo(resultado);
 							System.out.println("O jogo "+resultado.getTitulo()+" foi removido da Lista de Desejos.");
+<<<<<<< HEAD
 							continuarAcao = false;
 							}catch(DadoNaoEncontradoException e) {
+=======
+							
+							boolean opcaoValida = false;
+							while(opcaoValida) {
+							System.out.println("\nDeseja remover mais algum jogo da Lista de Desejos?");
+							System.out.println("  [1] ✅ Sim");
+							System.out.println("  [2] ❌ Não");
+							System.out.print("\nDigite a opção desejada: ");
+							int subOpcao = Integer.parseInt(sc.nextLine());
+							
+							if(subOpcao == 1) {
+								opcaoValida = true;
+							}
+							else if(subOpcao == 2) {
+								opcaoValida = true;
+								continuarAcao = false;
+								
+								boolean opcaoValida2 = false;
+								while(opcaoValida2) {
+									System.out.println("\nO que deseja fazer agora?");
+									System.out.println("  [1] 🛒 Ir para o carrinho");
+									System.out.println("  [2] 💖 Continuar na lista de desejos");
+									System.out.println("  [3] 👤 Voltar à Minha Conta");
+									System.out.print("\nDigite a opção desejada: ");
+									int subOpcao2 = Integer.parseInt(sc.nextLine());
+									if(subOpcao2 == 1) {
+										opcaoValida2 = true;
+										continuarNaTela = false;
+										mostrarCarrinho.CarrinhoDeCompras(cliente, carrinho);
+									}
+									else if(subOpcao2 == 2) {
+										opcaoValida2 = true;
+										continuarNaTela = true;
+									}
+									else if(subOpcao2 == 3) {
+										opcaoValida2 = true;
+										continuarNaTela = false;
+										telaCliente.telaMinhaContaCliente(cliente);
+									}
+									else System.out.println("⚠️ Opção inválida. 1, 2 ou 3.");
+									}
+								
+								}
+							
+							else System.out.println("⚠️ Opção inválida. Digite 1 ou 2.");
+							}
+						}catch (DadoNaoEncontradoException | DadoInvalidoException e) {
+>>>>>>> 03f6dc0270611ea126aa2f2294fde2c02dd99687
 								System.out.println("❌ Erro: " + e.getMessage());
 								System.out.println("\nDigite novamente o jogo que procura.");
 							}

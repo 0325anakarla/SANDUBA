@@ -11,21 +11,21 @@ import jogo.Jogo;
 
 public class TelaCarrinhoDeCompras {
 	private Scanner sc;
-	private CarrinhoDeCompras carrinho;
-	private RepositorioJogoArrayList listJogos;
 	private BibliotecaJogos bibJogos;
 	private TelaCliente telaCliente;
 
-	public TelaCarrinhoDeCompras(Scanner sc, CarrinhoDeCompras carrinho, RepositorioJogoArrayList listJogos, BibliotecaJogos bibJogos, TelaCliente telaCliente) {
+	public TelaCarrinhoDeCompras(Scanner sc, BibliotecaJogos bibJogos, TelaCliente telaCliente) {
 		this.sc = sc;
-		this.carrinho = carrinho;
-		this.listJogos = listJogos;
 		this.bibJogos = bibJogos;
 		this.telaCliente = telaCliente;
 	}
 
+<<<<<<< HEAD
 	public void CarrinhoDeCompras(Cliente cliente) throws DadoInvalidoException {
 		int opcao = 0;
+=======
+	public void CarrinhoDeCompras(Cliente cliente, CarrinhoDeCompras carrinho) throws DadoInvalidoException {
+>>>>>>> 03f6dc0270611ea126aa2f2294fde2c02dd99687
 		
 		System.out.println("\n╔════════════════════════════════════════╗");
 		System.out.println("║          🛒 CARRINHO DE COMPRAS          ║");
@@ -55,7 +55,7 @@ public class TelaCarrinhoDeCompras {
 				do{
 					System.out.println("Qual jogo deseja remover.");
 					//duvida sobre isso (Ana alice)
-					Jogo resultado = listJogos.procurarNome(sc.nextLine());
+					Jogo resultado = carrinho.procurarNome(sc.nextLine());
 					carrinho.remove(resultado);
 					System.out.println("O jogo "+ resultado.getTitulo()+" foi removido.");
 					System.out.println("Deseja remover mais algum jogo?");

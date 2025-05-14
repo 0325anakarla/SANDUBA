@@ -27,6 +27,8 @@ import jogo.Jogo;
 import jogo.PlataformasDisponiveis;
 
 public class TesteMenu {
+	
+	
 
 	public static void main(String[] args) throws DadoInvalidoException {
 		Scanner sc = new Scanner(System.in);
@@ -196,7 +198,7 @@ public class TesteMenu {
 		TelaEmpresa telaEmpresa = new TelaEmpresa(sc, visualizacaoMenu, listJogos, controleJogos);
 		TelaAdm telaAdm = new TelaAdm(sc, visualizacaoMenu, adm, listUsuarios, listJogos, controleJogos);
 		BibliotecaJogos bibJogos = new BibliotecaJogos(sc, carrinho, listJogos, telaCliente);
-		TelaCarrinhoDeCompras mostrarCarrinho = new TelaCarrinhoDeCompras(sc, carrinho, listJogos, bibJogos, telaCliente);
+		TelaCarrinhoDeCompras mostrarCarrinho = new TelaCarrinhoDeCompras(sc, bibJogos, telaCliente);
 		bibJogos.setMostrarCarrinho(mostrarCarrinho);
 		TelaListaDeDesejos telaListaDeDesejos = new TelaListaDeDesejos(sc, carrinho, mostrarCarrinho, telaCliente);
 		telaCliente.setTelaListaDeDesejos(telaListaDeDesejos);
