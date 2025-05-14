@@ -36,7 +36,7 @@ public class OrganicaoTelaAdm {
 			visualizacaoMenu.telaAdmGerenciarCliente(adm);
 			switch(case1) {
 				case 1:
-					adm.clientesCadastrados(listUsuarios);
+					adm.clientesCadastrados();
 					sc.nextLine();
 					break;
 				case 2:
@@ -56,7 +56,7 @@ public class OrganicaoTelaAdm {
 						}
 
 					}else if(opcao2 ==2) {
-						adm.informacoesTodosClientes(listUsuarios);
+						adm.informacoesTodosClientes();
 					}
 					
 					
@@ -111,7 +111,8 @@ public class OrganicaoTelaAdm {
 				case 6:
 					System.out.println("Voltando ao munu...");
 					//um pouco perdida se tem outra forma ou so volto pro menu mesmo
-					telaAdm.exibirMenuAdm(); //tipo assim
+					System.out.println("Vltando ao menu..."); //tipo assim
+					break;
 				default:
 					System.out.println("Opção invalida./nInsira um opção válida:");
 					case1= sc.nextInt();

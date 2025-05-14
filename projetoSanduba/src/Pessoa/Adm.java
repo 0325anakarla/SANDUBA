@@ -3,7 +3,7 @@ package Pessoa;
 import java.time.LocalDate;
 
 import Console.VisualizacaoMenu;
-import Financeiro.RegistroDeCompras;
+//import Financeiro.RegistroDeCompras;
 import Financeiro.ResumoDeVendas;
 import Repositorio.RepositorioJogoArrayList;
 import Repositorio.RepositorioUsuarioArrayList;
@@ -13,9 +13,9 @@ import TratamentoDeErro.DadoNaoEncontradoException;
 import funcionalidades.ControleDeJogos;
 import jogo.Jogo;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+//import java.util.HashMap;
+//import java.util.List;
+//import java.util.Map;
 //import java.util.ArrayList;
 //
 //import java.util.Comparator;
@@ -95,24 +95,24 @@ public class Adm extends Usuarios{
 
 	@Override
 	public String mostrarDetalhesUsuario() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return "Nome do Adm: "+getNome()+"/nEmail:"+getEmail()+"/nSenha: "+getSenha();
 	}
 	
-	public void empresasCadastradas(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
+	public void empresasCadastradas() throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 			Empresa empresa = (Empresa) empresas;
 			System.out.println("🏢 "+empresa.getRazaoSocial()+" /n");
 		}
 	}
 	
-	public void clientesCadastrados(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
+	public void clientesCadastrados() throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios cliente: listUsuarios.getTipo(Cliente.class)) {
 			System.out.println("/n👤 "+cliente.getNome()+" /n");
 		}
 	}
 	
-	public void jogoPorEmpresa(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
+	public void jogoPorEmpresa() throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 			System.out.println("🏢 Empresa "+empresas.getNome()+". /n");
 			controleJogos.ListJogosEmpresa((Empresa)empresas);
@@ -121,7 +121,7 @@ public class Adm extends Usuarios{
 		}
 	}
 	
-	public void informacoesTodosClientes(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
+	public void informacoesTodosClientes() throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios clientes: listUsuarios.getTipo(Cliente.class)) {
 //			tranformar o ciente do tipo usario em do tipo cliente
 			Cliente cliente = (Cliente) clientes; 
@@ -129,7 +129,7 @@ public class Adm extends Usuarios{
 		}
 	}
 	
-	public void informacoesTodasEmpresas(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
+	public void informacoesTodasEmpresas() throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 //			tranformar o empresa do tipo usario em do tipo Empresa
 			Empresa empresa = (Empresa) empresas;
@@ -157,6 +157,10 @@ public class Adm extends Usuarios{
 			Empresa empresa = (Empresa) empresas;
 			ResumoDeVendas.gerarResumoTotal(empresa.getVendasPorJogo());
 		}
+	}
+	
+	public void descontoPorTempoLimt() {
+		
 	}
 	
 }

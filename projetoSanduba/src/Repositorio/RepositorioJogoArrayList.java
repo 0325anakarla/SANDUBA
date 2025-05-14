@@ -110,6 +110,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 		return null;
 	}
 	
+	@Override
 	public String resumoJogos(Jogo jogo) {
 		StringBuilder resumo = new StringBuilder();
 		
@@ -139,6 +140,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 	    return resultados;
 	}
 
+	
 
 
 	
