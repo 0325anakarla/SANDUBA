@@ -1,14 +1,14 @@
 package Console;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
-import Financeiro.CarteiraDoCliente;
-import Financeiro.DadosBancarios;
+//import Financeiro.CarteiraDoCliente;
+//import Financeiro.DadosBancarios;
 import Pessoa.Adm;
-import Pessoa.Cliente;
-import Pessoa.Empresa;
+//import Pessoa.Cliente;
+//import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
 import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoInvalidoException;
@@ -21,11 +21,14 @@ public class TesteMenu {
 		
 		VisualizacaoMenu visualizacaoMenu = new VisualizacaoMenu();
 		CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
-		Adm adm = Adm.getInstancia(null, null, null);
+		
 		
 		//REPOSITORIOS
 		RepositorioUsuarioArrayList listUsuarios = new RepositorioUsuarioArrayList(sc);
 		RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();
+		
+		//adm pra ve se finciona 
+		Adm adm = Adm.getInstancia("Luana", "Maria@gmail.com", "123", listUsuarios);
 		
 		//CONTROLES
 		ControleDeJogos controleJogos = new ControleDeJogos(sc, visualizacaoMenu, listJogos);

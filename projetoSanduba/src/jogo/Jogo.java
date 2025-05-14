@@ -3,7 +3,6 @@ package jogo;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
-
 import Pessoa.Empresa;
 import TratamentoDeErro.DadoInvalidoException;
 
@@ -62,13 +61,12 @@ public class Jogo {
 		this.descontoApli = descontoApli;
 	}
 	
-	public void precoDesconto() {
-        String precoCinza = "\033[37;2m" + precoModificador + "\033[0m";
-        String precoVermelho = "\u001B[31m"+getPreco()+"\u001B[0m";
+	public String precoDesconto() {
+		 String precoOriginal = "\u001B[2mR$ " + getPrecoModificador() + "\u001B[0m"; // cinza (faint)
+		    String precoDescontado = "\u001B[31mR$ " + getPreco() + "\u001B[0m"; // vermelho
 
-		System.out.println("/n!Jogo com desconto! de ~~"+precoCinza+"~~ para :" +precoVermelho);
-		
-	}
+		    return "\n  !Jogo com desconto! De ~~" + precoOriginal + "~~ para: " + precoDescontado;
+		}
 	
 
 	public void setPreco(double preco) throws DadoInvalidoException {
@@ -230,5 +228,8 @@ public class Jogo {
 			return false;
 		}
 	}
+	
+	
+
 
 }

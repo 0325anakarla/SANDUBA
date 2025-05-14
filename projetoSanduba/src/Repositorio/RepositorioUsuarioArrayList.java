@@ -65,7 +65,7 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
                             cliente.setEmail(sc.nextLine());
                             break;
                         case 3:
-                            System.out.println("Digite a nova senha (mínimo 6 caracteres):");
+                            System.out.println("Digite a nova senha :");
                             cliente.setSenha(sc.nextLine());
                             break;
                         case 4:
@@ -128,7 +128,7 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 			                empresa.setEmail(sc.nextLine());
 			                break;
 			            case 3:
-			                System.out.print("Digite a nova senha (mínimo 6 caracteres): ");
+			                System.out.print("Digite a nova senha : ");
 			                empresa.setSenha(sc.nextLine());
 			                break;
 			            case 4:
@@ -174,6 +174,8 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
     
 	}
 	}
+	
+	
 			
 		
 

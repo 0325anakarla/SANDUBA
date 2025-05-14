@@ -31,7 +31,9 @@ public abstract class Usuarios {
 	}
 
 	public void setEmail(String email) throws DadoInvalidoException{
-		if(email == null || email.isBlank() || !email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$"))
+		if(email == null || email.isBlank() || !email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+			throw new DadoInvalidoException("Email invalido. Insira um email válido!");
+		}
 		this.email = email;
 	}
 

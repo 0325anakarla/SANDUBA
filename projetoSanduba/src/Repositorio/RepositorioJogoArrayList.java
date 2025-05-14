@@ -9,6 +9,7 @@ import Pessoa.Empresa;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
+import jogo.CategoriasJogos;
 import jogo.Jogo;
 
 public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJogos {
@@ -109,14 +110,33 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 		return null;
 	}
 	
-	public String resumoJogos() {
+	public String resumoJogos(Jogo jogo) {
 		StringBuilder resumo = new StringBuilder();
 		
 		for(Jogo j: jogos) {
+			if(j.getPreco()!= j.getPrecoModificador()) {
+				resumo.append(String.format("- %s [%s] | %s\n", j.getTitulo(), j.getCategoriasValidas(), j.precoDesconto()));
+			}else {
 			resumo.append(String.format("- %s [%s] | R$ %.2f\n", j.getTitulo(),j.getCategoriasValidas(), j.getPreco()));
+			}
 		}
 		
 		return resumo.toString();
+	}
+	
+	public List<Jogo> procurarPorCategorias(List<CategoriasJogos> categoriasDesejadas) {
+	    List<Jogo> resultados = new ArrayList<>();
+
+	    for (Jogo jogo : jogos) {
+	        for (CategoriasJogos categoria : categoriasDesejadas) {
+	            if (jogo.getCategoriasValidas().contains(categoria)) {
+	                resultados.add(jogo);
+	                break; // Já achou uma categoria compatível, pode adicionar e ir para o próximo jogo
+	            }
+	        }
+	    }
+
+	    return resultados;
 	}
 
 
