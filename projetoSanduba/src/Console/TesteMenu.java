@@ -27,6 +27,8 @@ import jogo.Jogo;
 import jogo.PlataformasDisponiveis;
 
 public class TesteMenu {
+	
+	
 
 	public static void main(String[] args) throws DadoInvalidoException {
 		Scanner sc = new Scanner(System.in);

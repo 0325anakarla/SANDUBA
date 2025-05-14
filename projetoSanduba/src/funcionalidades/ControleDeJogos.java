@@ -631,8 +631,8 @@ public class ControleDeJogos{
 	}
 	}
 	
-	public void buscarJogoCtg(Scanner sc, RepositorioJogoArrayList listJogos) {
-		System.out.println("🏷️ Escolha as Categorias para o :");
+	
+	public List<CategoriasJogos> catgEscolhidas(Scanner sc){
 		CategoriasJogos.imprimeCategorias();
 		ArrayList<CategoriasJogos> categoriasEscolhidas = new ArrayList<>();
 		while (true){
@@ -776,7 +776,14 @@ public class ControleDeJogos{
 				break;
 			}
 		}
-		for(Jogo jogo : listJogos.procurarPorCategorias(categoriasEscolhidas)){
+		
+		return categoriasEscolhidas;
+	}
+	
+	public void buscarJogoCtg(Scanner sc, RepositorioJogoArrayList listJogos) {
+		System.out.println("🏷️ Escolha as Categorias para o :");
+		List<CategoriasJogos> categorias = catgEscolhidas(sc);
+		for(Jogo jogo : listJogos.procurarPorCategorias(categorias)){
 			System.out.println(jogo.getResumo());
 		}
 		

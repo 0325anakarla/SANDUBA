@@ -111,7 +111,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 	}
 	
 	@Override
-	public String resumoJogos(Jogo jogo) {
+	public String resumoJogos() {
 		StringBuilder resumo = new StringBuilder();
 		
 		for(Jogo j: jogos) {

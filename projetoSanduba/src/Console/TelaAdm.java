@@ -22,7 +22,7 @@ public class TelaAdm {
 	private ControleDeJogos controleJogos;
 //	private boolean deuCerto = true;
 	private CarteiraDoAdm cartAdm;
-	private OrganicaoTelaAdm orgAdm;
+	 OrganicaoTelaAdm orgAdm = new OrganicaoTelaAdm();
 	
 	
 	public TelaAdm(Scanner sc, VisualizacaoMenu visualizacaoMenu, Adm adm, RepositorioUsuarioArrayList listUsuarios, RepositorioJogoArrayList listJogos,  ControleDeJogos controleJogos) {

@@ -1,5 +1,6 @@
 package Console;
 
+import java.util.List;
 //import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -12,6 +13,7 @@ import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.ControleDeJogos;
+import jogo.CategoriasJogos;
 //import jogo.CategoriasJogos;
 import jogo.Jogo;
 
@@ -27,13 +29,16 @@ public class OrganicaoTelaAdm {
 //	System.out.println("  [4] 👤 Remover uma conta.");
 //	System.out.println("  [5] 👤 Buscar um Cliente.");
 //	System.out.println("  [6] 🔙 Voltar para o menu. ");
-	private TelaAdm telaAdm;
-	
+	//private TelaAdm telaAdm;
+	public OrganicaoTelaAdm() {
+		
+	}
 	public void opcoesCase1(Scanner sc,Adm adm,RepositorioUsuarioArrayList listUsuarios,VisualizacaoMenu visualizacaoMenu) throws DadoInvalidoException, DadoDuplicadoException {
-		int case1 = sc.nextInt();
+		int case1;
 		sc.nextLine();
 		do {
 			visualizacaoMenu.telaAdmGerenciarCliente(adm);
+			case1 = sc.nextInt();
 			switch(case1) {
 				case 1:
 					adm.clientesCadastrados();
@@ -137,7 +142,7 @@ public class OrganicaoTelaAdm {
 			visualizacaoMenu.telaAdmGerenciarEmpresa(adm);
 			switch(case2) {
 				case 1:
-					adm.empresasCadastradas(listUsuarios);
+					adm.empresasCadastradas();
 					break;
 				case 2:
 					System.out.println("Deseja obter informaões de uma Empresa em especifio ou de todos?");
@@ -149,7 +154,7 @@ public class OrganicaoTelaAdm {
 						//String nome = sc.nextLine();
 						//falta completar isso de alterar o cliente pelo nome 
 					}else if(opcao2 ==2) {
-						adm.informacoesTodasEmpresas(listUsuarios);
+						adm.informacoesTodasEmpresas();
 					}
 					
 					break;
@@ -218,14 +223,15 @@ public class OrganicaoTelaAdm {
 
 	public void opcoesCase3(Scanner sc, Adm adm,RepositorioUsuarioArrayList listUsuarios, VisualizacaoMenu visualizacaoMenu, RepositorioJogoArrayList listJogos,ControleDeJogos controleJogos ) throws DadoInvalidoException, DadoDuplicadoException {
 		
-		int case3 = sc.nextInt();
+		int case3; 
 		sc.nextLine();
 		do {
 			visualizacaoMenu.telaAdmGerenciarJogo(adm);
+			case3 = sc.nextInt();
 			switch(case3) {
 			case 1:
 				
-				adm.jogoPorEmpresa(listUsuarios);
+				adm.jogoPorEmpresa();
 				break;
 			case 2: 
 				System.out.println("Insira o nome  da Empresa que deseja cadastrar seu jogo:");
@@ -272,8 +278,10 @@ public class OrganicaoTelaAdm {
 			case 6:
 				System.out.println(adm.getNome()+" você quer aplicar desconto por:");
 				System.out.println("[1] ano de lançamento");
-				System.out.println("[2] tempo limitado(dias ou mes)");
+				System.out.println("[2] categoria");
+				
 				int opcao21 =sc.nextInt();
+				
 				if(opcao21 ==1) {
 				System.out.println("Insira o ano de referência: todos os jogos lançados até esse ano sofrerão desconto. (ex:2010) ");
 				int ano =sc.nextInt();
@@ -281,6 +289,8 @@ public class OrganicaoTelaAdm {
 				double desconto = sc.nextDouble();
 				adm.descontoPorAno(ano, desconto);
 				}else if(opcao21 ==2) {
+					List<CategoriasJogos> categorias = controleJogos.catgEscolhidas(sc);
+					System.out.println("Desconto que será aplicado é tempo limitado(dias ou mes)");
 					System.out.println("Insira o tempo que sera.  ");
 					System.out.println("[1] por dias ");
 					System.out.println("[2] por mês.");
@@ -289,14 +299,16 @@ public class OrganicaoTelaAdm {
 					System.out.println("Insira o tempo que será aplicado: (ex:20)");
 					int tempo = sc.nextInt();
 					
-					System.out.println("Insira o desconto que será aplicado: (ex:20)");
+					System.out.println("Insira o desconto que será aplicado '%' : (ex:20)");
 					double desconto = sc.nextDouble();
+					adm.descontoPorTempoLimt( tipo,  tempo,  desconto, categorias  );
 					
 				}
 				
 				break;
 			case 7: 
 				controleJogos.buscarJogoCtg(sc, listJogos);
+				break; 
 			case 8:
 				visualizacaoMenu.telaResumoVendEmpresa();
 				adm.resumoVendaJogos(listUsuarios);

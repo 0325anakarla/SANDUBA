@@ -11,8 +11,10 @@ import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
 import funcionalidades.ControleDeJogos;
+import jogo.CategoriasJogos;
 import jogo.Jogo;
 
+import java.util.List;
 //import java.util.HashMap;
 //import java.util.List;
 //import java.util.Map;
@@ -33,23 +35,25 @@ public class Adm extends Usuarios{
 	LocalDate hoje = LocalDate.now();
 	int anoHoje = LocalDate.now().getYear();
 	ResumoDeVendas resumo;
+	private LocalDate dataDesconto; 
+    private int duracaoDescontoDias;
 	
 	//para ter certeza que so existe um adm
 	private static Adm instanciaUnica;
 	
     
-    private Adm(String nome, String email, String senha) {
+    private Adm(String nome, String email, String senha,RepositorioUsuarioArrayList listUsuarios) {
         super(nome, email, senha);
        
         
        
     }
 
-    public static Adm getInstancia(String nome, String email, String senha, RepositorioUsuarioArrayList listUsuarios1 ) {
+    public static Adm getInstancia(String nome, String email, String senha, RepositorioUsuarioArrayList listUsuarios ) {
         if (instanciaUnica == null) {
-            instanciaUnica = new Adm(nome, email, senha);
+            instanciaUnica = new Adm(nome, email, senha,listUsuarios);
             try {
-				listUsuarios1.add(instanciaUnica);
+				listUsuarios.add(instanciaUnica);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -114,7 +118,7 @@ public class Adm extends Usuarios{
 	
 	public void jogoPorEmpresa() throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
-			System.out.println("🏢 Empresa "+empresas.getNome()+". /n");
+			System.out.println("🏢 Empresa "+empresas.getNome()+". \n");
 			controleJogos.ListJogosEmpresa((Empresa)empresas);
 			System.out.println();
 			
@@ -159,8 +163,40 @@ public class Adm extends Usuarios{
 		}
 	}
 	
-	public void descontoPorTempoLimt() {
+//	public double getPrecoFinal() {
+//        if (desconto > 0 && dataDesconto != null) {
+//            LocalDate dataFinal = dataDesconto.plusDays(duracaoDescontoDias);
+//            if (LocalDate.now().isAfter(dataFinal)) {
+//                // Já passou o tempo, remove o desconto
+//                desconto = 0;
+//                return preco;
+//            } else {
+//                return preco * (1 - desconto / 100);
+//            }
+	
+	public void descontoPorTempoLimt(int tipo, int tempo, double desconto, List<CategoriasJogos> categorias) throws DadoNaoEncontradoException, DadoInvalidoException {
+		dataDesconto = LocalDate.now();
+		if(tipo == 1) {
+			duracaoDescontoDias = tempo;
+		}
+		else if (tipo == 2) {
+			duracaoDescontoDias = 30*tempo;
+		}
 		
-	}
+		LocalDate dataFinal = dataDesconto.plusDays(duracaoDescontoDias);
+		
+		
+			
+		for(Jogo jogo : listJogos.procurarPorCategorias(categorias)) {
+					if ( LocalDate.now().isAfter(dataFinal))  {
+						VoltarPreço( jogo);
+					}else {
+						AplicarDesconto( jogo, desconto);
+						System.out.println("🎮. "+jogo.getTitulo()+", sofreu "+desconto+"% de desconto. Durante o tempo de "+ tempo + (tipo == 1 ? " dias./n" : " meses./n"));
+					}
+	        }
+		}
+	
+			
 	
 }
