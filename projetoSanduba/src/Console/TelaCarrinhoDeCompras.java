@@ -14,7 +14,10 @@ public class TelaCarrinhoDeCompras {
 	private BibliotecaJogos bibJogos;
 	private TelaCliente telaCliente;
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> cc2edf8fce6dbd3bd6fdd5e70fe79b34bac1d77f
 	public TelaCarrinhoDeCompras(Scanner sc, CarrinhoDeCompras carrinho, RepositorioJogoArrayList listJogos, BibliotecaJogos bibJogos, TelaCliente telaCliente) {
 		this.sc = sc;
 		this.carrinho = carrinho;

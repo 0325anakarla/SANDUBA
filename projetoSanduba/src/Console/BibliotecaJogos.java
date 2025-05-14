@@ -79,6 +79,7 @@ public class BibliotecaJogos {
 		
 		switch(opcao) {
 			case 1:
+				//adicionar ao um array list do tipo jogo, que vai conter os jogos desejados
 				break;
 			case 2:
 				carrinho.adiciona(jogo);

@@ -69,7 +69,7 @@ public class Adm extends Usuarios{
 	
 	public void descontoPorAno(int ano, double desconto) throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {
 		int diferencaAnos = anoHoje - ano;
-		for(Usuarios empresa: listUsuario.getTipo(Empresa.class)){
+		for(Usuarios empresa: listUsuarios.getTipo(Empresa.class)){
 			for(Jogo jogo:  listJogos.procurarEmpresa((Empresa)empresa)) {
 				if (jogo.verAnosPassados() >= diferencaAnos) {
 					AplicarDesconto( jogo, desconto);
@@ -126,8 +126,8 @@ public class Adm extends Usuarios{
 	}	
 	
 	public void infoTodosJogos() {
-		menu.telaInfJogos();
-		for(Usuarios empresas: listUsuario.getTipo(Empresa.class)) {
+		visualizacaoMenu.telaInfJogos();
+		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 //			tranformar o empresa do tipo usario em do tipo Empresa
 			Empresa empresa = (Empresa) empresas;
 			for(Jogo jogo : listJogos.procurarEmpresa( empresa)) {

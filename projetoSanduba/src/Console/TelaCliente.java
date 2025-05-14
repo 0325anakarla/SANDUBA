@@ -14,11 +14,15 @@ import jogo.Jogo;
 public class TelaCliente {
 	private Scanner sc;
 	private VisualizacaoMenu visualizacaoMenu;
-	
+	private TelaListaDeDesejos telaListaDeDesejos;
 
 	public TelaCliente(Scanner sc, VisualizacaoMenu visualizacaoMenu) {
 		this.sc = sc;
 		this.visualizacaoMenu = visualizacaoMenu;
+	}
+	
+	public void setTelaListaDeDesejos(TelaListaDeDesejos telaListaDeDesejos) {
+		this.telaListaDeDesejos = telaListaDeDesejos;
 	}
 	
 	public void telaMinhaContaCliente(Cliente cliente) {
@@ -57,9 +61,10 @@ public class TelaCliente {
 					}
 					break;
 				case 4:
-					System.out.println("\n╔══════════════════════════════╗");
-					System.out.println("║       💖 LISTA DE DESEJOS      ║");
-					System.out.println("╚══════════════════════════════╝");
+//					System.out.println("\n╔══════════════════════════════╗");
+//					System.out.println("║       💖 LISTA DE DESEJOS      ║");
+//					System.out.println("╚══════════════════════════════╝");
+					telaListaDeDesejos.telaLD(cliente);
 					break;
 				case 5:
 					System.out.println("\n╔══════════════════════════════╗");
