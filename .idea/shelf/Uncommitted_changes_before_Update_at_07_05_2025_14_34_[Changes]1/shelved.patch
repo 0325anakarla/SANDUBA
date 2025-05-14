@@ -1,0 +1,86 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"3ec81f32-4391-4209-9523-50e2e6ce7a73\" name=\"Changes\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\"><![CDATA[{\r\n  \"lastFilter\": {\r\n    \"state\": \"OPEN\",\r\n    \"assignee\": \"mariabfer\"\r\n  }\r\n}]]></component>\r\n  <component name=\"GithubPullRequestsUISettings\"><![CDATA[{\r\n  \"selectedUrlAndAccountId\": {\r\n    \"url\": \"https://github.com/0325anakarla/SANDUBA.git\",\r\n    \"accountId\": \"c2c10c16-ed34-41bb-b9bf-63591e7870cf\"\r\n  }\r\n}]]></component>\r\n  <component name=\"ProjectColorInfo\"><![CDATA[{\r\n  \"customColor\": \"\",\r\n  \"associatedIndex\": 8\r\n}]]></component>\r\n  <component name=\"ProjectId\" id=\"2wgWOIQhsb7soOQC06iIHhB7gka\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"git-widget-placeholder\": \"main\"\r\n  }\r\n}]]></component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"3ec81f32-4391-4209-9523-50e2e6ce7a73\" name=\"Changes\" comment=\"\" />\r\n      <created>1746463669014</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1746463669014</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 06590ecac866e5ebd1b419711084ce8daa7ffc23)
++++ b/.idea/workspace.xml	(date 1746486252926)
+@@ -4,7 +4,10 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="3ec81f32-4391-4209-9523-50e2e6ce7a73" name="Changes" comment="" />
++    <list default="true" id="3ec81f32-4391-4209-9523-50e2e6ce7a73" name="Changes" comment="">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/projetoSanduba/src/projetoSanduba/ArrayListPessoas.java" beforeDir="false" afterPath="$PROJECT_DIR$/projetoSanduba/src/projetoSanduba/ArrayListPessoas.java" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -13,22 +16,22 @@
+   <component name="Git.Settings">
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+-  "lastFilter": {
+-    "state": "OPEN",
+-    "assignee": "mariabfer"
++  <component name="GitHubPullRequestSearchHistory">{
++  &quot;lastFilter&quot;: {
++    &quot;state&quot;: &quot;OPEN&quot;,
++    &quot;assignee&quot;: &quot;mariabfer&quot;
+   }
+-}]]></component>
+-  <component name="GithubPullRequestsUISettings"><![CDATA[{
+-  "selectedUrlAndAccountId": {
+-    "url": "https://github.com/0325anakarla/SANDUBA.git",
+-    "accountId": "c2c10c16-ed34-41bb-b9bf-63591e7870cf"
++}</component>
++  <component name="GithubPullRequestsUISettings">{
++  &quot;selectedUrlAndAccountId&quot;: {
++    &quot;url&quot;: &quot;https://github.com/0325anakarla/SANDUBA.git&quot;,
++    &quot;accountId&quot;: &quot;c2c10c16-ed34-41bb-b9bf-63591e7870cf&quot;
+   }
+-}]]></component>
+-  <component name="ProjectColorInfo"><![CDATA[{
+-  "customColor": "",
+-  "associatedIndex": 8
+-}]]></component>
++}</component>
++  <component name="ProjectColorInfo">{
++  &quot;customColor&quot;: &quot;&quot;,
++  &quot;associatedIndex&quot;: 8
++}</component>
+   <component name="ProjectId" id="2wgWOIQhsb7soOQC06iIHhB7gka" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+@@ -38,6 +41,7 @@
+   "keyToString": {
+     "ModuleVcsDetector.initialDetectionPerformed": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
++    "RunOnceActivity.git.unshallow": "true",
+     "git-widget-placeholder": "main"
+   }
+ }]]></component>
+Index: projetoSanduba/src/Pessoa/Usuarios.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package Pessoa;\r\n\r\n\r\n\r\npublic abstract class Usuarios {\r\n\tprivate String nome;\r\n\tprivate String email;\r\n\tprivate String senha;\r\n\t\r\n\tpublic Usuarios(String nome, String email, String senha) {\r\n\t\tthis.setNome(nome);\r\n\t\tthis.setEmail(email);\r\n\t\tthis.setSenha(senha);\r\n\t}\r\n\r\n\t/* ----- Gets e sets -----*/\r\n\t\r\n\tpublic String getSenha() {\r\n\t\treturn senha;\r\n\t}\r\n\r\n\tpublic void setSenha(String senha) {\r\n\t\tthis.senha = senha;\r\n\t}\r\n\r\n\tpublic String getEmail() {\r\n\t\treturn email;\r\n\t}\r\n\r\n\tpublic void setEmail(String email) {\r\n\t\tthis.email = email;\r\n\t}\r\n\r\n\tpublic String getNome() {\r\n\t\treturn nome;\r\n\t}\r\n\r\n\tpublic void setNome(String nome) {\r\n\t\tthis.nome = nome;\r\n\t}\r\n\t\r\n\tpublic abstract void exibirInformacaoPublica(); //nome de usuario\r\n\tpublic abstract void exibirInformacaoPrivada(); //detalhes da conta\r\n\t\r\n\tpublic abstract String alterarSenha(String senha); //alterar dados\r\n\tpublic abstract String alterarEmail(String email);\r\n\t\r\n\tpublic abstract void seusJogos(); //jogos cadastrados e jogos comprados\r\n\t\r\n\tpublic abstract void excluirConta(); //excluir conta\r\n\t\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/projetoSanduba/src/Pessoa/Usuarios.java b/projetoSanduba/src/Pessoa/Usuarios.java
+--- a/projetoSanduba/src/Pessoa/Usuarios.java	(revision 06590ecac866e5ebd1b419711084ce8daa7ffc23)
++++ b/projetoSanduba/src/Pessoa/Usuarios.java	(date 1746624176102)
+@@ -39,7 +39,7 @@
+ 		this.nome = nome;
+ 	}
+ 	
+-	public abstract void exibirInformacaoPublica(); //nome de usuario
++	public abstract void exibirInformacaoPublica(Usuarios usuario); //nome de usuario
+ 	public abstract void exibirInformacaoPrivada(); //detalhes da conta
+ 	
+ 	public abstract String alterarSenha(String senha); //alterar dados

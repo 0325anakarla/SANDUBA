@@ -4,25 +4,31 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import Console.Menu;
 import Financeiro.DadosBancarios;
 
 import Pessoa.Cliente;
 import Pessoa.Empresa;
 import Repositorio.RepositorioUsuarioArrayList;
+import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 
 public class ControleDeCadastros {
-	private Scanner sc;
-	private final RepositorioUsuarioArrayList repositorio;
-	//private Menu menu;
 
-	public ControleDeCadastros(Scanner sc, RepositorioUsuarioArrayList repositorio/*, Menu menu*/) {
+	private Scanner sc;
+	private final RepositorioUsuarioArrayList listUsuarios;
+	private Menu menu;
+
+	public ControleDeCadastros(Scanner sc, RepositorioUsuarioArrayList listUsuarios) {
 		this.sc = sc;
-		this.repositorio = new RepositorioUsuarioArrayList();
-		//this.menu = menu;
+		this.listUsuarios = listUsuarios;
 	}
-	
-	public void CadastrarClientes() {
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+
+	public void CadastrarClientes() throws DadoInvalidoException {
 
 		boolean continuarCadastro = true;
 
@@ -37,9 +43,9 @@ public class ControleDeCadastros {
 				int tentativas = 0;
 				try {
 
-					System.out.println("\n╔════════════════════════════════════════════════════╗");
-					System.out.println("║        🧾 CADASTRO DE CLIENTE - PREENCHA OS DADOS   ║");
-					System.out.println("╚════════════════════════════════════════════════════╝");
+					System.out.println("\n╔════════════════════════════════════╗");
+					System.out.println("║        🧾 CADASTRO DE CLIENTE      ║");
+					System.out.println("╚════════════════════════════════════╝\n");
 
 					System.out.print("🧍 Nome completo: ");
 					cliente.setNome(sc.nextLine());
@@ -82,11 +88,11 @@ public class ControleDeCadastros {
 							tentativas++;
 							System.out.println("⚠️  Formato de data inválido. Tente novamente. (" + tentativas + "/3)");
 
-							if (tentativas == 3){
+							if (tentativas == 3) {
 								System.out.println("\n╔════════════════════════════════════════════════╗");
 								System.out.println("║ ❌ Cadastro cancelado: número de tentativas excedido ║");
 								System.out.println("╚════════════════════════════════════════════════╝");
-								return; 
+								return;
 							}
 						}
 					}
@@ -95,112 +101,171 @@ public class ControleDeCadastros {
 				} catch (DadoInvalidoException e) {
 					System.out.println("Erro: " + e.getMessage());
 				}
+				catch(DadoDuplicadoException e) {
+					System.out.println("Erro: " + e.getMessage());
+				}
 			} while (!dadosValidos);
-			
+
 			System.out.println("\n╔══════════════════════════════════════╗");
-			System.out.println("║ ✅ Cadastro realizado com sucesso!  ║");
-			System.out.println("╚══════════════════════════════════════╝");
-			System.out.println("😄 Seja bem-vindo(a), " + cliente.getNome() + "!");
+			System.out.println("║ ✅ Cadastro realizado com sucesso!   ║");
+			System.out.println("╚══════════════════════════════════════╝\n");
+			Gambiarras.textoLento("😄 Seja bem-vindo(a), " + cliente.getNome() + "!", 50);
+
+			listUsuarios.add(cliente);
+			Gambiarras.textoLento("\n-> Redirecionando para a tela inicial\n", 6);
 			
-			repositorio.add(cliente);
-			System.out.println("\n🔄 Redirecionando para a tela inicial...\n");
-			//pensar em uma forma de voltar para a tela inicial
-			//sem criar um objeto do tipo menu
-			//menu.start();
+			Gambiarras.textoLento(".\n.\n.\n",600);
+		
+			Gambiarras.limparTela();
+			
+			menu.start();
 			break;
+
 		}
 	}
 
-	public void CadastrarEmpresa() {
+	public void CadastrarEmpresa() throws DadoInvalidoException {
 		boolean continuarCadastro = true;
-		
-		while(continuarCadastro){
-		boolean dadosValidos = false;
-		
-		//nome  email  senha RazaoS cpnj endereco  dados bancarios (para n esquecer nada)
-		Empresa empresa = new Empresa(null, null, null, null, null, null, null);
-		DadosBancarios dadosEmpresa = new DadosBancarios(null, null, null, 0, 0);
-		
-		do {
-			int tentativas = 0;
-			try {
-				//dados normais
-				System.out.println("\n╔════════════════════════════════════════════════════╗");
-				System.out.println("║   🧾 CADASTRO DE EMPRESA - PREENCHA OS DADOS   ║");
-				System.out.println("╚════════════════════════════════════════════════════╝");
 
-				System.out.print("🧍 Nome: ");
-				empresa.setNome(sc.nextLine());
 
-				System.out.print("📧 Email: ");
-				empresa.setEmail(sc.nextLine());
+		while (continuarCadastro) {
+			boolean dadosValidos = false;
 
-				System.out.print("🔒 Senha: ");
-				empresa.setSenha(sc.nextLine());
-				
-				System.out.print("🧍 Razão Social: ");
-				empresa.setRazaoSocial(sc.nextLine());
-				
-				while (tentativas < 3) {
-					System.out.print("🪪 CNPJ - (14 dígitos): ");
-					String Icpnj = sc.nextLine();
+			// nome email senha RazaoS cpnj endereco dados bancarios (para n esquecer nada)
+			DadosBancarios dadosEmpresa = new DadosBancarios(null, null, null, null, null);
+			Empresa empresa = new Empresa(null, null, null, null, null, null, null);
 
-					if (Icpnj.matches("\\d{14}")) {
-						empresa.setCpnj(Icpnj);
-						break;
-					} else {
-						tentativas++;
-						System.out.println("⚠️  CNPJ inválido. Tente novamente. (" + tentativas + "/3)");
+			do {
+				int tentativas = 0;
+				try {
+					// dados normais
+					System.out.println("\n╔════════════════════════════════════════════════════╗");
+					System.out.println("║   🧾 CADASTRO DE EMPRESA - PREENCHA OS DADOS   ║");
+					System.out.println("╚════════════════════════════════════════════════════╝");
 
-						if (tentativas == 3) {
+					System.out.print("🧍 Nome: ");
+					empresa.setNome(sc.nextLine());
 
-							System.out.println("\n╔════════════════════════════════════════════════╗");
-							System.out.println("║ ❌ Cadastro cancelado: número de tentativas excedido ║");
-							System.out.println("╚════════════════════════════════════════════════╝");
-							return;
+					System.out.print("📧 Email: ");
+					empresa.setEmail(sc.nextLine());
 
+					System.out.print("🔒 Senha: ");
+					empresa.setSenha(sc.nextLine());
+
+					System.out.print("🧍 Razão Social: ");
+					empresa.setRazaoSocial(sc.nextLine());
+
+					while (tentativas < 3) {
+						System.out.print("🪪 CNPJ - (14 dígitos): ");
+						String Icpnj = sc.nextLine();
+
+						if (Icpnj.matches("\\d{14}")) {
+							empresa.setCpnj(Icpnj);
+							break;
+						} else {
+							tentativas++;
+							System.out.println("⚠️  CNPJ inválido. Tente novamente. (" + tentativas + "/3)");
+
+							if (tentativas == 3) {
+
+								System.out.println("\n╔════════════════════════════════════════════════╗");
+								System.out.println("║ ❌ Cadastro cancelado: número de tentativas excedido ║");
+								System.out.println("╚════════════════════════════════════════════════╝");
+								return;
+
+							}
 						}
 					}
-				}
-				
-				System.out.print("📍 Endereco: ");
-				empresa.setEndereco(sc.nextLine());
-				System.out.println();
-				
-			//DADOS BANCARIOS -
+
+					System.out.print("📍 Endereco: ");
+					empresa.setEndereco(sc.nextLine());
+					System.out.println();
+
+					// DADOS BANCARIOS -
 //				private String titularConta;
 //				private String nomeBanco;
 //				private String tipoConta; // conta correntem, poupanca , pj...etc
-//				private int agencia;
-//				private int numeroConta;
-				
-				System.out.println("\n╔═══════════════════════════════════════════╗");
-				System.out.println("║   🏦 DADOS BANCARIOS - PREENCHA OS DADOS   ║");
-				System.out.println("╚═══════════════════════════════════════════╝");	
-				
-				System.out.println();
-				System.out.print(" Titular da conta: ");
-				dadosEmpresa.setTitularConta(sc.nextLine());
-				System.out.print("Nome do banco: ");
-				dadosEmpresa.setNomeBanco(sc.nextLine());
-				
-				System.out.println("Tipo de Conta. (ex: Conta Corrente, poupança, pj....):");
-				dadosEmpresa.setTipoConta(sc.nextLine());
-				System.out.print("Número da agência: ");
-				dadosEmpresa.setAgencia(sc.nextInt());
-				
-				System.out.println("Nùmero da Conta: ");
-				dadosEmpresa.setNumeroConta(sc.nextInt());
-				
-				empresa.setBancoEmpresa(dadosEmpresa);
-				
-				
+//				private String agencia;
+//				private String numeroConta;
 
-			} catch(DadoInvalidoException e) {
-				System.out.println("Erro: " + e.getMessage());
-			}
-		} while(!dadosValidos);
+					System.out.println("\n╔═══════════════════════╗");
+					System.out.println("║   🏦 DADOS BANCARIOS - ║");
+					System.out.println("╚════════════════════════╝");
+
+					System.out.println("");
+					System.out.print(">Titular da conta: ");
+					dadosEmpresa.setTitularConta(sc.nextLine());
+					System.out.print(">Nome do banco: ");
+					dadosEmpresa.setNomeBanco(sc.nextLine());
+
+					System.out.println(">Tipo de Conta. (ex: Conta Corrente, poupança, pj....):");
+					dadosEmpresa.setTipoConta(sc.nextLine());
+					
+					while (tentativas < 3) {
+						System.out.print(">Número da agência: ");
+						String iAgencia= (sc.nextLine());
+
+						if (iAgencia.matches("\\d{4}")) {
+							dadosEmpresa.setAgencia(iAgencia);
+							break;
+						} else {
+							tentativas++;
+							System.out.println("⚠️  Agencia inválido. Tente novamente. (" + tentativas + "/3)");
+
+							if (tentativas == 3) {
+
+								System.out.println("\n╔════════════════════════════════════════════════╗");
+								System.out.println("║ ❌ Cadastro cancelado: número de tentativas excedido ║");
+								System.out.println("╚════════════════════════════════════════════════╝");
+								return;
+
+							}
+						}
+					}
+					
+					while (tentativas < 3) {
+						System.out.println(">Número da Conta (9 digitos): ");
+						
+						String inumConta= (sc.nextLine());
+
+						if (inumConta.matches("\\d{9}")) {
+							dadosEmpresa.setNumeroConta(inumConta);
+							break;
+						} else {
+							tentativas++;
+							System.out.println("⚠️  Número da Conta inválido. Tente novamente. (" + tentativas + "/3)");
+
+							if (tentativas == 3) {
+
+								System.out.println("\n╔════════════════════════════════════════════════╗");
+								System.out.println("║ ❌ Cadastro cancelado: número de tentativas excedido ║");
+				S				System.out.println("╚════════════════════════════════════════════════╝");
+								return;
+				
+							}
+						}
+					}
+				dadosValidos = true;
+				} catch (DadoInvalidoException e) {
+					System.out.println("Erro: " + e.getMessage());
+				}
+				catch(DadoDuplicadoException e) {
+					System.out.println("Erro: " + e.getMessage());
+				}
+			} while (!dadosValidos);
+			empresa.setBancoEmpresa(dadosEmpresa);
+			listUsuarios.add(empresa);
+			System.out.println("\n╔══════════════════════════════════════╗");
+			System.out.println("║ ✅ Cadastro realizado com sucesso!   ║");
+			System.out.println("╚══════════════════════════════════════╝\n");
+			Gambiarras.textoLento("😄 Seja bem-vindo(a), " + empresa.getNome() + "!", 50);
+			Gambiarras.textoLento("\n-> Redirecionando para a tela inicial\n", 6);
+			
+			Gambiarras.textoLento(".\n.\n.\n",600);
 		
+			Gambiarras.limparTela();
+			menu.start();
+			break;
 		}
 	}
 }

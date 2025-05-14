@@ -124,10 +124,12 @@ public class VisualizacaoMenu {
 	    System.out.println("╚════════════════════════════════════════╝");
 	    System.out.println();
 	    System.out.println("Selecione uma opção:");
+	    System.out.println();
 	    System.out.println("  [1] 🧑‍ Gerenciar Cliente");
 	    System.out.println("  [2] 🏦 Gerenciar Empresas");
-	    System.out.println("  [3] 🎮 Gerenciar Jogos");;
-	    System.out.println("  [4] ❌ Sair");
+	    System.out.println("  [3] 🎮 Gerenciar Jogos");
+	    System.out.println("  [4] 💰 Ver saldo do SANDUBA");
+	    System.out.println("  [5] ❌ Sair");
 	    System.out.print("\nDigite a opção desejada: ");
 
 	}
@@ -150,9 +152,9 @@ public class VisualizacaoMenu {
 	}
 	
 	public void telaAdmGerenciarCliente(Adm adm) {
-		System.out.println("\n╔═══════════════════════════════════════╗");
+		System.out.println("\n╔═════════════════════════════════════════╗");
 		System.out.println("║         👤 GERÊNCIA DE CLIENTES         ║");
-		System.out.println("╚══════════════════════════════════════╝");
+		System.out.println("╚═════════════════════════════════════════╝");
 		System.out.println();
 		System.out.println(adm.getNome()+" você deseja:");
 		System.out.println("  [1] 👤 Ver lista de Clientes cadatrados.");
@@ -160,7 +162,7 @@ public class VisualizacaoMenu {
 		System.out.println("  [3] 👤 Aterar dados de um Clientes");
 		System.out.println("  [4] 👤 Remover uma conta.");
 		System.out.println("  [5] 👤 Buscar um Cliente.");
-		System.out.println("  [6] 🔙 Voltar para o menu. ");
+		System.out.println("  [6] 🔙 Voltar para o menu . ");
 		
 		System.out.println("Escolha uma opção:");
 		
@@ -193,10 +195,11 @@ public class VisualizacaoMenu {
 		System.out.println("  [3] 🎮 Alterar dados de um jogo.");
 		System.out.println("  [4] 🎮 Deletar jogo.");
 		System.out.println("  [5] 🎮 Informações detalhada.");
+		System.out.println("  [6] 🎮 Aplicar desconto.");
 		
-		System.out.println("  [6] 📊 Resumo de vendas");
+		System.out.println("  [7] 📊 Resumo de vendas");
 		
-		System.out.println("  [7 ] 🔙 Voltar para o menu. ");
+		System.out.println("  [8] 🔙 Voltar para o menu. ");
 		
 		System.out.println("Escolha uma opção:");
 	}
@@ -204,6 +207,20 @@ public class VisualizacaoMenu {
 	public void telaInfJogos() {
 		System.out.println("\n╔══════════════════════════════════╗");
 		System.out.println("║         🎮 DADOS DOS JOGOS         ║");
+		System.out.println("╚═══════════════════════════════════╝");
+		System.out.println();
+	}
+	
+	public void telaSaldoSanduba() {
+		System.out.println("\n╔════════════════════════════════════╗");
+		System.out.println("║         💰 SALDO DO SANDUBA         ║");
+		System.out.println("╚═══════════════════════════════════╝");
+		System.out.println();
+	}
+	
+	public void telaResumoVendEmpresa() {
+		System.out.println("\n╔════════════════════════════════════╗");
+		System.out.println("║         💰 RESUMO DE VENDAS         ║");
 		System.out.println("╚═══════════════════════════════════╝");
 		System.out.println();
 	}

@@ -9,6 +9,7 @@ import Pessoa.Empresa;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
+import jogo.CategoriasJogos;
 import jogo.Jogo;
 
 public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJogos {
@@ -17,10 +18,8 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 
 	@Override
 	public void add(Jogo jogo) throws DadoDuplicadoException  {
-		for(Jogo j: jogos) {
-			if(j.getTitulo().equalsIgnoreCase(jogo.getTitulo())) {
-				throw new DadoDuplicadoException("O jogo " +jogo.getTitulo()+ " ja existe.");
-			}
+		if(jogos.contains(jogo)) {
+			throw new DadoDuplicadoException("O jogo " +jogo.getTitulo()+ " ja existe.");
 		}
 		jogos.add(jogo);
 	}
@@ -31,6 +30,10 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 
 	@Override
 	public void deletar(Jogo jogo) {
+		if(jogos.contains(jogo)) {
+			throw new DadoNaoEncontradoException("O jogo " +jogo.getTitulo()+ " não foi encontrado.");
+		}
+		
 		jogos.remove(jogo);
 
 	}
@@ -55,9 +58,13 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 	}
 
 	@Override
-	public Jogo procurarNome(String titulo) throws DadoNaoEncontradoException {
+	public Jogo procurarNome(String titulo) throws DadoNaoEncontradoException, DadoInvalidoException {
+		if(titulo == null) {
+			throw new DadoInvalidoException("O título não pode ser vazio.");
+		}
+		
 		for (Jogo jogo : jogos) {
-			if (jogo.getTitulo().equalsIgnoreCase(titulo)) {
+			if (!jogo.getTitulo().equalsIgnoreCase(titulo)) {
 				return jogo;
 			}
 		}
@@ -103,14 +110,33 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 		return null;
 	}
 	
-	public String resumoJogos() {
+	public String resumoJogos(Jogo jogo) {
 		StringBuilder resumo = new StringBuilder();
 		
 		for(Jogo j: jogos) {
+			if(j.getPreco()!= j.getPrecoModificador()) {
+				resumo.append(String.format("- %s [%s] | %s\n", j.getTitulo(), j.getCategoriasValidas(), j.precoDesconto()));
+			}else {
 			resumo.append(String.format("- %s [%s] | R$ %.2f\n", j.getTitulo(),j.getCategoriasValidas(), j.getPreco()));
+			}
 		}
 		
 		return resumo.toString();
+	}
+	
+	public List<Jogo> procurarPorCategorias(List<CategoriasJogos> categoriasDesejadas) {
+	    List<Jogo> resultados = new ArrayList<>();
+
+	    for (Jogo jogo : jogos) {
+	        for (CategoriasJogos categoria : categoriasDesejadas) {
+	            if (jogo.getCategoriasValidas().contains(categoria)) {
+	                resultados.add(jogo);
+	                break; // Já achou uma categoria compatível, pode adicionar e ir para o próximo jogo
+	            }
+	        }
+	    }
+
+	    return resultados;
 	}
 
 

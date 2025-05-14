@@ -1,6 +1,7 @@
 package Financeiro;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +11,8 @@ public class RegistroDeCompras {
     private double gastoTotal;
     private LocalDate data;
     private Map<Jogo, Double> jogos;
-
+    
+    
     public RegistroDeCompras(double gastoTotal, LocalDate data, Map<Jogo, Double> jogos) {
         this.gastoTotal = gastoTotal;
         this.data = data;
@@ -57,4 +59,6 @@ public class RegistroDeCompras {
 				"\n  Quantidade de jogos comprados: "+jogos.size()+
 				"\n-------------------------------------------------------------";
 	}
+    
+    
 }

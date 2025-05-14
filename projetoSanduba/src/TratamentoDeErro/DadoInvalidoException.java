@@ -1,6 +1,6 @@
 package TratamentoDeErro;
 
-public class DadoInvalidoException extends RuntimeException {
+public class DadoInvalidoException extends Exception {
 
 	public DadoInvalidoException(String msg) {
 		super(msg);

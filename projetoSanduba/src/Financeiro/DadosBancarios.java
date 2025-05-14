@@ -1,43 +1,49 @@
 package Financeiro;
 
+import java.time.LocalDate;
+
 import TratamentoDeErro.DadoInvalidoException;
 
 public class DadosBancarios {
 	private String titularConta;
 	private String nomeBanco;
 	private String tipoConta; // conta correntem, poupanca , pj...etc
-	private int agencia;
-	private int numeroConta;
+	private String agencia;
+	private String numeroConta;
 
-	public DadosBancarios(String titularConta, String nomeBanco, String tipoConta, int agencia, int numeroConta) {
-		this.setTitularConta(titularConta);
-		this.setNomeBanco(nomeBanco);
-		this.setTipoConta(tipoConta);
-		this.setAgencia(agencia);
-		this.setNumeroConta(numeroConta);
-	}
-
-	public int getNumeroConta() {
-		return numeroConta;
-	}
-
-	public void setNumeroConta(int numeroConta)  {
-		if (numeroConta <= 0) {
-	        throw new DadoInvalidoException("Número da conta deve ser maior que zero.");
-	    }
-
+	public DadosBancarios(String titularConta, String nomeBanco, String tipoConta, String agencia, String numeroConta) throws DadoInvalidoException {
+		this.titularConta =titularConta;
+		this.nomeBanco = nomeBanco;
+		this.tipoConta = tipoConta;
+		this.agencia = agencia;
 		this.numeroConta = numeroConta;
 	}
 
-	public int getAgencia() {
-		return agencia;
+	public String getNumeroConta() throws DadoInvalidoException {
+		 if (numeroConta == null || !numeroConta.matches("\\d{8}") ) {
+		    	throw new DadoInvalidoException(numeroConta);
+		    }
+		    return numeroConta;
 	}
 
-	public void setAgencia(int agencia) {
-		if (agencia <= 0) {
-	        throw new DadoInvalidoException("Número da agência deve ser maior que zero.");
-	    }
+	public void setNumeroConta(String numeroConta) throws DadoInvalidoException  {
+		if (numeroConta == null || numeroConta.isBlank() || !numeroConta.matches("\\d{9}")) {
+			throw new DadoInvalidoException("Número da conta invalido");
+		}
+		this.numeroConta = numeroConta;	}
 
+	public String getAgencia() throws DadoInvalidoException {
+		if (agencia == null || !agencia.matches("\\d{4}") ) {
+	    	throw new DadoInvalidoException(agencia);
+	    }
+		return agencia;
+
+	}
+
+	public void setAgencia(String agencia)throws DadoInvalidoException{
+		if (agencia == null || agencia.isBlank() || !agencia.matches("\\d{4}")) {
+			throw new DadoInvalidoException("Cpf invalido");
+		}
 		this.agencia = agencia;
 	}
 

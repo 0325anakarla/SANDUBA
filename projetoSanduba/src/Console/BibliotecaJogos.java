@@ -4,24 +4,35 @@ import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
 import Repositorio.RepositorioJogoArrayList;
+import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
 import jogo.Jogo;
 
 public class BibliotecaJogos {
+	private Scanner sc;
+	private CarrinhoDeCompras carrinho;
+	private RepositorioJogoArrayList listJogos;
+	private TelaCliente telaCliente;
+	private TelaCarrinhoDeCompras mostrarCarrinho;
 	
-	RepositorioJogoArrayList jogosCadastrados = new RepositorioJogoArrayList();
-	Scanner sc = new Scanner(System.in);
-	TelaCliente minhaConta = new TelaCliente();
-	CarrinhoDeCompras carCompras = new CarrinhoDeCompras();
-	TelaCarrinhoDeCompras mostrarCarCompras = new TelaCarrinhoDeCompras();
+	public BibliotecaJogos(Scanner sc,  CarrinhoDeCompras carrinho, RepositorioJogoArrayList listJogos, TelaCliente telaCliente) {
+		this.sc = sc;
+		this.listJogos = listJogos;
+		this.telaCliente = telaCliente;
+		this.carrinho = carrinho;
+	}
 	
-	public void Biblioteca() {
+	public void setMostrarCarrinho(TelaCarrinhoDeCompras mostrarCarrinho) {
+		this.mostrarCarrinho = mostrarCarrinho;
+	}
+	
+	public void Biblioteca() throws DadoInvalidoException {
 		
-		System.out.println("\n╔════════════════════════════════════════════╗\n");
-	    System.out.println("║          🎮 JOGOS DISPONÍVEIS NA LOJA       ║\n");
-	    System.out.println("╚════════════════════════════════════════════╝\n");
+		System.out.println("\n╔════════════════════════════════════════════╗");
+	    System.out.println("║          🎮 JOGOS DISPONÍVEIS NA LOJA       ║");
+	    System.out.println("╚════════════════════════════════════════════╝");
 	    
-	    jogosCadastrados.resumoJogos();
+	    listJogos.resumoJogos();
 	    
 	    System.out.println("\n════════════════════════════════════════════");
 	    
@@ -42,7 +53,7 @@ public class BibliotecaJogos {
 		    	case 1: 
 		    		System.out.print("\n📝 Digite o nome do jogo: ");
 		    		try{
-		    			Jogo resultado = jogosCadastrados.procurarNome(sc.nextLine());
+		    			Jogo resultado = listJogos.procurarNome(sc.nextLine());
 		    			resultado.mostrarDados();
 		    		}catch(DadoNaoEncontradoException e) {
 		    			System.out.println("❌ Erro: " + e.getMessage());
@@ -50,12 +61,12 @@ public class BibliotecaJogos {
 		    		}
 		    		break;
 		    	case 2:
-		    		minhaConta.telaMinhaContaCliente(null);
+		    		telaCliente.telaMinhaContaCliente(null);
 		    }
 	    }while(opcao != 4);
 	}
 	
-	public void opcoesDeCompra(Jogo jogo) {
+	public void opcoesDeCompra(Jogo jogo) throws DadoInvalidoException {
 		System.out.println("\n╔════════════════════════════════════════╗");
 		System.out.println("║       🛍️ OPÇÕES DE COMPRA / AÇÕES        ║");
 		System.out.println("╚════════════════════════════════════════╝");
@@ -69,9 +80,10 @@ public class BibliotecaJogos {
 		
 		switch(opcao) {
 			case 1:
+				//adicionar ao um array list do tipo jogo, que vai conter os jogos desejados
 				break;
 			case 2:
-				carCompras.adiciona(jogo);
+				carrinho.adiciona(jogo);
 				System.out.println("O jogo "+jogo.getTitulo()+"  foi adicionado com sucesso ao carinho.");
 				System.out.println("Escolha uma opção:");
 				System.out.println("  [1] 🔙 Voltar para a biblioteca");
@@ -84,7 +96,7 @@ public class BibliotecaJogos {
 						Biblioteca();
 						break;
 					case 2:
-						mostrarCarCompras.CarrinhoDeCompras(jogo);
+
 						break;
 					default:
 						 System.out.println("⚠️ Opção inválida.");
