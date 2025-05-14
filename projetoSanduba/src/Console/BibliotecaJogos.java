@@ -75,7 +75,7 @@ public class BibliotecaJogos {
 			    		}
 			    		break;
 			    	case 2:
-			    		mostrarCarrinho.CarrinhoDeCompras(cliente);
+			    		mostrarCarrinho.CarrinhoDeCompras(cliente, carrinho);
 			    		break;
 			    	case 3:
 			    		telaCliente.telaMinhaContaCliente(cliente);
@@ -87,8 +87,6 @@ public class BibliotecaJogos {
 						break;
 			    }
 		    
-<<<<<<< HEAD
-=======
 		    switch(opcao) {
 		    	case 1: 
 		    		System.out.print("\n📝 Digite o nome do jogo: ");
@@ -112,14 +110,13 @@ public class BibliotecaJogos {
 		    		System.out.println("⚠️ Opção inválida.");
 					break;
 		    }
->>>>>>> 03f6dc0270611ea126aa2f2294fde2c02dd99687
+
 	    }while(opcao != 4);
 	}
 	
 	public void opcoesDeCompra(Jogo jogo, Cliente cliente) throws DadoInvalidoException {
 		int opcao = 0;
 		
-<<<<<<< HEAD
 		do {
 			System.out.println("\n╔════════════════════════════════════════╗");
 			System.out.println("║       🛍️ OPÇÕES DE COMPRA / AÇÕES        ║");
@@ -160,23 +157,25 @@ public class BibliotecaJogos {
 					    try {
 					    	subOpcao = Integer.parseInt(sc.nextLine());
 					    	opcaoValida = true;
+					    	switch(subOpcao) {
+							case 1:
+								Biblioteca(cliente);
+								break;
+							case 2:
+								mostrarCarrinho.CarrinhoDeCompras(cliente, carrinho);
+								break;
+							default:
+								System.out.println("⚠️ Opção inválida.");
+								opcaoValida = false;
+								System.out.println("\nDigite apenas um dos números acima.");
+								break;
+						}
 					    }catch(NumberFormatException  e) {
 					    	System.out.println("❌ Erro: " + e.getMessage());
 					    	System.out.print("\nDigite um número válido: ");
 					    }
 					 }
-					switch(subOpcao) {
-						case 1:
-							Biblioteca(cliente);
-							break;
-						case 2:
-							mostrarCarrinho.CarrinhoDeCompras(cliente);
-							break;
-						default:
-							System.out.println("⚠️ Opção inválida.");
-							break;
-					}
-					break;
+				
 				case 3:
 					break;
 				default:
@@ -184,34 +183,5 @@ public class BibliotecaJogos {
 					break;
 			}
 		}while(opcao != 3);
-=======
-		int opcao = Integer.parseInt(sc.nextLine());
-		
-		switch(opcao) {
-			case 1:
-				cliente.addListaDeDesejo(jogo);
-				break;
-			case 2:
-				carrinho.adiciona(jogo);
-				System.out.println("O jogo "+jogo.getTitulo()+"  foi adicionado com sucesso ao carrinho.");
-				System.out.println("Escolha uma opção:");
-				System.out.println("  [1] 🔙 Voltar para a biblioteca");
-				System.out.println("  [2] ✅ Finalizar compra");
-				System.out.print("\nDigite a opção desejada: ");
-				int subOpcao = Integer.parseInt(sc.nextLine());
-				
-				switch(subOpcao) {
-					case 1:
-						Biblioteca(cliente);
-						break;
-					case 2:
-						mostrarCarrinho.CarrinhoDeCompras(cliente, carrinho);
-						break;
-					default:
-						System.out.println("⚠️ Opção inválida.");
-						break;
-				}
-		}
->>>>>>> 03f6dc0270611ea126aa2f2294fde2c02dd99687
 	}
 }

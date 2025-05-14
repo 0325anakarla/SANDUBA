@@ -20,12 +20,8 @@ public class TelaCarrinhoDeCompras {
 		this.telaCliente = telaCliente;
 	}
 
-<<<<<<< HEAD
-	public void CarrinhoDeCompras(Cliente cliente) throws DadoInvalidoException {
-		int opcao = 0;
-=======
 	public void CarrinhoDeCompras(Cliente cliente, CarrinhoDeCompras carrinho) throws DadoInvalidoException {
->>>>>>> 03f6dc0270611ea126aa2f2294fde2c02dd99687
+		int opcao = 0;
 		
 		System.out.println("\n╔════════════════════════════════════════╗");
 		System.out.println("║          🛒 CARRINHO DE COMPRAS          ║");
