@@ -3,18 +3,21 @@ package funcionalidades;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
 import Console.VisualizacaoMenu;
 import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
-import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
-import jogo.*;
+import jogo.CategoriasJogos;
+import jogo.ClassificacaoIndicativa;
+import jogo.Idiomas;
+import jogo.Jogo;
+import jogo.PlataformasDisponiveis;
 
 public class ControleDeJogos{
 	private Scanner sc;

@@ -79,6 +79,7 @@ public class BibliotecaJogos {
 		
 		switch(opcao) {
 			case 1:
+				//adicionar ao um array list do tipo jogo, que vai conter os jogos desejados
 				break;
 			case 2:
 				carrinho.adiciona(jogo);
@@ -94,11 +95,7 @@ public class BibliotecaJogos {
 						Biblioteca();
 						break;
 					case 2:
-<<<<<<< HEAD
-						mostrarCarCompras.CarrinhoDeCompras();
-=======
-						mostrarCarrinho.CarrinhoDeCompras(jogo);
->>>>>>> 7752f138a2c7ce56fe2a872959b1bd0bc394abc1
+						mostrarCarrinho.CarrinhoDeCompras();
 						break;
 					default:
 						 System.out.println("⚠️ Opção inválida.");
