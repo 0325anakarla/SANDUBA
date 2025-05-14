@@ -7,14 +7,17 @@ import Financeiro.ResumoDeVendas;
 import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoInvalidoException;
+import TratamentoDeErro.DadoNaoEncontradoException;
 import funcionalidades.ControleDeJogos;
 import jogo.Jogo;
 
 public class TelaEmpresa {
+
 	private Scanner sc;
 	private VisualizacaoMenu visualizacaoMenu;
 	private RepositorioJogoArrayList listJogos;
 	private ControleDeJogos controleJogos;
+
 	
 	public TelaEmpresa(Scanner sc, VisualizacaoMenu visualizacaoMenu, RepositorioJogoArrayList listJogos, ControleDeJogos controleJogos) {
 		this.sc = sc;
@@ -23,7 +26,7 @@ public class TelaEmpresa {
 		this.controleJogos = controleJogos;
 	}
 	
-	public void telaMinhaContaEmpresa(Empresa empresa){		
+	public void telaMinhaContaEmpresa(Empresa empresa) throws DadoInvalidoException{		
 		int opcao = 0;
 		
 		do {
@@ -110,7 +113,7 @@ public class TelaEmpresa {
 		}while(opcao != 3);
 	}
 	
-	public void telaJogosCadastrados(Empresa empresa) {
+	public void telaJogosCadastrados(Empresa empresa) throws DadoNaoEncontradoException, DadoInvalidoException {
 		int opcao = 0;
 		
 		visualizacaoMenu.telaJogosCadastrados();

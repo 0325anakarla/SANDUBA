@@ -58,7 +58,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 	}
 
 	@Override
-	public Jogo procurarNome(String titulo) throws DadoNaoEncontradoException {
+	public Jogo procurarNome(String titulo) throws DadoNaoEncontradoException, DadoInvalidoException {
 		if(titulo == null) {
 			throw new DadoInvalidoException("O título não pode ser vazio.");
 		}

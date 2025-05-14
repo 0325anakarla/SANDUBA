@@ -1,5 +1,6 @@
 package Console;
 
+
 //import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -9,16 +10,24 @@ import Financeiro.CarrinhoDeCompras;
 import Pessoa.Adm;
 //import Pessoa.Cliente;
 //import Pessoa.Empresa;
+
+import TratamentoDeErro.DadoInvalidoException;
+
+
+
 import Repositorio.RepositorioJogoArrayList;
 import Repositorio.RepositorioUsuarioArrayList;
-import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.ControleDeCadastros;
 import funcionalidades.ControleDeJogos;
+
 public class TesteMenu {
 
 	public static void main(String[] args) throws DadoInvalidoException {
 		Scanner sc = new Scanner(System.in);
 		
+
+	
+
 		VisualizacaoMenu visualizacaoMenu = new VisualizacaoMenu();
 		CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
 		
@@ -49,6 +58,7 @@ public class TesteMenu {
 
 		controleCadastros.setMenu(menu);
 		menu.start();
+
 		
 //		Cliente cliente = new Cliente("lana", "lana@gmail.com", "1234", "12345678-90", LocalDate.of(2004, 9, 23));
 //		CarteiraDoCliente cdC = new CarteiraDoCliente();

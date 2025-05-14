@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
 import Repositorio.RepositorioJogoArrayList;
+import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 
 public class TelaCarrinhoDeCompras {
@@ -13,7 +14,7 @@ public class TelaCarrinhoDeCompras {
 	private RepositorioJogoArrayList listJogos;
 	private BibliotecaJogos bibJogos;
 	private TelaCliente telaCliente;
-	
+
 	public TelaCarrinhoDeCompras(Scanner sc, CarrinhoDeCompras carrinho, RepositorioJogoArrayList listJogos, BibliotecaJogos bibJogos, TelaCliente telaCliente) {
 		this.sc = sc;
 		this.carrinho = carrinho;
@@ -21,8 +22,8 @@ public class TelaCarrinhoDeCompras {
 		this.bibJogos = bibJogos;
 		this.telaCliente = telaCliente;
 	}
-	
-	public void CarrinhoDeCompras() {
+
+	public void CarrinhoDeCompras() throws DadoInvalidoException {
 		
 		System.out.println("\n╔════════════════════════════════════════╗");
 		System.out.println("║          🛒 CARRINHO DE COMPRAS          ║");

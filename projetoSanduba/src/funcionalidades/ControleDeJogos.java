@@ -13,11 +13,13 @@ import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
+
 import jogo.CategoriasJogos;
 import jogo.ClassificacaoIndicativa;
 import jogo.Idiomas;
 import jogo.Jogo;
 import jogo.PlataformasDisponiveis;
+
 
 public class ControleDeJogos{
 	private Scanner sc;
@@ -481,7 +483,7 @@ public class ControleDeJogos{
 
 	
 	//deletar jogo
-	public void deletarJogo(Empresa empresa) {
+	public void deletarJogo(Empresa empresa) throws DadoInvalidoException {
 		
 		boolean continuarRemocao = true;
 
@@ -624,8 +626,9 @@ public class ControleDeJogos{
 		for(Jogo jogo : jogos) {
 			//chmar o mostrar dados basico do jogo
 			System.out.println(listJogos.resumoJogos(jogo));
-		}
+
 		
+	}
 	}
 }
 
