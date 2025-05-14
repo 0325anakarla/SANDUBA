@@ -25,6 +25,7 @@ public class TelaCarrinhoDeCompras {
 	}
 
 	public void CarrinhoDeCompras(Cliente cliente) throws DadoInvalidoException {
+		int opcao = 0;
 		
 		System.out.println("\n╔════════════════════════════════════════╗");
 		System.out.println("║          🛒 CARRINHO DE COMPRAS          ║");
@@ -37,9 +38,18 @@ public class TelaCarrinhoDeCompras {
 		System.out.println("  [2] 💰 Finalizar compra");
 		System.out.println("  [3] 🔙 Voltar para a biblioteca");
 		System.out.print("\nDigite a opção desejada: ");
-		int opcao = Integer.parseInt(sc.nextLine());
-		
-		switch(opcao) {
+	
+		 boolean opcaoValida = false;
+		    while(!opcaoValida) {
+			    try {
+			    	opcao = Integer.parseInt(sc.nextLine());
+			    	opcaoValida = true;
+			    }catch(NumberFormatException  e) {
+			    	System.out.println("❌ Erro: " + e.getMessage());
+			    	System.out.print("\nTenta de novo: ");
+			    }
+			 }
+		    switch(opcao) {
 			case 1:
 				int subOpcao = 0;
 				do{
@@ -56,6 +66,7 @@ public class TelaCarrinhoDeCompras {
 				} while(subOpcao != 2); 
 				break;
 			case 2:
+				
 				carrinho.finalizarCompra(cliente);
 				System.out.println("Compra finalizada com sucesso.");
 				break;

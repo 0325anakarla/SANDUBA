@@ -59,12 +59,12 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 
 	@Override
 	public Jogo procurarNome(String titulo) throws DadoNaoEncontradoException, DadoInvalidoException {
-		if(titulo == null) {
+		if(titulo == null || titulo.trim().isEmpty()) {
 			throw new DadoInvalidoException("O título não pode ser vazio.");
 		}
 		
 		for (Jogo jogo : jogos) {
-			if (!jogo.getTitulo().equalsIgnoreCase(titulo)) {
+			if (jogo.getTitulo().equalsIgnoreCase(titulo)) {
 				return jogo;
 			}
 		}
@@ -110,7 +110,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 		return null;
 	}
 	
-	public String resumoJogos(Jogo jogo) {
+	public String resumoJogos() {
 		StringBuilder resumo = new StringBuilder();
 		
 		for(Jogo j: jogos) {
@@ -138,6 +138,8 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 
 	    return resultados;
 	}
+
+
 
 
 

@@ -40,7 +40,7 @@ public class TelaCliente {
 			
 			visualizacaoMenu.telaMenuMcCliente();
 			
-			opcao = sc.nextInt();
+			 opcao = Integer.parseInt(sc.nextLine());
 			
 			switch(opcao) {
 				case 1:
@@ -69,9 +69,9 @@ public class TelaCliente {
 					}
 					break;
 				case 4:
-//					System.out.println("\n╔══════════════════════════════╗");
-//					System.out.println("║       💖 LISTA DE DESEJOS      ║");
-//					System.out.println("╚══════════════════════════════╝");
+					System.out.println("\n╔══════════════════════════════╗");
+					System.out.println("║       💖 LISTA DE DESEJOS      ║");
+					System.out.println("╚══════════════════════════════╝");
 					if (!cliente.getJogos().isEmpty()) {
 						telaListaDeDesejos.telaLD(cliente);
 					} else {
@@ -93,7 +93,6 @@ public class TelaCliente {
 					}
 					break;
 				case 6:
-					System.out.println("Volta para biblioteca de jogos");
 					bibJogos.Biblioteca(cliente);
 					break;
 				default:
