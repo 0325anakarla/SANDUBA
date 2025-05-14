@@ -89,6 +89,7 @@ public class TelaEmpresa {
 					System.out.println("Quanto vai sacar: ");
 					
 					valor = sc.nextDouble();
+					sc.nextLine();
 					
 					if(cdE.sacar(valor)) {
 						System.out.println("O valor retirado foi: "+valor+ ". Seu saldo é de:"+cdE.getSaldo());

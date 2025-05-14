@@ -15,10 +15,12 @@ public class TelaCliente {
 	private Scanner sc;
 	private VisualizacaoMenu visualizacaoMenu;
 	private TelaListaDeDesejos telaListaDeDesejos;
+	private BibliotecaJogos bibJogos;
 
 	public TelaCliente(Scanner sc, VisualizacaoMenu visualizacaoMenu) {
 		this.sc = sc;
 		this.visualizacaoMenu = visualizacaoMenu;
+		
 	}
 	
 
@@ -26,8 +28,12 @@ public class TelaCliente {
 		this.telaListaDeDesejos = telaListaDeDesejos;
 	}
 	
+	public void setBibliotecaJogos(BibliotecaJogos bibJogos) {
+		this.bibJogos = bibJogos;
+	}
+	
 	public void telaMinhaContaCliente(Cliente cliente) throws DadoInvalidoException {
-
+	
 		int opcao = 0;
 		
 		do {
@@ -66,7 +72,11 @@ public class TelaCliente {
 //					System.out.println("\n╔══════════════════════════════╗");
 //					System.out.println("║       💖 LISTA DE DESEJOS      ║");
 //					System.out.println("╚══════════════════════════════╝");
-					telaListaDeDesejos.telaLD(cliente);
+					if (!cliente.getJogos().isEmpty()) {
+						telaListaDeDesejos.telaLD(cliente);
+					} else {
+						System.out.println("Lista de desejos vazia!");
+					}
 					break;
 				case 5:
 					System.out.println("\n╔══════════════════════════════╗");
@@ -84,6 +94,7 @@ public class TelaCliente {
 					break;
 				case 6:
 					System.out.println("Volta para biblioteca de jogos");
+					bibJogos.Biblioteca();
 					break;
 				default:
 					System.out.println("Opção invalida. digite novamente:");
