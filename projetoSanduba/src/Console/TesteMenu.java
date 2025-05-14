@@ -39,6 +39,8 @@ public class TesteMenu {
 		BibliotecaJogos bibJogos = new BibliotecaJogos(sc, carrinho, listJogos, telaCliente);
 		TelaCarrinhoDeCompras mostrarCarrinho = new TelaCarrinhoDeCompras(sc, carrinho, listJogos, bibJogos, telaCliente);
 		bibJogos.setMostrarCarrinho(mostrarCarrinho);
+		TelaListaDeDesejos telaListaDeDesejos = new TelaListaDeDesejos(sc, carrinho, mostrarCarrinho, telaCliente);
+		telaCliente.setTelaListaDeDesejos(telaListaDeDesejos);
 		
 		//INICIALIZACAO DO MENU
 		Menu menu = new Menu(sc, listUsuarios, controleCadastros, bibJogos, telaEmpresa, telaAdm);

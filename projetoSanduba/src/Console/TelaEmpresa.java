@@ -11,15 +11,21 @@ import funcionalidades.ControleDeJogos;
 import jogo.Jogo;
 
 public class TelaEmpresa {
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> a1bfe3ce5bd3441d34225fc358aac91b33b97ceb
 	private Scanner sc;
 	private VisualizacaoMenu visualizacaoMenu;
 	private RepositorioJogoArrayList listJogos;
 	private ControleDeJogos controleJogos;
+<<<<<<< HEAD
 
+=======
+>>>>>>> a1bfe3ce5bd3441d34225fc358aac91b33b97ceb
 	
 	public TelaEmpresa(Scanner sc, VisualizacaoMenu visualizacaoMenu, RepositorioJogoArrayList listJogos, ControleDeJogos controleJogos) {
 		this.sc = sc;

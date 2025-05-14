@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import Financeiro.CarrinhoDeCompras;
 import Pessoa.Empresa;
 import jogo.CategoriasJogos;
+import jogo.ClassificacaoIndicativa;
+import jogo.Idiomas;
 import jogo.Jogo;
+import jogo.PlataformasDisponiveis;
 
 public class Teste {
 
@@ -22,10 +25,10 @@ public class Teste {
 		 */
 
 		Empresa empresa = new Empresa("miHoYo", "", "", "", "", "", null);
-		Jogo jogo1 = new Jogo("Genshin Impact", 49.90, "", new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), 0, "", empresa, null);
+		Jogo jogo1 = new Jogo("Genshin Impact", 49.90, "", new ArrayList<CategoriasJogos>(), new ArrayList<Idiomas>(), new ArrayList<PlataformasDisponiveis>(), ClassificacaoIndicativa.ANOS12, "", empresa, null);
 
 		Empresa outraEmpresa = new Empresa("ConcernedApe", "", "", "", "", "", null);
-		Jogo jogo2 = new Jogo("Stardew Valley", 14.99, "", new ArrayList<String>(), new ArrayList<String>(), new ArrayList<String>(), 0, "", outraEmpresa, null);
+		Jogo jogo2 = new Jogo("Stardew Valley", 14.99, "", new ArrayList<CategoriasJogos>(), new ArrayList<Idiomas>(), new ArrayList<PlataformasDisponiveis>(), ClassificacaoIndicativa.ANOS12, "", outraEmpresa, null);
 
 		CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
 		carrinho.adiciona(jogo1);

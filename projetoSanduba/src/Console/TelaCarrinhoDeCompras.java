@@ -13,7 +13,15 @@ public class TelaCarrinhoDeCompras {
 	private RepositorioJogoArrayList listJogos;
 	private BibliotecaJogos bibJogos;
 	private TelaCliente telaCliente;
+<<<<<<< HEAD
 
+=======
+	
+<<<<<<< HEAD
+
+=======
+>>>>>>> cc2edf8fce6dbd3bd6fdd5e70fe79b34bac1d77f
+>>>>>>> a1bfe3ce5bd3441d34225fc358aac91b33b97ceb
 	public TelaCarrinhoDeCompras(Scanner sc, CarrinhoDeCompras carrinho, RepositorioJogoArrayList listJogos, BibliotecaJogos bibJogos, TelaCliente telaCliente) {
 		this.sc = sc;
 		this.carrinho = carrinho;
@@ -21,7 +29,11 @@ public class TelaCarrinhoDeCompras {
 		this.bibJogos = bibJogos;
 		this.telaCliente = telaCliente;
 	}
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> a1bfe3ce5bd3441d34225fc358aac91b33b97ceb
 	public void CarrinhoDeCompras() {
 		
 		System.out.println("\n╔════════════════════════════════════════╗");

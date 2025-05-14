@@ -10,10 +10,17 @@ import jogo.Jogo;
 
 public class TelaListaDeDesejos {
 	
-	Scanner sc = new Scanner(System.in);
-	CarrinhoDeCompras carCompras = new CarrinhoDeCompras();
-	TelaCarrinhoDeCompras telaCarCompras = new TelaCarrinhoDeCompras();
-	TelaCliente minhaConta = new TelaCliente();
+	private Scanner sc;
+	private CarrinhoDeCompras carrinho;
+	private TelaCarrinhoDeCompras mostrarCarrinho;
+	private TelaCliente telaCliente;
+	
+	public TelaListaDeDesejos(Scanner sc, CarrinhoDeCompras carrinho, TelaCarrinhoDeCompras mostrarCarrinho, TelaCliente telaCliente) {
+		this.sc = sc;
+		this.carrinho = carrinho;
+		this.mostrarCarrinho = mostrarCarrinho;
+		this.telaCliente = telaCliente;
+	}
 	
 	public void telaLD(Cliente cliente){
 		int opcao =0;
@@ -43,7 +50,7 @@ public class TelaListaDeDesejos {
 						
 						try{
 							Jogo resultado = cliente.procurarNomeLD(sc.nextLine());
-							carCompras.adiciona(resultado);
+							carrinho.adiciona(resultado);
 							System.out.println("O jogo "+resultado.getTitulo()+" foi adicionado ao carrinho.");
 							
 							boolean opcaoValida = false;
@@ -72,7 +79,7 @@ public class TelaListaDeDesejos {
 										if(subOpcao2 == 1) {
 											opcaoValida2 = true;
 											continuarNaTela = false;
-											telaCarCompras.CarrinhoDeCompras();
+											mostrarCarrinho.CarrinhoDeCompras();
 										}
 										else if(subOpcao2 == 2) {
 											opcaoValida2 = true;
@@ -81,7 +88,7 @@ public class TelaListaDeDesejos {
 										else if(subOpcao2 == 3) {
 											opcaoValida2 = true;
 											continuarNaTela = false;
-											minhaConta.telaMinhaContaCliente(cliente);
+											telaCliente.telaMinhaContaCliente(cliente);
 										}
 										else System.out.println("⚠️ Opção inválida. Digite 1, 2 ou 3.");
 										}
@@ -129,7 +136,7 @@ public class TelaListaDeDesejos {
 									if(subOpcao2 == 1) {
 										opcaoValida2 = true;
 										continuarNaTela = false;
-										telaCarCompras.CarrinhoDeCompras();
+										mostrarCarrinho.CarrinhoDeCompras();
 									}
 									else if(subOpcao2 == 2) {
 										opcaoValida2 = true;
@@ -138,7 +145,7 @@ public class TelaListaDeDesejos {
 									else if(subOpcao2 == 3) {
 										opcaoValida2 = true;
 										continuarNaTela = false;
-										minhaConta.telaMinhaContaCliente(cliente);
+										telaCliente.telaMinhaContaCliente(cliente);
 									}
 									else System.out.println("⚠️ Opção inválida. 1, 2 ou 3.");
 									}
@@ -154,7 +161,7 @@ public class TelaListaDeDesejos {
 					break;
 				case 3:
 					continuarNaTela = false;
-					minhaConta.telaMinhaContaCliente(cliente);
+					telaCliente.telaMinhaContaCliente(cliente);
 				default:
 					System.out.println("⚠️ Opção inválida. Digite 1, 2 ou 3.");
 			}
