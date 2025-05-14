@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
 import Repositorio.RepositorioJogoArrayList;
+import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
 import jogo.Jogo;
 
@@ -25,11 +26,11 @@ public class BibliotecaJogos {
 		this.mostrarCarrinho = mostrarCarrinho;
 	}
 	
-	public void Biblioteca() {
+	public void Biblioteca() throws DadoInvalidoException {
 		
 		System.out.println("\n╔════════════════════════════════════════════╗\n");
-	    System.out.println("║          🎮 JOGOS DISPONÍVEIS NA LOJA       ║\n");
-	    System.out.println("╚════════════════════════════════════════════╝\n");
+	    System.out.println("║          🎮 JOGOS DISPONÍVEIS NA LOJA       ║");
+	    System.out.println("╚════════════════════════════════════════════╝");
 	    
 	    listJogos.resumoJogos();
 	    
@@ -65,7 +66,7 @@ public class BibliotecaJogos {
 	    }while(opcao != 4);
 	}
 	
-	public void opcoesDeCompra(Jogo jogo) {
+	public void opcoesDeCompra(Jogo jogo) throws DadoInvalidoException {
 		System.out.println("\n╔════════════════════════════════════════╗");
 		System.out.println("║       🛍️ OPÇÕES DE COMPRA / AÇÕES        ║");
 		System.out.println("╚════════════════════════════════════════╝");
@@ -95,12 +96,7 @@ public class BibliotecaJogos {
 						Biblioteca();
 						break;
 					case 2:
-<<<<<<< HEAD
-						mostrarCarrinho.CarrinhoDeCompras(jogo);
 
-=======
-						mostrarCarrinho.CarrinhoDeCompras();
->>>>>>> a1bfe3ce5bd3441d34225fc358aac91b33b97ceb
 						break;
 					default:
 						 System.out.println("⚠️ Opção inválida.");

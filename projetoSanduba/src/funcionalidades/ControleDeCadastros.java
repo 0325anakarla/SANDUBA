@@ -27,7 +27,7 @@ public class ControleDeCadastros {
 		this.menu = menu;
 	}
 
-	public void CadastrarClientes() {
+	public void CadastrarClientes() throws DadoInvalidoException {
 
 		boolean continuarCadastro = true;
 
@@ -120,7 +120,7 @@ public class ControleDeCadastros {
 		}
 	}
 
-	public void CadastrarEmpresa() {
+	public void CadastrarEmpresa() throws DadoInvalidoException {
 		boolean continuarCadastro = true;
 
 		while (continuarCadastro) {

@@ -21,15 +21,13 @@ public class TelaCliente {
 		this.visualizacaoMenu = visualizacaoMenu;
 	}
 	
-<<<<<<< HEAD
-	public void telaMinhaContaCliente(Cliente cliente){
-=======
+
 	public void setTelaListaDeDesejos(TelaListaDeDesejos telaListaDeDesejos) {
 		this.telaListaDeDesejos = telaListaDeDesejos;
 	}
 	
-	public void telaMinhaContaCliente(Cliente cliente) {
->>>>>>> a1bfe3ce5bd3441d34225fc358aac91b33b97ceb
+	public void telaMinhaContaCliente(Cliente cliente) throws DadoInvalidoException {
+
 		int opcao = 0;
 		
 		do {
@@ -95,7 +93,7 @@ public class TelaCliente {
 		}while(opcao != 6);
 	}
 	
-	public void telaCarteiraDigital(CarteiraDoCliente cdC, Cliente cliente) {
+	public void telaCarteiraDigital(CarteiraDoCliente cdC, Cliente cliente) throws DadoInvalidoException {
 		int opcao = 0;
 		
 		do {
@@ -156,58 +154,54 @@ public class TelaCliente {
 		}while(opcao != 3);
 	}
 	
-	public void adicionarCartao(Cliente cliente) {
+	public void adicionarCartao(Cliente cliente) throws DadoInvalidoException {
 		boolean continuarAcao = true;
 		
 		CartaoDeCredito cartao = new CartaoDeCredito(null, null, null, 0);
 		
 		while(continuarAcao) {
 			System.out.println("➕ Digite os dados do cartão que vai ser adicionado.");
+			System.out.print("Nome do Titular:");
+			cartao.setNomeDoTitular(sc.nextLine());
+			
+			System.out.print("Número do Cartão:");
+			cartao.setNumDoCartao(sc.nextLine());
+			String ultimosDigitos = cartao.getNumDoCartao().substring(cartao.getNumDoCartao().length() - 4);
+			
+			System.out.print("Data de expiração:");
+			//fazer amanha perdao to com sono
+			
+			System.out.print("CVC:");
+			cartao.setCvc(sc.nextInt());
+			
 			try {
-				System.out.print("Nome do Titular:");
-				cartao.setNomeDoTitular(sc.nextLine());
-				
-				System.out.print("Número do Cartão:");
-				cartao.setNumDoCartao(sc.nextLine());
-				String ultimosDigitos = cartao.getNumDoCartao().substring(cartao.getNumDoCartao().length() - 4);
-				
-				System.out.print("Data de expiração:");
-				//fazer amanha perdao to com sono
-				
-				System.out.print("CVC:");
-				cartao.setCvc(sc.nextInt());
-				
-				try {
-					cliente.addCartaoDeCredito(cartao);
-					System.out.println("O cartão com os últimos dígitos "+ultimosDigitos+" foi adicionado com sucesso.");
-		
-					boolean opcaoValida = false;
-					while(opcaoValida) {
-						System.out.println("\nDeseja adicionar mais algum cartão?");
-						System.out.println("  [1] ✅ Sim");
-						System.out.println("  [2] ❌ Não");
-						System.out.print("\nDigite a opção desejada: ");
-						int subOpcao1 = Integer.parseInt(sc.nextLine());
-						if(subOpcao1 == 1) {
-							opcaoValida = true;
-						}
-						else if(subOpcao1 == 2) {
-							opcaoValida = true;
-							continuarAcao = false;
-						}
-						else System.out.println("⚠️ Opção inválida. Digite 1 ou 2.");
+				cliente.addCartaoDeCredito(cartao);
+				System.out.println("O cartão com os últimos dígitos "+ultimosDigitos+" foi adicionado com sucesso.");
+
+				boolean opcaoValida = false;
+				while(opcaoValida) {
+					System.out.println("\nDeseja adicionar mais algum cartão?");
+					System.out.println("  [1] ✅ Sim");
+					System.out.println("  [2] ❌ Não");
+					System.out.print("\nDigite a opção desejada: ");
+					int subOpcao1 = Integer.parseInt(sc.nextLine());
+					if(subOpcao1 == 1) {
+						opcaoValida = true;
 					}
-				}catch(DadoDuplicadoException e) {
-					System.out.println("⚠️ Erro: " +e.getMessage());
-					//perguntar se vai voltar para o cadastro
+					else if(subOpcao1 == 2) {
+						opcaoValida = true;
+						continuarAcao = false;
+					}
+					else System.out.println("⚠️ Opção inválida. Digite 1 ou 2.");
 				}
-			}catch(DadoInvalidoException e) {
+			}catch(DadoDuplicadoException e) {
 				System.out.println("⚠️ Erro: " +e.getMessage());
+				//perguntar se vai voltar para o cadastro
 			}
 		}
 	}
 	
-	public void deletarCartao(Cliente cliente) {
+	public void deletarCartao(Cliente cliente) throws DadoInvalidoException {
 		
 		boolean continuarAcao = true;
 		

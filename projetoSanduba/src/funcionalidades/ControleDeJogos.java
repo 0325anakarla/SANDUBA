@@ -13,18 +13,12 @@ import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
-<<<<<<< HEAD
 
-import jogo.Jogo;
-
-import jogo.*;
-=======
 import jogo.CategoriasJogos;
 import jogo.ClassificacaoIndicativa;
 import jogo.Idiomas;
 import jogo.Jogo;
 import jogo.PlataformasDisponiveis;
->>>>>>> a1bfe3ce5bd3441d34225fc358aac91b33b97ceb
 
 
 public class ControleDeJogos{
@@ -489,7 +483,7 @@ public class ControleDeJogos{
 
 	
 	//deletar jogo
-	public void deletarJogo(Empresa empresa) {
+	public void deletarJogo(Empresa empresa) throws DadoInvalidoException {
 		
 		boolean continuarRemocao = true;
 

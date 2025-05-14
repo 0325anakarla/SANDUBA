@@ -182,7 +182,7 @@ public class Cliente extends Usuarios{
 	}
 	
 	
-	public CartaoDeCredito procurarUltimosDig(String ultimosDig) {
+	public CartaoDeCredito procurarUltimosDig(String ultimosDig) throws DadoInvalidoException {
 	    if(ultimosDig == null) {
 	        throw new DadoInvalidoException("Os últimos dígitos não podem ser vazios.");
 	    }

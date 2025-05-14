@@ -30,7 +30,7 @@ public class Menu {
 		this.telaAdm = telaAdm;
 	}
 
-	public void start() {
+	public void start() throws DadoInvalidoException {
 
 		System.out.println("\n╔══════════════════════════════════════╗");
 		System.out.println("║       🥪 BEM-VINDO AO SANDUBA!       ║");
@@ -79,7 +79,7 @@ public class Menu {
 		}
 	}
 
-	public void loginUsuario() {
+	public void loginUsuario() throws DadoInvalidoException {
 
 		Usuarios usuarioLogin = null;
 		boolean logado = false;
@@ -133,7 +133,7 @@ public class Menu {
 
 	}
 
-	public void cadastroUsuario() {
+	public void cadastroUsuario() throws DadoInvalidoException {
 		System.out.println("\n╔══════════════════════════════════════╗");
 		System.out.println("║          🆕 CRIE SUA CONTA           ║");
 		System.out.println("╚══════════════════════════════════════╝");

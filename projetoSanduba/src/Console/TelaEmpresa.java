@@ -7,25 +7,17 @@ import Financeiro.ResumoDeVendas;
 import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoInvalidoException;
+import TratamentoDeErro.DadoNaoEncontradoException;
 import funcionalidades.ControleDeJogos;
 import jogo.Jogo;
 
 public class TelaEmpresa {
-<<<<<<< HEAD
 
-
-
-
-=======
->>>>>>> a1bfe3ce5bd3441d34225fc358aac91b33b97ceb
 	private Scanner sc;
 	private VisualizacaoMenu visualizacaoMenu;
 	private RepositorioJogoArrayList listJogos;
 	private ControleDeJogos controleJogos;
-<<<<<<< HEAD
 
-=======
->>>>>>> a1bfe3ce5bd3441d34225fc358aac91b33b97ceb
 	
 	public TelaEmpresa(Scanner sc, VisualizacaoMenu visualizacaoMenu, RepositorioJogoArrayList listJogos, ControleDeJogos controleJogos) {
 		this.sc = sc;
@@ -121,7 +113,7 @@ public class TelaEmpresa {
 		}while(opcao != 3);
 	}
 	
-	public void telaJogosCadastrados(Empresa empresa) {
+	public void telaJogosCadastrados(Empresa empresa) throws DadoNaoEncontradoException, DadoInvalidoException {
 		int opcao = 0;
 		
 		visualizacaoMenu.telaJogosCadastrados();

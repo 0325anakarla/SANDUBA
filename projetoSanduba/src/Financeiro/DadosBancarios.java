@@ -9,7 +9,7 @@ public class DadosBancarios {
 	private int agencia;
 	private int numeroConta;
 
-	public DadosBancarios(String titularConta, String nomeBanco, String tipoConta, int agencia, int numeroConta) {
+	public DadosBancarios(String titularConta, String nomeBanco, String tipoConta, int agencia, int numeroConta) throws DadoInvalidoException {
 		this.setTitularConta(titularConta);
 		this.setNomeBanco(nomeBanco);
 		this.setTipoConta(tipoConta);
@@ -21,7 +21,7 @@ public class DadosBancarios {
 		return numeroConta;
 	}
 
-	public void setNumeroConta(int numeroConta)  {
+	public void setNumeroConta(int numeroConta) throws DadoInvalidoException  {
 		if (numeroConta <= 0) {
 	        throw new DadoInvalidoException("Número da conta deve ser maior que zero.");
 	    }

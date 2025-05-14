@@ -22,7 +22,7 @@ public class TelaListaDeDesejos {
 		this.telaCliente = telaCliente;
 	}
 	
-	public void telaLD(Cliente cliente){
+	public void telaLD(Cliente cliente) throws DadoInvalidoException{
 		int opcao =0;
 		
 		System.out.println("\n╔══════════════════════════════╗");
@@ -96,7 +96,7 @@ public class TelaListaDeDesejos {
 							
 								else System.out.println("⚠️ Opção inválida. Digite 1 ou 2.");
 						}
-						}catch (DadoNaoEncontradoException | DadoInvalidoException e) {
+						}catch (DadoNaoEncontradoException e) {
 								System.out.println("❌ Erro: " + e.getMessage());
 						}
 					}

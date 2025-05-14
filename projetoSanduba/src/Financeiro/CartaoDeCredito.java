@@ -23,7 +23,7 @@ public class CartaoDeCredito {
 		return numDoCartao;
 	}
 	
-	public void setNumDoCartao(String numDoCartao) {
+	public void setNumDoCartao(String numDoCartao) throws DadoInvalidoException {
 		if(numDoCartao.length()<16 || numDoCartao.length()>16) {
 			throw new DadoInvalidoException("Número de Cartão inválido.");
 		}
@@ -38,7 +38,7 @@ public class CartaoDeCredito {
 		return nomeDoTitular;
 	}
 	
-	public void setNomeDoTitular(String nomeDoTitular) {
+	public void setNomeDoTitular(String nomeDoTitular) throws DadoInvalidoException {
 		if(nomeDoTitular.isBlank()) {
 			throw new DadoInvalidoException("Nome do titular não pode ser vazio.");
 		}
@@ -50,7 +50,7 @@ public class CartaoDeCredito {
 		return dataDeExpiracao;
 	}
 	
-	public void setDataDeExpiracao(LocalDate dataDeExpiracao) {
+	public void setDataDeExpiracao(LocalDate dataDeExpiracao) throws DadoInvalidoException {
 		if (dataDeExpiracao == null || dataDeExpiracao.isBefore(LocalDate.now())) {
 			throw new DadoInvalidoException("Data invalida");
 		}
@@ -62,7 +62,7 @@ public class CartaoDeCredito {
 		return cvc;
 	}
 	
-	public void setCvc(int cvc) {
+	public void setCvc(int cvc) throws DadoInvalidoException {
 		int qtdDigitos = String.valueOf(cvc).length();
 		
 		if(qtdDigitos<3 || qtdDigitos<3) {
