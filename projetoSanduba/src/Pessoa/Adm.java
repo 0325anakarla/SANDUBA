@@ -99,20 +99,20 @@ public class Adm extends Usuarios{
 		return null;
 	}
 	
-	public void empresasCadastradas(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
+	public void empresasCadastradas() throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 			Empresa empresa = (Empresa) empresas;
 			System.out.println("🏢 "+empresa.getRazaoSocial()+" /n");
 		}
 	}
 	
-	public void clientesCadastrados(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
+	public void clientesCadastrados() throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios cliente: listUsuarios.getTipo(Cliente.class)) {
 			System.out.println("/n👤 "+cliente.getNome()+" /n");
 		}
 	}
 	
-	public void jogoPorEmpresa(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
+	public void jogoPorEmpresa() throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 			System.out.println("🏢 Empresa "+empresas.getNome()+". /n");
 			controleJogos.ListJogosEmpresa((Empresa)empresas);
@@ -121,7 +121,7 @@ public class Adm extends Usuarios{
 		}
 	}
 	
-	public void informacoesTodosClientes(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
+	public void informacoesTodosClientes() throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios clientes: listUsuarios.getTipo(Cliente.class)) {
 //			tranformar o ciente do tipo usario em do tipo cliente
 			Cliente cliente = (Cliente) clientes; 
@@ -129,7 +129,7 @@ public class Adm extends Usuarios{
 		}
 	}
 	
-	public void informacoesTodasEmpresas(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
+	public void informacoesTodasEmpresas() throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 //			tranformar o empresa do tipo usario em do tipo Empresa
 			Empresa empresa = (Empresa) empresas;
