@@ -87,10 +87,11 @@ public class Cliente extends Usuarios{
 
 	public void atualizarLista(Jogo jogo) {
 		for (Jogo jogo1 : jogosAdquiridos) {
-			if (!jogo1.getTitulo().equalsIgnoreCase(jogo.getTitulo())) {
-				jogosAdquiridos.add(jogo);
-			}
-		}
+	        if (jogo1.getTitulo().equalsIgnoreCase(jogo.getTitulo())) {
+	            throw new DadoDuplicadoException("O jogo " + jogo.getTitulo() + " já foi adquirido.");
+	        }
+	    }
+	    jogosAdquiridos.add(jogo);
 	}
 
 	// -- @Override aqui embaixo do implements perfil
@@ -126,14 +127,20 @@ public class Cliente extends Usuarios{
 		return listaDeDesejos;
 	}
 	
-	public void addListaDeDesejo(Jogo jogo) {
+	public void addListaDeDesejo(Jogo jogo) throws DadoInvalidoException {
+		 if (jogo == null) {
+		        throw new DadoInvalidoException("O jogo não pode ser nulo.");
+		}
 		if(listaDeDesejos.contains(jogo)) {
 			throw new DadoDuplicadoException("O jogo " +jogo.getTitulo()+ " ja foi adicionado.");
 		}
 		listaDeDesejos.add(jogo);
 	}
 	
-	public void removeListaDeDesejo(Jogo jogo) {
+	public void removeListaDeDesejo(Jogo jogo) throws DadoInvalidoException {
+		 if (jogo == null) {
+		        throw new DadoInvalidoException("O jogo não pode ser nulo.");
+		}
 		if(!listaDeDesejos.contains(jogo)) {
 			throw new DadoNaoEncontradoException("O jogo " +jogo.getTitulo()+ " não está em sua Lista de desejos.");
 		}
@@ -142,7 +149,7 @@ public class Cliente extends Usuarios{
 	
 	public Jogo procurarNomeLD(String titulo) throws DadoNaoEncontradoException {
 		if(titulo == null) {
-			throw new DadoInvalidoException("O título não pode ser vazio.");
+			throw new DadoNaoEncontradoException("O título não pode ser vazio.");
 		}
 		
 		for (Jogo jogo : listaDeDesejos) {

@@ -17,7 +17,7 @@ public class TelaCliente {
 		this.visualizacaoMenu = visualizacaoMenu;
 	}
 	
-	public void telaMinhaContaCliente(Cliente cliente) {
+	public void telaMinhaContaCliente(Cliente cliente){
 		int opcao = 0;
 		
 		do {

@@ -624,7 +624,7 @@ public class ControleDeJogos{
 		
 		for(Jogo jogo : jogos) {
 			//chmar o mostrar dados basico do jogo
-			System.out.println(jogo.getResumoJogos());
+			//System.out.println(jogo.getResumoJogos());
 		}
 	}
 }

@@ -6,26 +6,20 @@ import Financeiro.CarteiraDaEmpresa;
 import Financeiro.ResumoDeVendas;
 import Pessoa.Empresa;
 import Repositorio.RepositorioJogoArrayList;
+import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.ControleDeJogos;
 import jogo.Jogo;
 
 public class TelaEmpresa {
-<<<<<<< HEAD
-	Scanner sc = new Scanner(System.in);
 
-	VisualizacaoMenu menu = new VisualizacaoMenu();
-	CarteiraDaEmpresa cdE = new CarteiraDaEmpresa(null);
-	ControleDeJogos controlJogos = new ControleDeJogos();
 
-	Empresa empresa = new Empresa(null, null, null, null, null, null, null);
-	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();	
 
-=======
+
 	private Scanner sc;
 	private VisualizacaoMenu visualizacaoMenu;
 	private RepositorioJogoArrayList listJogos;
 	private ControleDeJogos controleJogos;
->>>>>>> 7752f138a2c7ce56fe2a872959b1bd0bc394abc1
+
 	
 	public TelaEmpresa(Scanner sc, VisualizacaoMenu visualizacaoMenu, RepositorioJogoArrayList listJogos, ControleDeJogos controleJogos) {
 		this.sc = sc;
@@ -34,7 +28,7 @@ public class TelaEmpresa {
 		this.controleJogos = controleJogos;
 	}
 	
-	public void telaMinhaContaEmpresa(Empresa empresa){		
+	public void telaMinhaContaEmpresa(Empresa empresa) throws DadoInvalidoException{		
 		int opcao = 0;
 		
 		do {

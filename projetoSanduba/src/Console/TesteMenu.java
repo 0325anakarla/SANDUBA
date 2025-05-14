@@ -1,21 +1,14 @@
 package Console;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
-import Financeiro.CarteiraDoCliente;
-import Financeiro.DadosBancarios;
 import Pessoa.Adm;
-import Pessoa.Cliente;
-import Pessoa.Empresa;
-
 import TratamentoDeErro.DadoInvalidoException;
 
 
 import Repositorio.RepositorioJogoArrayList;
 import Repositorio.RepositorioUsuarioArrayList;
-import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.ControleDeCadastros;
 import funcionalidades.ControleDeJogos;
 

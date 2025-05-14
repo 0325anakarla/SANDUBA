@@ -33,9 +33,9 @@ public class DadosBancarios {
 		return agencia;
 	}
 
-	public void setAgencia(int agencia) {
-		if (agencia <= 0) {
-	        throw new DadoInvalidoException("Número da agência deve ser maior que zero.");
+	public void setAgencia(int agencia)throws DadoInvalidoException{
+		if (agencia < 1000 || agencia > 9999) {
+	        throw new DadoInvalidoException("Sua agencia eh invalida");
 	    }
 
 		this.agencia = agencia;
