@@ -452,7 +452,7 @@ public class ControleDeJogos{
 						jogo.setEmpresa(empresa);
 						empresa.atualizarJogos(jogo);
 						System.out.println("✅ O jogo \"" + jogo.getTitulo() + "\" foi adicionado com sucesso!");
-					
+						continuarCadastro = false;
 					} catch (DadoDuplicadoException e) {
 						System.out.println("❌ Erro: " + e.getMessage());
 			            System.out.println("🔁 Você deseja refazer o cadastro de jogo?");
@@ -496,22 +496,6 @@ public class ControleDeJogos{
 			System.out.println("Qual desses jogos voce quer excluir.");
 			System.out.print("Digite o nome do jogo:");
 			String titulo = sc.nextLine();
-			
-			//CORRIGIR ISSO
-			//para não permitir que uma empresa delete um jogo que não foi cadastrada por ela
-			for (Jogo jogo : empresa.getJogosEmpresa()) {
-				if (!jogo.getTitulo().equalsIgnoreCase(titulo)) {
-					System.out.println("Este jogo não foi cadastrado por essa empresa!");
-					continuarRemocao = false;
-					break;
-				}
-			}
-			
-			//apenas temporário(alana)
-			if (continuarRemocao == false) {
-				break;
-			}
-			
 			try {
 				Jogo resultado = listJogos.procurarNome(titulo);
 				System.out.println("O jogo que deseja excluir é "+resultado.getTitulo()+" tem certeza?");

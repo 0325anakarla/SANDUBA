@@ -64,7 +64,7 @@ public class BibliotecaJogos {
 		    		}
 		    		break;
 		    	case 2:
-		    		mostrarCarrinho.CarrinhoDeCompras(cliente);
+		    		mostrarCarrinho.CarrinhoDeCompras(cliente, carrinho);
 		    		break;
 		    	case 3:
 		    		telaCliente.telaMinhaContaCliente(cliente);
@@ -107,7 +107,7 @@ public class BibliotecaJogos {
 						Biblioteca(cliente);
 						break;
 					case 2:
-						mostrarCarrinho.CarrinhoDeCompras(cliente);
+						mostrarCarrinho.CarrinhoDeCompras(cliente, carrinho);
 						break;
 					default:
 						System.out.println("⚠️ Opção inválida.");
