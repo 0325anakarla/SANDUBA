@@ -127,7 +127,7 @@ public class Cliente extends Usuarios{
 	}
 	
 	//Lista de desejos
-	public List<Jogo> getJogos(Cliente cliente) {
+	public List<Jogo> getJogos() {
 		return listaDeDesejos;
 	}
 	
