@@ -8,10 +8,20 @@ import jogo.Jogo;
 
 public class ListaDeDesejo {
 	//apenas um teste 
+	private Cliente cliente;
 	
-	private final List<Jogo> listaDeDesejos = new ArrayList<>();
+	private  List<Jogo> listaDeDesejos = new ArrayList<>();
 
-	public List<Jogo> getJogos(Cliente cliente) {
+	public List<Jogo> getListaDeDesejos(Cliente cliente) {
 		return listaDeDesejos;
 	}
+	
+	public void addListaDesejos(Jogo jogo){
+		listaDeDesejos.add(jogo);
+	}
+	public void removeListaDesejos(Jogo jogo) {
+		listaDeDesejos.remove(jogo);
+	}
+	
+	
 }

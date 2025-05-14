@@ -31,14 +31,11 @@ public class ControleDeCadastros {
 			// nome email senha cpf data//
 			Cliente cliente = new Cliente(null, null, null, null, null);
 			LocalDate natalicio = null;
-			int tentativas = 0;
 			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
 			do {
+				int tentativas = 0;
 				try {
-
-
-
 
 					System.out.println("\n╔════════════════════════════════════════════════════╗");
 					System.out.println("║        🧾 CADASTRO DE CLIENTE - PREENCHA OS DADOS   ║");
@@ -123,9 +120,9 @@ public class ControleDeCadastros {
 		//nome  email  senha RazaoS cpnj endereco  dados bancarios (para n esquecer nada)
 		Empresa empresa = new Empresa(null, null, null, null, null, null, null);
 		DadosBancarios dadosEmpresa = new DadosBancarios(null, null, null, 0, 0);
-		int tentativas = 0;
 		
 		do {
+			int tentativas = 0;
 			try {
 				//dados normais
 				System.out.println("\n╔════════════════════════════════════════════════════╗");

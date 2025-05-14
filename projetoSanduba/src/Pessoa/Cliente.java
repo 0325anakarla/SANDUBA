@@ -53,9 +53,9 @@ public class Cliente extends Usuarios{
 		this.natalicio = natalicio;
 	}
 
-	public String getCpf() {
-	    if (cpf == null || !cpf.matches("\\d{11}")) {
-	        return "Digite um cpf valido.";
+	public String getCpf(){
+	    if (cpf == null || !cpf.matches("\\d{11}") ) {
+	    	throw new DadoInvalidoException(cpf);
 	    }
 	    return cpf.substring(0, 3) + "." +
 	           cpf.substring(3, 6) + "." +
@@ -66,7 +66,7 @@ public class Cliente extends Usuarios{
 	
 
 	public void setCpf(String cpf) throws DadoInvalidoException {
-		if (cpf == null || cpf.isBlank()) {
+		if (cpf == null || cpf.isBlank() || !cpf.matches("\\d{11}")) {
 			throw new DadoInvalidoException("Cpf invalido");
 		}
 		this.cpf = cpf;
