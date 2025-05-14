@@ -36,7 +36,7 @@ public class OrganicaoTelaAdm {
 			visualizacaoMenu.telaAdmGerenciarCliente(adm);
 			switch(case1) {
 				case 1:
-					adm.clientesCadastrados();
+					adm.clientesCadastrados(listUsuarios);
 					sc.nextLine();
 					break;
 				case 2:
@@ -56,7 +56,7 @@ public class OrganicaoTelaAdm {
 						}
 
 					}else if(opcao2 ==2) {
-						adm.informacoesTodosClientes();
+						adm.informacoesTodosClientes(listUsuarios);
 					}
 					
 					
@@ -136,7 +136,7 @@ public class OrganicaoTelaAdm {
 			visualizacaoMenu.telaAdmGerenciarEmpresa(adm);
 			switch(case2) {
 				case 1:
-					adm.empresasCadastradas();
+					adm.empresasCadastradas(listUsuarios);
 					break;
 				case 2:
 					System.out.println("Deseja obter informaões de uma Empresa em especifio ou de todos?");
@@ -148,7 +148,7 @@ public class OrganicaoTelaAdm {
 						//String nome = sc.nextLine();
 						//falta completar isso de alterar o cliente pelo nome 
 					}else if(opcao2 ==2) {
-						adm.informacoesTodasEmpresas();
+						adm.informacoesTodasEmpresas(listUsuarios);
 					}
 					
 					break;
@@ -224,7 +224,7 @@ public class OrganicaoTelaAdm {
 			switch(case3) {
 			case 1:
 				
-				adm.jogoPorEmpresa();
+				adm.jogoPorEmpresa(listUsuarios);
 				break;
 			case 2: 
 				System.out.println("Insira o nome  da Empresa que deseja cadastrar seu jogo:");
@@ -298,7 +298,7 @@ public class OrganicaoTelaAdm {
 				controleJogos.buscarJogoCtg(sc, listJogos);
 			case 8:
 				visualizacaoMenu.telaResumoVendEmpresa();
-				adm.resumoVendaJogos();
+				adm.resumoVendaJogos(listUsuarios);
 				break;
 			case 9:
 				System.out.println("Voltando ao munu...");

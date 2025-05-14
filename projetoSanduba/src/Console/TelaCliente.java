@@ -94,7 +94,7 @@ public class TelaCliente {
 					break;
 				case 6:
 					System.out.println("Volta para biblioteca de jogos");
-					bibJogos.Biblioteca();
+					bibJogos.Biblioteca(cliente);
 					break;
 				default:
 					System.out.println("Opção invalida. digite novamente:");

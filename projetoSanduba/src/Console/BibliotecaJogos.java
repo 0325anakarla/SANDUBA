@@ -3,6 +3,7 @@ package Console;
 import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
+import Pessoa.Cliente;
 import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
@@ -26,12 +27,13 @@ public class BibliotecaJogos {
 		this.mostrarCarrinho = mostrarCarrinho;
 	}
 	
-	public void Biblioteca() throws DadoInvalidoException {
+	public void Biblioteca(Cliente cliente) throws DadoInvalidoException {
 		
 		System.out.println("\n╔════════════════════════════════════════════╗");
 	    System.out.println("║          🎮 JOGOS DISPONÍVEIS NA LOJA       ║");
 	    System.out.println("╚════════════════════════════════════════════╝");
 	    
+	    //implementar o resumo de jogos no repositorio array list de jogos
 	    listJogos.resumoJogos();
 	    
 	    System.out.println("\n════════════════════════════════════════════");
@@ -55,18 +57,27 @@ public class BibliotecaJogos {
 		    		try{
 		    			Jogo resultado = listJogos.procurarNome(sc.nextLine());
 		    			resultado.mostrarDados();
+		    			opcoesDeCompra(resultado, cliente);
 		    		}catch(DadoNaoEncontradoException e) {
 		    			System.out.println("❌ Erro: " + e.getMessage());
 		    			System.out.println("Digite novamente o jogo que procura.");
 		    		}
 		    		break;
 		    	case 2:
-		    		telaCliente.telaMinhaContaCliente(null);
+		    		mostrarCarrinho.CarrinhoDeCompras(cliente);
+		    		break;
+		    	case 3:
+		    		telaCliente.telaMinhaContaCliente(cliente);
+		    	case 4:
+		    		break;
+		    	default:
+		    		System.out.println("⚠️ Opção inválida.");
+					break;
 		    }
 	    }while(opcao != 4);
 	}
 	
-	public void opcoesDeCompra(Jogo jogo) throws DadoInvalidoException {
+	public void opcoesDeCompra(Jogo jogo, Cliente cliente) throws DadoInvalidoException {
 		System.out.println("\n╔════════════════════════════════════════╗");
 		System.out.println("║       🛍️ OPÇÕES DE COMPRA / AÇÕES        ║");
 		System.out.println("╚════════════════════════════════════════╝");
@@ -80,11 +91,11 @@ public class BibliotecaJogos {
 		
 		switch(opcao) {
 			case 1:
-				//adicionar ao um array list do tipo jogo, que vai conter os jogos desejados
+				cliente.addListaDeDesejo(jogo);
 				break;
 			case 2:
 				carrinho.adiciona(jogo);
-				System.out.println("O jogo "+jogo.getTitulo()+"  foi adicionado com sucesso ao carinho.");
+				System.out.println("O jogo "+jogo.getTitulo()+"  foi adicionado com sucesso ao carrinho.");
 				System.out.println("Escolha uma opção:");
 				System.out.println("  [1] 🔙 Voltar para a biblioteca");
 				System.out.println("  [2] ✅ Finalizar compra");
@@ -93,14 +104,14 @@ public class BibliotecaJogos {
 				
 				switch(subOpcao) {
 					case 1:
-						Biblioteca();
+						Biblioteca(cliente);
 						break;
 					case 2:
-
+						mostrarCarrinho.CarrinhoDeCompras(cliente);
 						break;
 					default:
-						 System.out.println("⚠️ Opção inválida.");
-						 break;
+						System.out.println("⚠️ Opção inválida.");
+						break;
 				}
 		}
 	}

@@ -239,7 +239,7 @@ public class ControleDeCadastros {
 
 								System.out.println("\n╔════════════════════════════════════════════════╗");
 								System.out.println("║ ❌ Cadastro cancelado: número de tentativas excedido ║");
-				S				System.out.println("╚════════════════════════════════════════════════╝");
+								System.out.println("╚════════════════════════════════════════════════╝");
 								return;
 				
 							}

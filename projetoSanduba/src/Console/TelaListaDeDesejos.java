@@ -79,7 +79,7 @@ public class TelaListaDeDesejos {
 										if(subOpcao2 == 1) {
 											opcaoValida2 = true;
 											continuarNaTela = false;
-											mostrarCarrinho.CarrinhoDeCompras();
+											mostrarCarrinho.CarrinhoDeCompras(cliente);
 										}
 										else if(subOpcao2 == 2) {
 											opcaoValida2 = true;
@@ -136,7 +136,7 @@ public class TelaListaDeDesejos {
 									if(subOpcao2 == 1) {
 										opcaoValida2 = true;
 										continuarNaTela = false;
-										mostrarCarrinho.CarrinhoDeCompras();
+										mostrarCarrinho.CarrinhoDeCompras(cliente);
 									}
 									else if(subOpcao2 == 2) {
 										opcaoValida2 = true;

@@ -1,16 +1,17 @@
 package Console;
 
 
-//import java.time.LocalDate;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
-//import Financeiro.CarteiraDoCliente;
-//import Financeiro.DadosBancarios;
+import Financeiro.CarteiraDoCliente;
+import Financeiro.DadosBancarios;
 import Pessoa.Adm;
-//import Pessoa.Cliente;
-//import Pessoa.Empresa;
-
+import Pessoa.Cliente;
+import Pessoa.Empresa;
 import TratamentoDeErro.DadoInvalidoException;
 
 
@@ -19,6 +20,11 @@ import Repositorio.RepositorioJogoArrayList;
 import Repositorio.RepositorioUsuarioArrayList;
 import funcionalidades.ControleDeCadastros;
 import funcionalidades.ControleDeJogos;
+import jogo.CategoriasJogos;
+import jogo.ClassificacaoIndicativa;
+import jogo.Idiomas;
+import jogo.Jogo;
+import jogo.PlataformasDisponiveis;
 
 public class TesteMenu {
 
@@ -26,8 +32,6 @@ public class TesteMenu {
 		Scanner sc = new Scanner(System.in);
 		
 		//INSTANCIAS
-	
-
 		VisualizacaoMenu visualizacaoMenu = new VisualizacaoMenu();
 		CarrinhoDeCompras carrinho = new CarrinhoDeCompras();
 		
@@ -36,8 +40,152 @@ public class TesteMenu {
 		RepositorioUsuarioArrayList listUsuarios = new RepositorioUsuarioArrayList(sc);
 		RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();
 		
-		//adm pra ve se finciona 
-		Adm adm = Adm.getInstancia("Luana", "Maria@gmail.com", "123", listUsuarios);
+		//OBJETOS CRIADOS
+		
+		//CLIENTES
+		Cliente cliente1 = new Cliente("Lana", "lana@gmail.com", "1234", "12345678901", LocalDate.of(2004, 9, 23));
+		CarteiraDoCliente cdC1 = new CarteiraDoCliente();
+		cliente1.setCarteiraDigital(cdC1);
+		Cliente cliente2 = new Cliente("Rebeca", "rebeca@gmail.com", "5678", "98765432190", LocalDate.of(2006, 4, 30));
+		CarteiraDoCliente cdC2 = new CarteiraDoCliente();
+		cliente2.setCarteiraDigital(cdC2);
+		Cliente cliente3 = new Cliente("Ana Alice", "alice@gmail.com", "9012", "01234567891", LocalDate.of(2003, 8, 12));
+		CarteiraDoCliente cdC3 = new CarteiraDoCliente();
+		cliente3.setCarteiraDigital(cdC3);
+		
+		//EMPRESAS
+		DadosBancarios bancoKonami = new DadosBancarios("Konami Digital Entertainment", "Mizuho Bank", "Corrente", "1001", "987651");
+	    DadosBancarios bancoCapcom = new DadosBancarios("Capcom Co., Ltd.", "Sumitomo Mitsui Banking Corporation", "Corrente", "2002", "543212");
+	    DadosBancarios bancoRockstar = new DadosBancarios("Rockstar Games, Inc.", "Bank of America", "Corrente", "3003", "678903");
+
+	    Empresa empresa1 = new Empresa("Konami", "contact@konami.com", "senhaSegura123", "Konami Digital Entertainment Co., Ltd.", "12345678000199", "Tóquio, Japão", bancoKonami);
+	    Empresa empresa2 = new Empresa("Capcom", "contact@capcom.com", "senhaFortissima456", "Capcom Co., Ltd.", "98765432000188", "Osaka, Japão", bancoCapcom);
+	    Empresa empresa3 = new Empresa("Rockstar Games", "contact@rockstargames.com", "senhaTop789", "Rockstar Games, Inc.", "56789123000177", "Nova York, EUA", bancoRockstar);
+		
+		//ADM
+		Adm adm = Adm.getInstancia("Maria Elizabete", "elizabete@gmail.com", "123", listUsuarios);
+		
+		//ADICIONANDO A LISTA DE USUARIOS
+		listUsuarios.add(cliente1);
+		listUsuarios.add(cliente2);
+		listUsuarios.add(cliente3);
+		listUsuarios.add(empresa1);
+		listUsuarios.add(empresa2);
+		listUsuarios.add(empresa3);
+		listUsuarios.add(adm);
+		
+		//JOGOS
+		// The Last of Us Part I
+		listJogos.add(new Jogo(
+		    "The Last of Us Part I",
+		    199.90,
+		    "Um jogo de ação e sobrevivência em um mundo pós-apocalíptico.",
+		    new ArrayList<>(List.of(CategoriasJogos.ACAO, CategoriasJogos.AVENTURA)),
+		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
+		    new ArrayList<>(List.of(PlataformasDisponiveis.PS4, PlataformasDisponiveis.WINDOWS)),
+		    ClassificacaoIndicativa.ANOS18,
+		    "PSN",
+		    empresa2,
+		    LocalDate.of(2013, 6, 14)
+		));
+
+		// The Last of Us Part II
+		listJogos.add(new Jogo(
+		    "The Last of Us Part II",
+		    249.90,
+		    "A sequência da jornada de Ellie em busca de vingança.",
+		    new ArrayList<>(List.of(CategoriasJogos.ACAO, CategoriasJogos.AVENTURA)),
+		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
+		    new ArrayList<>(List.of(PlataformasDisponiveis.PS5)),
+		    ClassificacaoIndicativa.ANOS18,
+		    "PSN",
+		    empresa2,
+		    LocalDate.of(2020, 6, 19)
+		));
+
+		// Minecraft
+		listJogos.add(new Jogo(
+		    "Minecraft",
+		    99.90,
+		    "Jogo de construção em mundo aberto com blocos.",
+		    new ArrayList<>(List.of(CategoriasJogos.MUNDOABERTO, CategoriasJogos.PUZZLE)),
+		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
+		    new ArrayList<>(List.of(PlataformasDisponiveis.WINDOWS, PlataformasDisponiveis.XBOX, PlataformasDisponiveis.XBOX, PlataformasDisponiveis.NINTENDO)),
+		    ClassificacaoIndicativa.LIVRE,
+		    "Mojang Account",
+		    empresa3,
+		    LocalDate.of(2011, 11, 18)
+		));
+
+		// Undertale
+			listJogos.add(new Jogo(
+		    "Undertale",
+		    39.99,
+		    "Um RPG único onde você não precisa matar ninguém.",
+		    new ArrayList<>(List.of(CategoriasJogos.RPG, CategoriasJogos.PUZZLE)),
+		    new ArrayList<>(List.of(Idiomas.INGLES)),
+		    new ArrayList<>(List.of(PlataformasDisponiveis.LINUX, PlataformasDisponiveis.PS4, PlataformasDisponiveis.NINTENDO)),
+		    ClassificacaoIndicativa.ANOS10,
+		    "Steam",
+		    empresa1,
+		    LocalDate.of(2015, 9, 15)
+		));
+
+		// Baldur’s Gate 3
+			listJogos.add(new Jogo(
+		    "Baldur's Gate 3",
+		    299.90,
+		    "RPG baseado em Dungeons & Dragons.",
+		    new ArrayList<>(List.of(CategoriasJogos.RPG, CategoriasJogos.AVENTURA)),
+		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
+		    new ArrayList<>(List.of(PlataformasDisponiveis.MACOS, PlataformasDisponiveis.PS5)),
+		    ClassificacaoIndicativa.ANOS18,
+		    "Steam",
+		    empresa3,
+		    LocalDate.of(2023, 8, 3)
+		));
+
+		// GTA V
+			listJogos.add(new Jogo(
+		    "Grand Theft Auto V",
+		    79.99,
+		    "Jogo de ação em mundo aberto com múltiplos protagonistas.",
+		    new ArrayList<>(List.of(CategoriasJogos.ACAO, CategoriasJogos.MUNDOABERTO)),
+		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
+		    new ArrayList<>(List.of(PlataformasDisponiveis.WINDOWS, PlataformasDisponiveis.PS4, PlataformasDisponiveis.XBOX)),
+		    ClassificacaoIndicativa.ANOS18,
+		    "Rockstar Launcher",
+		    empresa3,
+		    LocalDate.of(2013, 9, 17)
+		));
+
+		// Silent Hill 2
+			listJogos.add(new Jogo(
+		    "Silent Hill 2",
+		    49.90,
+		    "Clássico jogo de terror psicológico.",
+		    new ArrayList<>(List.of(CategoriasJogos.HORROR, CategoriasJogos.AVENTURA)),
+		    new ArrayList<>(List.of(Idiomas.INGLES)),
+		    new ArrayList<>(List.of(PlataformasDisponiveis.PS5, PlataformasDisponiveis.WINDOWS)),
+		    ClassificacaoIndicativa.ANOS18,
+		    "Mídia Física",
+		    empresa2,
+		    LocalDate.of(2001, 9, 24)
+		));
+
+		// Resident Evil 4
+			listJogos.add(new Jogo(
+		    "Resident Evil 4",
+		    59.99,
+		    "Leon Kennedy luta contra ameaças biológicas em uma vila misteriosa.",
+		    new ArrayList<>(List.of(CategoriasJogos.HORROR, CategoriasJogos.ACAO)),
+		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
+		    new ArrayList<>(List.of(PlataformasDisponiveis.LINUX, PlataformasDisponiveis.PS4, PlataformasDisponiveis.XBOX, PlataformasDisponiveis.NINTENDO)),
+		    ClassificacaoIndicativa.ANOS18,
+		    "Steam",
+		    empresa1,
+		    LocalDate.of(2005, 1, 11)
+		));
 		
 		//CONTROLES
 		ControleDeJogos controleJogos = new ControleDeJogos(sc, visualizacaoMenu, listJogos);
@@ -58,25 +206,7 @@ public class TesteMenu {
 		Menu menu = new Menu(sc, listUsuarios, controleCadastros, bibJogos, telaEmpresa, telaAdm);
 
 		controleCadastros.setMenu(menu);
-		//menu.start();
-		
-//		Cliente cliente = new Cliente("lana", "lana@gmail.com", "1234", "12345678-90", LocalDate.of(2004, 9, 23));
-//		CarteiraDoCliente cdC = new CarteiraDoCliente();
-//		cliente.setCarteiraDigital(cdC);
-
-		
-//		TelaCliente viewsC = new TelaCliente(sc, visualizacaoMenu);
-//		viewsC.setTelaListaDeDesejos(telaListaDeDesejos);
-//		viewsC.setBibliotecaJogos(bibJogos);
-//		viewsC.telaMinhaContaCliente(cliente);
-		
-		
-//		DadosBancarios banco = new DadosBancarios("CP", "Santander", "Conta corrente", 5, 200);
-//		Empresa empresa = new Empresa("ConcernedApe", "aux@gmail.com", "5678", "", "1234567890-12", "", banco);
-//		TelaEmpresa viewE = new TelaEmpresa(sc, visualizacaoMenu, listJogos, controleJogos);
-//		viewE.telaMinhaContaEmpresa(empresa);
-
-//		viewE.telaJogosCadastrados(empresa);
+		menu.start();
 	}
 
 }

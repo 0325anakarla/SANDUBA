@@ -91,7 +91,7 @@ public class Menu {
 				System.out.println("║          🔐 DIGITE SEU LOGIN         ║");
 				System.out.println("╚══════════════════════════════════════╝");
 
-				System.out.print("\n1📧 Email: ");
+				System.out.print("\n📧 Email: ");
 				String email = sc.nextLine().trim();
 
 				System.out.print("\n🔒 Senha: ");
@@ -110,7 +110,7 @@ public class Menu {
 						Gambiarras.limparTela();
 
 						if (usuarioLogin instanceof Cliente) {
-							bibJogos.Biblioteca();
+							bibJogos.Biblioteca((Cliente) usuarioLogin);
 						} else if (usuarioLogin instanceof Empresa) {
 							telaEmpresa.telaMinhaContaEmpresa((Empresa) usuarioLogin);
 						} else if (usuarioLogin instanceof Adm) {

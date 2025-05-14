@@ -4,6 +4,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
+import Pessoa.Cliente;
 import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
@@ -23,7 +24,7 @@ public class TelaCarrinhoDeCompras {
 		this.telaCliente = telaCliente;
 	}
 
-	public void CarrinhoDeCompras() throws DadoInvalidoException {
+	public void CarrinhoDeCompras(Cliente cliente) throws DadoInvalidoException {
 		
 		System.out.println("\n╔════════════════════════════════════════╗");
 		System.out.println("║          🛒 CARRINHO DE COMPRAS          ║");
@@ -55,11 +56,11 @@ public class TelaCarrinhoDeCompras {
 				} while(subOpcao != 2); 
 				break;
 			case 2:
-				carrinho.finalizarCompra(null);
+				carrinho.finalizarCompra(cliente);
 				System.out.println("Compra finalizada com sucesso.");
 				break;
 			case 3:
-				bibJogos.Biblioteca();
+				bibJogos.Biblioteca(cliente);
 				break;
 			default:
 				 System.out.println("⚠️ Opção inválida.");
@@ -74,10 +75,10 @@ public class TelaCarrinhoDeCompras {
 		
 		switch(opcao) {
 			case 1:
-				bibJogos.Biblioteca();
+				bibJogos.Biblioteca(cliente);
 				break;
 			case 2:
-				telaCliente.telaMinhaContaCliente(null);
+				telaCliente.telaMinhaContaCliente(cliente);
 				break;
 			default:
 				System.out.println("⚠️ Opção inválida.");
