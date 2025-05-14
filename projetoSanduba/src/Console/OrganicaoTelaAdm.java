@@ -137,7 +137,7 @@ public class OrganicaoTelaAdm {
 			visualizacaoMenu.telaAdmGerenciarEmpresa(adm);
 			switch(case2) {
 				case 1:
-					adm.empresasCadastradas(listUsuarios);
+					adm.empresasCadastradas();
 					break;
 				case 2:
 					System.out.println("Deseja obter informaões de uma Empresa em especifio ou de todos?");
@@ -149,7 +149,7 @@ public class OrganicaoTelaAdm {
 						//String nome = sc.nextLine();
 						//falta completar isso de alterar o cliente pelo nome 
 					}else if(opcao2 ==2) {
-						adm.informacoesTodasEmpresas(listUsuarios);
+						adm.informacoesTodasEmpresas();
 					}
 					
 					break;
@@ -225,7 +225,7 @@ public class OrganicaoTelaAdm {
 			switch(case3) {
 			case 1:
 				
-				adm.jogoPorEmpresa(listUsuarios);
+				adm.jogoPorEmpresa();
 				break;
 			case 2: 
 				System.out.println("Insira o nome  da Empresa que deseja cadastrar seu jogo:");
