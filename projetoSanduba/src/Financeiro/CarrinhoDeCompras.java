@@ -1,11 +1,14 @@
 package Financeiro;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
 import Pessoa.Cliente;
 import Pessoa.Empresa;
+import TratamentoDeErro.DadoInvalidoException;
+import TratamentoDeErro.DadoNaoEncontradoException;
 import jogo.Jogo;
 
 public class CarrinhoDeCompras {
@@ -67,6 +70,19 @@ public class CarrinhoDeCompras {
 		return valor -= valor * 0.1;
 	}
 	
+	public Jogo procurarNome(String titulo) throws DadoNaoEncontradoException, DadoInvalidoException {
+		if(titulo == null) {
+			throw new DadoInvalidoException("O título não pode ser vazio.");
+		}
+		
+		for (Jogo jogo : jogos.keySet()) {
+			if (!jogo.getTitulo().equalsIgnoreCase(titulo)) {
+				return jogo;
+			}
+		}
+		throw new DadoNaoEncontradoException("Jogo com o título '" + titulo + "' não foi encontrado.");
+	}
+	
 	public boolean finalizarCompra(Cliente cliente) {
 		CarteiraDoCliente carteiraDoCliente = cliente.getCarteiraDigital();
 		double valorDaCompra = getTotal();
@@ -89,7 +105,11 @@ public class CarrinhoDeCompras {
 
 			carteiraDoCliente.descontar(valorDaCompra);
 
-			RegistroDeCompras registro = new RegistroDeCompras(valorDaCompra, LocalDate.now(), jogos);
+			LocalDate data = LocalDate.now();
+			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			data.format(formato);
+			
+			RegistroDeCompras registro = new RegistroDeCompras(valorDaCompra, data, jogos);
 			cliente.atualizarHistorico(registro);
 			
 			carteiraDoCliente.gerarCashback();

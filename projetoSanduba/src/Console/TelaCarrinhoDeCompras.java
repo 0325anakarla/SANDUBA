@@ -4,26 +4,24 @@ import java.util.Map;
 import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
+import Pessoa.Cliente;
 import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 
 public class TelaCarrinhoDeCompras {
 	private Scanner sc;
-	private CarrinhoDeCompras carrinho;
-	private RepositorioJogoArrayList listJogos;
 	private BibliotecaJogos bibJogos;
 	private TelaCliente telaCliente;
 
-	public TelaCarrinhoDeCompras(Scanner sc, CarrinhoDeCompras carrinho, RepositorioJogoArrayList listJogos, BibliotecaJogos bibJogos, TelaCliente telaCliente) {
+	public TelaCarrinhoDeCompras(Scanner sc, BibliotecaJogos bibJogos, TelaCliente telaCliente) {
 		this.sc = sc;
-		this.carrinho = carrinho;
-		this.listJogos = listJogos;
 		this.bibJogos = bibJogos;
 		this.telaCliente = telaCliente;
 	}
 
-	public void CarrinhoDeCompras() throws DadoInvalidoException {
+	public void CarrinhoDeCompras(Cliente cliente, CarrinhoDeCompras carrinho) throws DadoInvalidoException {
+		int opcao = 0;
 		
 		System.out.println("\n╔════════════════════════════════════════╗");
 		System.out.println("║          🛒 CARRINHO DE COMPRAS          ║");
@@ -36,15 +34,24 @@ public class TelaCarrinhoDeCompras {
 		System.out.println("  [2] 💰 Finalizar compra");
 		System.out.println("  [3] 🔙 Voltar para a biblioteca");
 		System.out.print("\nDigite a opção desejada: ");
-		int opcao = Integer.parseInt(sc.nextLine());
-		
-		switch(opcao) {
+	
+		 boolean opcaoValida = false;
+		    while(!opcaoValida) {
+			    try {
+			    	opcao = Integer.parseInt(sc.nextLine());
+			    	opcaoValida = true;
+			    }catch(NumberFormatException  e) {
+			    	System.out.println("❌ Erro: " + e.getMessage());
+			    	System.out.print("\nTenta de novo: ");
+			    }
+			 }
+		    switch(opcao) {
 			case 1:
 				int subOpcao = 0;
 				do{
 					System.out.println("Qual jogo deseja remover.");
 					//duvida sobre isso (Ana alice)
-					Jogo resultado = listJogos.procurarNome(sc.nextLine());
+					Jogo resultado = carrinho.procurarNome(sc.nextLine());
 					carrinho.remove(resultado);
 					System.out.println("O jogo "+ resultado.getTitulo()+" foi removido.");
 					System.out.println("Deseja remover mais algum jogo?");
@@ -55,11 +62,12 @@ public class TelaCarrinhoDeCompras {
 				} while(subOpcao != 2); 
 				break;
 			case 2:
-				carrinho.finalizarCompra(null);
+				
+				carrinho.finalizarCompra(cliente);
 				System.out.println("Compra finalizada com sucesso.");
 				break;
 			case 3:
-				bibJogos.Biblioteca();
+				bibJogos.Biblioteca(cliente);
 				break;
 			default:
 				 System.out.println("⚠️ Opção inválida.");
@@ -74,10 +82,10 @@ public class TelaCarrinhoDeCompras {
 		
 		switch(opcao) {
 			case 1:
-				bibJogos.Biblioteca();
+				bibJogos.Biblioteca(cliente);
 				break;
 			case 2:
-				telaCliente.telaMinhaContaCliente(null);
+				telaCliente.telaMinhaContaCliente(cliente);
 				break;
 			default:
 				System.out.println("⚠️ Opção inválida.");

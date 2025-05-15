@@ -22,7 +22,7 @@ public class TelaAdm {
 	private ControleDeJogos controleJogos;
 //	private boolean deuCerto = true;
 	private CarteiraDoAdm cartAdm;
-	private OrganicaoTelaAdm orgAdm;
+	 OrganicaoTelaAdm orgAdm = new OrganicaoTelaAdm();
 	
 	
 	public TelaAdm(Scanner sc, VisualizacaoMenu visualizacaoMenu, Adm adm, RepositorioUsuarioArrayList listUsuarios, RepositorioJogoArrayList listJogos,  ControleDeJogos controleJogos) {
@@ -35,10 +35,10 @@ public class TelaAdm {
 	}
 	
 	public void exibirMenuAdm() throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {
-		
-		visualizacaoMenu.telaMenuMcAdm();
-		int opcao = sc.nextInt();
-		sc.nextLine();
+		int opcao;
+//		visualizacaoMenu.telaMenuMcAdm();
+//		int opcao = sc.nextInt();
+//		sc.nextLine();
 //		
 //////		System.out.println("  [1] 🧑‍ Gerenciar Cliente");
 //	    System.out.println("  [2] 🏦 Gerenciar Empresas");
@@ -48,6 +48,8 @@ public class TelaAdm {
 ////		
 		do {
 		visualizacaoMenu.telaMenuMcAdm();
+		 opcao = sc.nextInt();
+		sc.nextLine();
 		switch(opcao) {
 			case 1:
 				
