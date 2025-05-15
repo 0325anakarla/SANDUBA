@@ -14,6 +14,7 @@ import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 //import funcionalidades.ControleDeCadastros;
 import funcionalidades.ControleDeJogos;
+import funcionalidades.Gambiarras;
 import jogo.CategoriasJogos;
 //import jogo.CategoriasJogos;
 import jogo.Jogo;
@@ -51,11 +52,11 @@ public class OrganicaoTelaAdm {
 					sc.nextLine();
 					System.out.println("Deseja obter informaões de um cliente em especifio ou de todos?");
 					System.out.println("[1] Um em especifico.");
-					System.out.println("[2]Todos");
+					System.out.println("[2] Todos");
 					int opcao2 =sc.nextInt();
 					if(opcao2 ==1) {
 						sc.nextLine();
-						System.out.println("Insira o nome do Cliente que deseja obter informações detalhadas");
+						System.out.println("> Insira o nome do Cliente que deseja obter informações detalhadas <");
 						String nome = sc.nextLine();
 						Usuarios cliente =  listUsuarios.procurarNome(nome);
 						if (cliente instanceof Cliente) { // Verifica se é um Cliente
@@ -63,7 +64,7 @@ public class OrganicaoTelaAdm {
 						    System.out.println(cliente2.mostrarDetalhesUsuario());
 						    
 						} else {
-						    System.out.println("Usuário encontrado não é um Cliente.");
+						    Gambiarras.textoLento(">Usuário encontrado não é um Cliente.",60);
 						}
 
 					}else if(opcao2 ==2) {
@@ -74,7 +75,7 @@ public class OrganicaoTelaAdm {
 					break;
 				case 3:
 					sc.nextLine();
-					System.out.println("Insira o nome do Cliente que deseja alterar dados:");
+					System.out.println("> Insira o nome do Cliente que deseja alterar dados:");
 					String nome = sc.nextLine();
 					Usuarios cliente1 =  listUsuarios.procurarNome(nome);
 					if (cliente1 instanceof Cliente) { // Verifica se é um Cliente 
@@ -85,19 +86,19 @@ public class OrganicaoTelaAdm {
 								
 					    
 					} else {
-					    System.out.println("Usuário encontrado não é um Cliente.");
+					    System.out.println("> Usuário encontrado não é um Cliente.");
 					}
 					
 					break;
 				case 4:
 					sc.nextLine();
-					System.out.println("Insira o nome do Cliente que deseja remover");
+					System.out.println("> Insira o nome do Cliente que deseja remover");
 					String nome1 = sc.nextLine();
 					listUsuarios.deletar(listUsuarios.procurarNome(nome1));
 					break;
 				case 5:
 					sc.nextLine();
-					System.out.println("Insira o nome do Cliente que deseja buscar:");
+					System.out.println("> Insira o nome do Cliente que deseja buscar:");
 					String nome11 = sc.nextLine();
 					Usuarios cliente11 =  listUsuarios.procurarNome(nome11);
 					if (cliente11 instanceof Cliente) { // Verifica se é um Cliente
@@ -105,13 +106,13 @@ public class OrganicaoTelaAdm {
 					    cliente2.mostrarDetalhesUsuario();
 					    
 					} else {
-					    System.out.println("Usuário encontrado não é um Cliente.");
+					    Gambiarras.textoLento("Usuário encontrado não é um Cliente.", 60);
 					}
 					break;
 				case 6:
-					System.out.println("Voltando ao munu...");
+					System.out.println("> Voltando ao munu...");
 					//um pouco perdida se tem outra forma ou so volto pro menu mesmo
-					System.out.println("Vltando ao menu..."); //tipo assim
+					System.out.println("> Voltando ao menu..."); //tipo assim
 					break;
 				default:
 					sc.nextLine();
@@ -162,7 +163,7 @@ public class OrganicaoTelaAdm {
 									System.out.println(empresa2.mostrarDetalhesUsuario()); 
 									sc.nextLine();
 						} else {
-						    System.out.println("Usuário encontrado não é uma Empresa.");
+						    Gambiarras.textoLento(">Usuário encontrado não é uma Empresa.",60);
 						}
 						 
 					}else if(opcao2 ==2) {
@@ -177,7 +178,7 @@ public class OrganicaoTelaAdm {
 					break;
 				case 3:
 					sc.nextLine();
-					System.out.println("Insira o nome da Empresa que deseja alterar dados:");
+					System.out.println("> Insira o nome da Empresa que deseja alterar dados:");
 					String nome = sc.nextLine();
 					Usuarios empresa =  listUsuarios.procurarNome(nome);
 					if (empresa instanceof Empresa) { // Verifica se é um empresa 
@@ -187,13 +188,13 @@ public class OrganicaoTelaAdm {
 								
 					    
 					} else {
-					    System.out.println("Usuário encontrado não é uma Empresa.");
+						Gambiarras.textoLento(">Usuário encontrado não é uma Empresa.",60);
 					}
 					
 					break;
 				case 4:
 					sc.nextLine();
-					System.out.println("Insira o nome da Empresa que deseja remover");
+					System.out.println("> Insira o nome da Empresa que deseja remover");
 					String nome1 = sc.nextLine();
 					listUsuarios.deletar(listUsuarios.procurarNome(nome1));
 					break;
@@ -202,12 +203,12 @@ public class OrganicaoTelaAdm {
 					
 					break;
 				case 6:
-					System.out.println("Voltando ao munu...");
+					Gambiarras.textoLento("> Voltando ao munu...",60);
 					//um pouco perdida se tem outra forma ou so volto pro menu mesmo
 //					telaAdm.exibirMenuAdm(); //tipo assim
 					break;
 				default:
-					System.out.println("Opção invalida.\nInsira um opção válida:");
+					Gambiarras.textoLento("> Opção invalida.\nInsira um opção válida:",60);
 					case2= sc.nextInt();
 					 
 			}
@@ -277,30 +278,31 @@ public class OrganicaoTelaAdm {
 				break;
 				}while(deuErrado);
 			case 6:
-				System.out.println(adm.getNome()+" você quer aplicar desconto por:");
-				System.out.println("[1] ano de lançamento");
-				System.out.println("[2] categoria");
+				System.out.println(adm.getNome()+"> Você quer aplicar desconto por:");
+				System.out.println("[1] Ano de lançamento");
+				System.out.println("[2] Categoria");
 				
 				int opcao21 =sc.nextInt();
 				
 				if(opcao21 ==1) {
-				System.out.println("Insira o ano de referência: todos os jogos lançados até esse ano sofrerão desconto. (ex:2010) ");
+				System.out.println("> Insira o ano de referência: todos os jogos lançados até esse ano sofrerão desconto. (ex:2010) ");
 				int ano =sc.nextInt();
-				System.out.println("Insira o desconto que será aplicado: (ex:20)");
+				System.out.println("> Insira o desconto que será aplicado: (ex:20)");
 				double desconto = sc.nextDouble();
 				adm.descontoPorAno(ano, desconto);
 				}else if(opcao21 ==2) {
 					List<CategoriasJogos> categorias = controleJogos.catgEscolhidas(sc);
-					System.out.println("Desconto que será aplicado é tempo limitado(dias ou mes)");
+					System.out.println("Desconto que será aplicado é tempo limitado - (Dia ou Mês)");
+					System.out.println("-----------------------------------------------------------------------------------------");
 					System.out.println("Insira o tempo que sera.  ");
-					System.out.println("[1] por dias ");
-					System.out.println("[2] por mês.");
+					System.out.println("[1] Por dias ");
+					System.out.println("[2] Por mês.");
 					int tipo =sc.nextInt();
 					
-					System.out.println("Insira o tempo que será aplicado: (ex:20)");
+					System.out.println("> Insira o tempo que será aplicado - (ex:20): ");
 					int tempo = sc.nextInt();
 					
-					System.out.println("Insira o desconto que será aplicado '%' : (ex:20)");
+					System.out.println(": Insira o desconto que será aplicado '%' - (ex:20): ");
 					double desconto = sc.nextDouble();
 					adm.descontoPorTempoLimt( tipo,  tempo,  desconto, categorias  );
 					
@@ -317,12 +319,12 @@ public class OrganicaoTelaAdm {
 				adm.resumoVendaJogos(listUsuarios);
 				break;
 			case 9:
-				System.out.println("Voltando ao munu Adm...");
+				Gambiarras.textoLento("Voltando ao munu Adm...",70);
 				//um pouco perdida se tem outra forma ou so volto pro menu mesmo
 //				exibirMenuAdm(); //tipo assim
 				break;
 			default:
-				System.out.println("Opção invalida./nInsira um opção válida:");
+				System.out.println("> Opção invalida./nInsira um opção válida:");
 				case3= sc.nextInt();
 				 
 	}

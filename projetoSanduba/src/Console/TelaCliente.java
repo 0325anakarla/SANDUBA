@@ -56,7 +56,7 @@ public class TelaCliente {
 					if (cliente.getCarteiraDigital() != null) {
 						telaCarteiraDigital(cliente.getCarteiraDigital(), cliente);
 					} else {
-						Gambiarras.textoLento(">Sem carteira digital!",60);
+						Gambiarras.textoLento("> Sem carteira digital!",60);
 					}
 					break;
 				case 3:
@@ -69,7 +69,7 @@ public class TelaCliente {
 						System.out.println("\nO que deseja fazer agora?");
 					    System.out.println("  [1] 🔐 Ver de chave de ativação");
 					    System.out.println("  [2] 🧑‍ Voltar a minha conta");
-					    System.out.print("\n>Digite a opção desejada: ");
+					    System.out.print("\n> Digite a opção desejada: ");
 					    
 					    boolean opcaoValida = false;
 					    while(!opcaoValida) {
@@ -116,21 +116,21 @@ public class TelaCliente {
 					break;
 				case 5:
 					System.out.println("\n╔══════════════════════════════╗");
-					System.out.println("║   📜 HISTÓRICO DE PEDIDOS      ║");
+					System.out.println("║   📜 HISTÓRICO DE PEDIDOS    ║");
 					System.out.println("╚══════════════════════════════╝");
 					if (!cliente.getHistorico().isEmpty()) {
 						for (RegistroDeCompras registro : cliente.getHistorico()) {
 							System.out.println(registro.toString()+"\n");
 						}
 					} else {
-						Gambiarras.textoLento(">Sem registro de compras!",80);
+						Gambiarras.textoLento("> Sem registro de compras!",80);
 					}
 					break;
 				case 6:
 					bibJogos.Biblioteca(cliente);
 					break;
 				default:
-					Gambiarras.textoLento(">Opção invalida. digite novamente:",70);
+					Gambiarras.textoLento("> Opção invalida. digite novamente:",70);
 					opcao = sc.nextInt();
 			}
 			
@@ -154,7 +154,7 @@ public class TelaCliente {
 					System.out.println("║         ➕ DEPÓSITO           ║");
 					System.out.println("╚══════════════════════════════╝");
 
-					System.out.println(">Escolha o cartão que vai ser realizado o depósito.");	
+					System.out.println("> Escolha o cartão que vai ser realizado o depósito.");	
 					if (!cliente.getCartoesCadastrados().isEmpty()) {
 						
 						cliente.mostrarCartoes();
@@ -162,11 +162,11 @@ public class TelaCliente {
 						boolean continuarAcao = true;
 						while(continuarAcao) {
 							try {
-								System.out.println(">Digite os ultimos digitos do cartão:");
+								System.out.println("> Digite os ultimos digitos do cartão:");
 								CartaoDeCredito resultado = cliente.procurarUltimosDig(sc.nextLine());
 								String ultimosDigitos = resultado.getNumDoCartao().substring(resultado.getNumDoCartao().length() - 4);
 							
-								System.out.print("Qual valor vai depositar:");
+								System.out.print("> Qual valor vai depositar:");
 								valor = sc.nextDouble();
 								sc.nextLine();
 								
@@ -182,7 +182,7 @@ public class TelaCliente {
 						}
 					}
 					
-					else System.out.println(">Nenhum cartão cadastrado.\\nAdicione algum cartão para realizar transações.");
+					else System.out.println("> Nenhum cartão cadastrado.\\nAdicione algum cartão para realizar transações.");
 					
 					break;
 				case 2:
