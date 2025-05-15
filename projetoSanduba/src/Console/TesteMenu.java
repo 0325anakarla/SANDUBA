@@ -234,6 +234,7 @@ public class TesteMenu {
 		controleCadastros.setMenu(menu);
 		telaEmpresa.setMenu(menu); 
 		bibJogos.setMenu(menu);
+		telaAdm.setMenu(menu);
 		menu.start();
 	}
 

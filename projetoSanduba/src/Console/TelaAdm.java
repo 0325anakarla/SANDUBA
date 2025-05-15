@@ -23,7 +23,7 @@ public class TelaAdm {
 	 ControleDeJogos controleJogos;
 	 CarteiraDoAdm cartAdm= new CarteiraDoAdm();
 	 OrganicaoTelaAdm orgAdm = new OrganicaoTelaAdm();
-	
+	private Menu menu;
 	
 	public TelaAdm(Scanner sc, VisualizacaoMenu visualizacaoMenu, Adm adm, RepositorioUsuarioArrayList listUsuarios, RepositorioJogoArrayList listJogos,  ControleDeJogos controleJogos) {
 		this.sc = sc;
@@ -32,6 +32,10 @@ public class TelaAdm {
 		this.listUsuarios = listUsuarios;
 		this.listJogos = listJogos;
 		this.controleJogos = controleJogos;
+	}
+	
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 	
 	public void exibirMenuAdm() throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {
@@ -72,7 +76,7 @@ public class TelaAdm {
 				
 				break;
 			case 5:
-				//menu.statrt
+				menu.start();
 				break;
 			default:
 				System.out.println("Opção invalida");
