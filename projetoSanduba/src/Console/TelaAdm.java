@@ -15,13 +15,12 @@ import funcionalidades.ControleDeJogos;
 
 public class TelaAdm {
 	private Scanner sc;
-	private VisualizacaoMenu visualizacaoMenu;
+	VisualizacaoMenu visualizacaoMenu = new VisualizacaoMenu();
 	private Adm adm;
 	private RepositorioUsuarioArrayList listUsuarios;
 	private RepositorioJogoArrayList listJogos;
-	private ControleDeJogos controleJogos;
-//	private boolean deuCerto = true;
-	private CarteiraDoAdm cartAdm;
+	 ControleDeJogos controleJogos;
+	 CarteiraDoAdm cartAdm= new CarteiraDoAdm();
 	 OrganicaoTelaAdm orgAdm = new OrganicaoTelaAdm();
 	
 	
@@ -69,6 +68,7 @@ public class TelaAdm {
 				visualizacaoMenu.telaSaldoSanduba();
 				System.out.println("O saldo do SANDUBA  R$: "+cartAdm.getSaldo());
 				
+				
 				break;
 			case 5:
 				//menu.statrt
@@ -76,11 +76,12 @@ public class TelaAdm {
 			default:
 				System.out.println("Opção invalida");
 				opcao= sc.nextInt();
+				break;
 				
 		}
 		
 		
-	}while(opcao != 4);
+	}while(opcao != 5);
 		
 
 	}

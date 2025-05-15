@@ -118,11 +118,14 @@ public class Menu {
 						}
 					}
 				}
+				else {
+					tentativas++;
+	                System.out.println("\n⚠️ Email ou senha incorretos. (" + tentativas + "/3)");
+				}
 			} catch (DadoInvalidoException e) {
 				System.out.println("\n⚠️ Erro: " + e.getMessage());
 			} catch (Exception e) {
 				System.out.println("\n⚠️ Ocorreu um erro inesperado: " + e.getMessage());
-				tentativas++;
 			}
 		}
 

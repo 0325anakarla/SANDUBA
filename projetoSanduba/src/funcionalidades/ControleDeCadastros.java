@@ -1,6 +1,7 @@
 package funcionalidades;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
@@ -83,6 +84,20 @@ public class ControleDeCadastros {
 							String Idata = sc.nextLine();
 							natalicio = LocalDate.parse(Idata, formato);
 							cliente.setNatalicio(natalicio);
+							
+							
+							Period idade = Period.between(natalicio,LocalDate.now()); //period eh usada para cal dif ent duas datas(dd/MM/yyyy)
+							if(idade.getYears()<13) {
+								natalicio =null;
+								tentativas++;
+								System.out.println("⚠️  É necessário ter mais de 13 anos para se cadastrar.");
+								if (tentativas == 3) {
+									System.out.println("\n╔════════════════════════════════════════════════╗");
+									System.out.println("║ ❌ Cadastro cancelado: número de tentativas excedido ║");
+									System.out.println("╚════════════════════════════════════════════════╝");
+									return;
+								}
+							}
 						} catch (Exception e) {
 							tentativas++;
 							System.out.println("⚠️  Formato de data inválido. Tente novamente. (" + tentativas + "/3)");
