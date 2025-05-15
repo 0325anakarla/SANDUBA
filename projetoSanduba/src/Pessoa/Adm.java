@@ -29,7 +29,7 @@ public class Adm extends Usuarios{
 	Scanner sc = new Scanner(System.in);
 	RepositorioJogoArrayList listJogos = new RepositorioJogoArrayList();
 	RepositorioUsuarioArrayList listUsuarios = new RepositorioUsuarioArrayList(sc);
-	VisualizacaoMenu visualizacaoMenu;
+	VisualizacaoMenu visualizacaoMenu = new VisualizacaoMenu() ;
 	ControleDeJogos controleJogos = new ControleDeJogos(sc, visualizacaoMenu, listJogos);
 	
 	LocalDate hoje = LocalDate.now();
@@ -112,7 +112,7 @@ public class Adm extends Usuarios{
 	
 	public void clientesCadastrados(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios cliente: listUsuarios.getTipo(Cliente.class)) {
-			System.out.println("/n👤 "+cliente.getNome()+" /n");
+			System.out.println("\n👤 "+cliente.getNome()+" \n");
 		}
 	}
 	
@@ -123,14 +123,14 @@ public class Adm extends Usuarios{
 	        System.out.println("🏢 Empresa " + empresa.getRazaoSocial() + ". \n");
 	        System.out.println("---------------------------------------------");
 	        System.out.println("Jogos da Empresa:");
-	        for (Jogo jogo : empresa.getJogosEmpresa()) {
+	        for (Jogo jogo : listJogos2.procurarEmpresa(empresa)) {
 	            System.out.println("- " + jogo.getTitulo());
 	        }
 	        System.out.println("");
 	}
 	}
 	
-	public void informacoesTodosClientes() throws DadoInvalidoException, DadoDuplicadoException {
+	public void informacoesTodosClientes(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios clientes: listUsuarios.getTipo(Cliente.class)) {
 //			tranformar o ciente do tipo usario em do tipo cliente
 			Cliente cliente = (Cliente) clientes; 
@@ -138,7 +138,7 @@ public class Adm extends Usuarios{
 		}
 	}
 	
-	public void informacoesTodasEmpresas() throws DadoInvalidoException, DadoDuplicadoException {
+	public void informacoesTodasEmpresas(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 //			tranformar o empresa do tipo usario em do tipo Empresa
 			Empresa empresa = (Empresa) empresas;
@@ -146,7 +146,7 @@ public class Adm extends Usuarios{
 		}
 	}	
 	
-	public void infoTodosJogos() throws DadoNaoEncontradoException, DadoInvalidoException {
+	public void infoTodosJogos(RepositorioUsuarioArrayList listUsuarios, RepositorioJogoArrayList listJogos2) throws DadoNaoEncontradoException, DadoInvalidoException {
 		visualizacaoMenu.telaInfJogos();
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 //			tranformar o empresa do tipo usario em do tipo Empresa

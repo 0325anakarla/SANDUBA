@@ -44,6 +44,7 @@ public class TesteMenu {
 		
 		//OBJETOS CRIADOS
 		
+		
 		//CLIENTES
 		Cliente cliente1 = new Cliente("Lana", "lana@gmail.com", "1234", "12345678901", LocalDate.of(2004, 9, 23));
 		CarteiraDoCliente cdC1 = new CarteiraDoCliente();

@@ -12,8 +12,8 @@ import jogo.Jogo;
 import Financeiro.CartaoDeCredito;
 import Financeiro.CarteiraDoCliente;
 import Financeiro.RegistroDeCompras;
-import TratamentoDeErro.DadoInvalidoException;
-import jogo.Jogo;
+//import TratamentoDeErro.DadoInvalidoException;
+//import jogo.Jogo;
 
 public class Cliente extends Usuarios{
 	private String cpf;
