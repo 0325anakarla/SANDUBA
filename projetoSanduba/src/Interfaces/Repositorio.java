@@ -8,7 +8,7 @@ import TratamentoDeErro.DadoInvalidoException;
 public interface Repositorio<T> {
 
 
-	void add(T object) throws DadoDuplicadoException;
+	void add(T object) throws DadoDuplicadoException, DadoInvalidoException;
 
 	List<T> getTodos();
 
@@ -17,6 +17,6 @@ public interface Repositorio<T> {
 	void alterarDados(T object);
 
 	void deletar(T object);
-
+	
 	List<T> getTipo(Class<?> clazz) throws DadoInvalidoException;
 }

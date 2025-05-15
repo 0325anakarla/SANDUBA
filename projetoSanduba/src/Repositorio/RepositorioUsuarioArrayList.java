@@ -8,6 +8,7 @@ import Interfaces.RepositorioUsuario;
 import Pessoa.Cliente;
 import Pessoa.Empresa;
 import Pessoa.Usuarios;
+import TratamentoDeErro.DadoDuplicadoException;
 //import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.Gambiarras;
@@ -31,8 +32,14 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 	}
 
 	@Override
-	public void add(Usuarios addUsuario) {
-		usuarios.add(addUsuario);
+	public void add(Usuarios addUsuario) throws DadoDuplicadoException {
+		try {
+			if(this.procurarNome(addUsuario.getNome())!= null) {
+				throw new DadoDuplicadoException ("> Já existe usuario cadastrado com a informação");
+			}
+		} catch (DadoInvalidoException e) {
+			usuarios.add(addUsuario);
+		}
 		// ok
 	}
 

@@ -35,8 +35,8 @@ public class Adm extends Usuarios{
 	LocalDate hoje = LocalDate.now();
 	int anoHoje = LocalDate.now().getYear();
 	ResumoDeVendas resumo;
-	private LocalDate dataDesconto; 
-    private int duracaoDescontoDias;
+//	private LocalDate dataDesconto; 
+//    private int duracaoDescontoDias;
 	
 	//para ter certeza que so existe um adm
 	private static Adm instanciaUnica;
@@ -88,11 +88,11 @@ public class Adm extends Usuarios{
 		
 	}
 	
-	public void descontoPorAno(int ano, double desconto, RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {
+	public void descontoPorAno(int ano, double desconto, RepositorioUsuarioArrayList listUsuarios, RepositorioJogoArrayList listJogos) throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {
 		int diferencaAnos = anoHoje - ano;
 		for(Usuarios empresa: listUsuarios.getTipo(Empresa.class)){
 			Empresa empresas = (Empresa)empresa;
-			for(Jogo jogo:  listJogos.procurarEmpresa(empresas,listUsuarios)) {
+			for(Jogo jogo:  listJogos.procurarEmpresa(empresas)) {
 				if (jogo.verAnosPassados() >= diferencaAnos) {
 					AplicarDesconto( jogo, desconto);
 					System.out.println("🎮. "+jogo.getTitulo()+" lançado em "+jogo.getDataDeLancamento()+", sofreu "+desconto+"% de desconto. \n");
@@ -176,28 +176,28 @@ public class Adm extends Usuarios{
 	}
 	
 	
-	public void descontoPorTempoLimt(int tipo, int tempo, double desconto, List<CategoriasJogos> categorias) throws DadoNaoEncontradoException, DadoInvalidoException {
-		dataDesconto = LocalDate.now();
-		if(tipo == 1) {
-			duracaoDescontoDias = tempo;
-		}
-		else if (tipo == 2) {
-			duracaoDescontoDias = 30*tempo;
-		}
-		
-		LocalDate dataFinal = dataDesconto.plusDays(duracaoDescontoDias);
-		
-		
-			
-		for(Jogo jogo : listJogos.procurarPorCategorias(categorias)) {
-					if ( LocalDate.now().isAfter(dataFinal))  {
-						VoltarPreço( jogo);
-					}else {
-						AplicarDesconto( jogo, desconto);
-						System.out.println("🎮. "+jogo.getTitulo()+", sofreu "+desconto+"% de desconto. Durante o tempo de "+ tempo + (tipo == 1 ? " dias./n" : " meses./n"));
-					}
-	        }
-		}
+//	public void descontoPorTempoLimt(int tipo, int tempo, double desconto, List<CategoriasJogos> categorias) throws DadoNaoEncontradoException, DadoInvalidoException {
+//		dataDesconto = LocalDate.now();
+//		if(tipo == 1) {
+//			duracaoDescontoDias = tempo;
+//		}
+//		else if (tipo == 2) {
+//			duracaoDescontoDias = 30*tempo;
+//		}
+//		
+//		LocalDate dataFinal = dataDesconto.plusDays(duracaoDescontoDias);
+//		
+//		
+//			
+//		for(Jogo jogo : listJogos.procurarPorCategorias(categorias)) {
+//					if ( LocalDate.now().isAfter(dataFinal))  {
+//						VoltarPreço( jogo);
+//					}else {
+//						AplicarDesconto( jogo, desconto);
+//						System.out.println("🎮. "+jogo.getTitulo()+", sofreu "+desconto+"% de desconto. Durante o tempo de "+ tempo + (tipo == 1 ? " dias./n" : " meses./n"));
+//					}
+//	        }
+//		}
 	
 			
 	

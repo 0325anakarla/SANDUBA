@@ -80,7 +80,7 @@ public class TesteMenu {
 		listUsuarios.add(empresa1);
 		listUsuarios.add(empresa2);
 		listUsuarios.add(empresa3);
-		listUsuarios.add(adm);
+		//listUsuarios.add(adm);
 		
 		//JOGOS
 		// The Last of Us Part I

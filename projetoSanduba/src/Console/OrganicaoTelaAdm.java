@@ -12,6 +12,8 @@ import Repositorio.RepositorioJogoArrayList;
 import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
+import TratamentoDeErro.DadoNaoEncontradoException;
+import TratamentoDeErro.FormatoDoNumeroException;
 //import funcionalidades.ControleDeCadastros;
 import funcionalidades.ControleDeJogos;
 import funcionalidades.Gambiarras;
@@ -36,12 +38,14 @@ public class OrganicaoTelaAdm {
 		
 	}
 	public void opcoesCase1(Scanner sc,Adm adm,RepositorioUsuarioArrayList listUsuarios,VisualizacaoMenu visualizacaoMenu) throws DadoInvalidoException, DadoDuplicadoException {
-		int case1;
+		int case1 = -1;
 		
 		do {
-			//sc.nextLine();
+			
+			try {
 			visualizacaoMenu.telaAdmGerenciarCliente(adm);
 			case1 = sc.nextInt();
+			
 			switch(case1) {
 				case 1:
 					sc.nextLine();
@@ -110,7 +114,7 @@ public class OrganicaoTelaAdm {
 					}
 					break;
 				case 6:
-					System.out.println("> Voltando ao munu...");
+					Gambiarras.textoLento("> Voltando ao munu...", 70);
 					//um pouco perdida se tem outra forma ou so volto pro menu mesmo
 					System.out.println("> Voltando ao menu..."); //tipo assim
 					break;
@@ -120,6 +124,20 @@ public class OrganicaoTelaAdm {
 					case1= sc.nextInt();
 					
 			}
+			}
+			catch(DadoDuplicadoException e) {
+				System.out.println("⚠️  Dado duplicado.");
+			}
+			catch(DadoInvalidoException e) {
+				System.out.println("⚠️  Formato inválido.");
+			}
+			catch(DadoNaoEncontradoException e) {
+				System.out.println("⚠️  Dado não encontrado.");
+			}
+			catch(FormatoDoNumeroException e) {
+				System.out.println("⚠️  Formato de número inválido.");
+			}
+			
 		}while(case1!=6 );
 					
 	}
@@ -132,10 +150,10 @@ public class OrganicaoTelaAdm {
 //	System.out.println("  [6] 🔙 Voltar para o menu. ");
 	public void opcoesCase2(Scanner sc , Adm adm,RepositorioUsuarioArrayList listUsuarios, VisualizacaoMenu visualizacaoMenu) throws DadoInvalidoException, DadoDuplicadoException {
 		 
-		int case2 ;
+		int case2 =-1;
 		sc.nextLine();
 		do {
-			
+			try {
 			visualizacaoMenu.telaAdmGerenciarEmpresa(adm);
 			case2 = sc.nextInt();
 
@@ -212,15 +230,30 @@ public class OrganicaoTelaAdm {
 					case2= sc.nextInt();
 					 
 			}
+			}
+			catch(DadoDuplicadoException e) {
+				System.out.println("⚠️  Dado duplicado.");
+			}
+			catch(DadoInvalidoException e) {
+				System.out.println("⚠️  Formato inválido.");
+			}
+			catch(DadoNaoEncontradoException e) {
+				System.out.println("⚠️  Dado não encontrado.");
+			}
+			catch(FormatoDoNumeroException e) {
+				System.out.println("⚠️  Formato de número inválido.");
+			}
+			
 			}while(case2!=6);
 					
 	}
 
 	public void opcoesCase3(Scanner sc, Adm adm,RepositorioUsuarioArrayList listUsuarios, VisualizacaoMenu visualizacaoMenu, RepositorioJogoArrayList listJogos,ControleDeJogos controleJogos ) throws DadoInvalidoException, DadoDuplicadoException {
 		
-		int case3; 
+		int case3=-1; 
 		sc.nextLine();
 		do {
+			try {
 			visualizacaoMenu.telaAdmGerenciarJogo(adm);
 			case3 = sc.nextInt();
 			sc.nextLine();
@@ -248,15 +281,11 @@ public class OrganicaoTelaAdm {
 				controleJogos.alterarDadosDosJogos(listJogos.procurarNome(titulo));
 				break;
 			case 4:
-				System.out.println("Insira o nome  da Empresa que deseja cadastrar seu jogo:");
-				String nome1 = sc.nextLine();
-				Usuarios empresa1 =  listUsuarios.procurarNome(nome1);
-				if (empresa1 instanceof Empresa) { // Verifica se é um empresa 
-					Empresa empresa2 = (Empresa) empresa1;
-					controleJogos.deletarJogo(empresa2);
-				} else {
-				    System.out.println("Usuário encontrado não é uma Empresa.");
-				}
+				System.out.println("Insira o nome  da Jogo que deseja remover:");
+				String nomeJogo = sc.nextLine();
+				listJogos.deletar(listJogos.procurarNome(nomeJogo));
+				System.out.println("\\ Jogo"+nomeJogo+ "removido com sucesso //");
+
 				break;
 			case 5:
 				System.out.println("Deseja obter informaões de um Jogo em especifio ou de todos?");
@@ -289,7 +318,7 @@ public class OrganicaoTelaAdm {
 				int ano =sc.nextInt();
 				System.out.println("> Insira o desconto que será aplicado: (ex:20)");
 				double desconto = sc.nextDouble();
-				adm.descontoPorAno(ano, desconto, listUsuarios);
+				adm.descontoPorAno(ano, desconto, listUsuarios, listJogos);
 				
 				}else if(opcao21 ==2) {
 					List<CategoriasJogos> categorias = controleJogos.catgEscolhidas(sc);
@@ -329,6 +358,19 @@ public class OrganicaoTelaAdm {
 				case3= sc.nextInt();
 				 
 	}
+		}
+		catch(DadoDuplicadoException e) {
+			System.out.println("⚠️  Dado duplicado.");
+		}
+		catch(DadoInvalidoException e) {
+			System.out.println("⚠️  Formato inválido.");
+		}
+		catch(DadoNaoEncontradoException e) {
+			System.out.println("⚠️  Dado não encontrado.");
+		}
+		catch(FormatoDoNumeroException e) {
+			System.out.println("⚠️  Formato de número inválido.");
+		}
 		}while(case3 != 9);
 	}
 

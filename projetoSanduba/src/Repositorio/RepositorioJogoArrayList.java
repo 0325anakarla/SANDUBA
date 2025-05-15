@@ -12,7 +12,7 @@ import TratamentoDeErro.DadoNaoEncontradoException;
 import jogo.CategoriasJogos;
 import jogo.Jogo;
 
-public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJogos {
+public class RepositorioJogoArrayList implements RepositorioJogos {
 
 	private final List<Jogo> jogos = new ArrayList<>();
 
@@ -30,7 +30,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 
 	@Override
 	public void deletar(Jogo jogo) {
-		if(jogos.contains(jogo)) {
+		if(!jogos.contains(jogo)) {
 			throw new DadoNaoEncontradoException("O jogo " +jogo.getTitulo()+ " não foi encontrado.");
 		}
 		
@@ -43,7 +43,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 	}
 
 //perguntar para o monitor
-
+//erro IDE
 	@Override
 	public List<Jogo> getTipo(Class<?> clazz) throws DadoInvalidoException {
 		if (clazz == null)
@@ -129,7 +129,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 
 	    for (Jogo jogo : jogos) {
 	        for (CategoriasJogos  categoria : categoriasDesejadas) {
-	            if (jogo.getCategoriasValidas().contains(categoria)) {
+	            if (jogo.getCategoriasValidas().contains((categoria.getCategoria()))) {
 	                resultados.add(jogo);
 	                break; // Já achou uma categoria compatível, pode adicionar e ir para o próximo jogo
 	            }
