@@ -810,8 +810,9 @@ public class ControleDeJogos{
 	public void ListJogosComDesconto() {
 		List<Jogo> jogos = listJogos.jogosComDesconto();
 		
+		
 		for(Jogo jogo : jogos) {
-			//chmar o mostrar dados basico do jogo
+			//chmar o  mostrar dados basico do jogo
 			System.out.println(listJogos.resumoJogos());
 
 		
@@ -821,135 +822,148 @@ public class ControleDeJogos{
 	//modifiquei o arraylist para não entrar em conflito com o cadastro
 	// esse arraylist é apenas para busca por categoria
 	public void buscarJogoCtg(Scanner sc, RepositorioJogoArrayList listJogos) {
+		ArrayList<CategoriasJogos> buscarCategorias =  catgEscolhidas( sc);
+		for(Jogo jogo : listJogos.procurarPorCategorias(buscarCategorias)){
+			System.out.println(jogo.getResumo());
+		}
+
+		// limpando o array depois que a busca é concluída, só por precaução
+		buscarCategorias.clear();
+	}
+
+
+
+
+	public ArrayList<CategoriasJogos> catgEscolhidas(Scanner sc2) {
 		System.out.println("🏷️ Escolha as Categorias para o :");
 		CategoriasJogos.imprimeCategorias();
-		ArrayList<CategoriasJogos> buscarCategorias = new ArrayList<>();
+		ArrayList<CategoriasJogos> categoriaEscolhida = new ArrayList<>();
 		while (true){
 			Integer buscarCategoria = sc.nextInt();
 			switch (buscarCategoria){
 				case 1 :
-					if  (!buscarCategorias.contains(CategoriasJogos.RPG)){
-						buscarCategorias.add(CategoriasJogos.RPG);
+					if  (!categoriaEscolhida.contains(CategoriasJogos.RPG)){
+						categoriaEscolhida.add(CategoriasJogos.RPG);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 2 :
-					if (!buscarCategorias.contains(CategoriasJogos.AVENTURA)){
-						buscarCategorias.add(CategoriasJogos.AVENTURA);
+					if (!categoriaEscolhida.contains(CategoriasJogos.AVENTURA)){
+						categoriaEscolhida.add(CategoriasJogos.AVENTURA);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 3 :
-					if (!buscarCategorias.contains(CategoriasJogos.ACAO)){
-						buscarCategorias.add(CategoriasJogos.ACAO);
+					if (!categoriaEscolhida.contains(CategoriasJogos.ACAO)){
+						categoriaEscolhida.add(CategoriasJogos.ACAO);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 4 :
-					if (!buscarCategorias.contains(CategoriasJogos.HORROR)){
-						buscarCategorias.add(CategoriasJogos.HORROR);
+					if (!categoriaEscolhida.contains(CategoriasJogos.HORROR)){
+						categoriaEscolhida.add(CategoriasJogos.HORROR);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 5 :
-					if (!buscarCategorias.contains(CategoriasJogos.MUNDOABERTO)){
-						buscarCategorias.add(CategoriasJogos.MUNDOABERTO);
+					if (!categoriaEscolhida.contains(CategoriasJogos.MUNDOABERTO)){
+						categoriaEscolhida.add(CategoriasJogos.MUNDOABERTO);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 6 :
-					if (!buscarCategorias.contains(CategoriasJogos.TIRO)){
-						buscarCategorias.add(CategoriasJogos.TIRO);
+					if (!categoriaEscolhida.contains(CategoriasJogos.TIRO)){
+						categoriaEscolhida.add(CategoriasJogos.TIRO);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 7 :
-					if (!buscarCategorias.contains(CategoriasJogos.PRIMEIRAPESSOA)){
-						buscarCategorias.add(CategoriasJogos.PRIMEIRAPESSOA);
+					if (!categoriaEscolhida.contains(CategoriasJogos.PRIMEIRAPESSOA)){
+						categoriaEscolhida.add(CategoriasJogos.PRIMEIRAPESSOA);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 8 :
-					if (!buscarCategorias.contains(CategoriasJogos.TERCEIRAPESSOA)){
-						buscarCategorias.add(CategoriasJogos.TERCEIRAPESSOA);
+					if (!categoriaEscolhida.contains(CategoriasJogos.TERCEIRAPESSOA)){
+						categoriaEscolhida.add(CategoriasJogos.TERCEIRAPESSOA);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 9 :
-					if (!buscarCategorias.contains(CategoriasJogos.PUZZLE)){
-						buscarCategorias.add(CategoriasJogos.PUZZLE);
+					if (!categoriaEscolhida.contains(CategoriasJogos.PUZZLE)){
+						categoriaEscolhida.add(CategoriasJogos.PUZZLE);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 10 :
-					if (!buscarCategorias.contains(CategoriasJogos.TURNO)){
-						buscarCategorias.add(CategoriasJogos.TURNO);
+					if (!categoriaEscolhida.contains(CategoriasJogos.TURNO)){
+						categoriaEscolhida.add(CategoriasJogos.TURNO);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 11 :
-					if (!buscarCategorias.contains(CategoriasJogos.ESPORTE)){
-						buscarCategorias.add(CategoriasJogos.ESPORTE);
+					if (!categoriaEscolhida.contains(CategoriasJogos.ESPORTE)){
+						categoriaEscolhida.add(CategoriasJogos.ESPORTE);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 12 :
-					if (!buscarCategorias.contains(CategoriasJogos.LUTA)){
-						buscarCategorias.add(CategoriasJogos.LUTA);
+					if (!categoriaEscolhida.contains(CategoriasJogos.LUTA)){
+						categoriaEscolhida.add(CategoriasJogos.LUTA);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 13 :
-					if (!buscarCategorias.contains(CategoriasJogos.FANTASIA)){
-						buscarCategorias.add(CategoriasJogos.FANTASIA);
+					if (!categoriaEscolhida.contains(CategoriasJogos.FANTASIA)){
+						categoriaEscolhida.add(CategoriasJogos.FANTASIA);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 14 :
-					if (!buscarCategorias.contains(CategoriasJogos.CONSTRUCAO)){
-						buscarCategorias.add(CategoriasJogos.CONSTRUCAO);
+					if (!categoriaEscolhida.contains(CategoriasJogos.CONSTRUCAO)){
+						categoriaEscolhida.add(CategoriasJogos.CONSTRUCAO);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 15 :
-					if (!buscarCategorias.contains(CategoriasJogos.RITMO)){
-						buscarCategorias.add(CategoriasJogos.RITMO);
+					if (!categoriaEscolhida.contains(CategoriasJogos.RITMO)){
+						categoriaEscolhida.add(CategoriasJogos.RITMO);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
 					break;
 
 				case 16 :
-					if (!buscarCategorias.contains(CategoriasJogos.BATTLEROYALE)){
-						buscarCategorias.add(CategoriasJogos.BATTLEROYALE);
+					if (!categoriaEscolhida.contains(CategoriasJogos.BATTLEROYALE)){
+						categoriaEscolhida.add(CategoriasJogos.BATTLEROYALE);
 					} else {
 						System.out.println("Categoria já escolhida.");
 					}
@@ -967,12 +981,7 @@ public class ControleDeJogos{
 				break;
 			}
 		}
-		for(Jogo jogo : listJogos.procurarPorCategorias(buscarCategorias)){
-			System.out.println(jogo.getResumo());
-		}
-
-		// limpando o array depois que a busca é concluída, só por precaução
-		buscarCategorias.clear();
+		return categoriaEscolhida;
 	}
 
 }

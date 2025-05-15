@@ -109,8 +109,6 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	@Override
 
 	public String resumoJogos() {
 		StringBuilder resumo = new StringBuilder();

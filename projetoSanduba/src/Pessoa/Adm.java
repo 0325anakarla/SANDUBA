@@ -103,20 +103,20 @@ public class Adm extends Usuarios{
 		return "Nome do Adm: "+getNome()+"/nEmail:"+getEmail()+"/nSenha: "+getSenha();
 	}
 	
-	public void empresasCadastradas() throws DadoInvalidoException, DadoDuplicadoException {
+	public void empresasCadastradas(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 			Empresa empresa = (Empresa) empresas;
 			System.out.println("🏢 "+empresa.getRazaoSocial()+" /n");
 		}
 	}
 	
-	public void clientesCadastrados() throws DadoInvalidoException, DadoDuplicadoException {
+	public void clientesCadastrados(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios cliente: listUsuarios.getTipo(Cliente.class)) {
 			System.out.println("/n👤 "+cliente.getNome()+" /n");
 		}
 	}
 	
-	public void jogoPorEmpresa() throws DadoInvalidoException, DadoDuplicadoException {
+	public void jogoPorEmpresa(RepositorioUsuarioArrayList listUsuarios  ) throws DadoInvalidoException, DadoDuplicadoException {
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 			System.out.println("🏢 Empresa "+empresas.getNome()+". \n");
 			controleJogos.ListJogosEmpresa((Empresa)empresas);
@@ -163,16 +163,6 @@ public class Adm extends Usuarios{
 		}
 	}
 	
-//	public double getPrecoFinal() {
-//        if (desconto > 0 && dataDesconto != null) {
-//            LocalDate dataFinal = dataDesconto.plusDays(duracaoDescontoDias);
-//            if (LocalDate.now().isAfter(dataFinal)) {
-//                // Já passou o tempo, remove o desconto
-//                desconto = 0;
-//                return preco;
-//            } else {
-//                return preco * (1 - desconto / 100);
-//            }
 	
 	public void descontoPorTempoLimt(int tipo, int tempo, double desconto, List<CategoriasJogos> categorias) throws DadoNaoEncontradoException, DadoInvalidoException {
 		dataDesconto = LocalDate.now();

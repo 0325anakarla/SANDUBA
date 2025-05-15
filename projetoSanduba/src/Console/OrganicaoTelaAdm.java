@@ -135,11 +135,12 @@ public class OrganicaoTelaAdm {
 //	System.out.println("  [6] 🔙 Voltar para o menu. ");
 	public void opcoesCase2(Scanner sc , Adm adm,RepositorioUsuarioArrayList listUsuarios, VisualizacaoMenu visualizacaoMenu) throws DadoInvalidoException, DadoDuplicadoException {
 		 
-		int case2 = sc.nextInt();
+		int case2 ;
 		sc.nextLine();
 		do {
 			
 			visualizacaoMenu.telaAdmGerenciarEmpresa(adm);
+			case2 = sc.nextInt();
 			switch(case2) {
 				case 1:
 					adm.empresasCadastradas();

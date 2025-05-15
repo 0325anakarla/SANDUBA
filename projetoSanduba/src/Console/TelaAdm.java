@@ -35,10 +35,10 @@ public class TelaAdm {
 	}
 	
 	public void exibirMenuAdm() throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {
-		
-		visualizacaoMenu.telaMenuMcAdm();
-		int opcao = sc.nextInt();
-		sc.nextLine();
+		int opcao;
+//		visualizacaoMenu.telaMenuMcAdm();
+//		int opcao = sc.nextInt();
+//		sc.nextLine();
 //		
 //////		System.out.println("  [1] 🧑‍ Gerenciar Cliente");
 //	    System.out.println("  [2] 🏦 Gerenciar Empresas");
@@ -48,6 +48,8 @@ public class TelaAdm {
 ////		
 		do {
 		visualizacaoMenu.telaMenuMcAdm();
+		 opcao = sc.nextInt();
+		sc.nextLine();
 		switch(opcao) {
 			case 1:
 				
