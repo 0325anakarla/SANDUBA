@@ -59,15 +59,48 @@ public class TelaCliente {
 					}
 					break;
 				case 3:
-					System.out.println("\n╔══════════════════════════════╗");
-					System.out.println("║          🎮 MEUS JOGOS         ║");
-					System.out.println("╚══════════════════════════════╝");
-					if (!cliente.getJogosAdquiridos().isEmpty()) {
-						for (Jogo jogo : cliente.getJogosAdquiridos()) {
-							System.out.println(jogo.getTitulo());
-						}
-					} else {
-						System.out.println("Você ainda não comprou jogos!");
+					boolean continuarAcao = true;
+					while(continuarAcao) {
+						System.out.println("\n╔══════════════════════════════╗");
+						System.out.println("║          🎮 MEUS JOGOS         ║");
+						System.out.println("╚══════════════════════════════╝");
+						
+						System.out.println("\nO que deseja fazer agora?");
+					    System.out.println("  [1] 🔐 Ver de chave de ativação");
+					    System.out.println("  [2] 🧑‍ Voltar a minha conta");
+					    System.out.print("\nDigite a opção desejada: ");
+					    
+					    boolean opcaoValida = false;
+					    while(!opcaoValida) {
+					    	try {
+					    		int opcao1 = Integer.parseInt(sc.nextLine());
+					    		if(opcao1 == 1) {
+					    			opcaoValida = true;
+					    			if (!cliente.getJogosAdquiridos().isEmpty()) {
+										for (Jogo jogo : cliente.getJogosAdquiridos()) {
+											System.out.println(jogo.getTitulo());
+										}
+										System.out.println("Escolha o jogo que voce deseja ver a chave de ativação.");
+										try{
+											Jogo resultado = cliente.procurarNomeJA(sc.nextLine());
+											System.out.println("Chave de Ativação: "+resultado.getModAtivacao());
+										}catch(DadoNaoEncontradoException e) {
+											System.out.println("❌ Erro: " + e.getMessage());
+										}
+									} else {
+										System.out.println("Você ainda não comprou jogos!");
+									}
+					    		}
+					    		if(opcao1 == 2) {
+					    			continuarAcao = false;
+					    			break;
+					    		}
+					    		else
+					    			System.out.println("Opção invalida. Escolha 1 ou 2.");
+					    	}catch(NumberFormatException e) {
+					    		System.out.println("❌ Erro: " + e.getMessage());
+					    	}
+					    }
 					}
 					break;
 				case 4:
@@ -87,8 +120,6 @@ public class TelaCliente {
 					if (!cliente.getHistorico().isEmpty()) {
 						for (RegistroDeCompras registro : cliente.getHistorico()) {
 							System.out.println(registro.toString()+"\n");
-							System.out.println("Lista de jogos comprados: ");
-							registro.exibiJogos();
 						}
 					} else {
 						System.out.println("Sem registro de compras!");
@@ -122,18 +153,36 @@ public class TelaCliente {
 					System.out.println("║         ➕ DEPÓSITO           ║");
 					System.out.println("╚══════════════════════════════╝");
 
-					System.out.print("Qual valor vai depositar:");
+					System.out.println("Escolha o cartão que vai ser realizado o depósito.");	
+					if (!cliente.getCartoesCadastrados().isEmpty()) {
+						
+						cliente.mostrarCartoes();
 					
-					valor = sc.nextDouble();
-					sc.nextLine();
-					
-					if(cdC.depositar(valor)) {
-						System.out.println("O valor depositado foi: "+valor+ ". Seu saldo é de:"+cdC.getSaldo());
+						boolean continuarAcao = true;
+						while(continuarAcao) {
+							try {
+								System.out.println("Digite os ultimos digitos do cartão:");
+								CartaoDeCredito resultado = cliente.procurarUltimosDig(sc.nextLine());
+								String ultimosDigitos = resultado.getNumDoCartao().substring(resultado.getNumDoCartao().length() - 4);
+							
+								System.out.print("Qual valor vai depositar:");
+								valor = sc.nextDouble();
+								sc.nextLine();
+								
+								if(cdC.depositar(valor)) {
+									System.out.println("💳 Forma de Pagamento: Cartão: **** **** ****"+ultimosDigitos);
+									System.out.println("O valor depositado foi: "+valor+ ". Seu saldo é de:"+cdC.getSaldo());
+								}
+								continuarAcao = false;
+							}catch(DadoNaoEncontradoException e) {
+								System.out.println("Erro: "+e.getMessage());
+								System.out.println("Tente novamente:");
+							}
+						}
 					}
 					
-					else {
-						System.out.println("Transação invalida.");
-					}
+					else System.out.println("Nenhum cartão cadastrado.\\nAdicione algum cartão para realizar transações.");
+					
 					break;
 				case 2:
 					System.out.println("\n╔══════════════════════════════╗");
@@ -142,7 +191,7 @@ public class TelaCliente {
 					
 					if (!cliente.getCartoesCadastrados().isEmpty()) {
 						cliente.mostrarCartoes();
-					}
+					}else System.out.println("Nenhum cartão cadastrado.");
 					
 					System.out.println("\nO que deseja fazer agora?");
 				    System.out.println("  [1] ➕ Adicionar Cartão");
@@ -175,48 +224,36 @@ public class TelaCliente {
 		CartaoDeCredito cartao = new CartaoDeCredito(null, null, null, 0);
 		
 		while(continuarAcao) {
-			System.out.println("➕ Digite os dados do cartão que vai ser adicionado.");
-			System.out.print("Nome do Titular:");
-			cartao.setNomeDoTitular(sc.nextLine());
-			
-			System.out.print("Número do Cartão:");
-			cartao.setNumDoCartao(sc.nextLine());
-			String ultimosDigitos = cartao.getNumDoCartao().substring(cartao.getNumDoCartao().length() - 4);
-			
-			System.out.print("Data de expiração - (dd/MM/yyy): ");
-			String data = sc.nextLine();
-			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-			LocalDate expiracao = LocalDate.parse(data, formato);
-			cartao.setDataDeExpiracao(expiracao);
-			
-			System.out.print("CVC: ");
-			cartao.setCvc(sc.nextInt());
-			
-			try {
-				cliente.addCartaoDeCredito(cartao);
-				System.out.println("O cartão com os últimos dígitos "+ultimosDigitos+" foi adicionado com sucesso.");
-
-				boolean opcaoValida = true;
-				while(opcaoValida) {
-					System.out.println("\nDeseja adicionar mais algum cartão?");
-					System.out.println("  [1] ✅ Sim");
-					System.out.println("  [2] ❌ Não");
-					System.out.print("\nDigite a opção desejada: ");
-					int subOpcao1 = Integer.parseInt(sc.nextLine());
-					if(subOpcao1 == 1) {
-						opcaoValida = true;
-					}
-					else if(subOpcao1 == 2) {
-						opcaoValida = false;
-						continuarAcao = false;
-					}
-					else System.out.println("⚠️ Opção inválida. Digite 1 ou 2.");	
-					
-					//falta implementar o restante(alana)
+			try{
+				System.out.println("➕ Digite os dados do cartão que vai ser adicionado.");
+				System.out.print("Nome do Titular:");
+				cartao.setNomeDoTitular(sc.nextLine());
+				
+				System.out.print("Número do Cartão:");
+				cartao.setNumDoCartao(sc.nextLine());
+				String ultimosDigitos = cartao.getNumDoCartao().substring(cartao.getNumDoCartao().length() - 4);
+				
+				System.out.print("Data de expiração - (dd/MM/yyy): ");
+				String data = sc.nextLine();
+				DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+				LocalDate expiracao = LocalDate.parse(data, formato);
+				cartao.setDataDeExpiracao(expiracao);
+				
+				System.out.print("CVC: ");
+				cartao.setCvc(sc.nextInt());
+				sc.nextLine();
+				
+				try {
+					cliente.addCartaoDeCredito(cartao);
+					System.out.println("O cartão com os últimos dígitos "+ultimosDigitos+" foi adicionado com sucesso.");
+					continuarAcao = false;
+				}catch(DadoDuplicadoException e) {
+					System.out.println("⚠️ Erro: " +e.getMessage());
+					System.out.println("Tente novamente:");
 				}
-			}catch(DadoDuplicadoException e) {
-				System.out.println("⚠️ Erro: " +e.getMessage());
-				//perguntar se vai voltar para o cadastro
+			}catch(DadoInvalidoException e) {
+				System.out.println("Error: "+e.getMessage());
+				System.out.println("Tente novamente:");
 			}
 		}
 	}
@@ -228,26 +265,12 @@ public class TelaCliente {
 		while(continuarAcao) {
 			System.out.println("❌ Digite os ultimos digitos do Cartão que deseja remover.");
 			CartaoDeCredito resultado = cliente.procurarUltimosDig(sc.nextLine());
+			String ultimosDigitos = resultado.getNumDoCartao().substring(resultado.getNumDoCartao().length() - 4);
 			
 			try{
 				cliente.removerCartao(resultado);
-				System.out.println("Cartao removido com sucesso.");
-				boolean opcaoValida = false;
-				while(opcaoValida) {
-					System.out.println("\nDeseja adicionar mais algum cartão?");
-					System.out.println("  [1] ✅ Sim");
-					System.out.println("  [2] ❌ Não");
-					System.out.print("\nDigite a opção desejada: ");
-					int subOpcao1 = Integer.parseInt(sc.nextLine());
-					if(subOpcao1 == 1) {
-						opcaoValida = true;
-					}
-					else if(subOpcao1 == 2) {
-						opcaoValida = true;
-						continuarAcao = false;
-					}
-					else System.out.println("⚠️ Opção inválida. Digite 1 ou 2.");
-				}
+				System.out.println("Cartao com final "+ultimosDigitos+" foi removido com sucesso.");
+				continuarAcao = false;
 			}catch(DadoNaoEncontradoException e) {
 				System.out.println("⚠️ Erro: " +e.getMessage());
 			}

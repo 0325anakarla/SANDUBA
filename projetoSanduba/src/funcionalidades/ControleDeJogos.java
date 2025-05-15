@@ -324,69 +324,46 @@ public class ControleDeJogos{
 	public void deletarJogo(Empresa empresa) throws DadoInvalidoException {
 		
 		boolean continuarRemocao = true;
-
-		System.out.println("\n╔══════════════════════════════╗");
-		System.out.println("║       🗑️ REMOVER JOGO          ║");
-		System.out.println("╚══════════════════════════════╝");
-
-		
 		while(continuarRemocao) {
+			System.out.println("\n╔══════════════════════════════╗");
+			System.out.println("║       🗑️ REMOVER JOGO          ║");
+			System.out.println("╚══════════════════════════════╝");
+
 			System.out.println("Qual desses jogos voce quer excluir.");
 			System.out.print("Digite o nome do jogo:");
-			String titulo = sc.nextLine();
 			
-			//CORRIGIR ISSO
-			//para não permitir que uma empresa delete um jogo que não foi cadastrada por ela
-			for (Jogo jogo : empresa.getJogosEmpresa()) {
-				if (!jogo.getTitulo().equalsIgnoreCase(titulo)) {
-					System.out.println("Este jogo não foi cadastrado por essa empresa!");
-					continuarRemocao = false;
-					break;
-				}
-			}
-			
-			//apenas temporário(alana)
-			if (continuarRemocao == false) {
-				break;
-			}
-			
-			try {
-				Jogo resultado = listJogos.procurarNome(titulo);
-				System.out.println("O jogo que deseja excluir é "+resultado.getTitulo()+" tem certeza?");
-				System.out.println("1️⃣  Sim");
-		        System.out.println("2️⃣  Não");
-		        System.out.print("👉 Escolha a opção: ");
-				int opcao = Integer.parseInt(sc.nextLine());
-				sc.nextLine();
-				
-				switch(opcao) {
-					case 1:
-						listJogos.deletar(resultado);
-						empresa.deletarJogo(resultado);
-						System.out.println("O jogo "+resultado.getTitulo()+" foi deletado com sucesso.");
-						continuarRemocao = false;
-						break;
-					case 2:
-						System.out.println("Remoção cancelada.");
-						break;
-					default: 
-						System.out.println("Opção invalida.\nInsira um valido:");
-						break;
-				}
-			}catch(DadoNaoEncontradoException e){
-				System.out.println("Erro:" +e.getMessage());
-				System.out.println("Deseja refazer a remoção");
-				System.out.println("1️⃣  Sim");
-		        System.out.println("2️⃣  Não");
-		        System.out.print("👉 Escolha a opção: ");
-				int refazer = Integer.parseInt(sc.nextLine());
-				
-				if(refazer == 2) {
-					continuarRemocao = false; 
+			boolean opcaoValida = false;
+			while(!opcaoValida) {
+				try {
+					Jogo resultado = empresa.procurarNomeJC(sc.nextLine());
+					System.out.println("O jogo que deseja excluir é "+resultado.getTitulo()+" tem certeza?");
+					System.out.println("1️⃣  Sim");
+			        System.out.println("2️⃣  Não");
+			        System.out.print("👉 Escolha a opção: ");
+					int opcao = Integer.parseInt(sc.nextLine());
+					switch(opcao) {
+						case 1:
+							opcaoValida = true;
+							listJogos.deletar(resultado);
+							empresa.deletarJogo(resultado);
+							System.out.println("O jogo "+resultado.getTitulo()+" foi deletado com sucesso.");
+							continuarRemocao = false;
+							break;
+						case 2:
+							opcaoValida = true;
+							System.out.println("Remoção cancelada.");
+							continuarRemocao = false;
+							break;
+						default: 
+							System.out.println("Opção invalida.\nInsira um valido:");
+							break;
+					}
+				}catch(DadoNaoEncontradoException e){
+					System.out.println("Erro:" +e.getMessage());
+					}
 				}
 			}
 		}
-	}
 	
 	//está recebendo os dados novos agora
 	//espero que o clear no arraylist nao estrague tudo

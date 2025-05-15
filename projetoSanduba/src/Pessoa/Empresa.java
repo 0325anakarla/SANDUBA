@@ -11,6 +11,7 @@ import Financeiro.CarteiraDaEmpresa;
 import Financeiro.DadosBancarios;
 import Financeiro.Venda;
 import TratamentoDeErro.DadoInvalidoException;
+import TratamentoDeErro.DadoNaoEncontradoException;
 import jogo.Jogo;
 
 
@@ -90,6 +91,19 @@ public class Empresa extends Usuarios{
 
 	public List<Jogo> getJogosEmpresa() {
 		return jogosEmpresa;
+	}
+	
+	public Jogo procurarNomeJC(String titulo) throws DadoNaoEncontradoException, DadoInvalidoException {
+		if(titulo == null || titulo.trim().isEmpty()) {
+			throw new DadoInvalidoException("O título não pode ser vazio.");
+		}
+		
+		for (Jogo jogo : jogosEmpresa) {
+			if (jogo.getTitulo().equalsIgnoreCase(titulo)) {
+				return jogo;
+			}
+		}
+	 throw new DadoNaoEncontradoException("Jogo com o título '" + titulo + "' não foi encontrado.");
 	}
 	
 	//esse daqui ja existe ne nao é o listar jogos por empresa

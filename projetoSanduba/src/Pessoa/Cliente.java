@@ -88,6 +88,19 @@ public class Cliente extends Usuarios{
 	public List<Jogo> getJogosAdquiridos() {
 		return jogosAdquiridos;
 	}
+	
+	public Jogo procurarNomeJA(String titulo) throws DadoNaoEncontradoException, DadoInvalidoException {
+		if(titulo == null || titulo.trim().isEmpty()) {
+			throw new DadoInvalidoException("O título não pode ser vazio.");
+		}
+		
+		for (Jogo jogo : jogosAdquiridos) {
+			if (jogo.getTitulo().equalsIgnoreCase(titulo)) {
+				return jogo;
+			}
+		}
+	 throw new DadoNaoEncontradoException("Jogo com o título '" + titulo + "' não foi encontrado.");
+	}
 
 	public void atualizarLista(Jogo jogo) {
 		for (Jogo jogo1 : jogosAdquiridos) {

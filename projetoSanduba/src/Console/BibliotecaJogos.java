@@ -110,7 +110,23 @@ public class BibliotecaJogos {
 		    	case 3:
 		    		telaCliente.telaMinhaContaCliente(cliente);
 		    	case 4:
-		    		menu.start();
+		    		System.out.println("Relamente deseja sair da sua conta?");
+					System.out.println("  [1] Sim.");
+					System.out.println("  [2] Não.");
+					opcaoValida = false;
+				    while(!opcaoValida) {
+					    try {
+					    	int subSubOpcao = Integer.parseInt(sc.nextLine());
+					    	opcaoValida = true;
+					    	if(subSubOpcao == 1) {
+					    		menu.start();
+					    		break;
+					    	}
+					    }catch(NumberFormatException  e) {
+					    	System.out.println("❌ Erro: " + e.getMessage());
+					    	System.out.print("\nDigite um número válido: ");
+					    }
+					 }
 		    		break;
 		    	default:
 		    		System.out.println("⚠️ Opção inválida.");
@@ -182,24 +198,6 @@ public class BibliotecaJogos {
 					 }
 				break;
 				case 3:
-					
-					System.out.println("Relamente deseja sair da sua conta?");
-					System.out.println("  [1] Sim.");
-					System.out.println("  [2] Não.");
-					opcaoValida = false;
-				    while(!opcaoValida) {
-					    try {
-					    	int subSubOpcao = Integer.parseInt(sc.nextLine());
-					    	opcaoValida = true;
-					    	if(subSubOpcao == 1) {
-					    		//voltar para o start
-					    		break;
-					    	}
-					    }catch(NumberFormatException  e) {
-					    	System.out.println("❌ Erro: " + e.getMessage());
-					    	System.out.print("\nDigite um número válido: ");
-					    }
-					 }
 					break;
 				default:
 					System.out.println("⚠️ Opção inválida.");
