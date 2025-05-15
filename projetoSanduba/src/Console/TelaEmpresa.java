@@ -31,7 +31,7 @@ public class TelaEmpresa {
 		this.menu = menu;
 	}
 	
-	public void telaMinhaContaEmpresa(Empresa empresa) throws DadoInvalidoException{		
+	public void telaMinhaContaEmpresa(Empresa empresa) throws DadoInvalidoException, DadoNaoEncontradoException{		
 		int opcao = 0;
 		
 		do {
@@ -53,7 +53,13 @@ public class TelaEmpresa {
 					System.out.println("\n╔══════════════════════════════╗");
 					System.out.println("║   🎮 JOGOS CADASTRADOS         ║");
 					System.out.println("╚══════════════════════════════╝");
-					controleJogos.ListJogosEmpresa(empresa);
+					
+					System.out.println("Empresa recebida: " + empresa.getRazaoSocial());
+			        System.out.println("Jogos cadastrados: " + empresa.getJogosEmpresa().size());
+			       
+			        for (Jogo j : empresa.getJogosEmpresa()) {
+			            System.out.println("🎮 " + j.getTitulo());
+			        }
 					System.out.println("*-----------------------------------------*");
 					System.out.println("\nO que deseja fazer com o jogo?");
 					System.out.println("  [1] ✏️ Alterar dados do jogo");
@@ -67,12 +73,29 @@ public class TelaEmpresa {
 							subopcao = Integer.parseInt(sc.nextLine());
 						    if(subopcao == 1) {
 						    	opcaoValida1 = true;
-						    	controleJogos.alterarDadosDosJogos(null);
+						    	System.out.print("Digite o nome do jogo que seja alterar:");
+						    	try{
+						    		Jogo resultado = empresa.procurarNomeJC(sc.nextLine());
+						    		controleJogos.alterarDadosDosJogos(resultado);
+						    	}catch(DadoNaoEncontradoException e) {
+						    		System.out.println("❌ Erro: " + e.getMessage());
+						    		break;
+						    	}
 						    }
 						    else if(subopcao == 2) {
 						    	opcaoValida1 = true;
+						    	   	System.out.println("\n╔══════════════════════════════╗");
+							        System.out.println("║       🗑️ REMOVER JOGO          ║");
+							        System.out.println("╚══════════════════════════════╝");
+							       
 						    	controleJogos.deletarJogo(empresa);
-						    }else System.out.println("Escolha 1 ou 2.");
+						    }
+						    
+						    else if(subopcao == 3) {
+						    	opcaoValida1 = true;
+						    	break;
+						    }
+						    else System.out.println("Escolha 1 ou 2.");
 						    	
 						    }catch(NumberFormatException  e) {
 						    	System.out.println("❌ Erro: " + e.getMessage());
