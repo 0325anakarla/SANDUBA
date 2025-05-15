@@ -17,6 +17,7 @@ public class TelaEmpresa {
 	private VisualizacaoMenu visualizacaoMenu;
 	private RepositorioJogoArrayList listJogos;
 	private ControleDeJogos controleJogos;
+	private Menu menu;
 
 	
 	public TelaEmpresa(Scanner sc, VisualizacaoMenu visualizacaoMenu, RepositorioJogoArrayList listJogos, ControleDeJogos controleJogos) {
@@ -24,6 +25,10 @@ public class TelaEmpresa {
 		this.visualizacaoMenu = visualizacaoMenu;
 		this.listJogos = listJogos;
 		this.controleJogos = controleJogos;
+	}
+	
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 	
 	public void telaMinhaContaEmpresa(Empresa empresa) throws DadoInvalidoException{		
@@ -63,7 +68,7 @@ public class TelaEmpresa {
 					}
 					break;
 				case 6:
-					System.out.println("sair");
+					menu.start();
 					break;
 				default:
 					System.out.println("Opção invalida. Digite novamente.");

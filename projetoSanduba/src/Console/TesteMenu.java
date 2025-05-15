@@ -200,6 +200,8 @@ public class TesteMenu {
 		Menu menu = new Menu(sc, listUsuarios, controleCadastros, bibJogos, telaEmpresa, telaAdm);
 
 		controleCadastros.setMenu(menu);
+		telaEmpresa.setMenu(menu); 
+		bibJogos.setMenu(menu);
 		menu.start();
 	}
 

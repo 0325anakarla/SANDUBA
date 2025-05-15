@@ -16,6 +16,7 @@ public class BibliotecaJogos {
 	private RepositorioJogoArrayList listJogos;
 	private TelaCliente telaCliente;
 	private TelaCarrinhoDeCompras mostrarCarrinho;
+	private Menu menu;
 	
 	public BibliotecaJogos(Scanner sc,  CarrinhoDeCompras carrinho, RepositorioJogoArrayList listJogos, TelaCliente telaCliente) {
 		this.sc = sc;
@@ -27,6 +28,11 @@ public class BibliotecaJogos {
 	public void setMostrarCarrinho(TelaCarrinhoDeCompras mostrarCarrinho) {
 		this.mostrarCarrinho = mostrarCarrinho;
 	}
+	
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
+	
 	
 	public void Biblioteca(Cliente cliente) throws DadoInvalidoException {
 		int opcao = 0;
@@ -104,6 +110,7 @@ public class BibliotecaJogos {
 		    	case 3:
 		    		telaCliente.telaMinhaContaCliente(cliente);
 		    	case 4:
+		    		menu.start();
 		    		break;
 		    	default:
 		    		System.out.println("⚠️ Opção inválida.");

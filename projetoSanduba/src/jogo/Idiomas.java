@@ -32,7 +32,6 @@ public enum Idiomas {
         Idiomas[] idiomas = Idiomas.values();
         StringBuilder sb = new StringBuilder();
         
-        System.out.println("🌐 ESCOLHA OS IDIOMAS DISPONÍVEIS:");
         
         for (int i = 0; i < idiomas.length; i++) {
             sb.append(i).append(": ").append(idiomas[i].getIdioma());
