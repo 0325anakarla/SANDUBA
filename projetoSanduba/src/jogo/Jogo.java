@@ -1,5 +1,6 @@
 package jogo;
 
+import java.security.SecureRandom;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class Jogo {
 	private boolean descontoApli = false;
 
 	public Jogo(String titulo, double preco, String descricao, ArrayList<CategoriasJogos> categoriasValidas, ArrayList<Idiomas> idiomasValidos, ArrayList<PlataformasDisponiveis> platValidas, ClassificacaoIndicativa classIndicativa
-			, String modAtivacao, Empresa empresa, LocalDate dataDeLancamento) {
+			,Empresa empresa, LocalDate dataDeLancamento) {
 		super();
 		this.titulo = titulo;
 		this.preco = preco;
@@ -32,7 +33,7 @@ public class Jogo {
 		this.idiomasValidos = idiomasValidos;
 		this.platValidas = platValidas;
 		this.classIndicativa = classIndicativa;
-		this.modAtivacao = modAtivacao;
+		this.modAtivacao = gerarStringSegura(20);
 		this.empresa = empresa;
 		this.dataDeLancamento = dataDeLancamento;
 		this.precoModificador=preco;
@@ -99,9 +100,18 @@ public class Jogo {
 		return modAtivacao;
 	}
 
-	public void setModAtivacao(String modAtivacao) throws DadoInvalidoException {
-		this.modAtivacao = modAtivacao;
-	}
+	    public static String gerarStringSegura(int tamanho) {
+	        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+	        StringBuilder sb = new StringBuilder();
+	        SecureRandom random = new SecureRandom();
+
+	        for (int i = 0; i < tamanho; i++) {
+	            int index = random.nextInt(caracteres.length());
+	            sb.append(caracteres.charAt(index));
+	        }
+
+	        return sb.toString();
+	    }
 
 	public ArrayList<String> getCategoriasValidas() {
 		ArrayList<String> nomesCategorias = new ArrayList<>();

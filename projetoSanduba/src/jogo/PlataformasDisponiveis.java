@@ -23,7 +23,7 @@ public enum PlataformasDisponiveis {
         return this.plataforma;
     }
 
-    public static void imprimePlataformas() {
+    /*public static void imprimePlataformas() {
         PlataformasDisponiveis[] plataformas = PlataformasDisponiveis.values();
         for (int i = 0; i < plataformas.length; i += 2) {
 
@@ -35,6 +35,22 @@ public enum PlataformasDisponiveis {
 
             System.out.println();
         }
+    }*/
+    
+    public static void imprimePlataformas() {
+        PlataformasDisponiveis[] plataformas = PlataformasDisponiveis.values();
+        System.out.println(" 🖥️ ESCOLHA AS PLATAFORMAS DISPONÍVEIS:");
+
+        for (int i = 0; i < plataformas.length; i += 2) {
+            String linha = String.format("%-2d: %-15s", i, plataformas[i].getPlataforma());
+
+            if (i + 1 < plataformas.length) {
+                linha += String.format(" | %-2d: %-15s", i + 1, plataformas[i + 1].getPlataforma());
+            }
+
+            System.out.println(linha);
+        }
     }
+
 
 }

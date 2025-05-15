@@ -51,9 +51,8 @@ public class ControleDeJogos{
 			boolean dadosValidos = false;
 			
 
-			Jogo jogo = new Jogo(null, 0, null, new ArrayList<CategoriasJogos>(), new ArrayList<Idiomas>(), new ArrayList<PlataformasDisponiveis>(), null, null, null, null);
+			Jogo jogo = new Jogo(null, 0, null, new ArrayList<CategoriasJogos>(), new ArrayList<Idiomas>(), new ArrayList<PlataformasDisponiveis>(), null, null, null);
 
-			
 			do {
 				try {
 					System.out.println("\n╔════════════════════════════════════════════════════════════════╗");
@@ -209,9 +208,16 @@ public class ControleDeJogos{
 						}
 						System.out.println("");
 						System.out.println("Deseja adicionar mais categorias?");
+<<<<<<< HEAD
+						System.out.println("1 - ✅SIM");
+						System.out.println("2 - ❌NÃO");
+						int add1 = sc.nextInt();
+						if(add1 == 2){
+=======
 						System.out.println("1: SIM" + "-" + "2: NÃO");
 						int add = sc.nextInt();
 						if(add == 2){
+>>>>>>> 4d3b698f91c40722227b3a685b4be9e15d63f4b3
 							break;
 						}
 					}
@@ -282,9 +288,16 @@ public class ControleDeJogos{
 						}
 						System.out.println("");
 						System.out.println("Deseja adicionar mais idiomas?");
+<<<<<<< HEAD
+						System.out.println("1 - ✅SIM");
+						System.out.println("2 - ❌NÃO");
+						int add2 = sc.nextInt();
+						if(add2 == 2){
+=======
 						System.out.println("1: SIM" + "-" + "2: NÃO");
 						int add1 = sc.nextInt();
 						if(add1 == 2){
+>>>>>>> 4d3b698f91c40722227b3a685b4be9e15d63f4b3
 							break;
 						}
 					}
@@ -379,7 +392,8 @@ public class ControleDeJogos{
 						}
 						System.out.println("");
 						System.out.println("Deseja adicionar mais plaformas?");
-						System.out.println("1: SIM" + "-" + "2: NÃO");
+						System.out.println("1 - ✅SIM");
+						System.out.println("2 - ❌NÃO");
 						int add2 = sc.nextInt();
 						if(add2 == 2){
 							break;
@@ -417,6 +431,10 @@ public class ControleDeJogos{
 							break;
 						}
 					}
+					
+					System.out.println("📅 Digite a data de lançamento (formato: dd/MM/yyyy): ");
+					//falta so isso
+				
 
 					System.out.print("🔐 Código de Ativação: ");
 					jogo.setModAtivacao(sc.nextLine());
@@ -1145,9 +1163,16 @@ public class ControleDeJogos{
 			}
 			System.out.println("");
 			System.out.println("Deseja adicionar mais categorias?");
+<<<<<<< HEAD
+			System.out.println("1 - ✅SIM");
+			System.out.println("2 - ❌NÃO");
+			int add1 = sc.nextInt();
+			if(add1 == 2){
+=======
 			System.out.println("1: SIM" + "-" + "2: NÃO");
 			int add6 = sc.nextInt();
 			if(add6 == 2){
+>>>>>>> 4d3b698f91c40722227b3a685b4be9e15d63f4b3
 				break;
 			}
 		}

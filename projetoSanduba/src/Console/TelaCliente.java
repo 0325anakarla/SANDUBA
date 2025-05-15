@@ -1,5 +1,7 @@
 package Console;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 import Financeiro.CartaoDeCredito;
@@ -114,7 +116,7 @@ public class TelaCliente {
 			
 			switch(opcao) {
 				case 1:
-					double valor =0;
+					double valor = 0;
 					
 					System.out.println("\n╔══════════════════════════════╗");
 					System.out.println("║         ➕ DEPÓSITO           ║");
@@ -123,6 +125,7 @@ public class TelaCliente {
 					System.out.print("Qual valor vai depositar:");
 					
 					valor = sc.nextDouble();
+					sc.nextLine();
 					
 					if(cdC.depositar(valor)) {
 						System.out.println("O valor depositado foi: "+valor+ ". Seu saldo é de:"+cdC.getSaldo());
@@ -137,7 +140,9 @@ public class TelaCliente {
 					System.out.println("║     💳 CARTÕES CADASTRADOS     ║");
 					System.out.println("╚══════════════════════════════╝");
 					
-					cliente.mostrarCartoes();
+					if (!cliente.getCartoesCadastrados().isEmpty()) {
+						cliente.mostrarCartoes();
+					}
 					
 					System.out.println("\nO que deseja fazer agora?");
 				    System.out.println("  [1] ➕ Adicionar Cartão");
@@ -178,17 +183,20 @@ public class TelaCliente {
 			cartao.setNumDoCartao(sc.nextLine());
 			String ultimosDigitos = cartao.getNumDoCartao().substring(cartao.getNumDoCartao().length() - 4);
 			
-			System.out.print("Data de expiração:");
-			//fazer amanha perdao to com sono
+			System.out.print("Data de expiração - (dd/MM/yyy): ");
+			String data = sc.nextLine();
+			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+			LocalDate expiracao = LocalDate.parse(data, formato);
+			cartao.setDataDeExpiracao(expiracao);
 			
-			System.out.print("CVC:");
+			System.out.print("CVC: ");
 			cartao.setCvc(sc.nextInt());
 			
 			try {
 				cliente.addCartaoDeCredito(cartao);
 				System.out.println("O cartão com os últimos dígitos "+ultimosDigitos+" foi adicionado com sucesso.");
 
-				boolean opcaoValida = false;
+				boolean opcaoValida = true;
 				while(opcaoValida) {
 					System.out.println("\nDeseja adicionar mais algum cartão?");
 					System.out.println("  [1] ✅ Sim");
@@ -199,10 +207,12 @@ public class TelaCliente {
 						opcaoValida = true;
 					}
 					else if(subOpcao1 == 2) {
-						opcaoValida = true;
+						opcaoValida = false;
 						continuarAcao = false;
 					}
-					else System.out.println("⚠️ Opção inválida. Digite 1 ou 2.");
+					else System.out.println("⚠️ Opção inválida. Digite 1 ou 2.");	
+					
+					//falta implementar o restante(alana)
 				}
 			}catch(DadoDuplicadoException e) {
 				System.out.println("⚠️ Erro: " +e.getMessage());

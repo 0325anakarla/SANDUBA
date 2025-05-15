@@ -19,12 +19,22 @@ public enum ClassificacaoIndicativa {
         return this.classificacaoInd;
     }
 
-    public static void imprimeClassificacoes(){
+    /*public static void imprimeClassificacoes(){
         int i = 0;
         for (ClassificacaoIndicativa classificacao : ClassificacaoIndicativa.values()) {
             System.out.println(i + ": " + classificacao.getClassificacao());
             i++;
         }
+    }*/
+    
+    public static void imprimeClassificacoes() {
+       System.out.println("📋 ESCOLHA AS CLASIFICAÇÕES INDICATIVAS:");
+
+        ClassificacaoIndicativa[] classificacoes = ClassificacaoIndicativa.values();
+        for (int i = 0; i < classificacoes.length; i++) {
+            System.out.printf(" %2d: %-20s%n", i, classificacoes[i].getClassificacao());
+        }
     }
+
 
 }

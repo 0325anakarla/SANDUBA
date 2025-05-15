@@ -36,7 +36,6 @@ public class BibliotecaJogos {
 		    System.out.println("║          🎮 JOGOS DISPONÍVEIS NA LOJA       ║");
 		    System.out.println("╚════════════════════════════════════════════╝");
 		    
-		    //implementar o resumo de jogos no repositorio array list de jogos
 		    System.out.println(listJogos.resumoJogos());
 		    
 		    System.out.println("\n════════════════════════════════════════════");
@@ -166,7 +165,6 @@ public class BibliotecaJogos {
 								break;
 							default:
 								System.out.println("⚠️ Opção inválida.");
-								opcaoValida = false;
 								System.out.println("\nDigite apenas um dos números acima.");
 								break;
 						}
@@ -175,8 +173,26 @@ public class BibliotecaJogos {
 					    	System.out.print("\nDigite um número válido: ");
 					    }
 					 }
-				
+				break;
 				case 3:
+					
+					System.out.println("Relamente deseja sair da sua conta?");
+					System.out.println("  [1] Sim.");
+					System.out.println("  [2] Não.");
+					opcaoValida = false;
+				    while(!opcaoValida) {
+					    try {
+					    	int subSubOpcao = Integer.parseInt(sc.nextLine());
+					    	opcaoValida = true;
+					    	if(subSubOpcao == 1) {
+					    		//voltar para o start
+					    		break;
+					    	}
+					    }catch(NumberFormatException  e) {
+					    	System.out.println("❌ Erro: " + e.getMessage());
+					    	System.out.print("\nDigite um número válido: ");
+					    }
+					 }
 					break;
 				default:
 					System.out.println("⚠️ Opção inválida.");

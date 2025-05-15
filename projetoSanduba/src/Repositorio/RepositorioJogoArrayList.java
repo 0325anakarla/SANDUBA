@@ -110,9 +110,17 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 		return null;
 	}
 	
+<<<<<<< HEAD
 
 	@Override
 
+=======
+<<<<<<< HEAD
+	@Override
+
+=======
+>>>>>>> 4d3b698f91c40722227b3a685b4be9e15d63f4b3
+>>>>>>> c78813e0aea305e737e2839d48ce774f43c4ebb5
 	public String resumoJogos() {
 		StringBuilder resumo = new StringBuilder();
 		
