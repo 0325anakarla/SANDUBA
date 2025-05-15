@@ -64,7 +64,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 		}
 		
 		for (Jogo jogo : jogos) {
-			if (jogo.getTitulo().equalsIgnoreCase(titulo)) {
+			if (jogo.getTitulo().trim().equalsIgnoreCase(titulo.trim())) {
 				return jogo;
 			}
 		}
@@ -128,7 +128,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 	    List<Jogo> resultados = new ArrayList<>();
 
 	    for (Jogo jogo : jogos) {
-	        for (CategoriasJogos categoria : categoriasDesejadas) {
+	        for (CategoriasJogos  categoria : categoriasDesejadas) {
 	            if (jogo.getCategoriasValidas().contains(categoria)) {
 	                resultados.add(jogo);
 	                break; // Já achou uma categoria compatível, pode adicionar e ir para o próximo jogo

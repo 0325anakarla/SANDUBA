@@ -1,6 +1,6 @@
 package Financeiro;
 
-import java.time.LocalDate;
+
 
 import TratamentoDeErro.DadoInvalidoException;
 
@@ -42,32 +42,52 @@ public class DadosBancarios {
 
 	public void setAgencia(String agencia)throws DadoInvalidoException{
 		if (agencia == null || agencia.isBlank() || !agencia.matches("\\d{4}")) {
-			throw new DadoInvalidoException("Cpf invalido");
+			throw new DadoInvalidoException("Agencia Invalida");
 		}
 		this.agencia = agencia;
 	}
 
-	public String getTipoConta() {
+	public String getTipoConta() throws DadoInvalidoException {
+		if (tipoConta == null )  {
+	    	throw new DadoInvalidoException(tipoConta);
+	    }
 		return tipoConta;
 	}
 
-	public void setTipoConta(String tipoConta) {
+	public void setTipoConta(String tipoConta) throws DadoInvalidoException {
+		if (tipoConta == null ) {
+			throw new DadoInvalidoException("Tipo de conta invalida");
+		}
 		this.tipoConta = tipoConta;
 	}
 
-	public String getNomeBanco() {
+	public String getNomeBanco() throws DadoInvalidoException {
+		if (nomeBanco == null )  {
+	    	throw new DadoInvalidoException(nomeBanco);
+	    }
+
 		return nomeBanco;
 	}
 
-	public void setNomeBanco(String nomeBanco) {
+	public void setNomeBanco(String nomeBanco) throws DadoInvalidoException {
+		if (nomeBanco == null ) {
+			throw new DadoInvalidoException("Nome de Banco Invalido");
+		}
 		this.nomeBanco = nomeBanco;
 	}
 
-	public String getTitularConta() {
+	public String getTitularConta() throws DadoInvalidoException {
+		if (titularConta == null )  {
+	    	throw new DadoInvalidoException(titularConta);
+	    }
+		
 		return titularConta;
 	}
 
-	public void setTitularConta(String titularConta) {
+	public void setTitularConta(String titularConta) throws DadoInvalidoException {
+		if (titularConta == null ) {
+			throw new DadoInvalidoException("Titular Invalido");
+		}
 		this.titularConta = titularConta;
 	}
 	

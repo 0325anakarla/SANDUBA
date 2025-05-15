@@ -17,6 +17,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import Financeiro.CarteiraDaEmpresa;
+import Financeiro.DadosBancarios;
+
 public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, RepositorioUsuario {
 
 	private final List<Usuarios> usuarios; // Vai armazenar os Usuarios na list
@@ -60,39 +63,7 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 				int opcao = Integer.parseInt(sc.nextLine());
 
 
-                try {
-                    switch (opcao) {
-                        case 1:
-                            System.out.println("Digite o novo nome:");
-                            cliente.setNome(sc.nextLine());
-                            break;
-                        case 2:
-                            System.out.println("Digite o novo email:");
-                            String novoEmail = sc.nextLine();
-                            cliente.setEmail(sc.nextLine());
-                            break;
-                        case 3:
-                            System.out.println("Digite a nova senha :");
-                            cliente.setSenha(sc.nextLine());
-                            break;
-                        case 4:
-                            System.out.println("Digite o novo CPF (apenas números):");
-                            cliente.setCpf(sc.nextLine());
-                            break;
-                        case 5:
-                            System.out.println("Digite a nova data de nascimento (dd/MM/yyyy):");
-                            cliente.setNatalicio(sc.nextLine());
-                            break;
-                        case 6:
-                            System.out.println("Voltando ao menu...");
-                            continuarAlterar = false;
-                            break;
-                        default:
-                            System.out.println("Opção inválida. Digite novamente.");
-                    }
-                } catch (Exception e) {
-                    System.out.println("Erro ao atualizar dados: " + e.getMessage());
-                }
+               
 
 				try {
 					switch (opcao) {
@@ -173,47 +144,7 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 				System.out.print("Escolha uma opção: ");
 				int opcao = Integer.parseInt(sc.nextLine());
 				
-			    try {
-			        switch (opcao) {
-			            case 1:
-			                System.out.print("Digite o novo nome: ");
-			                empresa.setNome(sc.nextLine());
-			                break;
-			            case 2:
-			                System.out.print("Digite o novo email: ");
-			                empresa.setEmail(sc.nextLine());
-			                break;
-			            case 3:
-			                System.out.print("Digite a nova senha : ");
-			                empresa.setSenha(sc.nextLine());
-			                break;
-			            case 4:
-			                System.out.print("Digite o novo CNPJ (somente números): ");
-			                empresa.setCpnj(sc.nextLine());
-			                break;
-			            case 5:
-			                System.out.print("Digite o novo endereço: ");
-			                empresa.setEndereco(sc.nextLine());
-			                break;
-			            case 6:
-			                System.out.print("Digite o novo banco da empresa: ");
-			                empresa.setBancoEmpresa(sc.nextLine());
-			                break;
-			            case 7:
-			                System.out.print("Digite a nova razão social: ");
-			                empresa.setRazaoSocial(sc.nextLine());
-			                break;
-			            case 8:
-			                System.out.println("Voltando ao menu...");
-			                continuarAlterar = false;
-			                break;
-			            default:
-			                System.out.println("Opção inválida. Digite novamente.");
-			        }
-			    } catch (Exception e) {
-			        System.out.println("Erro ao atualizar dados: " + e.getMessage());
-			    }
-
+			    
 				try {
 					switch (opcao) {
 					case 1:
@@ -264,12 +195,11 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 						}
 						break;
 					case 6:
-						try {
-							empresa.setBancoEmpresa(sc.nextLine()); //ver isso
-							System.out.println("✅ Banco atualizado com sucesso!");
-						} catch (DadoInvalidoException e) {
+						try {alterarDadosBancarios( empresa.getBancoEmpresa(),  sc,  empresa);} catch (DadoInvalidoException e) {
 							System.out.println("❌ Erro: " + e.getMessage());
 						}
+						 //ver isso
+						System.out.println("✅ Banco atualizado com sucesso!");
 						break;
 					case 7:
 						System.out.print("Digite a nova razão social: ");
@@ -286,6 +216,7 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 						break;
 					default:
 						System.out.println("Opção inválida. Digite novamente.");
+						break;
 					}
 				} catch (Exception e) {
 					System.out.println("Erro ao atualizar dados: " + e.getMessage());
@@ -306,6 +237,74 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 
 		}
 	}
+	
+	
+	public void alterarDadosBancarios(DadosBancarios dadosBancarios, Scanner sc, Empresa empresa) {
+		System.out.println("\n╔════════════════════════════════════════════════════╗");
+		System.out.println("║              🏦 ALTERAR DADOS BANCÁRIOS            ║");
+		System.out.println("╠════════════════════════════════════════════════════╣");
+		System.out.println("║ [1] 📝 Alterar Titular da Conta                    ║");
+		System.out.println("║ [2] 🏛️  Alterar Nome do Banco                      ║");
+		System.out.println("║ [3] 🗂️  Alterar Tipo de Conta                      ║");
+		System.out.println("║ [4] 🏢 Alterar Agência                             ║");
+		System.out.println("║ [5] #️⃣  Alterar Número da Conta                   ║");
+		System.out.println("╚════════════════════════════════════════════════════╝");
+		System.out.print("\n-> Digite a opção desejada: ");
+		System.out.print("Escolha uma opção: ");
+		int opcao1 = Integer.parseInt(sc.nextLine());
+		
+		try {
+			switch (opcao1) {
+			case 1:
+				System.out.print(">Digite o novo Titular da Conta: ");
+				try {
+					dadosBancarios.setTipoConta(sc.nextLine()); 
+					System.out.println("✅ Titular atualizado com sucesso!");
+				} catch (DadoInvalidoException e) {
+					System.out.println("❌ Erro: " + e.getMessage());
+				}
+				break;
+			case 2:
+				System.out.print(">Digite o novo nome do Bancol: ");
+				try {
+					dadosBancarios.setNomeBanco(sc.nextLine());
+					System.out.println("✅ Nome do Banco atualizado com sucesso!");
+				} catch (DadoInvalidoException e) {
+					System.out.println("❌ Erro: " + e.getMessage());
+				}
+				
+				break;
+			case 3:
+				System.out.print(">Digite o novo tipo de Conta : ");
+				try {
+					dadosBancarios.setTipoConta(sc.nextLine());
+					System.out.println("✅ Tipo de Conta atualizada com sucesso!");
+				} catch (DadoInvalidoException e) {
+					System.out.println("❌ Erro: " + e.getMessage());
+				}
+				
+				break;
+			case 4:
+				System.out.print("Digite a Agência ");
+				try {
+					dadosBancarios.setAgencia(sc.nextLine());
+					System.out.println("✅ Agência atualizado com sucesso!");
+				} catch (DadoInvalidoException e) {
+					System.out.println("❌ Erro: " + e.getMessage());
+				}
+				break;
+			case 5:
+				break;
+			default:
+				System.out.println("Opção inválida. Digite novamente.");
+				break;
+			} }catch (Exception e) {
+				System.out.println("Erro ao atualizar dados: " + e.getMessage());
+			}
+		
+		empresa.setBancoEmpresa(dadosBancarios);
+		
+	}
 
 	@Override
 	public Usuarios procurarEmailSenha(String email, String senha) {
@@ -321,6 +320,7 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 	@Override
 	public void deletar(Usuarios byeUsuario) {
 		usuarios.remove(byeUsuario);
+		System.out.println(" CONTA APAGADA COM SUCESSO");
 	}
 
 	@Override
@@ -341,18 +341,18 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 	public Usuarios procurarNome(String nome) throws DadoInvalidoException {
 
 		for (Usuarios usuario : usuarios) {
-			if (usuario.getNome().equalsIgnoreCase(nome)) {
+			if (usuario.getNome().trim().equalsIgnoreCase(nome.trim())) {
 
 				return usuario;
 			}
 		}
-		throw new DadoInvalidoException("Nome" + nome + " não encontrada para exclusão.");
+		throw new DadoInvalidoException("Nome" + nome + " não encontrada.");
 	}
 
 	@Override
 	public Usuarios procurarEmail(String email) {
 		for (Usuarios usuario : usuarios) {
-			if (usuario.getEmail().equalsIgnoreCase(email)) {
+			if (usuario.getEmail().trim().equalsIgnoreCase(email)) {
 				return usuario;
 			}
 		}
