@@ -206,7 +206,10 @@ public class Jogo {
 		}
 		System.out.println("");
 		System.out.println("Classificação Etaria: "+classIndicativa.getClassificacao());
-		System.out.println("Modo de ativação: "+modAtivacao);
+		System.out.println("");
+		
+		System.out.println("");
+		System.out.println("Empresa: "+empresa.getRazaoSocial());
 		System.out.println("");
 	}
 	

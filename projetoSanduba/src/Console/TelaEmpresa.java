@@ -42,17 +42,44 @@ public class TelaEmpresa {
 			
 			switch(opcao) {
 				case 1:
-					System.out.println("Mostra informaçoes pessoais");
 					System.out.println(empresa.mostrarDetalhesUsuario());
 					break;
 				case 2:
 					telaCarteiraDigital(empresa.getCarteiraDigital());
 					break;
 				case 3:
+					int subopcao =0;
+					
 					System.out.println("\n╔══════════════════════════════╗");
 					System.out.println("║   🎮 JOGOS CADASTRADOS         ║");
 					System.out.println("╚══════════════════════════════╝");
 					controleJogos.ListJogosEmpresa(empresa);
+					System.out.println("*-----------------------------------------*");
+					System.out.println("\nO que deseja fazer com o jogo?");
+					System.out.println("  [1] ✏️ Alterar dados do jogo");
+					System.out.println("  [2] 🗑️ Remover jogo");
+					System.out.println("  [3] 🚪 Sair");
+					System.out.print("Digite a opção desejada: ");
+					
+					boolean opcaoValida1 = false;
+					while(!opcaoValida1) {
+						try {
+							subopcao = Integer.parseInt(sc.nextLine());
+						    if(subopcao == 1) {
+						    	opcaoValida1 = true;
+						    	controleJogos.alterarDadosDosJogos(null);
+						    }
+						    else if(subopcao == 2) {
+						    	opcaoValida1 = true;
+						    	controleJogos.deletarJogo(empresa);
+						    }else System.out.println("Escolha 1 ou 2.");
+						    	
+						    }catch(NumberFormatException  e) {
+						    	System.out.println("❌ Erro: " + e.getMessage());
+						    	System.out.print("\nTenta de novo: ");
+						    }
+					} 
+					
 					break;
 				case 4:
 					controleJogos.CadastrarJogos(empresa);

@@ -3,8 +3,10 @@ package Console;
 import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
+import Financeiro.CartaoDeCredito;
 import Pessoa.Cliente;
 import TratamentoDeErro.DadoInvalidoException;
+import TratamentoDeErro.DadoNaoEncontradoException;
 import jogo.Jogo;
 
 public class TelaCarrinhoDeCompras {
@@ -45,26 +47,63 @@ public class TelaCarrinhoDeCompras {
 			 }
 		    switch(opcao) {
 			case 1:
-				int subOpcao = 0;
-				do{
 					System.out.println("Qual jogo deseja remover.");
-					//duvida sobre isso (Ana alice)
 					Jogo resultado = carrinho.procurarNome(sc.nextLine());
-					carrinho.remove(resultado);
-					System.out.println("O jogo "+ resultado.getTitulo()+" foi removido.");
-					System.out.println("Deseja remover mais algum jogo?");
-					System.out.println("1️⃣  Sim");
-			        System.out.println("2️⃣  Não");
-			        System.out.print("👉 Escolha a opção: ");
-			        subOpcao = Integer.parseInt(sc.nextLine());   
-				} while(subOpcao != 2); 
+					carrinho.remove(resultado); 
 				break;
 			case 2:
-				if (carrinho.finalizarCompra(cliente)) {
-					System.out.println("Compra finalizada com sucesso.");
-				} else {
-					System.out.println("Saldo insuficiente para concluir a compra!");
+				if (!cliente.getCartoesCadastrados().isEmpty()) {
+					
+					cliente.mostrarCartoes();
+				
+					boolean continuarAcao = true;
+					while(continuarAcao) {
+						try {
+							System.out.println("Digite os ultimos digitos do cartão:");
+							CartaoDeCredito resultado1 = cliente.procurarUltimosDig(sc.nextLine());
+							String ultimosDigitos = resultado1.getNumDoCartao().substring(resultado1.getNumDoCartao().length() - 4);
+							
+							System.out.println("\nDeseja usar seu cashback disponível nessa compra?");
+							System.out.println("  [1] 💰 Sim, usar cashback");
+							System.out.println("  [2] ❌ Não, pagar normalmente");
+							System.out.print("\nDigite a opção desejada: ");
+							
+							double novoValor =0;
+							boolean opcaoValida1 = false;
+							while(!opcaoValida1) {
+								try {
+								    int opcao2 = Integer.parseInt(sc.nextLine());
+								    if(opcao2 == 1) {
+								    	opcaoValida1 = true;
+								    	novoValor = carrinho.aplicarCashBack(cliente);
+								    }
+								    else if(opcao2 == 2) {
+								    	opcaoValida1 = true;
+								    }else System.out.println("Escolha 1 ou 2.");
+								    	
+								    }catch(NumberFormatException  e) {
+								    	System.out.println("❌ Erro: " + e.getMessage());
+								    	System.out.print("\nTenta de novo: ");
+								    }
+							} 
+							
+							if(carrinho.finalizarCompra(cliente, novoValor)) {
+								System.out.println("💳 Forma de Pagamento: Cartão: **** **** ****"+ultimosDigitos);
+								System.out.println("Compra realizada com sucesso.");
+							}
+							else {
+							System.out.println("Saldo insuficiente para concluir a compra!");
+							}
+							continuarAcao = false;
+						}catch(DadoNaoEncontradoException e) {
+							System.out.println("Erro: "+e.getMessage());
+							System.out.println("Tente novamente:");
+						}
+					}
 				}
+				
+				else System.out.println("Nenhum cartão cadastrado.\\nAdicione algum cartão para realizar transações.");
+				
 				break;
 			case 3:
 				bibJogos.Biblioteca(cliente);

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
+import Financeiro.CartaoDeCredito;
 import Financeiro.CarteiraDoCliente;
 import Financeiro.DadosBancarios;
 import Pessoa.Adm;
@@ -49,12 +50,16 @@ public class TesteMenu {
 		Cliente cliente1 = new Cliente("Lana", "lana@gmail.com", "1234", "12345678901", LocalDate.of(2004, 9, 23));
 		CarteiraDoCliente cdC1 = new CarteiraDoCliente();
 		cliente1.setCarteiraDigital(cdC1);
+		CartaoDeCredito cartao = new CartaoDeCredito("lana", "1234567891234567", LocalDate.of(2035, 8, 12), 547);
+		cliente1.addCartaoDeCredito(cartao);
+		
 		Cliente cliente2 = new Cliente("Rebeca", "rebeca@gmail.com", "5678", "98765432190", LocalDate.of(2006, 4, 30));
 		CarteiraDoCliente cdC2 = new CarteiraDoCliente();
 		cliente2.setCarteiraDigital(cdC2);
 		Cliente cliente3 = new Cliente("Ana Alice", "alice@gmail.com", "9012", "01234567891", LocalDate.of(2003, 8, 12));
 		CarteiraDoCliente cdC3 = new CarteiraDoCliente();
 		cliente3.setCarteiraDigital(cdC3);
+		
 		
 		//EMPRESAS
 		DadosBancarios bancoKonami = new DadosBancarios("Konami Digital Entertainment", "Mizuho Bank", "Corrente", "1001", "987651");

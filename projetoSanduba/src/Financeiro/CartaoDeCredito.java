@@ -85,6 +85,10 @@ public class CartaoDeCredito {
 		else if (primSeg >= 51 && primSeg <= 55) {
 			bandeira = "mastercard";
 		}
+		
+		else {
+			bandeira = "elo";
+		}
 		this.bandeira = bandeira;
 	}
 

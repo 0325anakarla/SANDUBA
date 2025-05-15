@@ -45,6 +45,12 @@ public class CarrinhoDeCompras {
 		}
 	}
 	
+	public double aplicarCashBack(Cliente cliente) {
+		 double valorCashBack = getTotal() - cliente.getCarteiraDigital().getCashback();
+		 
+		 return valorCashBack;
+	}
+	
 	public void imprimirCarrinho() {
 		System.out.printf("%-40s %-15s%n", "Jogo", "Valor Unitário");
 		System.out.println("--------------------------------------------------------");
@@ -83,12 +89,19 @@ public class CarrinhoDeCompras {
 		throw new DadoNaoEncontradoException("Jogo com o título '" + titulo + "' não foi encontrado.");
 	}
 	
-	public boolean finalizarCompra(Cliente cliente) {
+	public boolean finalizarCompra(Cliente cliente, double cashBack) {
 		CarteiraDoCliente carteiraDoCliente = cliente.getCarteiraDigital();
-		double valorDaCompra = getTotal();
-
+		double valorDaCompra = 0;
+		if(cashBack == 0) {
+			valorDaCompra = getTotal();
+		}
+		else {
+			valorDaCompra = cashBack;
+		}
+		
 		if (cliente.getHistorico().isEmpty()) {
 			valorDaCompra = aplicaDescontoDe10Porcento(valorDaCompra);
+			System.out.println("Parabéns.\n10% na sua primeira compra.");
 		}
 
 		if (valorDaCompra <= carteiraDoCliente.getSaldo()) {
@@ -109,7 +122,7 @@ public class CarrinhoDeCompras {
 			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 			data.format(formato);
 			
-			RegistroDeCompras registro = new RegistroDeCompras(valorDaCompra, data, jogos);
+			RegistroDeCompras registro = new RegistroDeCompras(valorDaCompra, data, jogos, jogos.size());
 			cliente.atualizarHistorico(registro);
 			
 			carteiraDoCliente.gerarCashback();
