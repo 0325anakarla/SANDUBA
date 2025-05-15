@@ -1,11 +1,9 @@
 package Console;
 
-import java.util.Map;
 import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
 import Pessoa.Cliente;
-import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 import jogo.Jogo;
 
@@ -62,9 +60,11 @@ public class TelaCarrinhoDeCompras {
 				} while(subOpcao != 2); 
 				break;
 			case 2:
-				
-				carrinho.finalizarCompra(cliente);
-				System.out.println("Compra finalizada com sucesso.");
+				if (carrinho.finalizarCompra(cliente)) {
+					System.out.println("Compra finalizada com sucesso.");
+				} else {
+					System.out.println("Saldo insuficiente para concluir a compra!");
+				}
 				break;
 			case 3:
 				bibJogos.Biblioteca(cliente);
