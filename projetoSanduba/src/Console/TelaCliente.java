@@ -11,6 +11,7 @@ import Pessoa.Cliente;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
+import funcionalidades.Gambiarras;
 import jogo.Jogo;
 
 public class TelaCliente {
@@ -55,20 +56,20 @@ public class TelaCliente {
 					if (cliente.getCarteiraDigital() != null) {
 						telaCarteiraDigital(cliente.getCarteiraDigital(), cliente);
 					} else {
-						System.out.println("Sem carteira digital!");
+						Gambiarras.textoLento("> Sem carteira digital!",60);
 					}
 					break;
 				case 3:
 					boolean continuarAcao = true;
 					while(continuarAcao) {
 						System.out.println("\n╔══════════════════════════════╗");
-						System.out.println("║          🎮 MEUS JOGOS         ║");
+						System.out.println("║          🎮 MEUS JOGOS       ║");
 						System.out.println("╚══════════════════════════════╝");
 						
 						System.out.println("\nO que deseja fazer agora?");
 					    System.out.println("  [1] 🔐 Ver de chave de ativação");
 					    System.out.println("  [2] 🧑‍ Voltar a minha conta");
-					    System.out.print("\nDigite a opção desejada: ");
+					    System.out.print("\n> Digite a opção desejada: ");
 					    
 					    boolean opcaoValida = false;
 					    while(!opcaoValida) {
@@ -110,26 +111,26 @@ public class TelaCliente {
 					if (!cliente.getJogos().isEmpty()) {
 						telaListaDeDesejos.telaLD(cliente);
 					} else {
-						System.out.println("Lista de desejos vazia!");
+						Gambiarras.textoLento(">Lista de desejos vazia!",80);
 					}
 					break;
 				case 5:
 					System.out.println("\n╔══════════════════════════════╗");
-					System.out.println("║   📜 HISTÓRICO DE PEDIDOS      ║");
+					System.out.println("║   📜 HISTÓRICO DE PEDIDOS    ║");
 					System.out.println("╚══════════════════════════════╝");
 					if (!cliente.getHistorico().isEmpty()) {
 						for (RegistroDeCompras registro : cliente.getHistorico()) {
 							System.out.println(registro.toString()+"\n");
 						}
 					} else {
-						System.out.println("Sem registro de compras!");
+						Gambiarras.textoLento("> Sem registro de compras!",80);
 					}
 					break;
 				case 6:
 					bibJogos.Biblioteca(cliente);
 					break;
 				default:
-					System.out.println("Opção invalida. digite novamente:");
+					Gambiarras.textoLento("> Opção invalida. digite novamente:",70);
 					opcao = sc.nextInt();
 			}
 			
@@ -153,7 +154,7 @@ public class TelaCliente {
 					System.out.println("║         ➕ DEPÓSITO           ║");
 					System.out.println("╚══════════════════════════════╝");
 
-					System.out.println("Escolha o cartão que vai ser realizado o depósito.");	
+					System.out.println("> Escolha o cartão que vai ser realizado o depósito.");	
 					if (!cliente.getCartoesCadastrados().isEmpty()) {
 						
 						cliente.mostrarCartoes();
@@ -161,11 +162,11 @@ public class TelaCliente {
 						boolean continuarAcao = true;
 						while(continuarAcao) {
 							try {
-								System.out.println("Digite os ultimos digitos do cartão:");
+								System.out.println("> Digite os ultimos digitos do cartão:");
 								CartaoDeCredito resultado = cliente.procurarUltimosDig(sc.nextLine());
 								String ultimosDigitos = resultado.getNumDoCartao().substring(resultado.getNumDoCartao().length() - 4);
 							
-								System.out.print("Qual valor vai depositar:");
+								System.out.print("> Qual valor vai depositar:");
 								valor = sc.nextDouble();
 								sc.nextLine();
 								
@@ -181,7 +182,7 @@ public class TelaCliente {
 						}
 					}
 					
-					else System.out.println("Nenhum cartão cadastrado.\\nAdicione algum cartão para realizar transações.");
+					else System.out.println("> Nenhum cartão cadastrado.\\nAdicione algum cartão para realizar transações.");
 					
 					break;
 				case 2:
@@ -194,10 +195,10 @@ public class TelaCliente {
 					}else System.out.println("Nenhum cartão cadastrado.");
 					
 					System.out.println("\nO que deseja fazer agora?");
-				    System.out.println("  [1] ➕ Adicionar Cartão");
-				    System.out.println("  [2] ❌ Remover Cartão");
-				    System.out.println("  [3] 💳 Voltar à Carteira Digital");
-				    System.out.print("\nDigite a opção desejada: ");
+				    System.out.println(" [1] ➕ Adicionar Cartão");
+				    System.out.println(" [2] ❌ Remover Cartão");
+				    System.out.println(" [3] 💳 Voltar à Carteira Digital");
+				    System.out.print("\n>Digite a opção desejada: ");
 				    int subOpcao = Integer.parseInt(sc.nextLine());
 				    	if(subOpcao == 1) {
 				    		adicionarCartao(cliente);
@@ -208,7 +209,7 @@ public class TelaCliente {
 				    	else System.out.println("⚠️ Opção inválida. Digite 1 ou 2.");
 					break;
 				case 3:
-					System.out.println("Voltar para minha conta");
+					System.out.println(">Voltar para minha conta");
 					break;
 				default:
 					System.out.println("⚠️ Opção inválida. Digite 1, 2 ou 3.");
@@ -233,19 +234,19 @@ public class TelaCliente {
 				cartao.setNumDoCartao(sc.nextLine());
 				String ultimosDigitos = cartao.getNumDoCartao().substring(cartao.getNumDoCartao().length() - 4);
 				
-				System.out.print("Data de expiração - (dd/MM/yyy): ");
+				System.out.print(">Data de expiração - (dd/MM/yyy): ");
 				String data = sc.nextLine();
 				DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 				LocalDate expiracao = LocalDate.parse(data, formato);
 				cartao.setDataDeExpiracao(expiracao);
 				
-				System.out.print("CVC: ");
+				System.out.print(">CVC: ");
 				cartao.setCvc(sc.nextInt());
 				sc.nextLine();
 				
 				try {
 					cliente.addCartaoDeCredito(cartao);
-					System.out.println("O cartão com os últimos dígitos "+ultimosDigitos+" foi adicionado com sucesso.");
+					System.out.println(">O cartão com os últimos dígitos "+ultimosDigitos+" foi adicionado com sucesso.");
 					continuarAcao = false;
 				}catch(DadoDuplicadoException e) {
 					System.out.println("⚠️ Erro: " +e.getMessage());

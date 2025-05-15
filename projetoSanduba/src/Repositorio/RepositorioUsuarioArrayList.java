@@ -62,9 +62,6 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 				System.out.print("Escolha uma opção: ");
 				int opcao = Integer.parseInt(sc.nextLine());
 
-
-               
-
 				try {
 					switch (opcao) {
 					case 1:

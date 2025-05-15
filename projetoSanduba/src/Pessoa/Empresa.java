@@ -93,6 +93,16 @@ public class Empresa extends Usuarios{
 		return jogosEmpresa;
 	}
 	
+	public void exibirJogosEmpresa() throws DadoNaoEncontradoException{
+		if(jogosEmpresa.isEmpty()) {
+			 throw new DadoNaoEncontradoException("Não há nenhum jogo cadastrado por essa empresa.");
+		}
+		
+		for(Jogo j: jogosEmpresa ){
+			System.out.println(j.getTitulo());
+		}
+	}
+	
 	public Jogo procurarNomeJC(String titulo) throws DadoNaoEncontradoException, DadoInvalidoException {
 		if(titulo == null || titulo.trim().isEmpty()) {
 			throw new DadoInvalidoException("O título não pode ser vazio.");
@@ -108,10 +118,8 @@ public class Empresa extends Usuarios{
 	
 	//esse daqui ja existe ne nao é o listar jogos por empresa
 	public void atualizarJogos(Jogo jogo) {
-		for (Jogo jogo1 : jogosEmpresa) {
-			if (!jogo1.getTitulo().equalsIgnoreCase(jogo.getTitulo())) {
-				jogosEmpresa.add(jogo);
-			}
+		if (!jogosEmpresa.contains(jogo)) {
+			jogosEmpresa.add(jogo);
 		}
 	}
 	

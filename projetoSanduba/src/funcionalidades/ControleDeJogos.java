@@ -322,49 +322,50 @@ public class ControleDeJogos{
 	
 	//deletar jogo
 	public void deletarJogo(Empresa empresa) throws DadoInvalidoException {
-		
-		boolean continuarRemocao = true;
-		while(continuarRemocao) {
-			System.out.println("\n╔══════════════════════════════╗");
-			System.out.println("║       🗑️ REMOVER JOGO          ║");
-			System.out.println("╚══════════════════════════════╝");
+	    if (empresa.getJogosEmpresa().isEmpty()) {
+	        System.out.println("⚠️ A empresa não possui jogos cadastrados para remover.");
+	        return;
+	    }
 
-			System.out.println("Qual desses jogos voce quer excluir.");
-			System.out.print("Digite o nome do jogo:");
-			
-			boolean opcaoValida = false;
-			while(!opcaoValida) {
-				try {
-					Jogo resultado = empresa.procurarNomeJC(sc.nextLine());
-					System.out.println("O jogo que deseja excluir é "+resultado.getTitulo()+" tem certeza?");
-					System.out.println("1️⃣  Sim");
-			        System.out.println("2️⃣  Não");
-			        System.out.print("👉 Escolha a opção: ");
-					int opcao = Integer.parseInt(sc.nextLine());
-					switch(opcao) {
-						case 1:
-							opcaoValida = true;
-							listJogos.deletar(resultado);
-							empresa.deletarJogo(resultado);
-							System.out.println("O jogo "+resultado.getTitulo()+" foi deletado com sucesso.");
-							continuarRemocao = false;
-							break;
-						case 2:
-							opcaoValida = true;
-							System.out.println("Remoção cancelada.");
-							continuarRemocao = false;
-							break;
-						default: 
-							System.out.println("Opção invalida.\nInsira um valido:");
-							break;
-					}
-				}catch(DadoNaoEncontradoException e){
-					System.out.println("Erro:" +e.getMessage());
-					}
-				}
-			}
-		}
-	
+	    boolean continuarRemocao = true;
+	    while (continuarRemocao) {
+	        if (empresa.getJogosEmpresa().isEmpty()) {
+	            System.out.println("⚠️ A empresa não possui jogos cadastrados para remover.");
+	            break;
+	        }
+	       
+	        System.out.print("\nDigite o nome do jogo que deseja excluir: ");
+	        try {
+	            Jogo resultado = empresa.procurarNomeJC(sc.nextLine());
+	            System.out.println("\nTem certeza que deseja remover o jogo \"" + resultado.getTitulo() + "\"?");
+	            System.out.println("  [1️⃣] Sim");
+	            System.out.println("  [2️⃣] Não");
+	            System.out.print("👉 Escolha a opção: ");
+	            int opcao = Integer.parseInt(sc.nextLine());
+	            switch (opcao) {
+	                case 1:
+	                    listJogos.deletar(resultado);
+	                    empresa.deletarJogo(resultado);
+	                    System.out.println("✅ O jogo \"" + resultado.getTitulo() + "\" foi deletado com sucesso!");
+	                    continuarRemocao = false;
+	                    break;
+	                case 2:
+	                    System.out.println("❌ Remoção cancelada.");
+	                    continuarRemocao = false;
+	                    break;
+	                default:
+	                    System.out.println("⚠️ Opção inválida. Tente novamente.");
+	                    break;
+	            }
+	        } catch (DadoNaoEncontradoException e) {
+	            System.out.println("❌ Erro: " + e.getMessage());
+	            System.out.println("🔁 Tente novamente digitando o nome correto do jogo.");
+	        } catch (NumberFormatException e) {
+	            System.out.println("❌ Erro: Entrada inválida. Digite o número da opção.");
+	        }
+	    }
+	}
+
 	//está recebendo os dados novos agora
 	//espero que o clear no arraylist nao estrague tudo
 	public void alterarDadosDosJogos(Jogo jogo) {

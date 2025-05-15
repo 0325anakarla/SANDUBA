@@ -35,7 +35,6 @@ public class ControleDeCadastros {
 
 		while (continuarCadastro) {
 			boolean dadosValidos = false;
-			// nome email senha cpf data//
 			Cliente cliente = new Cliente(null, null, null, null, null);
 			LocalDate natalicio = null;
 			DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
