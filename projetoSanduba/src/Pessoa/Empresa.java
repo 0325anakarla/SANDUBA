@@ -139,8 +139,6 @@ public class Empresa extends Usuarios{
 	            + "\n  Email: " + getEmail()
 	            + "\n  Cpnj: " + cpnj
 	            + "\n  Endereço: " + endereco
-	            + "\n-------------------------------------------------------------"
-	            + "\n" + bancoEmpresa.toString()
 	            + "\n-------------------------------------------------------------";
 	}
 

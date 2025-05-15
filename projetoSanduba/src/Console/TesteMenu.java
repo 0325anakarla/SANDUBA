@@ -86,7 +86,6 @@ public class TesteMenu {
 		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
 		    new ArrayList<>(List.of(PlataformasDisponiveis.PS4, PlataformasDisponiveis.WINDOWS)),
 		    ClassificacaoIndicativa.ANOS18,
-		    "PSN",
 		    empresa2,
 		    LocalDate.of(2013, 6, 14)
 		));
@@ -100,7 +99,6 @@ public class TesteMenu {
 		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
 		    new ArrayList<>(List.of(PlataformasDisponiveis.PS5)),
 		    ClassificacaoIndicativa.ANOS18,
-		    "PSN",
 		    empresa2,
 		    LocalDate.of(2020, 6, 19)
 		));
@@ -114,7 +112,6 @@ public class TesteMenu {
 		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
 		    new ArrayList<>(List.of(PlataformasDisponiveis.WINDOWS, PlataformasDisponiveis.XBOX, PlataformasDisponiveis.XBOX, PlataformasDisponiveis.NINTENDO)),
 		    ClassificacaoIndicativa.LIVRE,
-		    "Mojang Account",
 		    empresa3,
 		    LocalDate.of(2011, 11, 18)
 		));
@@ -128,7 +125,6 @@ public class TesteMenu {
 		    new ArrayList<>(List.of(Idiomas.INGLES)),
 		    new ArrayList<>(List.of(PlataformasDisponiveis.LINUX, PlataformasDisponiveis.PS4, PlataformasDisponiveis.NINTENDO)),
 		    ClassificacaoIndicativa.ANOS10,
-		    "Steam",
 		    empresa1,
 		    LocalDate.of(2015, 9, 15)
 		));
@@ -142,7 +138,6 @@ public class TesteMenu {
 		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
 		    new ArrayList<>(List.of(PlataformasDisponiveis.MACOS, PlataformasDisponiveis.PS5)),
 		    ClassificacaoIndicativa.ANOS18,
-		    "Steam",
 		    empresa3,
 		    LocalDate.of(2023, 8, 3)
 		));
@@ -156,7 +151,6 @@ public class TesteMenu {
 		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
 		    new ArrayList<>(List.of(PlataformasDisponiveis.WINDOWS, PlataformasDisponiveis.PS4, PlataformasDisponiveis.XBOX)),
 		    ClassificacaoIndicativa.ANOS18,
-		    "Rockstar Launcher",
 		    empresa3,
 		    LocalDate.of(2013, 9, 17)
 		));
@@ -170,7 +164,6 @@ public class TesteMenu {
 		    new ArrayList<>(List.of(Idiomas.INGLES)),
 		    new ArrayList<>(List.of(PlataformasDisponiveis.PS5, PlataformasDisponiveis.WINDOWS)),
 		    ClassificacaoIndicativa.ANOS18,
-		    "Mídia Física",
 		    empresa2,
 		    LocalDate.of(2001, 9, 24)
 		));
@@ -184,7 +177,6 @@ public class TesteMenu {
 		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
 		    new ArrayList<>(List.of(PlataformasDisponiveis.LINUX, PlataformasDisponiveis.PS4, PlataformasDisponiveis.XBOX, PlataformasDisponiveis.NINTENDO)),
 		    ClassificacaoIndicativa.ANOS18,
-		    "Steam",
 		    empresa1,
 		    LocalDate.of(2005, 1, 11)
 		));

@@ -29,7 +29,7 @@ public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 		return this.categoria; // isso aqui é so pra imprimir a categoria bonitinho
 	}
 
-	public static void imprimeCategorias() {
+	/*public static void imprimeCategorias() {
 		CategoriasJogos[] cateogorias = CategoriasJogos.values();
 		for (int i = 0; i < cateogorias.length; i += 2) {
 
@@ -40,6 +40,23 @@ public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 			}
 
 			System.out.println();
-		}
+		}*/
+	public static void imprimeCategorias() {
+	    CategoriasJogos[] categorias = CategoriasJogos.values();
+	    
+	    System.out.println("🎮 ESCOLHA AS CATEGORIAS DISPONÍVEIS:");
+
+	    for (int i = 0; i < categorias.length; i += 2) {
+	        String esquerda = String.format("%2d: %-15s", i, categorias[i].getCategoria());
+
+	        String direita = "";
+	        if (i + 1 < categorias.length) {
+	            direita = String.format("%2d: %-15s", i + 1, categorias[i + 1].getCategoria());
+	        }
+
+	        System.out.println(esquerda + " | " + direita);
+	    }
 	}
-}
+
+	}
+
