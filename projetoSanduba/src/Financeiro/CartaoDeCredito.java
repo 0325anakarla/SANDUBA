@@ -5,15 +5,15 @@ import java.time.LocalDate;
 import TratamentoDeErro.DadoInvalidoException;
 
 public class CartaoDeCredito {
-	private String numDoCartao;
 	private String nomeDoTitular;
+	private String numDoCartao;
 	private LocalDate dataDeExpiracao;
 	private int cvc;
 	private String bandeira;
 	
-	public CartaoDeCredito(String numDoCartao, String nomeDoTitular, LocalDate dataDeExpiracao, int cvc) {
-		this.numDoCartao = numDoCartao;
+	public CartaoDeCredito(String nomeDoTitular, String numDoCartao, LocalDate dataDeExpiracao, int cvc) {
 		this.nomeDoTitular = nomeDoTitular;
+		this.numDoCartao = numDoCartao;
 		this.dataDeExpiracao = dataDeExpiracao;
 		this.cvc = cvc;
 	}

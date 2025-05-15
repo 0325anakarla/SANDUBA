@@ -73,6 +73,7 @@ public class Menu {
 			break;
 		case 0:
 			System.out.println("Saindo...");
+			System.exit(0);
 			break;
 		default:
 			System.out.println("Opcao invalida. Digite novamente");

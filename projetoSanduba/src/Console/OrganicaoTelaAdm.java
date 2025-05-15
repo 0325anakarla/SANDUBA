@@ -103,7 +103,7 @@ public class OrganicaoTelaAdm {
 					Usuarios cliente11 =  listUsuarios.procurarNome(nome11);
 					if (cliente11 instanceof Cliente) { // Verifica se é um Cliente
 					    Cliente cliente2 = (Cliente) cliente11;
-					    cliente2.mostrarDetalhesUsuario();
+					    System.out.println(cliente2.mostrarDetalhesUsuario());
 					    
 					} else {
 					    Gambiarras.textoLento("Usuário encontrado não é um Cliente.", 60);

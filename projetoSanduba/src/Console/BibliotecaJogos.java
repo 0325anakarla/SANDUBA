@@ -198,6 +198,7 @@ public class BibliotecaJogos {
 					 }
 				break;
 				case 3:
+					Biblioteca(cliente);
 					break;
 				default:
 					System.out.println("⚠️ Opção inválida.");
