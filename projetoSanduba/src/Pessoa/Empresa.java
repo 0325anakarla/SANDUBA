@@ -92,7 +92,6 @@ public class Empresa extends Usuarios{
 		return jogosEmpresa;
 	}
 	
-	
 	//esse daqui ja existe ne nao é o listar jogos por empresa
 	public void atualizarJogos(Jogo jogo) {
 		for (Jogo jogo1 : jogosEmpresa) {

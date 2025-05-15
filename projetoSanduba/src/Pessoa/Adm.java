@@ -116,13 +116,18 @@ public class Adm extends Usuarios{
 		}
 	}
 	
-	public void jogoPorEmpresa(RepositorioUsuarioArrayList listUsuarios  ) throws DadoInvalidoException, DadoDuplicadoException {
-		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
-			System.out.println("🏢 Empresa "+empresas.getNome()+". \n");
-			controleJogos.ListJogosEmpresa((Empresa)empresas);
-			System.out.println();
-			
-		}
+	public void jogoPorEmpresa(RepositorioUsuarioArrayList listUsuarios, RepositorioJogoArrayList listJogos2) 
+	        throws DadoInvalidoException, DadoDuplicadoException {
+	    for (Usuarios usuario : listUsuarios.getTipo(Empresa.class)) {
+	        Empresa empresa = (Empresa) usuario;
+	        System.out.println("🏢 Empresa " + empresa.getRazaoSocial() + ". \n");
+	        System.out.println("---------------------------------------------");
+	        System.out.println("Jogos da Empresa:");
+	        for (Jogo jogo : empresa.getJogosEmpresa()) {
+	            System.out.println("- " + jogo.getTitulo());
+	        }
+	        System.out.println("");
+	}
 	}
 	
 	public void informacoesTodosClientes() throws DadoInvalidoException, DadoDuplicadoException {

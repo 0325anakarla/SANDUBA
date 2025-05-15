@@ -41,7 +41,7 @@ public class OrganicaoTelaAdm {
 			case1 = sc.nextInt();
 			switch(case1) {
 				case 1:
-					adm.clientesCadastrados();
+					adm.clientesCadastrados(listUsuarios);
 					sc.nextLine();
 					break;
 				case 2:
@@ -143,7 +143,7 @@ public class OrganicaoTelaAdm {
 			case2 = sc.nextInt();
 			switch(case2) {
 				case 1:
-					adm.empresasCadastradas();
+					adm.empresasCadastradas(listUsuarios);
 					break;
 				case 2:
 					System.out.println("Deseja obter informaões de uma Empresa em especifio ou de todos?");
@@ -210,17 +210,6 @@ public class OrganicaoTelaAdm {
 			}while(case2!=6);
 					
 	}
-//	System.out.println("  [1] 🎮 Lista de Jogos Cadatrados.");
-//	System.out.println("  [2] 🎮 Cadastrar novo Jogo.");
-//	System.out.println("  [3] 🎮 Alterar dados de um jogo.");
-//	System.out.println("  [4] 🎮 Deletar jogo.");
-//	System.out.println("  [5] 🎮 Informações detalhada.");
-//	System.out.println("  [6] 🎮 Aplicar desconto.");
-//	System.out.println("  [7] 🎮 Buscar Jogos por categoria.");
-//	System.out.println("  [8] 📊 Resumo de vendas");
-//	System.out.println("  [9] 🔙 Voltar para o menu. ");
-//	System.out.println("Escolha uma opção:");
-	
 
 	public void opcoesCase3(Scanner sc, Adm adm,RepositorioUsuarioArrayList listUsuarios, VisualizacaoMenu visualizacaoMenu, RepositorioJogoArrayList listJogos,ControleDeJogos controleJogos ) throws DadoInvalidoException, DadoDuplicadoException {
 		
@@ -231,8 +220,7 @@ public class OrganicaoTelaAdm {
 			case3 = sc.nextInt();
 			switch(case3) {
 			case 1:
-				
-				adm.jogoPorEmpresa();
+				adm.jogoPorEmpresa(listUsuarios, listJogos);
 				break;
 			case 2: 
 				System.out.println("Insira o nome  da Empresa que deseja cadastrar seu jogo:");

@@ -78,109 +78,135 @@ public class TesteMenu {
 		
 		//JOGOS
 		// The Last of Us Part I
-		listJogos.add(new Jogo(
-		    "The Last of Us Part I",
-		    199.90,
-		    "Um jogo de ação e sobrevivência em um mundo pós-apocalíptico.",
-		    new ArrayList<>(List.of(CategoriasJogos.ACAO, CategoriasJogos.AVENTURA)),
-		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
-		    new ArrayList<>(List.of(PlataformasDisponiveis.PS4, PlataformasDisponiveis.WINDOWS)),
-		    ClassificacaoIndicativa.ANOS18,
-		    empresa2,
-		    LocalDate.of(2013, 6, 14)
-		));
+		Jogo theLastOfUsPartI = new Jogo(
+			    "The Last of Us Part I",
+			    199.90,
+			    "Um jogo de ação e sobrevivência em um mundo pós-apocalíptico.",
+			    new ArrayList<>(List.of(CategoriasJogos.ACAO, CategoriasJogos.AVENTURA)),
+			    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
+			    new ArrayList<>(List.of(PlataformasDisponiveis.PS4, PlataformasDisponiveis.WINDOWS)),
+			    ClassificacaoIndicativa.ANOS18,
+			    empresa2,
+			    LocalDate.of(2013, 6, 14)
+			);
+
+			listJogos.add(theLastOfUsPartI);
+			empresa2.atualizarJogos(theLastOfUsPartI);
+
 
 		// The Last of Us Part II
-		listJogos.add(new Jogo(
-		    "The Last of Us Part II",
-		    249.90,
-		    "A sequência da jornada de Ellie em busca de vingança.",
-		    new ArrayList<>(List.of(CategoriasJogos.ACAO, CategoriasJogos.AVENTURA)),
-		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
-		    new ArrayList<>(List.of(PlataformasDisponiveis.PS5)),
-		    ClassificacaoIndicativa.ANOS18,
-		    empresa2,
-		    LocalDate.of(2020, 6, 19)
-		));
+		Jogo theLastOfUs2 = new Jogo(
+			    "The Last of Us Part II",
+			    249.90,
+			    "A sequência da jornada de Ellie em busca de vingança.",
+			    new ArrayList<>(List.of(CategoriasJogos.ACAO, CategoriasJogos.AVENTURA)),
+			    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
+			    new ArrayList<>(List.of(PlataformasDisponiveis.PS5)),
+			    ClassificacaoIndicativa.ANOS18,
+			    empresa2,
+			    LocalDate.of(2020, 6, 19)
+			);
+
+			listJogos.add(theLastOfUs2);
+			empresa2.atualizarJogos(theLastOfUs2);
 
 		// Minecraft
-		listJogos.add(new Jogo(
-		    "Minecraft",
-		    99.90,
-		    "Jogo de construção em mundo aberto com blocos.",
-		    new ArrayList<>(List.of(CategoriasJogos.MUNDOABERTO, CategoriasJogos.PUZZLE)),
-		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
-		    new ArrayList<>(List.of(PlataformasDisponiveis.WINDOWS, PlataformasDisponiveis.XBOX, PlataformasDisponiveis.XBOX, PlataformasDisponiveis.NINTENDO)),
-		    ClassificacaoIndicativa.LIVRE,
-		    empresa3,
-		    LocalDate.of(2011, 11, 18)
-		));
+		Jogo minecraft = new Jogo(
+			    "Minecraft",
+			    99.90,
+			    "Jogo de construção em mundo aberto com blocos.",
+			    new ArrayList<>(List.of(CategoriasJogos.MUNDOABERTO, CategoriasJogos.PUZZLE)),
+			    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
+			    new ArrayList<>(List.of(PlataformasDisponiveis.WINDOWS, PlataformasDisponiveis.XBOX, PlataformasDisponiveis.NINTENDO)),
+			    ClassificacaoIndicativa.LIVRE,
+			    empresa3,
+			    LocalDate.of(2011, 11, 18)
+			);
+
+			listJogos.add(minecraft);
+			empresa3.atualizarJogos(minecraft);
 
 		// Undertale
-			listJogos.add(new Jogo(
-		    "Undertale",
-		    39.99,
-		    "Um RPG único onde você não precisa matar ninguém.",
-		    new ArrayList<>(List.of(CategoriasJogos.RPG, CategoriasJogos.PUZZLE)),
-		    new ArrayList<>(List.of(Idiomas.INGLES)),
-		    new ArrayList<>(List.of(PlataformasDisponiveis.LINUX, PlataformasDisponiveis.PS4, PlataformasDisponiveis.NINTENDO)),
-		    ClassificacaoIndicativa.ANOS10,
-		    empresa1,
-		    LocalDate.of(2015, 9, 15)
-		));
+		Jogo undertale = new Jogo(
+			    "Undertale",
+			    39.99,
+			    "Um RPG único onde você não precisa matar ninguém.",
+			    new ArrayList<>(List.of(CategoriasJogos.RPG, CategoriasJogos.PUZZLE)),
+			    new ArrayList<>(List.of(Idiomas.INGLES)),
+			    new ArrayList<>(List.of(PlataformasDisponiveis.LINUX, PlataformasDisponiveis.PS4, PlataformasDisponiveis.NINTENDO)),
+			    ClassificacaoIndicativa.ANOS10,
+			    empresa1,
+			    LocalDate.of(2015, 9, 15)
+			);
+
+			listJogos.add(undertale);
+			empresa1.atualizarJogos(undertale);
 
 		// Baldur’s Gate 3
-			listJogos.add(new Jogo(
-		    "Baldur's Gate 3",
-		    299.90,
-		    "RPG baseado em Dungeons & Dragons.",
-		    new ArrayList<>(List.of(CategoriasJogos.RPG, CategoriasJogos.AVENTURA)),
-		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
-		    new ArrayList<>(List.of(PlataformasDisponiveis.MACOS, PlataformasDisponiveis.PS5)),
-		    ClassificacaoIndicativa.ANOS18,
-		    empresa3,
-		    LocalDate.of(2023, 8, 3)
-		));
+			Jogo baldursGate3 = new Jogo(
+				    "Baldur's Gate 3",
+				    299.90,
+				    "RPG baseado em Dungeons & Dragons.",
+				    new ArrayList<>(List.of(CategoriasJogos.RPG, CategoriasJogos.AVENTURA)),
+				    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
+				    new ArrayList<>(List.of(PlataformasDisponiveis.MACOS, PlataformasDisponiveis.PS5)),
+				    ClassificacaoIndicativa.ANOS18,
+				    empresa3,
+				    LocalDate.of(2023, 8, 3)
+				);
+
+				listJogos.add(baldursGate3);
+				empresa3.atualizarJogos(baldursGate3);
 
 		// GTA V
-			listJogos.add(new Jogo(
-		    "Grand Theft Auto V",
-		    79.99,
-		    "Jogo de ação em mundo aberto com múltiplos protagonistas.",
-		    new ArrayList<>(List.of(CategoriasJogos.ACAO, CategoriasJogos.MUNDOABERTO)),
-		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
-		    new ArrayList<>(List.of(PlataformasDisponiveis.WINDOWS, PlataformasDisponiveis.PS4, PlataformasDisponiveis.XBOX)),
-		    ClassificacaoIndicativa.ANOS18,
-		    empresa3,
-		    LocalDate.of(2013, 9, 17)
-		));
+			Jogo gtaV = new Jogo(
+				    "Grand Theft Auto V",
+				    79.99,
+				    "Jogo de ação em mundo aberto com múltiplos protagonistas.",
+				    new ArrayList<>(List.of(CategoriasJogos.ACAO, CategoriasJogos.MUNDOABERTO)),
+				    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
+				    new ArrayList<>(List.of(PlataformasDisponiveis.WINDOWS, PlataformasDisponiveis.PS4, PlataformasDisponiveis.XBOX)),
+				    ClassificacaoIndicativa.ANOS18,
+				    empresa3,
+				    LocalDate.of(2013, 9, 17)
+				);
+
+				listJogos.add(gtaV);
+				empresa3.atualizarJogos(gtaV);
 
 		// Silent Hill 2
-			listJogos.add(new Jogo(
-		    "Silent Hill 2",
-		    49.90,
-		    "Clássico jogo de terror psicológico.",
-		    new ArrayList<>(List.of(CategoriasJogos.HORROR, CategoriasJogos.AVENTURA)),
-		    new ArrayList<>(List.of(Idiomas.INGLES)),
-		    new ArrayList<>(List.of(PlataformasDisponiveis.PS5, PlataformasDisponiveis.WINDOWS)),
-		    ClassificacaoIndicativa.ANOS18,
-		    empresa2,
-		    LocalDate.of(2001, 9, 24)
-		));
+			Jogo jogoSilentHill = new Jogo(
+				    "Silent Hill 2",
+				    49.90,
+				    "Clássico jogo de terror psicológico.",
+				    new ArrayList<>(List.of(CategoriasJogos.HORROR, CategoriasJogos.AVENTURA)),
+				    new ArrayList<>(List.of(Idiomas.INGLES)),
+				    new ArrayList<>(List.of(PlataformasDisponiveis.PS5, PlataformasDisponiveis.WINDOWS)),
+				    ClassificacaoIndicativa.ANOS18,
+				    empresa2,
+				    LocalDate.of(2001, 9, 24)
+				);
+
+				listJogos.add(jogoSilentHill);
+				empresa2.atualizarJogos(jogoSilentHill);
 
 		// Resident Evil 4
-			listJogos.add(new Jogo(
-		    "Resident Evil 4",
-		    59.99,
-		    "Leon Kennedy luta contra ameaças biológicas em uma vila misteriosa.",
-		    new ArrayList<>(List.of(CategoriasJogos.HORROR, CategoriasJogos.ACAO)),
-		    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
-		    new ArrayList<>(List.of(PlataformasDisponiveis.LINUX, PlataformasDisponiveis.PS4, PlataformasDisponiveis.XBOX, PlataformasDisponiveis.NINTENDO)),
-		    ClassificacaoIndicativa.ANOS18,
-		    empresa1,
-		    LocalDate.of(2005, 1, 11)
-		));
-		
+			Jogo novoJogo = new Jogo(
+				    "Resident Evil 4",
+				    59.99,
+				    "Leon Kennedy luta contra ameaças biológicas em uma vila misteriosa.",
+				    new ArrayList<>(List.of(CategoriasJogos.HORROR, CategoriasJogos.ACAO)),
+				    new ArrayList<>(List.of(Idiomas.INGLES, Idiomas.PORTUGUES)),
+				    new ArrayList<>(List.of(PlataformasDisponiveis.LINUX, PlataformasDisponiveis.PS4, PlataformasDisponiveis.XBOX, PlataformasDisponiveis.NINTENDO)),
+				    ClassificacaoIndicativa.ANOS18,
+				    empresa1,
+				    LocalDate.of(2005, 1, 11)
+				);
+
+				listJogos.add(novoJogo);
+				empresa1.atualizarJogos(novoJogo); 
+				
+				
 		//CONTROLES
 		ControleDeJogos controleJogos = new ControleDeJogos(sc, visualizacaoMenu, listJogos);
 		ControleDeCadastros controleCadastros = new ControleDeCadastros(sc, listUsuarios);
