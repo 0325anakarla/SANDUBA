@@ -76,7 +76,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 		// TODO Auto-generated method stub
 
 	}
-
+	@Override
 	public List<Jogo> procurarEmpresa(Empresa empresa) throws DadoNaoEncontradoException{
 		List<Jogo> resultados = new ArrayList<Jogo>();
 
@@ -90,7 +90,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 			throw new DadoNaoEncontradoException("Não há nenhum jogo cadastrado pela '" + empresa.getRazaoSocial());
 		}
 		
-		else return resultados;
+		 return resultados;
 	}
 	
 	public List<Jogo> jogosComDesconto(){
@@ -139,6 +139,7 @@ public class RepositorioJogoArrayList implements Repositorio<Jogo>, RepositorioJ
 	    return resultados;
 	}
 
+	
 	
 
 

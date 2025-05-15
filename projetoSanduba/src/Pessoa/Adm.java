@@ -41,9 +41,14 @@ public class Adm extends Usuarios{
 	//para ter certeza que so existe um adm
 	private static Adm instanciaUnica;
 	
+	private Adm() {
+		
+	}
+	
     
     private Adm(String nome, String email, String senha,RepositorioUsuarioArrayList listUsuarios) {
         super(nome, email, senha);
+//        this.listJogos = listUsuarios;
        
         
        
@@ -83,13 +88,14 @@ public class Adm extends Usuarios{
 		
 	}
 	
-	public void descontoPorAno(int ano, double desconto) throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {
+	public void descontoPorAno(int ano, double desconto, RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {
 		int diferencaAnos = anoHoje - ano;
 		for(Usuarios empresa: listUsuarios.getTipo(Empresa.class)){
-			for(Jogo jogo:  listJogos.procurarEmpresa((Empresa)empresa)) {
+			Empresa empresas = (Empresa)empresa;
+			for(Jogo jogo:  listJogos.procurarEmpresa(empresas,listUsuarios)) {
 				if (jogo.verAnosPassados() >= diferencaAnos) {
 					AplicarDesconto( jogo, desconto);
-					System.out.println("🎮. "+jogo.getTitulo()+" lançado em "+jogo.getDataDeLancamento()+", sofreu "+desconto+"% de desconto. /n");
+					System.out.println("🎮. "+jogo.getTitulo()+" lançado em "+jogo.getDataDeLancamento()+", sofreu "+desconto+"% de desconto. \n");
             
         }
 		}
@@ -164,6 +170,7 @@ public class Adm extends Usuarios{
 		for(Usuarios empresas: listUsuarios.getTipo(Empresa.class)) {
 //			tranformar o empresa do tipo usario em do tipo Empresa
 			Empresa empresa = (Empresa) empresas;
+			System.out.println("Empresa: "+empresa.getRazaoSocial());
 			ResumoDeVendas.gerarResumoTotal(empresa.getVendasPorJogo());
 		}
 	}

@@ -288,7 +288,8 @@ public class OrganicaoTelaAdm {
 				int ano =sc.nextInt();
 				System.out.println("Insira o desconto que será aplicado: (ex:20)");
 				double desconto = sc.nextDouble();
-				adm.descontoPorAno(ano, desconto);
+				adm.descontoPorAno(ano, desconto, listUsuarios);
+				
 				}else if(opcao21 ==2) {
 					List<CategoriasJogos> categorias = controleJogos.catgEscolhidas(sc);
 					System.out.println("Desconto que será aplicado é tempo limitado(dias ou mes)");

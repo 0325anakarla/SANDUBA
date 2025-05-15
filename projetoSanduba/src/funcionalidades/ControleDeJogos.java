@@ -770,7 +770,7 @@ public class ControleDeJogos{
 		}
 	
 	//Listar todos os jogos da empresa por titulo
-	public void ListJogosEmpresa(Empresa empresa) {
+	public void ListJogosEmpresa(Empresa empresa) throws DadoDuplicadoException, DadoInvalidoException {
 		try{
 			List<Jogo> jogos = listJogos.procurarEmpresa(empresa);
 			System.out.println("Jogos da empresa:");
@@ -790,7 +790,7 @@ public class ControleDeJogos{
 		
 		for(Jogo jogo : jogos) {
 			//chmar o  mostrar dados basico do jogo
-			System.out.println(listJogos.resumoJogos());
+			System.out.println(jogo.getResumo());
 
 		
 	}
@@ -811,7 +811,7 @@ public class ControleDeJogos{
 
 
 
-	public ArrayList<CategoriasJogos> catgEscolhidas(Scanner sc2) {
+	public ArrayList<CategoriasJogos> catgEscolhidas(Scanner sc) {
 		System.out.println("🏷️ Escolha as Categorias para o :");
 		CategoriasJogos.imprimeCategorias();
 		ArrayList<CategoriasJogos> categoriaEscolhida = new ArrayList<>();

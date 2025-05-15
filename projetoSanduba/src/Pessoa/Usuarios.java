@@ -13,6 +13,9 @@ public abstract class Usuarios {
 		this.senha = senha;
 	}
 
+	public Usuarios() {
+		
+	}
 	/* ----- Gets e sets -----*/
 	
 	public String getSenha() {

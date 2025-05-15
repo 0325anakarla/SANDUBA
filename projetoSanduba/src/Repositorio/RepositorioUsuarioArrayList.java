@@ -8,7 +8,7 @@ import Interfaces.RepositorioUsuario;
 import Pessoa.Cliente;
 import Pessoa.Empresa;
 import Pessoa.Usuarios;
-import TratamentoDeErro.DadoDuplicadoException;
+//import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import funcionalidades.Gambiarras;
 
@@ -17,7 +17,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-import Financeiro.CarteiraDaEmpresa;
+//import Financeiro.CarteiraDaEmpresa;
 import Financeiro.DadosBancarios;
 
 public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, RepositorioUsuario {
@@ -73,7 +73,6 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 						break;
 					case 2:
 						System.out.println(">Digite o novo email:");
-						String novoEmail = sc.nextLine();
 						cliente.setEmail(sc.nextLine());
 						break;
 					case 3:
@@ -195,10 +194,8 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 						}
 						break;
 					case 6:
-						try {alterarDadosBancarios( empresa.getBancoEmpresa(),  sc,  empresa);} catch (DadoInvalidoException e) {
-							System.out.println("❌ Erro: " + e.getMessage());
-						}
-						 //ver isso
+						alterarDadosBancarios( empresa.getBancoEmpresa(),  sc,  empresa);
+						 
 						System.out.println("✅ Banco atualizado com sucesso!");
 						break;
 					case 7:
