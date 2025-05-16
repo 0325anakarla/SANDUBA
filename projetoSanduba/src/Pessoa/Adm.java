@@ -106,7 +106,7 @@ public class Adm extends Usuarios{
 	@Override
 	public String mostrarDetalhesUsuario() {
 		
-		return "Nome do Adm: "+getNome()+"/nEmail:"+getEmail()+"/nSenha: "+getSenha();
+		return "Nome do Adm: "+getNome()+"\nEmail:"+getEmail()+"\nSenha: "+getSenha();
 	}
 	
 	public void empresasCadastradas(RepositorioUsuarioArrayList listUsuarios) throws DadoInvalidoException, DadoDuplicadoException {

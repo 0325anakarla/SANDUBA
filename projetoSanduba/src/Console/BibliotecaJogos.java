@@ -1,5 +1,7 @@
 package Console;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
@@ -7,7 +9,8 @@ import Pessoa.Cliente;
 import Repositorio.RepositorioJogoArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
-import TratamentoDeErro.FormatoDoNumeroException;
+import funcionalidades.ControleDeJogos;
+//import TratamentoDeErro.FormatoDoNumeroException;
 import jogo.Jogo;
 
 public class BibliotecaJogos {
@@ -17,12 +20,15 @@ public class BibliotecaJogos {
 	private TelaCliente telaCliente;
 	private TelaCarrinhoDeCompras mostrarCarrinho;
 	private Menu menu;
+	private ControleDeJogos controleDeJogos;
+	RepositorioJogoArrayList jogosClasf = new RepositorioJogoArrayList();
 	
-	public BibliotecaJogos(Scanner sc,  CarrinhoDeCompras carrinho, RepositorioJogoArrayList listJogos, TelaCliente telaCliente) {
+	public BibliotecaJogos(Scanner sc,  CarrinhoDeCompras carrinho, RepositorioJogoArrayList listJogos, TelaCliente telaCliente, ControleDeJogos controleDeJogos) {
 		this.sc = sc;
 		this.listJogos = listJogos;
 		this.telaCliente = telaCliente;
 		this.carrinho = carrinho;
+		this.controleDeJogos= controleDeJogos;
 	}
 	
 	public void setMostrarCarrinho(TelaCarrinhoDeCompras mostrarCarrinho) {
@@ -36,13 +42,23 @@ public class BibliotecaJogos {
 	
 	public void Biblioteca(Cliente cliente) throws DadoInvalidoException {
 		int opcao = 0;
+		for(Jogo jogo : listJogos.getTodos()) {
+	    	LocalDate dataAtual = LocalDate.now();
+	    	Period periodo = Period.between(cliente.getNatalicio(), dataAtual);
+	        int idade = periodo.getYears();
+	    	if (idade>= jogo.classInd()) {
+	    		System.out.println(jogo.getResumo());
+	    		jogosClasf.add(jogo);
+	    	}
+	    }
 		
 		do {
 			System.out.println("\n╔════════════════════════════════════════════╗");
 		    System.out.println("║          🎮 JOGOS DISPONÍVEIS NA LOJA       ║");
 		    System.out.println("╚════════════════════════════════════════════╝");
 		    
-		    System.out.println(listJogos.resumoJogos());
+		    System.out.println(jogosClasf.resumoJogos());
+		    
 		    
 		    System.out.println("\n════════════════════════════════════════════");
 		    
@@ -66,10 +82,18 @@ public class BibliotecaJogos {
 			    switch(opcao) {
 			    	case 1: 
 			    		boolean opcaoValida1 = false;
+			    		
+			    		System.out.println("🔍 Deseja buscar jogo por: ");
+			    		System.out.println("[1]Nome");
+			    		System.out.println("[2]Categoria:");
+			    		int buscar = Integer.parseInt(sc.nextLine());
 			    		while(!opcaoValida1) {
+
+			    		 	if(buscar==1) {
+			    			
 				    		System.out.print("\n📝 Digite o nome do jogo: ");
 				    		try{
-				    			Jogo resultado = listJogos.procurarNome(sc.nextLine());
+				    			Jogo resultado = jogosClasf.procurarNome(sc.nextLine());
 				    			resultado.mostrarDados();
 				    			opcoesDeCompra(resultado, cliente);
 				    			opcaoValida1 = true;
@@ -77,7 +101,15 @@ public class BibliotecaJogos {
 				    			System.out.println("❌ Erro: " + e.getMessage());
 				    			System.out.println("\nDigite novamente o jogo que procura:");
 				    		}
+			    		}else if(buscar==2) {
+			    			 controleDeJogos.buscarJogoCtg( sc,  jogosClasf);
+			    			 opcaoValida1 = true;
+			    			 break;
+			    			 
+			    		 }
 			    		}
+			    	
+			    		
 			    		break;
 			    	case 2:
 			    		mostrarCarrinho.CarrinhoDeCompras(cliente, carrinho);
@@ -96,7 +128,7 @@ public class BibliotecaJogos {
 		    	case 1: 
 		    		System.out.print("\n📝 Digite o nome do jogo: ");
 		    		try{
-		    			Jogo resultado = listJogos.procurarNome(sc.nextLine());
+		    			Jogo resultado = jogosClasf.procurarNome(sc.nextLine());
 		    			resultado.mostrarDados();
 		    			opcoesDeCompra(resultado, cliente);
 		    		}catch(DadoNaoEncontradoException e) {

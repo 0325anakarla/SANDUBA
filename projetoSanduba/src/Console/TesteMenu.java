@@ -60,6 +60,11 @@ public class TesteMenu {
 		CarteiraDoCliente cdC3 = new CarteiraDoCliente();
 		cliente3.setCarteiraDigital(cdC3);
 		
+//		clienteteste
+		Cliente cliente9 = new Cliente("Jurema", "Jurema@gmail.com", "123", "98765432191", LocalDate.of(2013, 4, 30));
+		CarteiraDoCliente cdC9 = new CarteiraDoCliente();
+		cliente9.setCarteiraDigital(cdC9);
+		
 		
 		//EMPRESAS
 		DadosBancarios bancoKonami = new DadosBancarios("Konami Digital Entertainment", "Mizuho Bank", "Corrente", "1001", "987651");
@@ -73,9 +78,12 @@ public class TesteMenu {
 		//ADM
 		Adm adm = Adm.getInstancia("Maria Elizabete", "elizabete@gmail.com", "123", listUsuarios);
 		
+
+		
+		
 		//ADICIONANDO A LISTA DE USUARIOS
 		listUsuarios.add(cliente1);
-		listUsuarios.add(cliente2);
+		listUsuarios.add(cliente9);
 		listUsuarios.add(cliente3);
 		listUsuarios.add(empresa1);
 		listUsuarios.add(empresa2);
@@ -221,7 +229,7 @@ public class TesteMenu {
 		TelaCliente telaCliente = new TelaCliente(sc, visualizacaoMenu);
 		TelaEmpresa telaEmpresa = new TelaEmpresa(sc, visualizacaoMenu, listJogos, controleJogos);
 		TelaAdm telaAdm = new TelaAdm(sc, visualizacaoMenu, adm, listUsuarios, listJogos, controleJogos);
-		BibliotecaJogos bibJogos = new BibliotecaJogos(sc, carrinho, listJogos, telaCliente);
+		BibliotecaJogos bibJogos = new BibliotecaJogos(sc, carrinho, listJogos, telaCliente, controleJogos);
 		TelaCarrinhoDeCompras mostrarCarrinho = new TelaCarrinhoDeCompras(sc, bibJogos, telaCliente);
 		bibJogos.setMostrarCarrinho(mostrarCarrinho);
 		TelaListaDeDesejos telaListaDeDesejos = new TelaListaDeDesejos(sc, carrinho, mostrarCarrinho, telaCliente);

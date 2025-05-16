@@ -334,7 +334,7 @@ public class OrganicaoTelaAdm {
 					
 					System.out.println(": Insira o desconto que será aplicado '%' - (ex:20): ");
 					double desconto = sc.nextDouble();
-					adm.descontoPorTempoLimt( tipo,  tempo,  desconto, categorias  );
+					//adm.descontoPorTempoLimt( tipo,  tempo,  desconto, categorias  );
 					
 				}
 				

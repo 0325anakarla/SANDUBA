@@ -40,16 +40,7 @@ public class TelaAdm {
 	
 	public void exibirMenuAdm() throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {
 		int opcao;
-//		visualizacaoMenu.telaMenuMcAdm();
-//		int opcao = sc.nextInt();
-//		sc.nextLine();
-//		
-//////		System.out.println("  [1] 🧑‍ Gerenciar Cliente");
-//	    System.out.println("  [2] 🏦 Gerenciar Empresas");
-//	    System.out.println("  [3] 🎮 Gerenciar Jogos");
-//	    System.out.println("  [4] 💰 Ver saldo do SANDUBA");
-//	    System.out.println("  [5] ❌ Sair");
-////		
+		
 		do {
 		visualizacaoMenu.telaMenuMcAdm();
 		 opcao = sc.nextInt();
@@ -76,8 +67,12 @@ public class TelaAdm {
 				
 				break;
 			case 5:
+				visualizacaoMenu.telaDadosAdm();
+				System.out.println(adm.mostrarDetalhesUsuario()); 
+			case 6:
 				menu.start();
 				break;
+				
 			default:
 				System.out.println("Opção invalida");
 				opcao= sc.nextInt();
@@ -86,7 +81,7 @@ public class TelaAdm {
 		}
 		
 		
-	}while(opcao != 5);
+	}while(opcao != 6);
 		
 
 	}
