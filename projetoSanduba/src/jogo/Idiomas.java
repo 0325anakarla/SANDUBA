@@ -39,8 +39,6 @@ public enum Idiomas {
                 sb.append(" | ");
             }
         }
-
         System.out.println(sb.toString());
     }
-
 }

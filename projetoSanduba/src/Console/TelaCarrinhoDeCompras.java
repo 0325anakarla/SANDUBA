@@ -24,7 +24,7 @@ public class TelaCarrinhoDeCompras {
 		int opcao = 0;
 		
 		System.out.println("\n╔════════════════════════════════════════╗");
-		System.out.println("║          🛒 CARRINHO DE COMPRAS          ║");
+		System.out.println("║          🛒 CARRINHO DE COMPRAS        ║");
 		System.out.println("╚════════════════════════════════════════╝");
 		
 		carrinho.imprimirCarrinho();
@@ -89,7 +89,7 @@ public class TelaCarrinhoDeCompras {
 							
 							if(carrinho.finalizarCompra(cliente, novoValor)) {
 								System.out.println("💳 Forma de Pagamento: Cartão: **** **** ****"+ultimosDigitos);
-								System.out.println("Compra realizada com sucesso.");
+								System.out.println("💰 Compra realizada com sucesso!!!");
 							}
 							else {
 							System.out.println("Saldo insuficiente para concluir a compra!");

@@ -9,8 +9,9 @@ import TratamentoDeErro.DadoInvalidoException;
 public interface RepositorioUsuario extends Repositorio<Usuarios> {
 
 	Usuarios procurarEmail(String email) throws DadoDuplicadoException, DadoInvalidoException;
-	Usuarios procurarEmailSenha(String email,String senha)throws DadoDuplicadoException, DadoInvalidoException;
+
+	Usuarios procurarEmailSenha(String email, String senha) throws DadoDuplicadoException, DadoInvalidoException;
+
 	List<Usuarios> varrer();
-	
 
 }

@@ -47,16 +47,16 @@ public enum CategoriasJogos { // Lista de categoria em Enum (enumeração),
 	    System.out.println("🎮 ESCOLHA AS CATEGORIAS DISPONÍVEIS:");
 
 	    for (int i = 0; i < categorias.length; i += 2) {
+	    	
 	        String esquerda = String.format("%2d: %-15s", i, categorias[i].getCategoria());
 
 	        String direita = "";
 	        if (i + 1 < categorias.length) {
 	            direita = String.format("%2d: %-15s", i + 1, categorias[i + 1].getCategoria());
-	        }
+	  }
 
 	        System.out.println(esquerda + " | " + direita);
 	    }
 	}
-
-	}
+}
 

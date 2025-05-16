@@ -35,6 +35,4 @@ public enum ClassificacaoIndicativa {
             System.out.printf(" %2d: %-20s%n", i, classificacoes[i].getClassificacao());
         }
     }
-
-
 }

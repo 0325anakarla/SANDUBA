@@ -55,8 +55,8 @@ public class Menu {
 			loginUsuario();
 			break;
 		case 3:
-			System.out.println("Obrigado por utilizar o Sanduba");
-			System.out.print("\n[1] -  Voltar.. \nResposta: ");
+			System.out.println(":D - Obrigado por utilizar o Sanduba !!!");
+			System.out.print("\n[1] ❌ Voltar.. \nResposta: ");
 			int choice2 = sc.nextInt();
 			sc.nextLine();
 
@@ -65,11 +65,11 @@ public class Menu {
 				start();
 				break;
 			default:
-				System.out.println("Opcao invalida. Digite novamente");
+				System.out.println("❌ Opcao invalida. | Digite novamente |");
 			}
 			break;
 		case 0:
-			System.out.println("Saindo...");
+			Gambiarras.textoLento("Saindo...", 120);
 			System.exit(0);
 			break;
 		default:
@@ -156,11 +156,11 @@ public class Menu {
 			controleCadastros.CadastrarEmpresa();
 			break;
 		case 0:
-			System.out.println("Voltando...");
+			Gambiarras.textoLento("> Voltando ...",90);
 			start();
 			break;
 		default:
-			System.out.println("Opção inválida. Digite novamente");
+			System.out.println("❌ Opção inválida. | Digite novamente |");
 		}
 
 	}

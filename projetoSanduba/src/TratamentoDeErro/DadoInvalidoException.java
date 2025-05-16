@@ -6,6 +6,7 @@ public class DadoInvalidoException extends Exception {
 		super(msg);
 	}
 
-	//private static final long serialVersionUID = 1L;
-	//esse serial é criado automaticamente. Ele é como um numero de versão da classe.
+	// private static final long serialVersionUID = 1L;
+	// esse serial é criado automaticamente. Ele é como um numero de versão da
+	// classe.
 }

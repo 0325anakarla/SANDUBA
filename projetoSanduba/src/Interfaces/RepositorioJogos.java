@@ -11,10 +11,9 @@ public interface RepositorioJogos extends Repositorio<Jogo> {
 
 	List<Jogo> procurarEmpresa(Empresa empresa) throws DadoDuplicadoException, DadoInvalidoException;
 
-	//resumo para a biblioteca(Ana Alice)
+	// resumo para a biblioteca(Ana Alice)
 	String resumoJogos();
 
-	
 	List<Jogo> varrer();
 
 }

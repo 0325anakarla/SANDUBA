@@ -84,11 +84,11 @@ public class ControleDeCadastros {
 							String Idata = sc.nextLine();
 							natalicio = LocalDate.parse(Idata, formato);
 							cliente.setNatalicio(natalicio);
-							
-							
-							Period idade = Period.between(natalicio,LocalDate.now()); //period eh usada para cal dif ent duas datas(dd/MM/yyyy)
-							if(idade.getYears()<13) {
-								natalicio =null;
+
+							Period idade = Period.between(natalicio, LocalDate.now()); // period eh usada para cal dif
+																						// ent duas datas(dd/MM/yyyy)
+							if (idade.getYears() < 13) {
+								natalicio = null;
 								tentativas++;
 								System.out.println("⚠️  É necessário ter mais de 13 anos para se cadastrar.");
 								if (tentativas == 3) {
@@ -114,8 +114,7 @@ public class ControleDeCadastros {
 					dadosValidos = true;
 				} catch (DadoInvalidoException e) {
 					System.out.println("Erro: " + e.getMessage());
-				}
-				catch(DadoDuplicadoException e) {
+				} catch (DadoDuplicadoException e) {
 					System.out.println("Erro: " + e.getMessage());
 				}
 			} while (!dadosValidos);
@@ -127,11 +126,11 @@ public class ControleDeCadastros {
 
 			listUsuarios.add(cliente);
 			Gambiarras.textoLento("\n-> Redirecionando para a tela inicial\n", 6);
-			
-			Gambiarras.textoLento(".\n.\n.\n",600);
-		
+
+			Gambiarras.textoLento(".\n.\n.\n", 600);
+
 			Gambiarras.limparTela();
-			
+
 			menu.start();
 			break;
 
@@ -140,7 +139,6 @@ public class ControleDeCadastros {
 
 	public void CadastrarEmpresa() throws DadoInvalidoException {
 		boolean continuarCadastro = true;
-
 
 		while (continuarCadastro) {
 			boolean dadosValidos = false;
@@ -207,17 +205,17 @@ public class ControleDeCadastros {
 					System.out.println("╚════════════════════════╝");
 
 					System.out.println("");
-					System.out.print(">Titular da conta: ");
+					System.out.print("🧍 Titular da conta: ");
 					dadosEmpresa.setTitularConta(sc.nextLine());
-					System.out.print(">Nome do banco: ");
+					System.out.print("🧍 Nome do banco: ");
 					dadosEmpresa.setNomeBanco(sc.nextLine());
 
-					System.out.println(">Tipo de Conta. (ex: Conta Corrente, poupança, pj....):");
+					System.out.println("🔒 Tipo de Conta. (ex: Conta Corrente, poupança, pj....):");
 					dadosEmpresa.setTipoConta(sc.nextLine());
-					
+
 					while (tentativas < 3) {
-						System.out.print(">Número da agência: ");
-						String iAgencia= (sc.nextLine());
+						System.out.print("🔒 Número da agência: ");
+						String iAgencia = (sc.nextLine());
 
 						if (iAgencia.matches("\\d{4}")) {
 							dadosEmpresa.setAgencia(iAgencia);
@@ -236,11 +234,11 @@ public class ControleDeCadastros {
 							}
 						}
 					}
-					
+
 					while (tentativas < 3) {
-						System.out.println(">Número da Conta (9 digitos): ");
-						
-						String inumConta= (sc.nextLine());
+						System.out.println("🔒 Número da Conta (9 digitos): ");
+
+						String inumConta = (sc.nextLine());
 
 						if (inumConta.matches("\\d{9}")) {
 							dadosEmpresa.setNumeroConta(inumConta);
@@ -255,15 +253,14 @@ public class ControleDeCadastros {
 								System.out.println("║ ❌ Cadastro cancelado: número de tentativas excedido ║");
 								System.out.println("╚════════════════════════════════════════════════╝");
 								return;
-				
+
 							}
 						}
 					}
-				dadosValidos = true;
+					dadosValidos = true;
 				} catch (DadoInvalidoException e) {
 					System.out.println("Erro: " + e.getMessage());
-				}
-				catch(DadoDuplicadoException e) {
+				} catch (DadoDuplicadoException e) {
 					System.out.println("Erro: " + e.getMessage());
 				}
 			} while (!dadosValidos);
@@ -274,9 +271,9 @@ public class ControleDeCadastros {
 			System.out.println("╚══════════════════════════════════════╝\n");
 			Gambiarras.textoLento("😄 Seja bem-vindo(a), " + empresa.getNome() + "!", 50);
 			Gambiarras.textoLento("\n-> Redirecionando para a tela inicial\n", 6);
-			
-			Gambiarras.textoLento(".\n.\n.\n",600);
-		
+
+			Gambiarras.textoLento(".\n.\n.\n", 600);
+
 			Gambiarras.limparTela();
 			menu.start();
 			break;

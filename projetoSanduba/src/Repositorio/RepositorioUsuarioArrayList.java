@@ -326,8 +326,10 @@ public class RepositorioUsuarioArrayList implements Repositorio<Usuarios>, Repos
 
 	@Override
 	public List<Usuarios> getTipo(Class<?> clazz) throws DadoInvalidoException {
-		if (clazz == null) {	throw new DadoInvalidoException("A classe tem que existir.");}
-		
+		if (clazz == null) {
+			throw new DadoInvalidoException("A classe tem que existir.");
+		}
+
 		List<Usuarios> resultadoUsuario = new ArrayList<>();
 		for (Usuarios usuario : usuarios) {
 			if (clazz.isInstance(usuario)) {

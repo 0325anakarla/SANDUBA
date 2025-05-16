@@ -106,7 +106,7 @@ public class TelaCliente {
 					break;
 				case 4:
 					System.out.println("\n╔══════════════════════════════╗");
-					System.out.println("║       💖 LISTA DE DESEJOS      ║");
+					System.out.println("║       💖 LISTA DE DESEJOS    ║");
 					System.out.println("╚══════════════════════════════╝");
 					if (!cliente.getJogos().isEmpty()) {
 						telaListaDeDesejos.telaLD(cliente);
@@ -151,7 +151,7 @@ public class TelaCliente {
 					double valor = 0;
 					
 					System.out.println("\n╔══════════════════════════════╗");
-					System.out.println("║         ➕ DEPÓSITO           ║");
+					System.out.println("║         ➕ DEPÓSITO          ║");
 					System.out.println("╚══════════════════════════════╝");
 
 					System.out.println("> Escolha o cartão que vai ser realizado o depósito.");	
@@ -176,27 +176,27 @@ public class TelaCliente {
 								}
 								continuarAcao = false;
 							}catch(DadoNaoEncontradoException e) {
-								System.out.println("Erro: "+e.getMessage());
-								System.out.println("Tente novamente:");
+								System.out.println("❌ Erro: "+e.getMessage());
+								System.out.println("➕ Tente novamente:");
 							}
 						}
 					}
 					
-					else System.out.println("> Nenhum cartão cadastrado.\\nAdicione algum cartão para realizar transações.");
+					else System.out.println("❌ Nenhum cartão cadastrado.\\nAdicione algum cartão para realizar transações.");
 					
 					break;
 				case 2:
 					System.out.println("\n╔══════════════════════════════╗");
-					System.out.println("║     💳 CARTÕES CADASTRADOS     ║");
+					System.out.println("║     💳 CARTÕES CADASTRADOS   ║");
 					System.out.println("╚══════════════════════════════╝");
 					
 					if (!cliente.getCartoesCadastrados().isEmpty()) {
 						cliente.mostrarCartoes();
-					}else System.out.println("Nenhum cartão cadastrado.");
+					}else System.out.println("> Nenhum cartão cadastrado.");
 					
 					System.out.println("\nO que deseja fazer agora?");
 				    System.out.println(" [1] ➕ Adicionar Cartão");
-				    System.out.println(" [2] ❌ Remover Cartão");
+					System.out.println(" [2] ❌ Remover Cartão");
 				    System.out.println(" [3] 💳 Voltar à Carteira Digital");
 				    System.out.print("\n>Digite a opção desejada: ");
 				    int subOpcao = Integer.parseInt(sc.nextLine());
@@ -209,7 +209,7 @@ public class TelaCliente {
 				    	else System.out.println("⚠️ Opção inválida. Digite 1 ou 2.");
 					break;
 				case 3:
-					System.out.println(">Voltar para minha conta");
+					System.out.println("🔙 Voltar para minha conta");
 					break;
 				default:
 					System.out.println("⚠️ Opção inválida. Digite 1, 2 ou 3.");
@@ -226,21 +226,22 @@ public class TelaCliente {
 		
 		while(continuarAcao) {
 			try{
-				System.out.println("➕ Digite os dados do cartão que vai ser adicionado.");
-				System.out.print("Nome do Titular:");
+				System.out.println("══════════════════════════════════════════════════════\n");
+				System.out.println("Digite os dados do cartão que vai ser adicionado.");
+				System.out.print("🧍 Nome do Titular:");
 				cartao.setNomeDoTitular(sc.nextLine());
 				
-				System.out.print("Número do Cartão:");
+				System.out.print("🔒 Número do Cartão:");
 				cartao.setNumDoCartao(sc.nextLine());
 				String ultimosDigitos = cartao.getNumDoCartao().substring(cartao.getNumDoCartao().length() - 4);
 				
-				System.out.print(">Data de expiração - (dd/MM/yyy): ");
+				System.out.print("📅 Data de expiração - (dd/MM/yyy): ");
 				String data = sc.nextLine();
 				DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 				LocalDate expiracao = LocalDate.parse(data, formato);
 				cartao.setDataDeExpiracao(expiracao);
 				
-				System.out.print(">CVC: ");
+				System.out.print("🔒 CVC: ");
 				cartao.setCvc(sc.nextInt());
 				sc.nextLine();
 				
@@ -250,11 +251,11 @@ public class TelaCliente {
 					continuarAcao = false;
 				}catch(DadoDuplicadoException e) {
 					System.out.println("⚠️ Erro: " +e.getMessage());
-					System.out.println("Tente novamente:");
+					System.out.println("\n➕ Tente novamente:");
 				}
 			}catch(DadoInvalidoException e) {
-				System.out.println("Error: "+e.getMessage());
-				System.out.println("Tente novamente:");
+				System.out.println("⚠️ Error: "+e.getMessage());
+				System.out.println("\n➕ Tente novamente:");
 			}
 		}
 	}
@@ -270,7 +271,7 @@ public class TelaCliente {
 			
 			try{
 				cliente.removerCartao(resultado);
-				System.out.println("Cartao com final "+ultimosDigitos+" foi removido com sucesso.");
+				System.out.println("😄 Cartao com final "+ultimosDigitos+" foi removido com sucesso.");
 				continuarAcao = false;
 			}catch(DadoNaoEncontradoException e) {
 				System.out.println("⚠️ Erro: " +e.getMessage());

@@ -23,8 +23,9 @@ public class Jogo {
 
 	private boolean descontoApli = false;
 
-	public Jogo(String titulo, double preco, String descricao, ArrayList<CategoriasJogos> categoriasValidas, ArrayList<Idiomas> idiomasValidos, ArrayList<PlataformasDisponiveis> platValidas, ClassificacaoIndicativa classIndicativa
-			,Empresa empresa, LocalDate dataDeLancamento) {
+	public Jogo(String titulo, double preco, String descricao, ArrayList<CategoriasJogos> categoriasValidas,
+			ArrayList<Idiomas> idiomasValidos, ArrayList<PlataformasDisponiveis> platValidas,
+			ClassificacaoIndicativa classIndicativa, Empresa empresa, LocalDate dataDeLancamento) {
 		super();
 		this.titulo = titulo;
 		this.preco = preco;
@@ -36,7 +37,7 @@ public class Jogo {
 		this.modAtivacao = gerarStringSegura(20);
 		this.empresa = empresa;
 		this.dataDeLancamento = dataDeLancamento;
-		this.precoModificador=preco;
+		this.precoModificador = preco;
 	}
 
 	public String getTitulo() {
@@ -44,7 +45,7 @@ public class Jogo {
 	}
 
 	public void setTitulo(String titulo) throws DadoInvalidoException {
-		if(titulo == null || titulo.isEmpty()) {
+		if (titulo == null || titulo.isEmpty()) {
 			throw new DadoInvalidoException("Título não pode ser vazio.");
 		}
 		this.titulo = titulo;
@@ -57,39 +58,35 @@ public class Jogo {
 //		}
 		return preco;
 	}
-	
+
 	public void setDescontoApli(boolean descontoApli) {
 		this.descontoApli = descontoApli;
 	}
-	
-	public String precoDesconto() {
-		 String precoOriginal = "\u001B[2mR$ " + getPrecoModificador() + "\u001B[0m"; // cinza (faint)
-		    String precoDescontado = "\u001B[31mR$ " + getPreco() + "\u001B[0m"; // vermelho
 
-		    return "\n  !Jogo com desconto! De ~~" + precoOriginal + "~~ para: " + precoDescontado;
-		}
-	
+	public String precoDesconto() {
+		String precoOriginal = "\u001B[2mR$ " + getPrecoModificador() + "\u001B[0m"; // cinza (faint)
+		String precoDescontado = "\u001B[31mR$ " + getPreco() + "\u001B[0m"; // vermelho
+
+		return "\n  !Jogo com desconto! De ~~" + precoOriginal + "~~ para: " + precoDescontado;
+	}
 
 	public void setPreco(double preco) throws DadoInvalidoException {
-		if(preco <= 0) {
+		if (preco <= 0) {
 			throw new DadoInvalidoException("Preço não pode ser negativo ou zerado.");
 		}
 		this.preco = preco;
 	}
-	
-	
 
-	public String getDescricao () {
+	public String getDescricao() {
 		return descricao;
 	}
 
 	public void setDescricao(String descricao) throws DadoInvalidoException {
-		if(descricao.length() > 200) {
+		if (descricao.length() > 200) {
 			throw new DadoInvalidoException("Descrição muito longa, resuma a descrição em menos caracteres.");
 		}
 
-
-		if(descricao == null || descricao.isEmpty()) {
+		if (descricao == null || descricao.isEmpty()) {
 			throw new DadoInvalidoException("Descrição não pode ser vazia.");
 		}
 
@@ -100,18 +97,18 @@ public class Jogo {
 		return modAtivacao;
 	}
 
-	    public static String gerarStringSegura(int tamanho) {
-	        String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	        StringBuilder sb = new StringBuilder();
-	        SecureRandom random = new SecureRandom();
+	public static String gerarStringSegura(int tamanho) {
+		String caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		StringBuilder sb = new StringBuilder();
+		SecureRandom random = new SecureRandom();
 
-	        for (int i = 0; i < tamanho; i++) {
-	            int index = random.nextInt(caracteres.length());
-	            sb.append(caracteres.charAt(index));
-	        }
+		for (int i = 0; i < tamanho; i++) {
+			int index = random.nextInt(caracteres.length());
+			sb.append(caracteres.charAt(index));
+		}
 
-	        return sb.toString();
-	    }
+		return sb.toString();
+	}
 
 	public ArrayList<String> getCategoriasValidas() {
 		ArrayList<String> nomesCategorias = new ArrayList<>();
@@ -149,7 +146,7 @@ public class Jogo {
 		this.platValidas = platValidas;
 	}
 
-	public String  getClassIndicativa() {
+	public String getClassIndicativa() {
 		return classIndicativa.getClassificacao();
 	}
 
@@ -174,63 +171,60 @@ public class Jogo {
 	}
 
 	public String getResumo() {
-		return titulo+" ("+empresa.getNome()+")";
+		return titulo + " (" + empresa.getNome() + ")";
 	}
-	
+
 	public double getPrecoModificador() {
 		return precoModificador;
 	}
-	
 
 	public boolean isDescontoApli() {
 		return descontoApli;
 	}
 
 	public void mostrarDados() {
-		System.out.println("Titulo: "+titulo);
-		System.out.println("Preço: "+preco);
-		System.out.println("Descrição: "+descricao);
+		System.out.println("Titulo: " + titulo);
+		System.out.println("Preço: " + preco);
+		System.out.println("Descrição: " + descricao);
 		System.out.println("Categorias: ");
-		for(CategoriasJogos categorias : categoriasValidas){
+		for (CategoriasJogos categorias : categoriasValidas) {
 			System.out.println(categorias.getCategoria());
 		}
 		System.out.println("");
 		System.out.println("Idiomas Disponíveis: ");
-		for(Idiomas idiomas : idiomasValidos){
+		for (Idiomas idiomas : idiomasValidos) {
 			System.out.println(idiomas.getIdioma());
 		}
 		System.out.println("");
 		System.out.println("Plataformas disponíveis: ");
-		for(PlataformasDisponiveis plataformas : platValidas){
+		for (PlataformasDisponiveis plataformas : platValidas) {
 			System.out.println(plataformas.getPlataforma());
 		}
 		System.out.println("");
-		System.out.println("Classificação Etaria: "+classIndicativa.getClassificacao());
+		System.out.println("Classificação Etaria: " + classIndicativa.getClassificacao());
 		System.out.println("");
-		
+
 		System.out.println("");
-		System.out.println("Empresa: "+empresa.getRazaoSocial());
+		System.out.println("Empresa: " + empresa.getRazaoSocial());
 		System.out.println("");
 	}
-	
-	 public void Desconto(double desconto ) throws DadoInvalidoException {
-		 if(desconto <=0 || desconto >= 100) {
-				throw new DadoInvalidoException("Desconto não pode ser negativo ou zerado");
-			}
 
+	public void Desconto(double desconto) throws DadoInvalidoException {
+		if (desconto <= 0 || desconto >= 100) {
+			throw new DadoInvalidoException("Desconto não pode ser negativo ou zerado");
+		}
 
-		 setPreco( getPrecoModificador()-(getPrecoModificador()* desconto/100));
-		 descontoApli = true;
+		setPreco(getPrecoModificador() - (getPrecoModificador() * desconto / 100));
+		descontoApli = true;
 	}
 
-	
 	public void VoltaPreco() throws DadoInvalidoException {
 		setPreco(getPrecoModificador());
-		
+
 	}
-	
+
 	public int verAnosPassados() {
-		return  Period.between(this.dataDeLancamento, hoje).getYears();
+		return Period.between(this.dataDeLancamento, hoje).getYears();
 	}
 
 	public boolean aplicaDescontoDe(double desconto) {
@@ -241,8 +235,5 @@ public class Jogo {
 			return false;
 		}
 	}
-	
-	
-
 
 }
