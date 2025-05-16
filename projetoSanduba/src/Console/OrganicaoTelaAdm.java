@@ -284,39 +284,23 @@ public class OrganicaoTelaAdm {
 				}while(deuErrado);
 				break;
 			case 6:
-				System.out.println(adm.getNome()+"> Você quer aplicar desconto por:");
-				System.out.println("[1] Ano de lançamento");
-				System.out.println("[2] Categoria");
-				
-				int opcao21 =sc.nextInt();
-				
-				if(opcao21 ==1) {
+//				System.out.println(adm.getNome()+"> Você quer aplicar desconto por:");
+//				System.out.println("[1] Ano de lançamento");
+//				System.out.println("[2] Categoria");
+//				
+//				int opcao21 =sc.nextInt();
+//				
+//				if(opcao21 ==1) {
 				System.out.println("> Insira o ano de referência: todos os jogos lançados até esse ano sofrerão desconto. (ex:2010) ");
 				int ano =sc.nextInt();
 				System.out.println("> Insira o desconto que será aplicado: (ex:20)");
 				double desconto = sc.nextDouble();
 				adm.descontoPorAno(ano, desconto, listUsuarios, listJogos);
 				
-				}else if(opcao21 ==2) {
-					List<CategoriasJogos> categorias = controleJogos.catgEscolhidas(sc);
-					System.out.println("Desconto que será aplicado é tempo limitado - (Dia ou Mês)");
-					System.out.println("-----------------------------------------------------------------------------------------");
-					System.out.println("Insira o tempo que sera.  ");
-					System.out.println("[1] Por dias ");
-					System.out.println("[2] Por mês.");
-					int tipo =sc.nextInt();
-					
-					System.out.println("> Insira o tempo que será aplicado - (ex:20): ");
-					int tempo = sc.nextInt();
-					
-					System.out.println(": Insira o desconto que será aplicado '%' - (ex:20): ");
-					double desconto = sc.nextDouble();
-					//adm.descontoPorTempoLimt( tipo,  tempo,  desconto, categorias  );
-<<<<<<< HEAD
-					
-=======
->>>>>>> 3f64c308738c2c7753ac7b4a0f002b6265499f12
-				}
+//				}else if(opcao21 ==2) {
+//					List<CategoriasJogos> categorias = controleJogos.catgEscolhidas(sc);
+//					
+//				}
 				break;
 			case 7: 
 				 controleJogos.buscarJogoCtg(sc, listJogos);

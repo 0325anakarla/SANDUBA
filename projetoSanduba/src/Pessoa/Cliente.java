@@ -12,10 +12,11 @@ import jogo.Jogo;
 import Financeiro.CartaoDeCredito;
 import Financeiro.CarteiraDoCliente;
 import Financeiro.RegistroDeCompras;
+import Interfaces.IUsuario;
 //import TratamentoDeErro.DadoInvalidoException;
 //import jogo.Jogo;
 
-public class Cliente extends Usuarios{
+public class Cliente extends Usuarios {
 	private String cpf;
 	private LocalDate natalicio; // data de nascimento
 	private CarteiraDoCliente carteiraDigital;

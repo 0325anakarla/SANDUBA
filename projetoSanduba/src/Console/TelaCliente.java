@@ -8,6 +8,7 @@ import Financeiro.CartaoDeCredito;
 import Financeiro.CarteiraDoCliente;
 import Financeiro.RegistroDeCompras;
 import Pessoa.Cliente;
+import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
@@ -35,7 +36,7 @@ public class TelaCliente {
 		this.bibJogos = bibJogos;
 	}
 	
-	public void telaMinhaContaCliente(Cliente cliente) throws DadoInvalidoException {
+	public void telaMinhaContaCliente(Cliente cliente, RepositorioUsuarioArrayList listUsuarrio) throws DadoInvalidoException {
 	
 		int opcao = 0;
 		
@@ -51,6 +52,27 @@ public class TelaCliente {
 					System.out.println("║    🧑‍💻 INFORMAÇÕES PESSOAIS ║");
 					System.out.println("╚══════════════════════════════╝");
 					System.out.println(cliente.mostrarDetalhesUsuario());
+					
+					System.out.println();
+					System.out.println("Deseja  alterar algum dados?");
+					System.out.println("[1] sim" );
+					System.out.println("[2] não");
+					int	opcao2=0;
+					boolean opcaoValida = false;
+				    while(!opcaoValida) {
+					    try {
+					    	opcao2 = Integer.parseInt(sc.nextLine());
+					    	opcaoValida = true;
+					    }catch(NumberFormatException  e) {
+					    	System.out.println("❌ Erro: " + e.getMessage());
+					    	System.out.print("\nTenta de novo: ");
+					    	
+					    }
+					 
+				    }
+				    if(opcao2==1) {
+				    	listUsuarrio.alterarDados(cliente);
+				    }
 					break;
 				case 2:
 					if (cliente.getCarteiraDigital() != null) {
@@ -71,12 +93,12 @@ public class TelaCliente {
 					    System.out.println("  [2] 🧑‍ Voltar a minha conta");
 					    System.out.print("\n> Digite a opção desejada: ");
 					    
-					    boolean opcaoValida = false;
-					    while(!opcaoValida) {
+					    boolean opcaoValida1 = false;
+					    while(!opcaoValida1) {
 					    	try {
 					    		int opcao1 = Integer.parseInt(sc.nextLine());
 					    		if(opcao1 == 1) {
-					    			opcaoValida = true;
+					    			opcaoValida1 = true;
 					    			if (!cliente.getJogosAdquiridos().isEmpty()) {
 										for (Jogo jogo : cliente.getJogosAdquiridos()) {
 											System.out.println(jogo.getTitulo());

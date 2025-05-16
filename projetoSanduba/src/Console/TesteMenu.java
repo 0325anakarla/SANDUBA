@@ -364,7 +364,7 @@ public class TesteMenu {
 		TelaCliente telaCliente = new TelaCliente(sc, visualizacaoMenu);
 		TelaEmpresa telaEmpresa = new TelaEmpresa(sc, visualizacaoMenu, listJogos, controleJogos);
 		TelaAdm telaAdm = new TelaAdm(sc, visualizacaoMenu, adm, listUsuarios, listJogos, controleJogos);
-		BibliotecaJogos bibJogos = new BibliotecaJogos(sc, carrinho, listJogos, telaCliente, controleJogos);
+		BibliotecaJogos bibJogos = new BibliotecaJogos(sc, carrinho, listJogos, telaCliente, controleJogos, listUsuarios);
 		TelaCarrinhoDeCompras mostrarCarrinho = new TelaCarrinhoDeCompras(sc, bibJogos, telaCliente);
 		bibJogos.setMostrarCarrinho(mostrarCarrinho);
 		TelaListaDeDesejos telaListaDeDesejos = new TelaListaDeDesejos(sc, carrinho, mostrarCarrinho, telaCliente);
