@@ -89,13 +89,10 @@ public class BibliotecaJogos {
 			    		System.out.println("[2]Categoria:");
 			    		int buscar = Integer.parseInt(sc.nextLine());
 			    		while(!opcaoValida1) {
-<<<<<<< HEAD
 			    			System.out.println("------------------------------------------------\n");
-=======
 
 			    		 	if(buscar==1) {
 			    			
->>>>>>> bad99703c644e09ba7a90513304441156b1e7fe1
 				    		System.out.print("\n📝 Digite o nome do jogo: ");
 				    		try{
 				    			Jogo resultado = jogosClasf.procurarNome(sc.nextLine());

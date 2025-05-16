@@ -46,61 +46,30 @@ public class TelaAdm {
 			sc.nextLine();
 			switch (opcao) {
 			case 1:
-<<<<<<< HEAD
-
 				orgAdm.opcoesCase1(sc, adm, listUsuarios, visualizacaoMenu);
-
-=======
-				orgAdm.opcoesCase1(sc, adm, listUsuarios, visualizacaoMenu);
->>>>>>> bad99703c644e09ba7a90513304441156b1e7fe1
 				break;
 			case 2:
-
 				orgAdm.opcoesCase2(sc, adm, listUsuarios, visualizacaoMenu);
-<<<<<<< HEAD
-
 				break;
 			case 3:
-
-=======
-				break;
-			case 3:
->>>>>>> bad99703c644e09ba7a90513304441156b1e7fe1
 				orgAdm.opcoesCase3(sc, adm, listUsuarios, visualizacaoMenu, listJogos, controleJogos);
 				break;
 			case 4:
 				visualizacaoMenu.telaSaldoSanduba();
-<<<<<<< HEAD
 				System.out.println("💼 O saldo do SANDUBA  R$: " + cartAdm.getSaldo());
-
-=======
-				System.out.println("O saldo do SANDUBA  R$: " + cartAdm.getSaldo());
->>>>>>> bad99703c644e09ba7a90513304441156b1e7fe1
 				break;
 			case 5:
 				visualizacaoMenu.telaDadosAdm();
 				System.out.println(adm.mostrarDetalhesUsuario());
+				break;
 			case 6:
 				menu.start();
 				break;
-
 			default:
-<<<<<<< HEAD
 				System.out.println("⚠️ Opção invalida");
 				opcao = sc.nextInt();
 				break;
-
-			}
-
-		} while (opcao != 5);
-
-	}
-
-=======
-				System.out.println("Opção invalida");
-				opcao = sc.nextInt();
 			}
 		} while (opcao != 6);
 	}
->>>>>>> bad99703c644e09ba7a90513304441156b1e7fe1
 }
