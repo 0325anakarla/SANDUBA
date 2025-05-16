@@ -11,7 +11,6 @@ import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
-
 import funcionalidades.ControleDeJogos;
 
 public class TelaAdm {
@@ -40,40 +39,25 @@ public class TelaAdm {
 	
 	public void exibirMenuAdm() throws DadoInvalidoException, DadoNaoEncontradoException, DadoDuplicadoException {
 		int opcao;
-//		visualizacaoMenu.telaMenuMcAdm();
-//		int opcao = sc.nextInt();
-//		sc.nextLine();
-//		
-//////		System.out.println("  [1] 🧑‍ Gerenciar Cliente");
-//	    System.out.println("  [2] 🏦 Gerenciar Empresas");
-//	    System.out.println("  [3] 🎮 Gerenciar Jogos");
-//	    System.out.println("  [4] 💰 Ver saldo do SANDUBA");
-//	    System.out.println("  [5] ❌ Sair");
-////		
+	
 		do {
 		visualizacaoMenu.telaMenuMcAdm();
 		 opcao = sc.nextInt();
 		sc.nextLine();
 		switch(opcao) {
-			case 1:
-				
+		case 1:
 				orgAdm.opcoesCase1(sc,  adm, listUsuarios,visualizacaoMenu);
-				
 				break;
 			case 2:
 				
 				orgAdm.opcoesCase2(sc, adm, listUsuarios, visualizacaoMenu);
-				
 				break;
 			case 3:
-				
 				orgAdm.opcoesCase3(sc,  adm, listUsuarios, visualizacaoMenu, listJogos, controleJogos);
 				break;
 			case 4:
 				visualizacaoMenu.telaSaldoSanduba();
 				System.out.println("O saldo do SANDUBA  R$: "+cartAdm.getSaldo());
-				
-				
 				break;
 			case 5:
 				menu.start();
@@ -81,14 +65,8 @@ public class TelaAdm {
 			default:
 				System.out.println("Opção invalida");
 				opcao= sc.nextInt();
-				break;
-				
-		}
-		
-		
-	}while(opcao != 5);
-		
-
-	}
-	
+				break;	
+		}		
+		}while(opcao != 5);
+	}	
 }

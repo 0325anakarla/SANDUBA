@@ -5,6 +5,7 @@ import java.util.Scanner;
 import Financeiro.CarrinhoDeCompras;
 import Pessoa.Cliente;
 import Repositorio.RepositorioJogoArrayList;
+import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
 import TratamentoDeErro.FormatoDoNumeroException;
@@ -162,8 +163,14 @@ public class BibliotecaJogos {
 			
 			switch(opcao) {
 				case 1:
-					cliente.addListaDeDesejo(jogo);
-					System.out.println("💖 O jogo "+jogo.getTitulo()+" foi adicionado a lista de desejos com sucesso.");
+					try {
+						cliente.addListaDeDesejo(jogo);
+						System.out.println("💖 O jogo "+jogo.getTitulo()+" foi adicionado a lista de desejos com sucesso.");
+					} catch(DadoDuplicadoException e) {
+						System.out.println("❌ Erro: " + e.getMessage());
+					} catch(DadoInvalidoException e) {
+						System.out.println("❌ Erro: " + e.getMessage());
+					}
 					break;
 				case 2:
 					carrinho.adiciona(jogo);
