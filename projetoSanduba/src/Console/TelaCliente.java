@@ -81,7 +81,7 @@ public class TelaCliente {
 										for (Jogo jogo : cliente.getJogosAdquiridos()) {
 											System.out.println(jogo.getTitulo());
 										}
-										System.out.println("Escolha o jogo que voce deseja ver a chave de ativação.");
+										System.out.println("Escolha o jogo que voce deseja ver a chave de ativação: ");
 										try{
 											Jogo resultado = cliente.procurarNomeJA(sc.nextLine());
 											System.out.println("Chave de Ativação: "+resultado.getModAtivacao());
@@ -92,12 +92,13 @@ public class TelaCliente {
 										System.out.println("Você ainda não comprou jogos!");
 									}
 					    		}
-					    		if(opcao1 == 2) {
+					    		else if(opcao1 == 2) {
 					    			continuarAcao = false;
 					    			break;
 					    		}
-					    		else
-					    			System.out.println("Opção invalida. Escolha 1 ou 2.");
+					    		else{
+					    			System.out.println("Opção inválida. Escolha 1 ou 2.");
+					    		}
 					    	}catch(NumberFormatException e) {
 					    		System.out.println("❌ Erro: " + e.getMessage());
 					    	}

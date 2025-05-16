@@ -122,6 +122,7 @@ public class VisualizacaoMenu {
 
 	public void telaMenuMcAdm() {
 		System.out.println("\n╔════════════════════════════════════════╗");
+<<<<<<< HEAD
 		System.out.println("║          🛠️ MENU ADMINISTRATIVO        ║");
 		System.out.println("╚════════════════════════════════════════╝");
 		System.out.println();
@@ -133,6 +134,20 @@ public class VisualizacaoMenu {
 		System.out.println("  [4] 💰 Ver saldo do SANDUBA");
 		System.out.println("  [5] ❌ Sair");
 		System.out.print("\nDigite a opção desejada: ");
+=======
+	    System.out.println("║          🛠️ MENU ADMINISTRATIVO          ║");
+	    System.out.println("╚════════════════════════════════════════╝");
+	    System.out.println();
+	    System.out.println("Selecione uma opção:");
+	    System.out.println();
+	    System.out.println("  [1] 🧑‍ Gerenciar Cliente");
+	    System.out.println("  [2] 🏦 Gerenciar Empresas");
+	    System.out.println("  [3] 🎮 Gerenciar Jogos");
+	    System.out.println("  [4] 💰 Ver saldo do SANDUBA");
+	    System.out.println("  [5] 🛠️ Ver dados do adm");
+	    System.out.println("  [6] ❌ Sair");
+	    System.out.print("\nDigite a opção desejada: ");
+>>>>>>> bad99703c644e09ba7a90513304441156b1e7fe1
 
 	}
 
@@ -225,5 +240,12 @@ public class VisualizacaoMenu {
 		System.out.println("╚═══════════════════════════════════╝");
 		System.out.println();
 	}
+	public void telaDadosAdm() {
+		System.out.println("\n╔════════════════════════════════╗");
+		System.out.println("║         🛠️ DADOS DO ADM         ║");
+		System.out.println("╚═════════════════════════════════╝");
+		System.out.println();
+	}
+
 
 }

@@ -82,7 +82,7 @@ public class CarrinhoDeCompras {
 		}
 
 		for (Jogo jogo : jogos.keySet()) {
-			if (!jogo.getTitulo().equalsIgnoreCase(titulo)) {
+			if (jogo.getTitulo().equalsIgnoreCase(titulo)) {
 				return jogo;
 			}
 		}

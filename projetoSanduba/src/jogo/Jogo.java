@@ -149,6 +149,10 @@ public class Jogo {
 	public String getClassIndicativa() {
 		return classIndicativa.getClassificacao();
 	}
+	
+	public int classInd() {
+		return classIndicativa.getIdadeMinima();
+	}
 
 	public void setClassIndicativa(ClassificacaoIndicativa classIndicativa) {
 		this.classIndicativa = classIndicativa;

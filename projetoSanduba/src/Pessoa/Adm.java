@@ -102,8 +102,13 @@ public class Adm extends Usuarios {
 
 	@Override
 	public String mostrarDetalhesUsuario() {
+<<<<<<< HEAD
 
 		return "Nome do Adm: " + getNome() + "/nEmail:" + getEmail() + "/nSenha: " + getSenha();
+=======
+		
+		return "Nome do Adm: "+getNome()+"\nEmail:"+getEmail()+"\nSenha: "+getSenha();
+>>>>>>> bad99703c644e09ba7a90513304441156b1e7fe1
 	}
 
 	public void empresasCadastradas(RepositorioUsuarioArrayList listUsuarios)

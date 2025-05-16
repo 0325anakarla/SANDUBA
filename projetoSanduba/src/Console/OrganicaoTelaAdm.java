@@ -327,6 +327,7 @@ public class OrganicaoTelaAdm {
 					System.out.println("> Opção invalida./nInsira um opção válida:");
 					case3 = sc.nextInt();
 				}
+<<<<<<< HEAD
 			} catch (DadoDuplicadoException e) {
 				System.out.println("⚠️  Dado duplicado.");
 			} catch (DadoInvalidoException e) {
@@ -337,5 +338,73 @@ public class OrganicaoTelaAdm {
 				System.out.println("⚠️  Formato de número inválido.");
 			}
 		} while (case3 != 9);
+=======
+				}while(deuErrado);
+				break;
+			case 6:
+				System.out.println(adm.getNome()+"> Você quer aplicar desconto por:");
+				System.out.println("[1] Ano de lançamento");
+				System.out.println("[2] Categoria");
+				
+				int opcao21 =sc.nextInt();
+				
+				if(opcao21 ==1) {
+				System.out.println("> Insira o ano de referência: todos os jogos lançados até esse ano sofrerão desconto. (ex:2010) ");
+				int ano =sc.nextInt();
+				System.out.println("> Insira o desconto que será aplicado: (ex:20)");
+				double desconto = sc.nextDouble();
+				adm.descontoPorAno(ano, desconto, listUsuarios, listJogos);
+				
+				}else if(opcao21 ==2) {
+					List<CategoriasJogos> categorias = controleJogos.catgEscolhidas(sc);
+					System.out.println("Desconto que será aplicado é tempo limitado - (Dia ou Mês)");
+					System.out.println("-----------------------------------------------------------------------------------------");
+					System.out.println("Insira o tempo que sera.  ");
+					System.out.println("[1] Por dias ");
+					System.out.println("[2] Por mês.");
+					int tipo =sc.nextInt();
+					
+					System.out.println("> Insira o tempo que será aplicado - (ex:20): ");
+					int tempo = sc.nextInt();
+					
+					System.out.println(": Insira o desconto que será aplicado '%' - (ex:20): ");
+					double desconto = sc.nextDouble();
+					//adm.descontoPorTempoLimt( tipo,  tempo,  desconto, categorias  );
+<<<<<<< HEAD
+					
+=======
+>>>>>>> 3f64c308738c2c7753ac7b4a0f002b6265499f12
+				}
+				break;
+			case 7: 
+				 controleJogos.buscarJogoCtg(sc, listJogos);
+				break; 
+			case 8:
+				visualizacaoMenu.telaResumoVendEmpresa();
+				adm.resumoVendaJogos(listUsuarios);
+				break;
+			case 9:
+				Gambiarras.textoLento("Voltando ao munu Adm...",70);
+				System.out.println("> Voltando ao munu Adm...");
+				break;
+			default:
+				System.out.println("> Opção invalida./nInsira um opção válida:");
+				case3= sc.nextInt(); 
+	}
+		}
+		catch(DadoDuplicadoException e) {
+			System.out.println("⚠️  Dado duplicado.");
+		}
+		catch(DadoInvalidoException e) {
+			System.out.println("⚠️  Formato inválido.");
+		}
+		catch(DadoNaoEncontradoException e) {
+			System.out.println("⚠️  Dado não encontrado.");
+		}
+		catch(FormatoDoNumeroException e) {
+			System.out.println("⚠️  Formato de número inválido.");
+		}
+		}while(case3 != 9);
+>>>>>>> bad99703c644e09ba7a90513304441156b1e7fe1
 	}
 }
