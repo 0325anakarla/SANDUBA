@@ -1,15 +1,25 @@
 package Pessoa;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import TratamentoDeErro.DadoInvalidoException;
 
 public abstract class Usuarios {
 	private String nome;
 	private String email;
 	private String senha;
-
+	private static Set<String> dadosSrp = new HashSet<>();
+	
 	public Usuarios(String nome, String email, String senha) {
 		this.nome = nome;
+		String nomeFormat = nome.trim().toLowerCase();
+		dadosSrp.add(nomeFormat);
+		
 		this.email = email;
+		String nomeFormat2 = nome.trim().toLowerCase();
+		dadosSrp.add(nomeFormat2);
+		
 		this.senha = senha;
 	}
 
@@ -38,6 +48,17 @@ public abstract class Usuarios {
 			throw new DadoInvalidoException("Email invalido. Insira um email válido!");
 
 		}
+		String emailFormat = email.trim().toLowerCase();
+
+        if (dadosSrp.contains(emailFormat)) {
+            throw new DadoInvalidoException("⚠️ Email já cadastrado.");
+        }
+
+        if (this.email != null) {
+            dadosSrp.remove(this.email.trim().toLowerCase());
+        }
+        this.email = email;
+        dadosSrp.add(emailFormat);
 		this.email = email;
 	}
 
@@ -45,24 +66,23 @@ public abstract class Usuarios {
 		return nome;
 	}
 
-	public void setNome(String nome) throws DadoInvalidoException {
-		if (nome == null || nome.isBlank()) {
-			throw new DadoInvalidoException("Nome invalido");
 
+	public void setNome(String nome)throws DadoInvalidoException{
+		if(nome == null || nome.isBlank()) {
+			throw new DadoInvalidoException(" ⚠️ Nome invalido");
 		}
+        String nomeFormat = nome.trim().toLowerCase();
 
-		this.nome = nome;
+        if (dadosSrp.contains(nomeFormat)) {
+            throw new DadoInvalidoException("⚠️ Nome de usuário ja cadastrado.");
+        }
+
+        if (this.nome != null) {
+            dadosSrp.remove(this.nome.trim().toLowerCase());
+        }
+        this.nome = nome;
+        dadosSrp.add(nomeFormat);
 	}
-
-//	public abstract void exibirInformacaoPublica(); //nome de usuario
-//	public abstract void exibirInformacaoPrivada(); //detalhes da conta
-//	
-//	public abstract String alterarSenha(String senha); //alterar dados
-//	public abstract String alterarEmail(String email);
-//	
-//	public abstract void seusJogos(); //jogos cadastrados e jogos comprados
-//	
-//	public abstract void excluirConta(); //excluir conta
 
 	public abstract String mostrarDetalhesUsuario();
 

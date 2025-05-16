@@ -7,6 +7,7 @@ import java.util.Scanner;
 import Financeiro.CarrinhoDeCompras;
 import Pessoa.Cliente;
 import Repositorio.RepositorioJogoArrayList;
+import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoDuplicadoException;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
@@ -23,13 +24,15 @@ public class BibliotecaJogos {
 	private Menu menu;
 	private ControleDeJogos controleDeJogos;
 	RepositorioJogoArrayList jogosClasf = new RepositorioJogoArrayList();
+	private RepositorioUsuarioArrayList listUsuarrio;
 	
-	public BibliotecaJogos(Scanner sc,  CarrinhoDeCompras carrinho, RepositorioJogoArrayList listJogos, TelaCliente telaCliente, ControleDeJogos controleDeJogos) {
+	public BibliotecaJogos(Scanner sc,  CarrinhoDeCompras carrinho, RepositorioJogoArrayList listJogos, TelaCliente telaCliente, ControleDeJogos controleDeJogos, RepositorioUsuarioArrayList listUsuarrio) {
 		this.sc = sc;
 		this.listJogos = listJogos;
 		this.telaCliente = telaCliente;
 		this.carrinho = carrinho;
 		this.controleDeJogos= controleDeJogos;
+		this.listUsuarrio= listUsuarrio;
 	}
 	
 	public void setMostrarCarrinho(TelaCarrinhoDeCompras mostrarCarrinho) {
@@ -79,7 +82,8 @@ public class BibliotecaJogos {
 			    	System.out.println("❌ Erro: " + e.getMessage());
 			    	System.out.print("\nTenta de novo: ");
 			    }
-			 }
+			 
+		    }
 			    switch(opcao) {
 			    	case 1: 
 			    		boolean opcaoValida1 = false;
@@ -106,7 +110,7 @@ public class BibliotecaJogos {
 			    		}else if(buscar==2) {
 			    			 controleDeJogos.buscarJogoCtg( sc,  jogosClasf);
 			    			 opcaoValida1 = true;
-			    			 break;
+			    			 
 			    			 
 			    		 }
 			    		}
@@ -117,56 +121,15 @@ public class BibliotecaJogos {
 			    		mostrarCarrinho.CarrinhoDeCompras(cliente, carrinho);
 			    		break;
 			    	case 3:
-			    		telaCliente.telaMinhaContaCliente(cliente);
+			    		telaCliente.telaMinhaContaCliente(cliente,listUsuarrio);
 			    		break;
 			    	case 4:
 			    		break;
 			    	default:
 			    		System.out.println("⚠️ Opção inválida.");
 						break;
+						
 			    }
-		    
-		    switch(opcao) {
-		    	case 1: 
-		    		System.out.print("\n📝 Digite o nome do jogo: ");
-		    		try{
-		    			Jogo resultado = jogosClasf.procurarNome(sc.nextLine());
-		    			resultado.mostrarDados();
-		    			opcoesDeCompra(resultado, cliente);
-		    		}catch(DadoNaoEncontradoException e) {
-		    			System.out.println("❌ Erro: " + e.getMessage());
-		    			System.out.println("📝 Digite novamente o jogo que procura.");
-		    		}
-		    		break;
-		    	case 2:
-		    		mostrarCarrinho.CarrinhoDeCompras(cliente, carrinho);
-		    		break;
-		    	case 3:
-		    		telaCliente.telaMinhaContaCliente(cliente);
-		    	case 4:
-		    		System.out.println("==========================================================");
-		    		System.out.println("\n| Realmente deseja sair da sua conta? |");
-					System.out.println("  [1] Sim!!");
-					System.out.println("  [2] Não.");
-					opcaoValida = false;
-				    while(!opcaoValida) {
-					    try {
-					    	int subSubOpcao = Integer.parseInt(sc.nextLine());
-					    	opcaoValida = true;
-					    	if(subSubOpcao == 1) {
-					    		menu.start();
-					    		break;
-					    	}
-					    }catch(NumberFormatException  e) {
-					    	System.out.println("❌ Erro: " + e.getMessage());
-					    	System.out.print("\n📝 Digite um número válido: ");
-					    }
-					 }
-		    		break;
-		    	default:
-		    		System.out.println("⚠️ Opção inválida.");
-					break;
-		    }
 
 	    }while(opcao != 4);
 	}

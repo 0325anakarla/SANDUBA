@@ -96,6 +96,9 @@ public class TesteMenu {
 		listUsuarios.add(empresa1);
 		listUsuarios.add(empresa2);
 		listUsuarios.add(empresa3);
+		listUsuarios.add(empresa4);
+		listUsuarios.add(empresa5);
+		listUsuarios.add(empresa6);
 		//listUsuarios.add(adm);
 		
 		//JOGOS-----------------------------------------------
@@ -364,10 +367,10 @@ public class TesteMenu {
 		TelaCliente telaCliente = new TelaCliente(sc, visualizacaoMenu);
 		TelaEmpresa telaEmpresa = new TelaEmpresa(sc, visualizacaoMenu, listJogos, controleJogos);
 		TelaAdm telaAdm = new TelaAdm(sc, visualizacaoMenu, adm, listUsuarios, listJogos, controleJogos);
-		BibliotecaJogos bibJogos = new BibliotecaJogos(sc, carrinho, listJogos, telaCliente, controleJogos);
-		TelaCarrinhoDeCompras mostrarCarrinho = new TelaCarrinhoDeCompras(sc, bibJogos, telaCliente);
+		BibliotecaJogos bibJogos = new BibliotecaJogos(sc, carrinho, listJogos, telaCliente, controleJogos, listUsuarios);
+		TelaCarrinhoDeCompras mostrarCarrinho = new TelaCarrinhoDeCompras(sc, bibJogos, telaCliente, listUsuarios);
 		bibJogos.setMostrarCarrinho(mostrarCarrinho);
-		TelaListaDeDesejos telaListaDeDesejos = new TelaListaDeDesejos(sc, carrinho, mostrarCarrinho, telaCliente);
+		TelaListaDeDesejos telaListaDeDesejos = new TelaListaDeDesejos(sc, carrinho, mostrarCarrinho, telaCliente, listUsuarios);
 		telaCliente.setTelaListaDeDesejos(telaListaDeDesejos);
 		telaCliente.setBibliotecaJogos(bibJogos);
 		

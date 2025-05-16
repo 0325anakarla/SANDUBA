@@ -12,6 +12,7 @@ import jogo.Jogo;
 import Financeiro.CartaoDeCredito;
 import Financeiro.CarteiraDoCliente;
 import Financeiro.RegistroDeCompras;
+import Interfaces.IUsuario;
 //import TratamentoDeErro.DadoInvalidoException;
 //import jogo.Jogo;
 

@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import Financeiro.CarrinhoDeCompras;
 import Pessoa.Cliente;
+import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
 import jogo.Jogo;
@@ -14,13 +15,15 @@ public class TelaListaDeDesejos {
 	private CarrinhoDeCompras carrinho;
 	private TelaCarrinhoDeCompras mostrarCarrinho;
 	private TelaCliente telaCliente;
+	private RepositorioUsuarioArrayList listUsuarios;
 
 	public TelaListaDeDesejos(Scanner sc, CarrinhoDeCompras carrinho, TelaCarrinhoDeCompras mostrarCarrinho,
-			TelaCliente telaCliente) {
+			TelaCliente telaCliente, RepositorioUsuarioArrayList listUsuarios) {
 		this.sc = sc;
 		this.carrinho = carrinho;
 		this.mostrarCarrinho = mostrarCarrinho;
 		this.telaCliente = telaCliente;
+		this.listUsuarios = listUsuarios;
 	}
 
 	public void telaLD(Cliente cliente) throws DadoInvalidoException {
@@ -93,7 +96,7 @@ public class TelaListaDeDesejos {
 								opcaoValida2 = true;
 								continuarAcao = false;
 								continuarNaTela = false;
-								telaCliente.telaMinhaContaCliente(cliente);
+								telaCliente.telaMinhaContaCliente(cliente, listUsuarios);
 							} else
 								System.out.println("⚠️ Opção inválida. 1, 2 ou 3.");
 						}
@@ -121,7 +124,7 @@ public class TelaListaDeDesejos {
 				break;
 			case 3:
 				continuarNaTela = false;
-				telaCliente.telaMinhaContaCliente(cliente);
+				telaCliente.telaMinhaContaCliente(cliente, listUsuarios);
 				break;
 			default:
 				System.out.println("⚠️ Opção inválida. Digite 1, 2 ou 3.");

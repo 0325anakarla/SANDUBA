@@ -5,6 +5,7 @@ import java.util.Scanner;
 import Financeiro.CarrinhoDeCompras;
 import Financeiro.CartaoDeCredito;
 import Pessoa.Cliente;
+import Repositorio.RepositorioUsuarioArrayList;
 import TratamentoDeErro.DadoInvalidoException;
 import TratamentoDeErro.DadoNaoEncontradoException;
 import jogo.Jogo;
@@ -13,11 +14,13 @@ public class TelaCarrinhoDeCompras {
 	private Scanner sc;
 	private BibliotecaJogos bibJogos;
 	private TelaCliente telaCliente;
+	private RepositorioUsuarioArrayList listUsuarios;
 
-	public TelaCarrinhoDeCompras(Scanner sc, BibliotecaJogos bibJogos, TelaCliente telaCliente) {
+	public TelaCarrinhoDeCompras(Scanner sc, BibliotecaJogos bibJogos, TelaCliente telaCliente, RepositorioUsuarioArrayList listUsuarios) {
 		this.sc = sc;
 		this.bibJogos = bibJogos;
 		this.telaCliente = telaCliente;
+		this.listUsuarios = listUsuarios;
 	}
 
 	public void CarrinhoDeCompras(Cliente cliente, CarrinhoDeCompras carrinho) throws DadoInvalidoException {
@@ -126,7 +129,7 @@ public class TelaCarrinhoDeCompras {
 				bibJogos.Biblioteca(cliente);
 				break;
 			case 2:
-				telaCliente.telaMinhaContaCliente(cliente);
+				telaCliente.telaMinhaContaCliente(cliente, listUsuarios);
 				break;
 			default:
 				System.out.println("⚠️ Opção inválida.");
