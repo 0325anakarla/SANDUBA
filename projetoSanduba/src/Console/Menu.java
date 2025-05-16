@@ -49,17 +49,14 @@ public class Menu {
 		switch (choice) {
 
 		case 1:
-			
 			cadastroUsuario();
 			break;
 		case 2:
 			loginUsuario();
 			break;
 		case 3:
-
 			System.out.println("Obrigado por utilizar o Sanduba");
-
-			System.out.print("\n[1]-  Voltar.. \nResposta:");
+			System.out.print("\n[1] -  Voltar.. \nResposta: ");
 			int choice2 = sc.nextInt();
 			sc.nextLine();
 

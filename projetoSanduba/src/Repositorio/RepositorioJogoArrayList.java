@@ -3,7 +3,6 @@ package Repositorio;
 import java.util.ArrayList;
 import java.util.List;
 
-import Interfaces.Repositorio;
 import Interfaces.RepositorioJogos;
 import Pessoa.Empresa;
 import TratamentoDeErro.DadoDuplicadoException;
@@ -42,8 +41,8 @@ public class RepositorioJogoArrayList implements RepositorioJogos {
 		return jogos;
 	}
 
-//perguntar para o monitor
-//erro IDE
+
+//erro IDE 
 	@Override
 	public List<Jogo> getTipo(Class<?> clazz) throws DadoInvalidoException {
 		if (clazz == null)
