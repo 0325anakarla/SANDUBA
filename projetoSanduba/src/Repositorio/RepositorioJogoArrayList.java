@@ -16,23 +16,23 @@ public class RepositorioJogoArrayList implements RepositorioJogos {
 	private final List<Jogo> jogos = new ArrayList<>();
 
 	@Override
-	public void add(Jogo jogo) throws DadoDuplicadoException  {
-		if(jogos.contains(jogo)) {
-			throw new DadoDuplicadoException("O jogo " +jogo.getTitulo()+ " ja existe.");
+	public void add(Jogo jogo) throws DadoDuplicadoException {
+		if (jogos.contains(jogo)) {
+			throw new DadoDuplicadoException("O jogo " + jogo.getTitulo() + " ja existe.");
 		}
 		jogos.add(jogo);
 	}
-	
+
 	public List<Jogo> getTodos() {
 		return new ArrayList<>(jogos);
 	}
 
 	@Override
 	public void deletar(Jogo jogo) {
-		if(!jogos.contains(jogo)) {
-			throw new DadoNaoEncontradoException("O jogo " +jogo.getTitulo()+ " não foi encontrado.");
+		if (!jogos.contains(jogo)) {
+			throw new DadoNaoEncontradoException("O jogo " + jogo.getTitulo() + " não foi encontrado.");
 		}
-		
+
 		jogos.remove(jogo);
 
 	}
@@ -40,7 +40,6 @@ public class RepositorioJogoArrayList implements RepositorioJogos {
 	public List<Jogo> getJogo() {
 		return jogos;
 	}
-
 
 //erro IDE 
 	@Override
@@ -58,16 +57,16 @@ public class RepositorioJogoArrayList implements RepositorioJogos {
 
 	@Override
 	public Jogo procurarNome(String titulo) throws DadoNaoEncontradoException, DadoInvalidoException {
-		if(titulo == null || titulo.trim().isEmpty()) {
+		if (titulo == null || titulo.trim().isEmpty()) {
 			throw new DadoInvalidoException("O título não pode ser vazio.");
 		}
-		
+
 		for (Jogo jogo : jogos) {
 			if (jogo.getTitulo().trim().equalsIgnoreCase(titulo.trim())) {
 				return jogo;
 			}
 		}
-	 throw new DadoNaoEncontradoException("Jogo com o título '" + titulo + "' não foi encontrado.");
+		throw new DadoNaoEncontradoException("Jogo com o título '" + titulo + "' não foi encontrado.");
 	}
 
 	@Override
@@ -75,8 +74,9 @@ public class RepositorioJogoArrayList implements RepositorioJogos {
 		// TODO Auto-generated method stub
 
 	}
+
 	@Override
-	public List<Jogo> procurarEmpresa(Empresa empresa) throws DadoNaoEncontradoException{
+	public List<Jogo> procurarEmpresa(Empresa empresa) throws DadoNaoEncontradoException {
 		List<Jogo> resultados = new ArrayList<Jogo>();
 
 		for (Jogo jogo : jogos) {
@@ -84,19 +84,19 @@ public class RepositorioJogoArrayList implements RepositorioJogos {
 				resultados.add(jogo);
 			}
 		}
-		
-		if( resultados.isEmpty()) {
-			throw new DadoNaoEncontradoException("Não há nenhum jogo cadastrado pela '" + empresa.getRazaoSocial());
+
+		if (resultados.isEmpty()) {
+			throw new DadoNaoEncontradoException("⚠️ Não há nenhum jogo cadastrado pela '" + empresa.getRazaoSocial());
 		}
-		
-		 return resultados;
+
+		return resultados;
 	}
-	
-	public List<Jogo> jogosComDesconto(){
+
+	public List<Jogo> jogosComDesconto() {
 		List<Jogo> resultados = new ArrayList<Jogo>();
-		
-		for(Jogo jogo : jogos) {
-			if(jogo.isDescontoApli()) {
+
+		for (Jogo jogo : jogos) {
+			if (jogo.isDescontoApli()) {
 				resultados.add(jogo);
 			}
 		}
@@ -111,39 +111,33 @@ public class RepositorioJogoArrayList implements RepositorioJogos {
 
 	public String resumoJogos() {
 		StringBuilder resumo = new StringBuilder();
-		
-		for(Jogo j: jogos) {
-			if(j.getPreco()!= j.getPrecoModificador()) {
-				resumo.append(String.format("- %s [%s] | %s\n", j.getTitulo(), j.getCategoriasValidas(), j.precoDesconto()));
-			}else {
-			resumo.append(String.format("- %s [%s] | R$ %.2f\n", j.getTitulo(),j.getCategoriasValidas(), j.getPreco()));
+
+		for (Jogo j : jogos) {
+			if (j.getPreco() != j.getPrecoModificador()) {
+				resumo.append(
+						String.format("- %s [%s] | %s\n", j.getTitulo(), j.getCategoriasValidas(), j.precoDesconto()));
+			} else {
+				resumo.append(
+						String.format("- %s [%s] | R$ %.2f\n", j.getTitulo(), j.getCategoriasValidas(), j.getPreco()));
 			}
 		}
-		
+
 		return resumo.toString();
 	}
-	
+
 	public List<Jogo> procurarPorCategorias(List<CategoriasJogos> categoriasDesejadas) {
-	    List<Jogo> resultados = new ArrayList<>();
+		List<Jogo> resultados = new ArrayList<>();
 
-	    for (Jogo jogo : jogos) {
-	        for (CategoriasJogos  categoria : categoriasDesejadas) {
-	            if (jogo.getCategoriasValidas().contains((categoria.getCategoria()))) {
-	                resultados.add(jogo);
-	                break; // Já achou uma categoria compatível, pode adicionar e ir para o próximo jogo
-	            }
-	        }
-	    }
+		for (Jogo jogo : jogos) {
+			for (CategoriasJogos categoria : categoriasDesejadas) {
+				if (jogo.getCategoriasValidas().contains((categoria.getCategoria()))) {
+					resultados.add(jogo);
+					break; // Já achou uma categoria compatível, pode adicionar e ir para o próximo jogo
+				}
+			}
+		}
 
-	    return resultados;
+		return resultados;
 	}
-
-	
-	
-
-
-
-
-	
 
 }

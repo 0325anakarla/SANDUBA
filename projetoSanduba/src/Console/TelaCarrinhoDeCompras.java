@@ -24,7 +24,7 @@ public class TelaCarrinhoDeCompras {
 		int opcao = 0;
 		
 		System.out.println("\n╔════════════════════════════════════════╗");
-		System.out.println("║          🛒 CARRINHO DE COMPRAS          ║");
+		System.out.println("║          🛒 CARRINHO DE COMPRAS        ║");
 		System.out.println("╚════════════════════════════════════════╝");
 		
 		carrinho.imprimirCarrinho();
@@ -47,9 +47,11 @@ public class TelaCarrinhoDeCompras {
 			 }
 		    switch(opcao) {
 			case 1:
-					System.out.println("Qual jogo deseja remover.");
-					Jogo resultado = carrinho.procurarNome(sc.nextLine());
+					System.out.print("Qual jogo deseja remover: ");
+					String nome = sc.nextLine();
+					Jogo resultado = carrinho.procurarNome(nome);
 					carrinho.remove(resultado); 
+					System.out.println("Jogo "+nome+" removido comm sucesso do carrinho de compras!");
 				break;
 			case 2:
 				if (!cliente.getCartoesCadastrados().isEmpty()) {
@@ -89,7 +91,7 @@ public class TelaCarrinhoDeCompras {
 							
 							if(carrinho.finalizarCompra(cliente, novoValor)) {
 								System.out.println("💳 Forma de Pagamento: Cartão: **** **** ****"+ultimosDigitos);
-								System.out.println("Compra realizada com sucesso.");
+								System.out.println("💰 Compra realizada com sucesso!!!");
 							}
 							else {
 							System.out.println("Saldo insuficiente para concluir a compra!");

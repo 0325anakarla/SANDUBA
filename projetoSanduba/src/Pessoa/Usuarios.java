@@ -9,8 +9,12 @@ public abstract class Usuarios {
 	private String nome;
 	private String email;
 	private String senha;
+<<<<<<< HEAD
 	private static Set<String> dadosSrp = new HashSet<>();
 	
+=======
+
+>>>>>>> 0fff7fbc68fcaf045483b8ed515e0444dcf6ebda
 	public Usuarios(String nome, String email, String senha) {
 		this.nome = nome;
 		String nomeFormat = nome.trim().toLowerCase();
@@ -24,29 +28,29 @@ public abstract class Usuarios {
 	}
 
 	public Usuarios() {
-		
+
 	}
-	/* ----- Gets e sets -----*/
-	
+	/* ----- Gets e sets ----- */
+
 	public String getSenha() {
 		return senha;
 	}
 
 	public void setSenha(String senha) throws DadoInvalidoException {
-		if(senha == null) {
+		if (senha == null) {
 			throw new DadoInvalidoException("Senha invalida");
-		}
-		else this.senha = senha;
+		} else
+			this.senha = senha;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email) throws DadoInvalidoException{
-		if(email == null || email.isBlank() || !email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+	public void setEmail(String email) throws DadoInvalidoException {
+		if (email == null || email.isBlank() || !email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
 			throw new DadoInvalidoException("Email invalido. Insira um email válido!");
-		
+
 		}
 		String emailFormat = email.trim().toLowerCase();
 
@@ -66,6 +70,7 @@ public abstract class Usuarios {
 		return nome;
 	}
 
+<<<<<<< HEAD
 	public void setNome(String nome)throws DadoInvalidoException{
 		if(nome == null || nome.isBlank()) {
 			throw new DadoInvalidoException(" ⚠️ Nome invalido");
@@ -82,11 +87,31 @@ public abstract class Usuarios {
         this.nome = nome;
         dadosSrp.add(nomeFormat);
 		
+=======
+	public void setNome(String nome) throws DadoInvalidoException {
+		if (nome == null || nome.isBlank()) {
+			throw new DadoInvalidoException("Nome invalido");
+
+		}
+
+>>>>>>> 0fff7fbc68fcaf045483b8ed515e0444dcf6ebda
 		this.nome = nome;
 	}
-	
 
+<<<<<<< HEAD
 	
+=======
+//	public abstract void exibirInformacaoPublica(); //nome de usuario
+//	public abstract void exibirInformacaoPrivada(); //detalhes da conta
+//	
+//	public abstract String alterarSenha(String senha); //alterar dados
+//	public abstract String alterarEmail(String email);
+//	
+//	public abstract void seusJogos(); //jogos cadastrados e jogos comprados
+//	
+//	public abstract void excluirConta(); //excluir conta
+
+>>>>>>> 0fff7fbc68fcaf045483b8ed515e0444dcf6ebda
 	public abstract String mostrarDetalhesUsuario();
 
 	public String mostrarDetalhesUsuarios() {
@@ -95,6 +120,6 @@ public abstract class Usuarios {
 
 	public void seusJogos() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
