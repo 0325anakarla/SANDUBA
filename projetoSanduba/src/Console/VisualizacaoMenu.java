@@ -129,7 +129,8 @@ public class VisualizacaoMenu {
 	    System.out.println("  [2] 🏦 Gerenciar Empresas");
 	    System.out.println("  [3] 🎮 Gerenciar Jogos");
 	    System.out.println("  [4] 💰 Ver saldo do SANDUBA");
-	    System.out.println("  [5] ❌ Sair");
+	    System.out.println("  [5] 🛠️ Ver dados do adm");
+	    System.out.println("  [6] ❌ Sair");
 	    System.out.print("\nDigite a opção desejada: ");
 
 	}
@@ -223,6 +224,13 @@ public class VisualizacaoMenu {
 		System.out.println("╚═══════════════════════════════════╝");
 		System.out.println();
 	}
+	public void telaDadosAdm() {
+		System.out.println("\n╔════════════════════════════════╗");
+		System.out.println("║         🛠️ DADOS DO ADM         ║");
+		System.out.println("╚═════════════════════════════════╝");
+		System.out.println();
+	}
+
 
 	
 }

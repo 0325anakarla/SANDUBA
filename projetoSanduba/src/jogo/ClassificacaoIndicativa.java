@@ -26,6 +26,16 @@ public enum ClassificacaoIndicativa {
             i++;
         }
     }*/
+    public int getIdadeMinima() {
+    	switch (this) {
+        case ANOS10: return 10;
+        case ANOS12: return 12;
+        case ANOS14: return 14;
+        case ANOS16: return 16;
+        case ANOS18: return 18;
+        default: return 0; // Caso seja LIVRE
+    }
+    }
     
     public static void imprimeClassificacoes() {
        System.out.println("📋 ESCOLHA AS CLASIFICAÇÕES INDICATIVAS:");
